@@ -1,0 +1,16 @@
+LINKS INTERESANTES DE REFERENCIA
+
+GIT --> https://training.github.com/kit/downloads/es/github-git-cheat-sheet.pdf (MUY BUENO)
+PHPMyAdmin --> http://docs.phpmyadmin.net/en/latest/ (Para la interfaz de BBDD que usaremos para la practica)
+
+PARA QUIENES HAGAN LA PARTE DE SERVICIO WEB
+
+Instalar framework de Apache en el PC/MAC
+
+Windows --> WAMP
+Mac     --> MAMP
+Ubuntu  --> LAMP
+
+A -> Apache (Interprete de PHP)
+M -> MySQL (Server de BBDD)
+P -> PHP (PHPMyAdmin y compatibilidad con PHP 5.5)
