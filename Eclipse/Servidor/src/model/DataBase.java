@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 
+import customExceptions.DatabaseNotLoadedException;
+
 public class DataBase {
 	static String userName;
 	static String password;
@@ -25,7 +27,8 @@ public class DataBase {
 		DataBase.url += db;
 	}
 	
-    public void connect() {
+	public void connect() throws DatabaseNotLoadedException{
+    	
         try {
             Class.forName("com.mysql.jdbc.Connection");
             conn = (Connection) DriverManager.getConnection(url, userName, password);
@@ -34,10 +37,15 @@ public class DataBase {
             }
         }
         catch(SQLException ex) {
-            System.out.println("Problema al connecta-nos a la BBDD --> "+url);
+            System.out.println("Problema al connecta-nos a la BBDD --> "+ url);
+            throw new DatabaseNotLoadedException("Database not loaded.");
         }
-        catch(ClassNotFoundException ex) {
-            System.out.println(ex);
+        catch(ClassNotFoundException ex2) {
+            System.out.println(ex2);
+            throw new DatabaseNotLoadedException("Database not loaded.");
+        }
+        catch (Exception e) {
+        	throw new DatabaseNotLoadedException("Database not loaded.");
         }
 
     }

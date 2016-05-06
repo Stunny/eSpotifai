@@ -3,6 +3,8 @@ package model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import customExceptions.DatabaseNotLoadedException;
+
 public class BBDDconnection {
 	DataBase conn;
 	
@@ -16,7 +18,7 @@ public class BBDDconnection {
 	/*
 	 * Conexión con el servidor 
 	 */
-	public void startConnection (){
+	public void startConnection() throws DatabaseNotLoadedException {
 		conn.connect();
 	}
 	

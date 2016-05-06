@@ -2,16 +2,16 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import view.ManagementMusicView;
+import view.ServerView;
 
 public class ButtonsController implements ActionListener{
 
 	// VISTA
-	private ManagementMusicView view;
+	private ServerView view;
 	// NETWORK
 	//private InformationService infoService;
 
-	public ButtonsController(ManagementMusicView view) {
+	public ButtonsController(ServerView view) {
 		this.view = view;
 		// Instanciem la classe per poder enviar missatges.
 		// Passem una referencia a lobjecte per si cal notificar alguna informacio.
