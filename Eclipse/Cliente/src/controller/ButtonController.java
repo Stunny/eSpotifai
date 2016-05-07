@@ -32,6 +32,7 @@ public class ButtonController implements ActionListener {
 			//PANTALLA ACCEDIR
 		if(event.getActionCommand().equals("REGI")){
 			regi.setVisible(true);
+			inicio1.setVisible(false);
 		}
 		
 		//PANTALLA REGISTRE
