@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
+
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -25,7 +27,10 @@ public class AccesRegistre  extends JFrame{
 	
 	public AccesRegistre(){
 		
-		
+		JPanel j1 = new JPanel(); 
+		JLabel logo = new JLabel("ESPOTIFAI"); 
+		j1.add(logo);
+		this.getContentPane().add(j1, BorderLayout.PAGE_START);
 		
 		//PRIMERA VENTANA ACCEDER Y REGISTRARSE
 		// PRIMER PANEL PARA ACCEDER TE PIDE USUARIO Y CONTRASEÑA
@@ -62,14 +67,14 @@ public class AccesRegistre  extends JFrame{
 		this.getContentPane().add(jp, BorderLayout.CENTER);
 		
 		
-		// PANEL SUPERIOR QUE CONTIENE EL LOGO
+		/*// PANEL SUPERIOR QUE CONTIENE EL LOGO
 		JPanel jpImatge = new JPanel();
 		JLabel jlImatge = new JLabel();
 		jlImatge.setIcon(new ImageIcon(getClass().getResource("/logo.png")));
 		jpImatge.add(jlImatge);
 		jpImatge.setBackground(Color.BLUE);
 		getContentPane().add(jpImatge, BorderLayout.PAGE_START);
-		
+		*/
 		
 		// SEGUNDO PANEL TE PREGUNTA SI NO TIENES USUARIO Y SI QUIERES REGISTRARTE
 		JPanel jpr = new JPanel();
@@ -94,11 +99,24 @@ public class AccesRegistre  extends JFrame{
 		
 		
 		//TAMAÑO DE LA VENTANA
-		this.setSize(300, 500);
+		this.setSize(300, 300);
 		this.setTitle("Accès a Espotyfai");
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
+	
+	public void registerController(ActionListener controlador){
+		jbAcces.addActionListener(controlador);
+		jbRegi.addActionListener(controlador);
+		jbAcces.setActionCommand("ACCES");
+		jbRegi.setActionCommand("REGI");
+	}
+	
+	/*public String typedCercador(){
+		return Cercador.getText();
+	}
+	*/
+	
 	
 
 	

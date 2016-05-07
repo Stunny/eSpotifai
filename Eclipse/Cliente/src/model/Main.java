@@ -6,6 +6,7 @@ import controller.ButtonController;
 import view.AccesRegistre;
 import view.Inicio;
 import view.Registre;
+import view.Usuari;
 
 public class Main {
 	public static void main(String[] args){
@@ -15,12 +16,14 @@ public class Main {
 				AccesRegistre w = new AccesRegistre();
 				Registre r = new Registre();
 				Inicio i = new Inicio();
+				Usuari u = new Usuari();
 				
-				ButtonController controlador = new ButtonController(i);
+				ButtonController controlador = new ButtonController(w, i, r);
+				w.registerController(controlador);
 				i.registerController(controlador);
-				i.setVisible(true);
-				r.setVisible(false);
-				w.setVisible(false);
+				r.registerController(controlador);
+				w.setVisible(true);
+				
 			
 			}
 		});
