@@ -8,6 +8,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -25,13 +26,16 @@ public class ManagementMusicView extends JFrame{
 	private JPanel jpPanellMusicButtonsPlayer;
 	private JPanel jpPanellButtons;
 	private JPanel jpPanellPlay;
+	private JPanel jpPanellOnlyButtons;
 
-	private GridLayout glPanellPlay;
 	private GridLayout glPanellButtons;
+	private GridLayout glPanellPlay;
+	private GridLayout glPanellOnlyButtons;
 	private GridLayout glPanellMusicButtonsPlayer;
 	private BorderLayout blPanellMusic;
 	private JTextArea jtListOfSongs;
 	private JScrollPane jspListOfSongs;
+	private BorderLayout blPanellPlay;
 
 	private JButton jbAdd;
 	private JButton jbEstadistics;
@@ -42,6 +46,9 @@ public class ManagementMusicView extends JFrame{
 	private ImageIcon leftbutton1;
 	private ImageIcon leftbutton2;
 	private ImageIcon leftbutton3;
+	
+	private JLabel jlTemporalSong;
+	private JLabel jlTime;
 
 	private ImageIcon playbutton1;
 	private ImageIcon playbutton2;
@@ -50,6 +57,8 @@ public class ManagementMusicView extends JFrame{
 	private ImageIcon rightbutton1;
 	private ImageIcon rightbutton2;
 	private ImageIcon rightbutton3;
+	
+	private ImageIcon temporalSong;
 
 	public ManagementMusicView() {
 
@@ -89,9 +98,9 @@ public class ManagementMusicView extends JFrame{
 		//Introdueixo aquest apartat/Panell a la primera fila del panell
 		jpPanellMusic.add(jspListOfSongs, BorderLayout.CENTER);
 
-
 		//Creem el subpanell per montar l'estructura del apartat "butons  - ADD i estadistiques - i el reproductor "
 		jpPanellMusicButtonsPlayer = new JPanel();
+		jpPanellMusicButtonsPlayer.setPreferredSize(new Dimension(400,60));			
 
 		//Estructura de panell de 2 files per 1 columna
 		glPanellMusicButtonsPlayer = new GridLayout(2,1);
@@ -107,7 +116,7 @@ public class ManagementMusicView extends JFrame{
 		jbAdd.setHorizontalAlignment(JButton.CENTER);
 		jpPanellButtons.add(jbAdd);
 
-		//Creo botó per controlar els usuaris "Users"
+		//Creo botó per controlar els usuaris "Estadistics"
 		jbEstadistics = new JButton("Estadistics");
 		jbEstadistics.setHorizontalAlignment(JButton.CENTER);
 		jpPanellButtons.add(jbEstadistics);
@@ -119,37 +128,55 @@ public class ManagementMusicView extends JFrame{
 		 */
 		//Estructura de subsubpanell només de botons del reproductor
 		jpPanellPlay = new JPanel();
-		glPanellPlay = new GridLayout(1,4);
-		jpPanellPlay.setLayout(glPanellPlay);
-
+		blPanellPlay = new BorderLayout();
+		jpPanellPlay.setLayout(blPanellPlay);
+		
 		playButton = new JButton();
+		
 		rightButton = new JButton();
+		
+		jpPanellOnlyButtons = new JPanel();
+		glPanellOnlyButtons = new GridLayout(1,3);
+		jpPanellOnlyButtons.setLayout(glPanellOnlyButtons);
+		
 		leftButton = new JButton();
-
+		
 		playbutton1 = new ImageIcon("src/imagenes/playButn1.png");
 		playbutton2 = new ImageIcon("src/imagenes/playButn2.png");
 		playbutton3 = new ImageIcon("src/imagenes/playButn3.png");
-
+		
 		rightbutton1 = new ImageIcon("src/imagenes/rightbutn1.png");
 		rightbutton2 = new ImageIcon("src/imagenes/rightbutn2.png");
 		rightbutton3 = new ImageIcon("src/imagenes/rightbutn3.png");
-
+		
 		leftbutton1 = new ImageIcon("src/imagenes/leftbutn1.png");
 		leftbutton2 = new ImageIcon("src/imagenes/leftbutn2.png");
 		leftbutton3 = new ImageIcon("src/imagenes/leftbutn3.png");
-
+		
+		temporalSong = new ImageIcon("src/imagenes/secuencialSong.png");
+		jlTemporalSong = new JLabel(temporalSong);
+		jlTemporalSong.setPreferredSize(new Dimension(700,10));
+		
+		jlTime = new JLabel();
+		jlTime.setHorizontalAlignment(JLabel.CENTER);
+		jlTime.setText(" 00:00");
+		
 		ConfigurationButton(playButton, playbutton1, playbutton2, playbutton3);
 		ConfigurationButton(rightButton, rightbutton1, rightbutton2, rightbutton3);
 		ConfigurationButton(leftButton, leftbutton1, leftbutton2, leftbutton3);
-
-		jpPanellPlay.add(rightButton, BorderLayout.WEST);
-		jpPanellPlay.add(playButton, BorderLayout.CENTER);
-		jpPanellPlay.add(leftButton, BorderLayout.EAST);
+		
+		jpPanellOnlyButtons.add(rightButton);
+		jpPanellOnlyButtons.add(playButton);
+		jpPanellOnlyButtons.add(leftButton);
+		
+		jpPanellPlay.add(jpPanellOnlyButtons, BorderLayout.WEST);
+		jpPanellPlay.add(jlTemporalSong, BorderLayout.CENTER);
+		jpPanellPlay.add(jlTime, BorderLayout.EAST);
 
 		jpPanellMusicButtonsPlayer.add(jpPanellPlay);
-		//jpPanellMusicButtonsPlayer.add(jpPanellPlay);
+		
 		jpPanellMusic.add(jpPanellMusicButtonsPlayer, BorderLayout.PAGE_END);
-
+		
 
 		//TAB USERS
 
@@ -174,8 +201,6 @@ public class ManagementMusicView extends JFrame{
 		JScrollPane jspPanellUsers = new JScrollPane(usertable);
 		jpPanellUsers = new JPanel();
 		jpPanellUsers.add(jspPanellUsers, BorderLayout.CENTER);
-
-
 
 		//Incloeixo les pestañes a la finestra
 		jtpPestanyas.addTab("Music", jpPanellMusic);
