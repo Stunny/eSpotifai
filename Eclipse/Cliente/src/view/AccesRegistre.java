@@ -62,14 +62,15 @@ public class AccesRegistre  extends JFrame{
 		this.getContentPane().add(jp, BorderLayout.CENTER);
 		
 		
-		// PANEL SUPERIOR QUE CONTIENE EL LOGO
+		
+		/*// PANEL SUPERIOR QUE CONTIENE EL LOGO
 		JPanel jpImatge = new JPanel();
 		JLabel jlImatge = new JLabel();
 		jlImatge.setIcon(new ImageIcon(getClass().getResource("/logo.png")));
 		jpImatge.add(jlImatge);
 		jpImatge.setBackground(Color.BLUE);
 		getContentPane().add(jpImatge, BorderLayout.PAGE_START);
-		
+		*/
 		
 		// SEGUNDO PANEL TE PREGUNTA SI NO TIENES USUARIO Y SI QUIERES REGISTRARTE
 		JPanel jpr = new JPanel();

@@ -19,12 +19,13 @@ public class Registre extends JFrame{
 	
 	public Registre(){
 		// PANEL SUPERIOR QUE CONTIENE EL LOGO
-		JPanel jpImatge = new JPanel();
+		/*JPanel jpImatge = new JPanel();
 		JLabel jlImatge = new JLabel();
 		jlImatge.setIcon(new ImageIcon(getClass().getResource("/logo.png")));
 		jpImatge.add(jlImatge);
 		jpImatge.setBackground(Color.BLUE);
 		getContentPane().add(jpImatge, BorderLayout.PAGE_START);
+		*/
 		
 		JPanel jp = new JPanel(); 
 		jp.setLayout(new GridLayout(3, 1));
