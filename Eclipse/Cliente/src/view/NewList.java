@@ -34,7 +34,7 @@ public class NewList extends JFrame{
 		this.setSize(350, 120);
 		this.setTitle("Crear nueva lista");
 		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	
 		

@@ -28,6 +28,7 @@ public class Inicio extends JFrame {
 	private JTextField jtfAlbum; 
 	private JTextField jtfGenere; 
 	private JTextField jtfCancion; 
+	private JButton jbTancar;
 	
 	
 	
@@ -38,12 +39,14 @@ public class Inicio extends JFrame {
 	
 		//START(P1)
 		JPanel p1 = new JPanel();
-		p1.setLayout(new GridLayout(1, 3));
+		p1.setLayout(new GridLayout(1, 4));
 		
 		JLabel logo = new JLabel("ESPOTIFAI");
 		p1.add(logo, BorderLayout.CENTER);
 		Cercador = new JTextField();
 		p1.add(Cercador, BorderLayout.CENTER);
+		jbTancar = new JButton("CERRAR SESIÓN"); 
+		p1.add(jbTancar, BorderLayout.CENTER);
 		Perfil = new JButton("USUARIO");
 		p1.add(Perfil, BorderLayout.PAGE_START);
 		
@@ -83,6 +86,7 @@ public class Inicio extends JFrame {
 		//Taules.setPreferredScrollableViewportSize(new Dimension(400, 450));
 		//Taules.setFillsViewportHeight(true);
 		JScrollPane jps = new JScrollPane(Taules);
+		jps.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		
 		
 		principal.add(jps, BorderLayout.CENTER);
@@ -135,8 +139,10 @@ public class Inicio extends JFrame {
 	public void registerController(ActionListener controlador){
 		jbAfeguir.addActionListener(controlador);
 		Perfil.addActionListener(controlador);
+		jbTancar.addActionListener(controlador);
 		jbAfeguir.setActionCommand("AFEGUIR");
 		Perfil.setActionCommand("PERFIL");
+		jbTancar.setActionCommand("TANCAR");
 	}
 	
 	public String typedCercador(){
