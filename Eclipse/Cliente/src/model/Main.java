@@ -19,8 +19,8 @@ public class Main {
 				ButtonController controlador = new ButtonController(i);
 				i.registerController(controlador);
 				i.setVisible(true);
-				r.setVisible(false);
-				w.setVisible(false);
+				r.setVisible(true);
+				w.setVisible(true);
 			
 			}
 		});
