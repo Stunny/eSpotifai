@@ -12,7 +12,7 @@ import javax.swing.JTextArea;
 
 public class UsuariCercat extends JFrame {
 	
-	private JTextArea followers;
+	private JTextArea llistes;
 	private JTextArea following; 
 	private JTextArea usuari;
 	public UsuariCercat(){
@@ -32,23 +32,15 @@ public class UsuariCercat extends JFrame {
 		
 		JPanel p1 = new JPanel(); 
 		p1.setLayout(new BorderLayout());
-		followers = new JTextArea();
-		followers.setEditable(false);
-		JScrollPane jpf = new JScrollPane(followers);
+		llistes = new JTextArea();
+		llistes.setEditable(false);
+		JScrollPane jpf = new JScrollPane(llistes);
 		jpf.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		p1.add(jpf, BorderLayout.CENTER);
-		
-		JPanel p2 = new JPanel(); 
-		p2.setLayout(new BorderLayout());
-		following = new JTextArea();
-		following.setEditable(false);
-		JScrollPane jpf1 = new JScrollPane(followers);
-		jpf1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		p2.add(jpf1, BorderLayout.CENTER);
+	
 	
 		
-		panell.addTab("Followers", p1);
-		panell.addTab("Following", p2);
+		panell.addTab("Playlist", p1);
 		this.getContentPane().add(panell);
 	
 		
