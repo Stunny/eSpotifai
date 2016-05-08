@@ -14,44 +14,45 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class UserWindow extends JFrame{
-	private JTextArea followers;
-	private JTextArea following; 
-	private JTextArea usuari;
+	
+	private JTextArea jtaFollowers;
+	private JTextArea jtaFollowing; 
+	private JTextArea jtaUsername;
 	public UserWindow(){
 		
-		JPanel panell1 = new JPanel(); 
-		panell1.setLayout(new GridLayout(1, 2));
-		JLabel nom = new JLabel("Nickname:"); 
-		usuari = new JTextArea(); 
-		usuari.setEditable(false);
-		panell1.add(nom, BorderLayout.CENTER);
-		panell1.add(usuari, BorderLayout.CENTER);
+		JPanel jpHead = new JPanel(); 
+		jpHead.setLayout(new GridLayout(1, 2));
+		JLabel jlUsername = new JLabel("Nickname:"); 
+		jtaUsername = new JTextArea(); 
+		jtaUsername.setEditable(false);
+		jpHead.add(jlUsername, BorderLayout.CENTER);
+		jpHead.add(jtaUsername, BorderLayout.CENTER);
 		
-		this.getContentPane().add(panell1, BorderLayout.PAGE_START);
+		this.getContentPane().add(jpHead, BorderLayout.PAGE_START);
 		
 		
-		JTabbedPane panell = new JTabbedPane(); 
+		JTabbedPane jtbTabs = new JTabbedPane(); 
 		
-		JPanel p1 = new JPanel(); 
-		p1.setLayout(new BorderLayout());
-		followers = new JTextArea();
-		followers.setEditable(false);
-		JScrollPane jpf = new JScrollPane(followers);
-		jpf.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		p1.add(jpf, BorderLayout.CENTER);
+		JPanel jpFollowersTab = new JPanel(); 
+		jpFollowersTab.setLayout(new BorderLayout());
+		jtaFollowers = new JTextArea();
+		jtaFollowers.setEditable(false);
+		JScrollPane jspFollowers = new JScrollPane(jtaFollowers);
+		jspFollowers.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		jpFollowersTab.add(jspFollowers, BorderLayout.CENTER);
 		
-		JPanel p2 = new JPanel(); 
-		p2.setLayout(new BorderLayout());
-		following = new JTextArea();
-		following.setEditable(false);
-		JScrollPane jpf1 = new JScrollPane(followers);
-		jpf1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		p2.add(jpf1, BorderLayout.CENTER);
+		JPanel jpFollowingTab = new JPanel(); 
+		jpFollowingTab.setLayout(new BorderLayout());
+		jtaFollowing = new JTextArea();
+		jtaFollowing.setEditable(false);
+		JScrollPane jspFollowing = new JScrollPane(jtaFollowing);
+		jspFollowing.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		jpFollowingTab.add(jspFollowing, BorderLayout.CENTER);
 	
 		
-		panell.addTab("Followers", p1);
-		panell.addTab("Following", p2);
-		this.getContentPane().add(panell);
+		jtbTabs.addTab("jtaFollowers", jpFollowersTab);
+		jtbTabs.addTab("jtaFollowing", jpFollowingTab);
+		this.getContentPane().add(jtbTabs);
 	
 		
 		this.setSize(300, 500);

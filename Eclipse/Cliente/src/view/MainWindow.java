@@ -18,116 +18,115 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class MainWindow extends JFrame {
-	private JTextArea jtaLlistes; 
-	private JButton jbEliminar; 
-	private JButton jbAfeguir;
-	private JTextField Cercador; 
-	private JButton Perfil;
-	private JTable Taules; 
-	private JTextField jtfArtista; 
+	private JTextArea jtaLists; 
+	private JButton jbRemove; 
+	private JButton jbAdd;
+	private JTextField jtfSearch; 
+	private JButton jbProfile;
+	private JTable jtMusic; 
+	private JTextField jtfArtist; 
 	private JTextField jtfAlbum; 
-	private JTextField jtfGenere; 
-	private JTextField jtfCancion; 
-	private JButton jbTancar;
+	private JTextField jtfGenre; 
+	private JTextField jtfSongTitle; 
+	private JButton jbClose;
 	
 	
 	
 	
 	public MainWindow(){
-		JPanel principal = new JPanel(); 
-		principal.setLayout(new BorderLayout());
+		JPanel jpMain = new JPanel(); 
+		jpMain.setLayout(new BorderLayout());
 	
-		//START(P1)
-		JPanel p1 = new JPanel();
-		p1.setLayout(new GridLayout(1, 4));
+		//START(jpPageStart)
+		JPanel jpPageStart = new JPanel();
+		jpPageStart.setLayout(new GridLayout(1, 4));
 		
-		JLabel logo = new JLabel("ESPOTIFAI");
-		p1.add(logo, BorderLayout.CENTER);
-		Cercador = new JTextField();
-		p1.add(Cercador, BorderLayout.CENTER);
-		jbTancar = new JButton("CERRAR SESIÓN"); 
-		p1.add(jbTancar, BorderLayout.CENTER);
-		Perfil = new JButton("USUARIO");
-		p1.add(Perfil, BorderLayout.PAGE_START);
+		JLabel jlLogo = new JLabel("ESPOTIFAI");
+		jpPageStart.add(jlLogo, BorderLayout.CENTER);
+		jtfSearch = new JTextField();
+		jpPageStart.add(jtfSearch, BorderLayout.CENTER);
+		jbClose = new JButton("CERRAR SESIÓN"); 
+		jpPageStart.add(jbClose, BorderLayout.CENTER);
+		jbProfile = new JButton("USUARIO");
+		jpPageStart.add(jbProfile, BorderLayout.PAGE_START);
 		
 		
-		principal.add(p1, BorderLayout.PAGE_START);
-		// END P1
+		jpMain.add(jpPageStart, BorderLayout.PAGE_START);
+		// END jpPageStart
 		
 		//START (P2)
 
 		
-		// START (P21)
-		JPanel p21 = new JPanel(); 
-		p21.setLayout(new GridLayout( 2, 1));
+		// START (jpPageWest)
+		JPanel jpPageWest = new JPanel(); 
+		jpPageWest.setLayout(new GridLayout( 2, 1));
 		
-		JPanel p211 = new JPanel(new BorderLayout());
-		p211.setBorder(BorderFactory.createTitledBorder("PLAYLIST"));
-		jtaLlistes = new JTextArea(); 
-		jtaLlistes.setEditable(false);
-		JScrollPane jspLlistat = new JScrollPane(jtaLlistes);
-		jspLlistat.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		jspLlistat.setPreferredSize(new Dimension(250,250));
-		p211.add(jspLlistat, BorderLayout.CENTER);
-		p21.add(p211, BorderLayout.CENTER); //INSERIM PANELL 1 LLISTAT DE MUSICA
+		JPanel jpLists = new JPanel(new BorderLayout());
+		jpLists.setBorder(BorderFactory.createTitledBorder("PLAYLIST"));
+		jtaLists = new JTextArea(); 
+		jtaLists.setEditable(false);
+		JScrollPane jspLists = new JScrollPane(jtaLists);
+		jspLists.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		jspLists.setPreferredSize(new Dimension(250,250));
+		jpLists.add(jspLists, BorderLayout.CENTER);
+		jpPageWest.add(jpLists, BorderLayout.CENTER); //INSERIM PANELL 1 LLISTAT DE MUSICA
 		
-		jbAfeguir = new JButton("Nueva Lista");
-		p21.add(jbAfeguir);
+		jbAdd = new JButton("Nueva Lista");
+		jpPageWest.add(jbAdd);
 		
 		
-		//END (P21)
-		principal.add(p21, BorderLayout.WEST);
+		//END (jpPageWest)
+		jpMain.add(jpPageWest, BorderLayout.WEST);
 		
-		//START P22
-		JPanel p22 = new JPanel(); 
+		//START jpPageCenter
 		String[] columnas = {"NOMBRE", "GÉNERO", "ALBUM", "ARTISTA", "ESTRELLAS", "REPRODUCCIONES"};
 		String [][] dades = {{"Nuria Canta Mal", " Punk", "Puta Vida Tete", "Erna", "5", "10000000000"}};
-		Taules = new JTable(dades, columnas);
-		//Taules.setPreferredScrollableViewportSize(new Dimension(400, 450));
-		//Taules.setFillsViewportHeight(true);
-		JScrollPane jps = new JScrollPane(Taules);
-		jps.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		jtMusic = new JTable(dades, columnas);
+		//jtMusic.setPreferredScrollableViewportSize(new Dimension(400, 450));
+		//jtMusic.setFillsViewportHeight(true);
+		JScrollPane jspMusic = new JScrollPane(jtMusic);
+		jspMusic.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		
 		
-		principal.add(jps, BorderLayout.CENTER);
+		jpMain.add(jspMusic, BorderLayout.CENTER);
 		
-		//START(P22)
+		//START(jpPageEast)
 		
-		JPanel p23 = new JPanel(); 
-		p23.setLayout(new GridLayout(8,1));
+		JPanel jpPageEast = new JPanel(); 
+		jpPageEast.setLayout(new GridLayout(8,1));
 		
-		p23.setBorder(BorderFactory.createTitledBorder("Filtro"));
+		jpPageEast.setBorder(BorderFactory.createTitledBorder("Filtro"));
 		
-		JLabel jl = new JLabel("Artista:");
-		p23.add(jl, BorderLayout.CENTER);
-		jtfArtista = new JTextField();
-		p23.add(jtfArtista, BorderLayout.CENTER);
+		JLabel jlArtist = new JLabel("Artista:");
+		jpPageEast.add(jlArtist, BorderLayout.CENTER);
+		jtfArtist = new JTextField();
+		jpPageEast.add(jtfArtist, BorderLayout.CENTER);
 		
-		JLabel jl1 = new JLabel("�?lbum:");
-		p23.add(jl1, BorderLayout.CENTER);
+		JLabel jlAlbum = new JLabel("�?lbum:");
+		jpPageEast.add(jlAlbum, BorderLayout.CENTER);
 		jtfAlbum = new JTextField();
-		p23.add(jtfAlbum, BorderLayout.CENTER);
+		jpPageEast.add(jtfAlbum, BorderLayout.CENTER);
 		
-		JLabel jl2 = new JLabel("Género:");
-		p23.add(jl2, BorderLayout.CENTER);
-		jtfGenere = new JTextField();
-		p23.add(jtfGenere, BorderLayout.CENTER);
+		JLabel jlGenre = new JLabel("Género:");
+		jpPageEast.add(jlGenre, BorderLayout.CENTER);
+		jtfGenre = new JTextField();
+		jpPageEast.add(jtfGenre, BorderLayout.CENTER);
 		
-		JLabel jl3 = new JLabel("Nombre de la canción:");
-		p23.add(jl3, BorderLayout.CENTER);
-		jtfCancion = new JTextField();
-		p23.add(jtfCancion, BorderLayout.CENTER);
+		JLabel jlSongTitle = new JLabel("Nombre de la canción:");
+		jpPageEast.add(jlSongTitle, BorderLayout.CENTER);
+		jtfSongTitle = new JTextField();
+		jpPageEast.add(jtfSongTitle, BorderLayout.CENTER);
 		
-		principal.add(p23, BorderLayout.EAST);
+		jpMain.add(jpPageEast, BorderLayout.EAST);
 		 
-		//END(P22) 
+		//END(jpPageEast) 
 			
 			
 
 		//END P2
 		
 		
-		this.getContentPane().add(principal, BorderLayout.CENTER);
+		this.getContentPane().add(jpMain, BorderLayout.CENTER);
 		
 		this.setSize(1280, 720);
 		this.setTitle("Espotifai");
@@ -136,37 +135,37 @@ public class MainWindow extends JFrame {
 		
 	}
 	
-	public void registerController(ActionListener controlador){
-		jbAfeguir.addActionListener(controlador);
-		Perfil.addActionListener(controlador);
-		jbTancar.addActionListener(controlador);
-		jbAfeguir.setActionCommand("AFEGUIR");
-		Perfil.setActionCommand("PERFIL");
-		jbTancar.setActionCommand("TANCAR");
+	public void registerController(ActionListener controller){
+		jbAdd.addActionListener(controller);
+		jbProfile.addActionListener(controller);
+		jbClose.addActionListener(controller);
+		jbAdd.setActionCommand("MainWindow.addActionCommand");
+		jbProfile.setActionCommand("MainWindow.profileActionCommand");
+		jbClose.setActionCommand("MainWindow.closeActionCommand");
 	}
 	
-	public String typedCercador(){
-		return Cercador.getText();
+	public String getTypedSearch(){
+		return jtfSearch.getText();
 	}
 	
-	public String typedArtista(){
-		return jtfArtista.getText();
+	public String getTypedArtist(){
+		return jtfArtist.getText();
 	}
 	
-	public String typedAlbum(){
-		return jtfArtista.getText();
+	public String getTypedAlbum(){
+		return jtfArtist.getText();
 	}
 	
-	public String typedGenere(){
-		return jtfGenere.getText();
+	public String getTypedGenre(){
+		return jtfGenre.getText();
 	}
 	
-	public String typedCancion(){
-		return jtfCancion.getText();
+	public String getTypedSongTitle(){
+		return jtfSongTitle.getText();
 	}
 	
-	public void refreshLlistat(String string){
-		jtaLlistes.setText(string);
+	public void refreshLists(String string){
+		jtaLists.setText(string);
 	}
 	
 	

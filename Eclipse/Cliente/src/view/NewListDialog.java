@@ -11,25 +11,25 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class NewListDialog extends JFrame{
-	private JTextField jtfllista;
-	private JButton jbCrear; 
-	private JButton jbCancelar;
+	private JTextField jtfList;
+	private JButton jbCreate; 
+	private JButton jbCancel;
 	
 	public NewListDialog(){
-		JPanel p = new JPanel();
-		p.setLayout(new GridLayout(2,2));
+		JPanel jpMain = new JPanel();
+		jpMain.setLayout(new GridLayout(2,2));
 		
 		
-		JLabel llista = new JLabel("Nueva Lista");
-		p.add(llista);
-		jtfllista = new JTextField(); 
-		p.add(jtfllista);
-		jbCrear = new JButton("CREAR");
-		jbCancelar = new JButton("CANCELAR");
-		p.add(jbCrear);
-		p.add(jbCancelar);
+		JLabel jlNewList = new JLabel("Nueva Lista");
+		jpMain.add(jlNewList);
+		jtfList = new JTextField(); 
+		jpMain.add(jtfList);
+		jbCreate = new JButton("CREAR");
+		jbCancel = new JButton("CANCELAR");
+		jpMain.add(jbCreate);
+		jpMain.add(jbCancel);
 		
-		this.getContentPane().add(p, BorderLayout.CENTER);
+		this.getContentPane().add(jpMain, BorderLayout.CENTER);
 		
 		this.setSize(350, 120);
 		this.setTitle("Crear nueva lista");
@@ -39,10 +39,10 @@ public class NewListDialog extends JFrame{
 	
 		
 	}
-	public void registerController(ActionListener controlador){
-		jbCrear.addActionListener(controlador);
-		jbCancelar.addActionListener(controlador);
-		jbCrear.setActionCommand("CREAR");
-		jbCancelar.setActionCommand("CANCELAR");
+	public void registerController(ActionListener controller){
+		jbCreate.addActionListener(controller);
+		jbCancel.addActionListener(controller);
+		jbCreate.setActionCommand("NewListDialog.createActionCommand");
+		jbCancel.setActionCommand("NewListDialog.cancelActionCommand");
 	}
 }

@@ -53,25 +53,25 @@ public class ButtonController implements ActionListener {
 		}
 		
 		 	//PANTALLA INICI
-		if(event.getActionCommand().equals("AFEGUIR")){
+		if(event.getActionCommand().equals("MainWindow.addActionCommand")){
 
-			NewListDialog nl = new NewListDialog(); 
-			nl.setVisible(true);          
+			NewListDialog newListDialog = new NewListDialog(); 
+			newListDialog.setVisible(true);          
 		} 
 			//PANTALLA INICIO
-		if(event.getActionCommand().equals("PERFIL")){
-			UserWindow u = new UserWindow(); 
-			u.setVisible(true);
+		if(event.getActionCommand().equals("MainWindow.profileActionCommand")){
+			UserWindow userWindow = new UserWindow(); 
+			userWindow.setVisible(true);
 			
 		}
 		
 		// PANTALLA INICI
-		if(event.getActionCommand().equals("TANCAR")){
+		if(event.getActionCommand().equals("MainWindow.closeActionCommand")){
 			mainWindow.setVisible(false);
 			loginWindow.setVisible(true);
 			
 		}
-			//PANTALLA REGISTRE
+		
 		
 		
 	}
