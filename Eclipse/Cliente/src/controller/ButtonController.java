@@ -3,6 +3,7 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import model.AccessLogic;
 import view.AccesRegistre;
 import view.Inicio;
 import view.NewList;
@@ -14,6 +15,7 @@ public class ButtonController implements ActionListener {
 	private AccesRegistre inicio1;
 	private Inicio inici2;
 	private Registre regi;
+	
 	public ButtonController( AccesRegistre inicio1, Inicio inici2, Registre regi){
 		this.inicio1 = inicio1;
 		this.inici2 = inici2;
@@ -23,9 +25,12 @@ public class ButtonController implements ActionListener {
 	public void actionPerformed(ActionEvent event){
 
 			//PANTALLA ACCEDIR
-		if(event.getActionCommand().equals("ACCES")){ 
-			inici2.setVisible(true);
-			inicio1.setVisible(false);
+		if(event.getActionCommand().equals("ACCES")){
+			
+			if (AccessLogic.Login(inicio1.getUsername(), inicio1.getPassword())) {
+				inici2.setVisible(true);
+				inicio1.setVisible(false);
+			}
 			
 			
 		}

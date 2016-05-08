@@ -1,5 +1,4 @@
 
-
 package model;
 
 import javax.swing.SwingUtilities;
@@ -11,6 +10,7 @@ import view.Registre;
 import view.Usuari;
 import view.UsuariCercat;
 
+
 public class Main {
 	public static void main(String[] args){
 		SwingUtilities.invokeLater(new Runnable() {
@@ -20,15 +20,19 @@ public class Main {
 				Registre r = new Registre();
 				Inicio i = new Inicio();
 				Usuari u = new Usuari();
+
 				UsuariCercat us = new UsuariCercat(); 
+
 				
 				ButtonController controlador = new ButtonController(w, i, r);
 				w.registerController(controlador);
 				i.registerController(controlador);
 				r.registerController(controlador);
+
 				w.setVisible(false);
 				us.setVisible(true);
 				
+
 				
 			
 			}

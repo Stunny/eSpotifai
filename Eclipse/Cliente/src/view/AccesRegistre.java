@@ -115,6 +115,13 @@ public class AccesRegistre  extends JFrame{
 	
 	
 	
+	public String getUsername() {
+		return jtfUsuari.getText();
+	}
+	
+	public String getPassword() {
+		return jtfContra.getText();
+	}
 	
 
 	
