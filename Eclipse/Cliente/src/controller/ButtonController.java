@@ -4,48 +4,50 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import model.AccessLogic;
-import view.AccesRegistre;
-import view.Inicio;
-import view.NewList;
+import view.LoginWindow;
+import view.MainWindow;
+import view.NewListDialog;
 import view.OK;
-import view.Registre;
-import view.Usuari;
+import view.RegisterWindow;
+import view.UserWindow;
 
 public class ButtonController implements ActionListener {
-	private AccesRegistre inicio1;
-	private Inicio inici2;
-	private Registre regi;
+	private LoginWindow loginWindow;
+	private MainWindow mainWindow;
+	private RegisterWindow registerWindow;
 	
-	public ButtonController( AccesRegistre inicio1, Inicio inici2, Registre regi){
-		this.inicio1 = inicio1;
-		this.inici2 = inici2;
-		this.regi = regi;
+	public ButtonController(LoginWindow loginWindow, RegisterWindow registerWindow, MainWindow mainWindow){
+		this.loginWindow = loginWindow;
+		this.mainWindow = mainWindow;
+		this.registerWindow = registerWindow;
 	}
 	
 	public void actionPerformed(ActionEvent event){
 
-			//PANTALLA ACCEDIR
-		if(event.getActionCommand().equals("ACCES")){
+		//PANTALLA ACCEDIR
+		if (event.getActionCommand().equals("LoginWindow.loginActionCommand")){
 			
-			if (AccessLogic.Login(inicio1.getUsername(), inicio1.getPassword())) {
-				inici2.setVisible(true);
-				inicio1.setVisible(false);
+			if (AccessLogic.Login(loginWindow.getTypedUsername(), loginWindow.getTypedPassword())) {
+				mainWindow.setVisible(true);
+				loginWindow.setVisible(false);
 			}
 			
 			
 		}
-			//PANTALLA ACCEDIR
-		if(event.getActionCommand().equals("REGI")){
-			regi.setVisible(true);
-			inicio1.setVisible(false);
+		
+		//PANTALLA ACCEDIR
+		if(event.getActionCommand().equals("LoginWindow.registerActionCommand")){
+			registerWindow.setVisible(true);
+			loginWindow.setVisible(false);
 		}
 		
+		
 		//PANTALLA REGISTRE
-		if(event.getActionCommand().equals("REGISTRE")){
+		if(event.getActionCommand().equals("RegisterWindow.registerActionCommand")){
 			
-			if (AccessLogic.Register(regi.typedNick(), regi.typedContra())) {
-				inici2.setVisible(true);
-				regi.setVisible(false);
+			if (AccessLogic.Register(registerWindow.getTypedUsername(), registerWindow.getTypedPassword())) {
+				mainWindow.setVisible(true);
+				registerWindow.setVisible(false);
 			}
 			
 		}
@@ -53,20 +55,20 @@ public class ButtonController implements ActionListener {
 		 	//PANTALLA INICI
 		if(event.getActionCommand().equals("AFEGUIR")){
 
-			NewList nl = new NewList(); 
+			NewListDialog nl = new NewListDialog(); 
 			nl.setVisible(true);          
 		} 
 			//PANTALLA INICIO
 		if(event.getActionCommand().equals("PERFIL")){
-			Usuari u = new Usuari(); 
+			UserWindow u = new UserWindow(); 
 			u.setVisible(true);
 			
 		}
 		
 		// PANTALLA INICI
 		if(event.getActionCommand().equals("TANCAR")){
-			inici2.setVisible(false);
-			inicio1.setVisible(true);
+			mainWindow.setVisible(false);
+			loginWindow.setVisible(true);
 			
 		}
 			//PANTALLA REGISTRE
