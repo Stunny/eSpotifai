@@ -14,27 +14,27 @@ import java.net.Socket;
  *
  */
 public class FileServer {
-	private int SOCKET_PORT_DESTI;
+	private int socketPort;
 	private String fileRoute;
 	
 	public FileServer(){
-		this.SOCKET_PORT_DESTI = 00000;
+		this.socketPort = 00000;
 		this.fileRoute = new String("");
 	}
 	public FileServer(int socketPort, String fileRoute){
-		this.SOCKET_PORT_DESTI = socketPort;
+		this.socketPort = socketPort;
 		this.fileRoute = new String(fileRoute);
 	}
 	
 	public int getSocketPort(){
-		return this.SOCKET_PORT_DESTI;
+		return this.socketPort;
 	}
 	public String getFileRoute(){
 		return this.fileRoute;
 	}
 	
 	public void setSocketPort(int socketPort){
-		this.SOCKET_PORT_DESTI = socketPort;
+		this.socketPort = socketPort;
 	}
 	public void setFileRoute(String fileRoute){
 		this.fileRoute = fileRoute;
@@ -47,7 +47,7 @@ public class FileServer {
 		ServerSocket ss = null;
 		Socket s = null;
 		try{
-			ss = new ServerSocket(SOCKET_PORT_DESTI);
+			ss = new ServerSocket(socketPort);
 			while(true){
 				//Waiting...
 				try{
