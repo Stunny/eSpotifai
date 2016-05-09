@@ -1,0 +1,52 @@
+NOTAS IMPORTANTES SOBRE LA NORMALIZACIÓN
+
+Es importante que los nombres de las clases, variables y métodos sean
+DESCRIPTIVOS
+y sigan unas NORMAS de formato
+PARA QUE EL CÓDIGO SEA CONSISTENTE
+y sobretodo, que no nos volvamos locos.
+
+Somos mucha gente trabajando en lo mismo, 
+y si algunos ponemos nombres en castellano, 
+otros en catalán, otros en inglés, algunos
+nombres completos y otros abreviaciones...
+No hay manera de entender el código de los demás.
+
+NORMAS DE FORMATO:
+ (algunas, si recordáis, las decidimos el primer día)
+
+ - Nombres en inglés.
+
+ - Nombres de variables enteros y descriptivos.
+   Un nombre de usuario se llamará username; ni usnrm, ni u.
+
+ - Si se crea una instancia de una clase, la variable se
+   llama como la clase. Ni diferente ni abreviaciones.
+     Ejemplo: ConfirmationDialog confirmationDialog;
+ - Excepciones:
+     ButtonController controller;  <-- conocido por todos
+     DataBase ddbb;  <-- conocido por todos
+     Clases de Java que sólo se usan dentro de una clase nuestra, 
+     por ejemplo Statement s;, OutputStream os; etc
+
+
+ - REFERENTE A LAS VISTAS:
+ - Las ventanas se llamarán XxxWindow, y los diálogos, XxxDialog.
+
+ - Los nombres de los componentes de SWING empezarán con sus iniciales.
+   JPanel jpMusic; JLabel jlLogo; JTabbedPane jtbTabs; JTextArea jtaList;
+
+ - Los paneles, labels, etc. NO se llamarán jp, jp1, jll...
+   - Los nombres de los paneles y labels tienen que ser descriptivos.
+     Por ejemplo, si un label incluye el título, jlTitle.
+     Si es el panel que irá en el PAGE_START del BorderLayout, jpPageStart.
+
+ - Los botones llevan el nombre de lo que hacen -> JButton jbAdd;
+   No es necesario que se llamen jbAddButton, sería redundante.
+   Ya sabemos que es un botón si empieza con jb.
+
+ - Los ActionCommand se pueden repetir entre ventanas y el
+   controlador los puede confundir. Para evitarlo, los llamamos
+   XxxWindow.yyyActionCommand (p.e. MainWindow.addActionCommand)
+
+ - Los getters de los JTextField se llaman getTypedXxx (getTypedArtist)
