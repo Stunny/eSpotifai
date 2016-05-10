@@ -125,7 +125,7 @@ public class StatisticsWindow extends JDialog{
 		//Assignem titol a la finestra
 		this.setTitle(" TOP 10 SONGS ");
 
-		this.setSize(new Dimension(1200,700));
+		this.setSize(new Dimension(1100,680));
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
@@ -160,62 +160,78 @@ public class StatisticsWindow extends JDialog{
             
             int mayor = retornarMayor(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10);
             
-            int large1=v1*1000/mayor;
-            int large2=v2*1000/mayor;
-            int large3=v3*1000/mayor;
-            int large4=v4*1000/mayor;
-            int large5=v5*1000/mayor;
-            int large6=v6*1000/mayor;
-            int large7=v7*1000/mayor;
-            int large8=v8*1000/mayor;
-            int large9=v9*1000/mayor;
-            int large10=v10*1000/mayor;
+            int large1=v1*500/mayor;
+            int large2=v2*500/mayor;
+            int large3=v3*500/mayor;
+            int large4=v4*500/mayor;
+            int large5=v5*500/mayor;
+            int large6=v6*500/mayor;
+            int large7=v7*500/mayor;
+            int large8=v8*500/mayor;
+            int large9=v9*500/mayor;
+            int large10=v10*500/mayor;
 
-            //1r campo INTOUCHABLEEEEEEEEEE
-            //2o campo 
-            //3r campo INTOUCHABLEEEEEEEEEE
-            //4o campo ALTURA
+            g.setColor(new Color(0, 0, 0));
+            g.fillRect(90, 60, 3, 580);
+            
+            g.setColor(new Color(0, 0, 0));
+            g.fillRect(20,600, 1060,3);
+            g.drawString("nº " + '\n' + "reproductions", 100,70);
+            
+            //1r camp x
+            //2o camp y, comença a printar-se la barra
+            //3r camp grossor de la barra
+            //4o camp longitud de barra
             
             g.setColor(new Color(255,0,0));
-            g.fillRect(100,large1,40,100);
-            g.drawString("Song 1", 10, 125);        
+            g.fillRect(120,600-large1,40,large1);
+            g.drawString("Song 1", 120, 620);
+            g.drawString(s1, 40, 600-large1-2);
 
             g.setColor(new Color(0,128,0));
-            g.fillRect(150,150,large2,40);
-            g.drawString("Song 2", 10, 175);            
+            g.fillRect(220,600-large2,40,large2);
+            g.drawString("Song 2", 220, 620);
+            g.drawString(s2, 40, 600-large2-2);
 
             g.setColor(new Color(0,0,255));
-            g.fillRect(200,200,large3,40);
-            g.drawString("Song 3", 10, 225);
+            g.fillRect(320,600-large3, 40, large3);
+            g.drawString("Song 3", 320, 620);
+            g.drawString(s3, 40, 600-large3-2);
             
             g.setColor(new Color(255,50,0));
-            g.fillRect(250,250,large4,40);
-            g.drawString("Song 4", 10, 275);            
+            g.fillRect(420,600-large4, 40, large4);
+            g.drawString("Song 4",420, 620);
+            g.drawString(s4, 40, 600-large4-2);
 
             g.setColor(new Color(0,128,50));
-            g.fillRect(300,300,large5,40);
-            g.drawString("Song 5", 10, 325);            
+            g.fillRect(520,600-large5,40, large5);
+            g.drawString("Song 5", 520, 620);
+            g.drawString(s5, 40, 600-large5-2);
 
             g.setColor(new Color(50,0,255));
-            g.fillRect(350,350,large6,40);
-            g.drawString("Song 6", 10, 375);  
+            g.fillRect(620,600-large6,40, large6);
+            g.drawString("Song 6",620, 620);
+            g.drawString(s6, 40, 600-large6-2);
             
             g.setColor(new Color(255,90,0));
-            g.fillRect(400,400,large7,40);
-            g.drawString("Song 7", 10, 425);            
+            g.fillRect(720,600-large7,40,large7);
+            g.drawString("Song 7", 720, 620);
+            g.drawString(s7, 40, 600-large7-2);
 
             g.setColor(new Color(0,128,90));
-            g.fillRect(450,450,large8,40);
-            g.drawString("Song 8", 10, 475);            
+            g.fillRect(820,600-large8,40, large8);
+            g.drawString("Song 8", 820, 620);
+            g.drawString(s8, 40, 600-large8-2);
 
             g.setColor(new Color(90,0,255));
-            g.fillRect(500,500,large9,40);
-            g.drawString("Song 9", 10, 525);  
+            g.fillRect(920,600-large9,40, large9);
+            g.drawString("Song 9", 920, 620);
+            g.drawString(s9, 40, 600-large9-2);
             
             g.setColor(new Color(255,0,100));
-            g.fillRect(550,550,large10,40);
-            g.drawString("Song 10", 10, 575);            
-
+            g.fillRect(1020,600-large10,40, large10);
+            g.drawString("Song 10", 1020, 620);
+            g.drawString(s10, 40, 600-large10-2);
     }
     
 	private int retornarMayor(int v1,int v2,int v3, int v4,int v5,int v6, int v7, int v8, int v9, int v10){
