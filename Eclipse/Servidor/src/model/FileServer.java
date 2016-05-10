@@ -40,6 +40,28 @@ public class FileServer {
 		this.fileRoute = fileRoute;
 	}
 	
+	
+	public void listen() throws IOException{
+		FileInputStream fis = null;
+		BufferedInputStream bis = null;
+		OutputStream os = null;
+		ServerSocket ss = null;
+		Socket s = null;
+		try{
+			ss = new ServerSocket(socketPort);
+			while(true){
+
+
+
+
+
+			}
+		}finally{
+			if(ss != null) ss.close();
+		}
+	}
+	
+	
 	public void send()throws IOException{
 		FileInputStream fis = null;
 		BufferedInputStream bis = null;
