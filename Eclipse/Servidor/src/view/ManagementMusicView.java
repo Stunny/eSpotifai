@@ -208,7 +208,7 @@ public class ManagementMusicView extends JFrame{
 
 		this.getContentPane().add(jtpPestanyas, BorderLayout.CENTER);
 		this.setResizable(true);
-		this.setSize(new Dimension(2000,850));
+		this.setSize(new Dimension(1600,870));
 		this.setTitle("eSpotifai - Server Management");
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
