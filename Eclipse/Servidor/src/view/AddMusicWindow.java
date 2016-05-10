@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 
 import controller.ButtonsController;
 
-public class ManagementMusicAddView extends JDialog{
+public class AddMusicWindow extends JDialog{
 	
 	private JPanel jpViewAdd;
 	
@@ -37,7 +37,7 @@ public class ManagementMusicAddView extends JDialog{
 	
 	private JButton jbAccept;
 
-	public ManagementMusicAddView() {
+	public AddMusicWindow() {
 		
 		//Redistribucuó per guias simetricas de 6 files i dos columnes
 		jpViewAdd = new JPanel();
@@ -98,6 +98,7 @@ public class ManagementMusicAddView extends JDialog{
 		jtWritePath = new JTextField("");
 		jtWritePath.setHorizontalAlignment(JTextField.CENTER);
 		jpViewAdd.add(jtWritePath);
+		
 		jpViewAdd.setBorder(BorderFactory.createTitledBorder("Insert information"));
 		
 		//Creo botó de addició

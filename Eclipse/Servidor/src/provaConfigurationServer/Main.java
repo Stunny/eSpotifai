@@ -2,8 +2,8 @@ package provaConfigurationServer;
 
 import java.util.Scanner;
 
-import view.ManagementMusicAddView;
-import view.ManagementMusicView;;
+import view.AddMusicWindow;
+import view.MainWindow;;
 
 public class Main {
 	
@@ -15,11 +15,11 @@ public class Main {
 		mc.runConfiguration();
 		
 		// Creem la VISTA
-		ManagementMusicView mainView = new ManagementMusicView();
+		MainWindow mainView = new MainWindow();
 		mainView.setVisible(true);
 		
 		//Creem la vista temporal de adició
-		ManagementMusicAddView addView = new ManagementMusicAddView();
+		AddMusicWindow addView = new AddMusicWindow();
 		addView.setVisible(true);
 		
 	}
