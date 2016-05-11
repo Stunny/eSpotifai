@@ -21,11 +21,11 @@ import controller.ButtonsController;
 public class StatisticsWindow extends JDialog{
 
 
-    private JPanel jpViewStadistics;
-    private JPanel jpStadisticGraphics;
+    private JPanel jpStatistics;
+    private JPanel jpGraphic;
     
-    private BorderLayout blViewStadistics;
-    private GridLayout glStadisticGraphics;
+    private BorderLayout blStatistics;
+    private GridLayout glGraphic;
     
     private JLabel jlSong1;
     private JLabel jlSong2;
@@ -52,15 +52,15 @@ public class StatisticsWindow extends JDialog{
     
     public StatisticsWindow() {
 
-        jpViewStadistics = new JPanel();
-        blViewStadistics = new BorderLayout();
-        setContentPane(jpViewStadistics);
-        jpViewStadistics.setLayout(null);
+        jpStatistics = new JPanel();
+        blStatistics = new BorderLayout();
+        setContentPane(jpStatistics);
+        jpStatistics.setLayout(null);
         
         //Creo un altre panell per inserir les barres estadistiques
-        /*jpStadisticGraphics = new JPanel();
-        glStadisticGraphics = new GridLayout(2,10);
-        jpStadisticGraphics.setLayout(glStadisticGraphics);
+        /*jpGraphic = new JPanel();
+        glGraphic = new GridLayout(2,10);
+        jpGraphic.setLayout(glGraphic);
         */
         /*	
         	CREACIÓ DE BARRESSSSSSS
@@ -107,21 +107,21 @@ public class StatisticsWindow extends JDialog{
         jlSong10.setHorizontalAlignment(JLabel.CENTER);
         jlSong10.setText("Song10");
         
-        jpStadisticGraphics.add(jlSong1);
-        jpStadisticGraphics.add(jlSong2);
-        jpStadisticGraphics.add(jlSong3);
-        jpStadisticGraphics.add(jlSong4);
-        jpStadisticGraphics.add(jlSong5);
-        jpStadisticGraphics.add(jlSong6);
-        jpStadisticGraphics.add(jlSong7);
-        jpStadisticGraphics.add(jlSong8);
-        jpStadisticGraphics.add(jlSong9);
-        jpStadisticGraphics.add(jlSong10);
+        jpGraphic.add(jlSong1);
+        jpGraphic.add(jlSong2);
+        jpGraphic.add(jlSong3);
+        jpGraphic.add(jlSong4);
+        jpGraphic.add(jlSong5);
+        jpGraphic.add(jlSong6);
+        jpGraphic.add(jlSong7);
+        jpGraphic.add(jlSong8);
+        jpGraphic.add(jlSong9);
+        jpGraphic.add(jlSong10);
         */
         
         repaint();
         
-        jpViewStadistics.setBorder(BorderFactory.createTitledBorder("Stadistics Top 10 songs of eSpotifai"));
+        jpStatistics.setBorder(BorderFactory.createTitledBorder("Stadistics Top 10 songs of eSpotifai"));
 		//Assignem titol a la finestra
 		this.setTitle(" TOP 10 SONGS ");
 

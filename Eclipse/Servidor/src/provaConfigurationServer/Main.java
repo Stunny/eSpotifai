@@ -22,10 +22,10 @@ public class Main {
 		
 		//Creem la vista temporal de adició
 		AddMusicWindow addView = new AddMusicWindow();
-		addView.setVisible(true);
+		//addView.setVisible(true);
 		
 		StatisticsWindow statisticsWindow = new StatisticsWindow();
-		statisticsWindow.setVisible(true);
+		//statisticsWindow.setVisible(true);
 		
 	}
 	
