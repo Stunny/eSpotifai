@@ -261,9 +261,9 @@ public class MainWindow extends JFrame{
 
 	public void registerController(ButtonsController controller) {
 		jbAdd.addActionListener(controller);
-		jbAdd.setActionCommand("ADD");
+		jbAdd.setActionCommand("MainWindow.addActionCommand");
 
 		jbEstadistics.addActionListener(controller);
-		jbEstadistics.setActionCommand("ESTADISTICS");	
+		jbEstadistics.setActionCommand("MainWindow.statisticsActionCommand");	
 	}
 }

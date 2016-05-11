@@ -2,8 +2,10 @@ package provaConfigurationServer;
 
 import java.util.Scanner;
 
+import controller.ButtonsController;
 import view.AddMusicWindow;
 import view.MainWindow;
+import view.StatisticsWindow;
 
 public class Main {
 	
@@ -14,13 +16,16 @@ public class Main {
 		
 		// Creem la VISTA
 		MainWindow mainWindow = new MainWindow();
+		ButtonsController controller = new ButtonsController(mainWindow);
+		mainWindow.registerController(controller);
 		mainWindow.setVisible(true);
-		
-	
 		
 		//Creem la vista temporal de adició
 		AddMusicWindow addView = new AddMusicWindow();
 		addView.setVisible(true);
+		
+		StatisticsWindow statisticsWindow = new StatisticsWindow();
+		statisticsWindow.setVisible(true);
 		
 	}
 	
