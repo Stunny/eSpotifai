@@ -7,37 +7,45 @@ import java.sql.SQLException;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 
+import customExceptions.DatabaseNotLoadedException;
+
 public class DataBase {
-	static String userName;
+	static String username;
 	static String password;
-	static String db;
+	static String ddbbName;
 	static int port;
 	static String url = "jdbc:mysql://localhost";
 	static Connection conn = null;
 	static Statement s;
 	
-	public DataBase(String usr, String pass, String db, int port) {
-		DataBase.userName = usr;
-		DataBase.password = pass;
-		DataBase.db = db;
+	public DataBase(String username, String password, String ddbbName, int port) {
+		DataBase.username = username;
+		DataBase.password = password;
+		DataBase.ddbbName = ddbbName;
 		DataBase.port = port;
 		DataBase.url += ":"+port+"/";
-		DataBase.url += db;
+		DataBase.url += ddbbName;
 	}
 	
-    public void connect() {
+	public void connect() throws DatabaseNotLoadedException{
+    	
         try {
             Class.forName("com.mysql.jdbc.Connection");
-            conn = (Connection) DriverManager.getConnection(url, userName, password);
+            conn = (Connection) DriverManager.getConnection(url, username, password);
             if (conn != null) {
                 System.out.println("Conexió a base de dades "+url+" ... Ok");
             }
         }
         catch(SQLException ex) {
-            System.out.println("Problema al connecta-nos a la BBDD --> "+url);
+            System.out.println("Problema al connecta-nos a la BBDD --> "+ url);
+            throw new DatabaseNotLoadedException("Database not loaded.");
         }
-        catch(ClassNotFoundException ex) {
-            System.out.println(ex);
+        catch(ClassNotFoundException ex2) {
+            System.out.println(ex2);
+            throw new DatabaseNotLoadedException("Database not loaded.");
+        }
+        catch (Exception e) {
+        	throw new DatabaseNotLoadedException("Database not loaded.");
         }
 
     }

@@ -3,24 +3,34 @@ package model;
 import javax.swing.SwingUtilities;
 
 import controller.ButtonController;
-import view.AccesRegistre;
-import view.Inicio;
-import view.Registre;
+import view.LoginWindow;
+import view.MainWindow;
+import view.RegisterWindow;
+import view.UserWindow;
 
 public class Main {
 	public static void main(String[] args){
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				AccesRegistre w = new AccesRegistre();
-				Registre r = new Registre();
-				Inicio i = new Inicio();
 				
-				ButtonController controlador = new ButtonController(i);
-				i.registerController(controlador);
-				i.setVisible(true);
-				r.setVisible(false);
-				w.setVisible(false);
+				//Creamos las pantallas
+				LoginWindow loginWindow = new LoginWindow();
+				RegisterWindow registerWindow = new RegisterWindow();
+				MainWindow mainWindow = new MainWindow();
+				UserWindow userWindow = new UserWindow();
+				
+				//Creamos el ontrolador
+				ButtonController controller = new ButtonController(loginWindow, registerWindow, mainWindow);
+				
+				//Juntamos las pantallas y el controlador
+				loginWindow.registerController(controller);
+				registerWindow.registerController(controller);
+				mainWindow.registerController(controller);
+				
+				//iniciamos la pantalla de login
+				loginWindow.setVisible(true);
+				
 			
 			}
 		});
