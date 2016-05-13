@@ -42,9 +42,12 @@ public class ButtonController implements ActionListener {
 		
 		//PANTALLA REGISTRE
 		if(event.getActionCommand().equals("REGISTRE")){
-			inici2.setVisible(true);
-			regi.setVisible(false);
-			inicio1.setVisible(false);
+			
+			if (AccessLogic.Register(regi.typedNick(), regi.typedContra())) {
+				inici2.setVisible(true);
+				regi.setVisible(false);
+			}
+			
 		}
 		
 		 	//PANTALLA INICI
