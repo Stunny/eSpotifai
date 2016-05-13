@@ -15,6 +15,7 @@ public class UsuariCercat extends JFrame {
 	private JTextArea llistes;
 	private JTextArea following; 
 	private JTextArea usuari;
+	
 	public UsuariCercat(){
 		
 		JPanel panell1 = new JPanel(); 
@@ -26,6 +27,11 @@ public class UsuariCercat extends JFrame {
 		panell1.add(usuari, BorderLayout.CENTER);
 		
 		this.getContentPane().add(panell1, BorderLayout.PAGE_START);
+		
+		
+		JPanel p2 = new JPanel(); 
+		p2.setLayout(new GridLayout (1, 2));
+		
 		
 		
 		JTabbedPane panell = new JTabbedPane(); 

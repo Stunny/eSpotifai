@@ -16,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 public class Inicio extends JFrame {
 	private JTextArea jtaLlistes; 
@@ -83,6 +84,8 @@ public class Inicio extends JFrame {
 		String[] columnas = {"NOMBRE", "GÉNERO", "ALBUM", "ARTISTA", "ESTRELLAS", "REPRODUCCIONES"};
 		String [][] dades = {{"Nuria Canta Mal", " Punk", "Puta Vida Tete", "Erna", "5", "10000000000"}};
 		Taules = new JTable(dades, columnas);
+		
+
 		//Taules.setPreferredScrollableViewportSize(new Dimension(400, 450));
 		//Taules.setFillsViewportHeight(true);
 		JScrollPane jps = new JScrollPane(Taules);
@@ -170,7 +173,21 @@ public class Inicio extends JFrame {
 	}
 	
 	
-	
+	/*tabla.addMouseListener(new MouseAdapter() {
+                                   public void mousePressed(MouseEvent e) {
+                                       if ( SwingUtilities.isLeftMouseButton(e)) {
+                                          
+                                       } else {
+                                            if ( SwingUtilities.isRightMouseButton(e)) {
+                                               Point p = e.getPoint();
+                                               int rowNumber = tabla.rowAtPoint( p );
+                                               ListSelectionModel modelo = tabla.getSelectionModel();
+                                               modelo.setSelectionInterval( rowNumber, rowNumber );
+                                           }
+                                       }
+                                   }
+                               }
+        );*/
 	
 	
 }

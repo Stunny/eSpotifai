@@ -29,8 +29,8 @@ public class Main {
 				i.registerController(controlador);
 				r.registerController(controlador);
 
-				w.setVisible(false);
-				us.setVisible(true);
+				w.setVisible(true);
+				us.setVisible(false);
 				
 
 				
