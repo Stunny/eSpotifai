@@ -3,6 +3,8 @@ package provaConfigurationServer;
 import java.util.Scanner;
 
 import controller.ButtonsController;
+import controller.NetworkController;
+import network.Server;
 import view.AddMusicWindow;
 import view.MainWindow;
 import view.StatisticsWindow;
@@ -26,6 +28,9 @@ public class Main {
 		
 		StatisticsWindow statisticsWindow = new StatisticsWindow();
 		//statisticsWindow.setVisible(true);
+		
+		Server server = new Server(new NetworkController());
+		server.startServer();
 		
 	}
 	

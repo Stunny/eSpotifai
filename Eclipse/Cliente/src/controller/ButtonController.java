@@ -3,7 +3,10 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
 import model.AccessLogic;
+import network.ServerCommunication;
 import view.LoginWindow;
 import view.MainWindow;
 import view.NewListDialog;
@@ -15,11 +18,13 @@ public class ButtonController implements ActionListener {
 	private LoginWindow loginWindow;
 	private MainWindow mainWindow;
 	private RegisterWindow registerWindow;
+	private ServerCommunication serverCommunication;
 	
 	public ButtonController(LoginWindow loginWindow, RegisterWindow registerWindow, MainWindow mainWindow){
 		this.loginWindow = loginWindow;
 		this.mainWindow = mainWindow;
 		this.registerWindow = registerWindow;
+		this.serverCommunication = new ServerCommunication();
 	}
 	
 	public void actionPerformed(ActionEvent event){
@@ -56,7 +61,10 @@ public class ButtonController implements ActionListener {
 		if(event.getActionCommand().equals("MainWindow.addActionCommand")){
 
 			NewListDialog newListDialog = new NewListDialog(); 
-			newListDialog.setVisible(true);          
+			newListDialog.setVisible(true);
+			
+			String resposta = serverCommunication.sendData("Prova");
+			JOptionPane.showMessageDialog(newListDialog, this, resposta, 0, null);
 		} 
 			//PANTALLA INICIO
 		if(event.getActionCommand().equals("MainWindow.profileActionCommand")){
