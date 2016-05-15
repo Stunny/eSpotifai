@@ -277,34 +277,12 @@ public class MainWindow extends JFrame{
 	}
 	
 	public void refreshUsers(Object[][] list){
-		/*
-		//this.getContentPane().getComponent(1);
-		String[] jtUserColumns = {"id","Username", "Register date", "Last login", "Song lists", "Songs", "Followers", "Following"};
-		
-		Object[][] jtUserData2 = list;
-		//se crea la tabla
-		jtUser = new JTable(jtUserData2, jtUserColumns);
-
-		//se hace que los datos no sean editables
-		tableModelUser = new DefaultTableModel(jtUserData2, jtUserColumns) {
-			@Override
-			public boolean isCellEditable(int row, int column) {
-				//all cells false
-				return false;
-			}
-		}; 
-
-		jtUser.setModel(tableModelUser);
-
-		JScrollPane jspUsers = new JScrollPane(jtUser);
-		jpUsers = new JPanel();
-		jtpTabs.addTab("Users", jspUsers);
-		jtpTabs.remove(1);
-		*/
-		for (int i = 1; i<tableModelUser.getRowCount(); i++){
-			tableModelUser.removeRow(i);
+		while (tableModelUser.getRowCount()!= 0){
+			tableModelUser.removeRow(0);
 		}
-		tableModelUser.addRow(new Object[]{"id","Username", "Register date", "Last login", "Song lists", "Songs", "Followers", "Following"});
+		for (int i = 0; i<list.length; i++){
+			tableModelUser.addRow(list[i]);
+		}
 	}
 	
 }
