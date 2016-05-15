@@ -1,6 +1,6 @@
 package provaConfigurationServer;
 
-public class Server {
+public class ServerConfiguration {
 
 	private int portConexionBBDD;
 	private String IPBBDD;
@@ -10,7 +10,7 @@ public class Server {
 	private int portClientComunication;
 	
 	
-	public Server(int portConexionBBDD, String iPBBDD, String nameBBDD,
+	public ServerConfiguration(int portConexionBBDD, String iPBBDD, String nameBBDD,
 			String userBBDD, String passwordBBDD, int portClientComunication) {
 		super();
 		this.portConexionBBDD = portConexionBBDD;
@@ -20,7 +20,7 @@ public class Server {
 		this.passwordBBDD = passwordBBDD;
 		this.portClientComunication = portClientComunication;
 	}
-	public Server(){
+	public ServerConfiguration(){
 	}
 	public int getPortConexionBBDD() {
 		return portConexionBBDD;

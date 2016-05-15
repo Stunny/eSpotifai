@@ -10,10 +10,10 @@ import com.google.gson.JsonObject;
 
 public class ManagementConfiguration {
 
-	private Server user;
+	private ServerConfiguration serverConfiguration;
 	
 	public ManagementConfiguration(){
-		user = new Server();
+		serverConfiguration = new ServerConfiguration();
 	}
 
 	public void runConfiguration(){
@@ -63,12 +63,12 @@ public class ManagementConfiguration {
 			JsonObject object = (JsonObject)gson.fromJson(totalFiles, JsonObject.class);
 			JsonObject information = object.get("configuration").getAsJsonObject();
 			//Omplim les dades del servidor
-			user.setPortConexionBBDD(information.get("portConexionBBDD").getAsInt());
-			user.setIPBBDD(information.get("IPBBDD").getAsString());
-			user.setNameBBDD(information.get("nameBBDD").getAsString());
-			user.setUserBBDD(information.get("userBBDD").getAsString());
-			user.setPasswordBBDD(information.get("passwordBBDD").getAsString());
-			user.setPortClientComunication(information.get("portClientComunication").getAsInt());
+			serverConfiguration.setPortConexionBBDD(information.get("portConexionBBDD").getAsInt());
+			serverConfiguration.setIPBBDD(information.get("IPBBDD").getAsString());
+			serverConfiguration.setNameBBDD(information.get("nameBBDD").getAsString());
+			serverConfiguration.setUserBBDD(information.get("userBBDD").getAsString());
+			serverConfiguration.setPasswordBBDD(information.get("passwordBBDD").getAsString());
+			serverConfiguration.setPortClientComunication(information.get("portClientComunication").getAsInt());
 		}
 		return error;
 	}	
