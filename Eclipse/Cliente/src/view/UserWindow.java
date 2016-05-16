@@ -50,8 +50,8 @@ public class UserWindow extends JFrame{
 		jpFollowingTab.add(jspFollowing, BorderLayout.CENTER);
 	
 		
-		jtbTabs.addTab("jtaFollowers", jpFollowersTab);
-		jtbTabs.addTab("jtaFollowing", jpFollowingTab);
+		jtbTabs.addTab("Followers", jpFollowersTab);
+		jtbTabs.addTab("Following", jpFollowingTab);
 		this.getContentPane().add(jtbTabs);
 	
 		

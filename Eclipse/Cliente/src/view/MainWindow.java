@@ -22,6 +22,7 @@ public class MainWindow extends JFrame {
 	private JButton jbRemove; 
 	private JButton jbAdd;
 	private JTextField jtfSearch; 
+	private JButton jbSearch;
 	private JButton jbProfile;
 	private JTable jtMusic; 
 	private JTextField jtfArtist; 
@@ -39,12 +40,14 @@ public class MainWindow extends JFrame {
 	
 		//START(jpPageStart)
 		JPanel jpPageStart = new JPanel();
-		jpPageStart.setLayout(new GridLayout(1, 4));
+		jpPageStart.setLayout(new GridLayout(1, 5));
 		
 		JLabel jlLogo = new JLabel("ESPOTIFAI");
 		jpPageStart.add(jlLogo, BorderLayout.CENTER);
 		jtfSearch = new JTextField();
 		jpPageStart.add(jtfSearch, BorderLayout.CENTER);
+		jbSearch = new JButton("BUSCAR"); 
+		jpPageStart.add(jbSearch, BorderLayout.CENTER);
 		jbClose = new JButton("CERRAR SESIÃ“N"); 
 		jpPageStart.add(jbClose, BorderLayout.CENTER);
 		jbProfile = new JButton("USUARIO");
@@ -102,7 +105,7 @@ public class MainWindow extends JFrame {
 		jtfArtist = new JTextField();
 		jpPageEast.add(jtfArtist, BorderLayout.CENTER);
 		
-		JLabel jlAlbum = new JLabel("Ã?lbum:");
+		JLabel jlAlbum = new JLabel("ï¿½?lbum:");
 		jpPageEast.add(jlAlbum, BorderLayout.CENTER);
 		jtfAlbum = new JTextField();
 		jpPageEast.add(jtfAlbum, BorderLayout.CENTER);
@@ -139,9 +142,11 @@ public class MainWindow extends JFrame {
 		jbAdd.addActionListener(controller);
 		jbProfile.addActionListener(controller);
 		jbClose.addActionListener(controller);
+		jbSearch.addActionListener(controller);
 		jbAdd.setActionCommand("MainWindow.addActionCommand");
 		jbProfile.setActionCommand("MainWindow.profileActionCommand");
 		jbClose.setActionCommand("MainWindow.closeActionCommand");
+		jbSearch.setActionCommand("MainWindow.searchActionCommand");
 	}
 	
 	public String getTypedSearch(){

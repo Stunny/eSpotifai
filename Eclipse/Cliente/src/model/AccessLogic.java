@@ -4,6 +4,19 @@ import javax.swing.JOptionPane;
 
 public class AccessLogic {
 	
+	
+	
+	public static boolean searchUser( String username){
+		
+		if(username.equals("elna")){
+			return true;
+		}else{
+			JOptionPane.showMessageDialog(null, "User not found!", " ", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+	}
+	
+	
 	public static boolean Login (String username, String password) {
 		if (username.equals("username")) {
 			if (password.equals("password")) return true;
@@ -34,5 +47,8 @@ public class AccessLogic {
 			}
 		}
 	}
+	
+	
 
 }
+
