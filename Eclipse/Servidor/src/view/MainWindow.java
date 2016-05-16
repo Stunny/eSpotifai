@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -18,6 +20,7 @@ import javax.swing.JTable;
 //import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
+import model.User;
 import controller.ButtonsController;
 
 public class MainWindow extends JFrame{
@@ -63,6 +66,11 @@ public class MainWindow extends JFrame{
 	private ImageIcon iiPrevious2;
 	private ImageIcon iiPrevious3;
 	//private ImageIcon temporalSong;
+	
+	Object[][] jtUserDataController = new Object[][]{};
+	Object[][] jtUserData = {{"1","Prueba1","","","","","",""},{"2","Prueba2","","","","","",""},{"3","Prueba3","","","","","",""}};
+	DefaultTableModel tableModelUser;
+	JTable jtUser;
 
 	public MainWindow() {
 
@@ -206,13 +214,14 @@ public class MainWindow extends JFrame{
 
 		//table
 		//hardcodeo de columnas y datos 
-		String[] jtUserColumns = {"Username", "Register date", "Last login", "Song lists", "Songs", "Followers", "Following"};
-		Object[][] jtUserData = {{"a", "b", "c", "d", "e", "f", "g"}, {"1", "2", "3", "4", "5", "6", "7"}};
+		String[] jtUserColumns = {"id","Username", "Register date", "Last login", "Song lists", "Songs", "Followers", "Following"};
+		
+		
 		//se crea la tabla
-		JTable jtUser = new JTable(jtUserData, jtUserColumns);
+		jtUser = new JTable(jtUserData, jtUserColumns);
 
 		//se hace que los datos no sean editables
-		DefaultTableModel tableModelUser = new DefaultTableModel(jtUserData, jtUserColumns) {
+		tableModelUser = new DefaultTableModel(jtUserData, jtUserColumns) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				//all cells false
@@ -266,4 +275,36 @@ public class MainWindow extends JFrame{
 		jbStatistics.addActionListener(controller);
 		jbStatistics.setActionCommand("MainWindow.statisticsActionCommand");	
 	}
+	
+	public void refreshUsers(Object[][] list){
+		/*
+		//this.getContentPane().getComponent(1);
+		String[] jtUserColumns = {"id","Username", "Register date", "Last login", "Song lists", "Songs", "Followers", "Following"};
+		
+		Object[][] jtUserData2 = list;
+		//se crea la tabla
+		jtUser = new JTable(jtUserData2, jtUserColumns);
+
+		//se hace que los datos no sean editables
+		tableModelUser = new DefaultTableModel(jtUserData2, jtUserColumns) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				//all cells false
+				return false;
+			}
+		}; 
+
+		jtUser.setModel(tableModelUser);
+
+		JScrollPane jspUsers = new JScrollPane(jtUser);
+		jpUsers = new JPanel();
+		jtpTabs.addTab("Users", jspUsers);
+		jtpTabs.remove(1);
+		*/
+		for (int i = 1; i<tableModelUser.getRowCount(); i++){
+			tableModelUser.removeRow(i);
+		}
+		tableModelUser.addRow(new Object[]{"id","Username", "Register date", "Last login", "Song lists", "Songs", "Followers", "Following"});
+	}
+	
 }
