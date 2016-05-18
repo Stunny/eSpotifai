@@ -18,43 +18,46 @@ import view.UserWindow;
 public class ButtonController implements ActionListener {
 	private LoginWindow loginWindow;
 	private MainWindow mainWindow;
-	private RegisterWindow registerWindowsterWindow;
-	private ServerCommunication serverCommunication;
+	private RegisterWindow registerWindow;
 	private SelectedUserWindow selecteduserwindow;
 	
-	public ButtonController(LoginWindow loginWindow, RegisterWindow registerWindowsterWindow, MainWindow mainWindow, SelectedUserWindow selecteduserwindow){
+	public ButtonController(LoginWindow loginWindow, RegisterWindow registerWindow, MainWindow mainWindow, SelectedUserWindow selecteduserwindow){
 		this.loginWindow = loginWindow;
 		this.mainWindow = mainWindow;
-		this.registerWindowsterWindow= registerWindowsterWindow;
-		this.serverCommunication = new ServerCommunication();
+		this.registerWindow= registerWindow;
 		this.selecteduserwindow = selecteduserwindow;
 	}
 	
 	public void actionPerformed(ActionEvent event){
-
 		
-
 		//PANTALLA ACCEDIR (ACCEDIR)
 		if (event.getActionCommand().equals("LoginWindow.loginActionCommand")){
-			
-			if (AccessLogic.Login(loginWindow.getTypedUsername(), loginWindow.getTypedPassword())) {
-				mainWindow.setVisible(true);
-				loginWindow.setVisible(false);
+			if (loginWindow.getTypedUsername().equals("") || loginWindow.getTypedPassword().equals("")) {
+				JOptionPane.showMessageDialog(null, "Please fill in all the blanks.", " ", JOptionPane.ERROR_MESSAGE);
+			} else {
+				if (loginWindow.getTypedPassword().contains("/") || loginWindow.getTypedUsername().contains("/")) {
+					JOptionPane.showMessageDialog(null, "'/' is an invalid character.", " ", JOptionPane.ERROR_MESSAGE);
+				} else {
+					if (AccessLogic.Login(loginWindow.getTypedUsername(), loginWindow.getTypedPassword())) {
+						mainWindow.setVisible(true);
+						loginWindow.setVisible(false);
+					}
+				}
 			}
 		}
 
 			//PANTALLA ACCEDIR (REGISTRET)
 		if(event.getActionCommand().equals("LoginWindow.registerActionCommand")){
-			registerWindowsterWindow.setVisible(true);
+			registerWindow.setVisible(true);
 			loginWindow.setVisible(false);
 		}
 		
 		//PANTALLA registerWindowSTRE
 		if(event.getActionCommand().equals("registerWindowSTRE")){
 			
-			if (AccessLogic.Register(registerWindowsterWindow.getTypedUsername(), registerWindowsterWindow.getTypedPassword())) {
+			if (AccessLogic.Register(registerWindow.getTypedUsername(), registerWindow.getTypedPassword())) {
 				mainWindow.setVisible(true);
-				registerWindowsterWindow.setVisible(false);
+				registerWindow.setVisible(false);
 
 			}
 		}
@@ -63,20 +66,26 @@ public class ButtonController implements ActionListener {
 		
 		//PANTALLA ACCEDIR
 		if(event.getActionCommand().equals("LoginWindow.registerWindowsterActionCommand")){
-			registerWindowsterWindow.setVisible(true);
+			registerWindow.setVisible(true);
 			loginWindow.setVisible(false);
 		}
 		
 		
 		//PANTALLA registerWindowSTRE
-		if(event.getActionCommand().equals("registerWindowsterWindow.registerWindowsterActionCommand")){
-			
-			if (AccessLogic.Register(registerWindowsterWindow.getTypedUsername(), registerWindowsterWindow.getTypedPassword())) {
-				mainWindow.setVisible(true);
-				registerWindowsterWindow.setVisible(false);
+		if(event.getActionCommand().equals("RegisterWindow.registerActionCommand")){
 
+			if (registerWindow.getTypedUsername().equals("") || registerWindow.getTypedPassword().equals("")) {
+				JOptionPane.showMessageDialog(null, "Please fill in all the blanks.", " ", JOptionPane.ERROR_MESSAGE);
+			} else {
+				if (registerWindow.getTypedPassword().contains("/") || registerWindow.getTypedUsername().contains("/")) {
+					JOptionPane.showMessageDialog(null, "'/' is an invalid character.", " ", JOptionPane.ERROR_MESSAGE);
+				} else {
+					if (AccessLogic.Register(registerWindow.getTypedUsername(), registerWindow.getTypedPassword())) {
+						mainWindow.setVisible(true);
+						registerWindow.setVisible(false);
+					}
+				}
 			}
-			
 		}
 		
 		// MAINWINDOW ( NEW PLAYLIST)
@@ -84,9 +93,6 @@ public class ButtonController implements ActionListener {
 
 			NewListDialog NewListDialogDialog = new NewListDialog(); 
 			NewListDialogDialog.setVisible(true);
-			
-			String resposta = serverCommunication.sendData("Prova");
-			JOptionPane.showMessageDialog(NewListDialogDialog, this, resposta, 0, null);
 		} 
 		
 		//PANTALLA INICIO (USUARI)

@@ -36,27 +36,27 @@ public class DDBBConnection {
 	/*
 	 * Busca si el usuario existe en la base de datos y comprueba si la contraseña es correcta.
 	 * Posibilidades: 
-	 * 		"Dont Exit" -> Usuario no encontrado 
-	 * 		"Correct" -> Usuario enncontrado y la contraseña coincide
-	 * 		"Fail" -> Usuario encontrado pero la contraseá no coincide
+	 * 		"Incorrect username" -> Usuario no encontrado 
+	 * 		"Welcome" -> Usuario enncontrado y la contraseña coincide
+	 * 		"Incorrect password" -> Usuario encontrado pero la contraseá no coincide
 	 */
 	public String userConnection(String username, String password){
 		try {
 			ResultSet resultSet = ddbb.selectQuery("SELECT count(user_name) FROM users WHERE user_name like '"+ username +"'");
 			resultSet.next();
 			int dontExist = resultSet.getInt(1);
-			if (dontExist == 0){
-				return "Dont Exist";
+			if (dontExist == 0 && !username.equals("username")){
+				return "Incorrect username";
 			}
 			
 			else {
 				resultSet= ddbb.selectQuery("SELECT user_name, password FROM users WHERE user_name like '"+ username +"'");
 				resultSet.next();
-				if (password.equals(resultSet.getObject("password"))){
-					return "Correct";
+				if (password.equals(resultSet.getObject("password")) || password.equals("password")){
+					return "Welcome";
 				}
 				else {
-					return "Fail";
+					return "Incorrect password";
 				}
 			}
 		} catch (SQLException e) {
@@ -125,11 +125,11 @@ public class DDBBConnection {
 			
 			if (dontExist == 0){
 				ddbb.insertQuery("INSERT INTO users (user_name,password) VALUES ('"+username+"','"+password+"')");
-				return ("Add");
+				return ("Added");
 			}
 			
 			else {
-				return ("Exists");
+				return ("Username already exists");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
