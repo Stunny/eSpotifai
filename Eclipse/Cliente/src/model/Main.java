@@ -35,6 +35,7 @@ public class Main {
 				//iniciamos la pantalla de login
 				loginWindow.setVisible(true);
 				mainWindow.setVisible(false);
+
 			
 				
 			
