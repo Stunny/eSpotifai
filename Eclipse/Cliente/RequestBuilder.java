@@ -54,9 +54,42 @@ public class RequestBuilder {
 		this.requestType = "validateUser";
 		user.addProperty("userName", userName);
 		user.addProperty("password", password);
-		obj = null;
 		obj = new JsonArray();
 		obj.add(user);
+
+		return this.build();
+	}
+	public String getFriendListRequest(String userName) throws IOException{
+
+		JsonObject user = new JsonObject();
+		this.requestType = "getFriendsList";
+
+		user.addProperty("userName", userName);
+		obj = new JsonArray();
+		obj.add(user);
+
+		return this.build();
+	}
+	public String getPlaylistsFromUser(String userName) throws IOException{
+
+		this.requestType = "getPlaylistsFromUser";
+		JsonObject user = new JsonObject();
+
+		user.addProperty("userName", userName);
+		obj = new JsonArray();
+		obj.add(user);
+
+		return this.build();
+	}
+	public String getPlaylistSonglist(String userName, String playlistName) throws IOException{
+
+		this.requestType = "getPlaylistSonglist";
+		JsonObject jo = new JsonObject();
+
+		jo.addProperty("userName", userName);
+		jo.addProperty("playlistName", playlistName);
+		obj = new JsonArray();
+		obj.add(jo);
 
 		return this.build();
 	}
@@ -71,7 +104,6 @@ public class RequestBuilder {
 			artists.add(name);
 		}
 
-		obj = null;
 		obj = new JsonArray();
 		obj.add(artists);
 
