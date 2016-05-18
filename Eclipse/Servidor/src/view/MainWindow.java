@@ -4,7 +4,10 @@ import java.awt.Color;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
@@ -12,11 +15,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
 //import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
@@ -219,7 +225,7 @@ public class MainWindow extends JFrame{
 		
 		//se crea la tabla
 		jtUser = new JTable(jtUserData, jtUserColumns);
-
+		
 		//se hace que los datos no sean editables
 		tableModelUser = new DefaultTableModel(jtUserData, jtUserColumns) {
 			@Override
@@ -227,10 +233,39 @@ public class MainWindow extends JFrame{
 				//all cells false
 				return false;
 			}
+			
 		}; 
+		
+		jtUser.addMouseListener(new MouseAdapter() {
+	        public void mousePressed(MouseEvent e) {
+	            if ( SwingUtilities.isLeftMouseButton(e)) {
+	               
+	            } else {
+	                 if ( SwingUtilities.isRightMouseButton(e)) {
+	                    Point p = e.getPoint();
+	                    int rowNumber = jtUser.rowAtPoint( p );
+	                    ListSelectionModel modelo = jtUser.getSelectionModel();
+	                    modelo.setSelectionInterval( rowNumber, rowNumber );
+	                    System.out.println ("Informacion seleccionada: "+modelo.getSelectionMode());
+	                	
+	                    
+	                  
+	            		String valores="";
+	         
+	            		 String valor = String.valueOf(jtUser.getValueAt(rowNumber, 0));
+	            	
+	            		JOptionPane.showMessageDialog(null, "valores de la columna1: " +valor);
+	  
+	                	
+	                }
+	            }
+	        }
+	    });
 
 		jtUser.setModel(tableModelUser);
-
+		jtUser.setFocusable(false);
+	
+		
 		JScrollPane jspUsers = new JScrollPane(jtUser);
 		jpUsers = new JPanel();
 		jpUsers.add(jspUsers, BorderLayout.CENTER);
@@ -274,15 +309,16 @@ public class MainWindow extends JFrame{
 
 		jbStatistics.addActionListener(controller);
 		jbStatistics.setActionCommand("MainWindow.statisticsActionCommand");	
+		
+		
 	}
 	
-	public void refreshUsers(Object[][] list){
+	public void refreshUsers(LinkedList <Object[]> list){
 		while (tableModelUser.getRowCount()!= 0){
 			tableModelUser.removeRow(0);
 		}
-		for (int i = 0; i<list.length; i++){
-			tableModelUser.addRow(list[i]);
+		for (int i = 0; i<list.size(); i++){
+			tableModelUser.addRow(list.get(i));
 		}
 	}
-	
 }

@@ -31,20 +31,20 @@ public class GeneralController {
 	
 	public void refreshLists(){
 		LinkedList<User> userList = ddbbConnection.showUsers();
-		Object[][] users = new Object[][]{};
+		LinkedList<Object[]> list =new LinkedList<Object[]>();
 		for (int i = 0; i < userList.size(); i++){
 			System.out.println(userList.get(i).getId()+" "+ userList.get(i).getName()+" "+ userList.get(i).getRegistre()+" "+
 					userList.get(i).getLastAcces()+" "+ ""+" "+ ""+" "+ ""+" "+ "");
 			Object[] user = {userList.get(i).getId(), userList.get(i).getName(), userList.get(i).getRegistre(),
 							userList.get(i).getLastAcces(), "", "", "", ""};
-			users = new Object[][]{user, user};
-			System.out.println(users.length);
+			list.add(user);
 		}
-		view.refreshUsers(users);
+		view.refreshUsers(list);
 	}
 	
 	public void run() {
 		while (true){
+			
 			try {
 				Thread.sleep(5000);
 				refreshLists();
