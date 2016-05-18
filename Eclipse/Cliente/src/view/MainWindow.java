@@ -1,9 +1,8 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.Container;
+import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 
@@ -19,6 +18,7 @@ import javax.swing.JTextField;
 
 public class MainWindow extends JFrame {
 	private JTextArea jtaLists; 
+	private JTextArea jtaListsfollowing;
 	private JButton jbRemove; 
 	private JButton jbAdd;
 	private JTextField jtfSearch; 
@@ -43,18 +43,35 @@ public class MainWindow extends JFrame {
 		jpPageStart.setLayout(new GridLayout(1, 5));
 		
 		JLabel jlLogo = new JLabel("ESPOTIFAI");
+		jlLogo.setFont(new java.awt.Font("Phosphate", 0, 25)); 
+		jlLogo.setForeground(Color.white);
 		jpPageStart.add(jlLogo, BorderLayout.CENTER);
 		jtfSearch = new JTextField();
+		jtfSearch.setBackground(CustomColor.icon);
 		jpPageStart.add(jtfSearch, BorderLayout.CENTER);
 		jbSearch = new JButton("BUSCAR"); 
+
+		/*jbSearch.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+		jbSearch.setContentAreaFilled(false);
+		jbSearch.setBackground(Color.BLACK);
+		jbSearch.setForeground(Color.WHITE);
+		jbSearch.setOpaque(true);
+		
+		/*jbSearch.setBackground(Color.red);
+		jbSearch.setContentAreaFilled(false);
+        jbSearch.setOpaque(true);
+        jbSearch.setBorderPainted(true);
+        jbSearch.getBackground();*/
+        
 		jpPageStart.add(jbSearch, BorderLayout.CENTER);
 		jbClose = new JButton("CERRAR SESIÓN"); 
 		jpPageStart.add(jbClose, BorderLayout.CENTER);
 		jbProfile = new JButton("USUARIO");
 		jpPageStart.add(jbProfile, BorderLayout.PAGE_START);
-		
+		jpPageStart.setBackground(CustomColor.background);
 		
 		jpMain.add(jpPageStart, BorderLayout.PAGE_START);
+		
 		// END jpPageStart
 		
 		//START (P2)
@@ -62,21 +79,40 @@ public class MainWindow extends JFrame {
 		
 		// START (jpPageWest)
 		JPanel jpPageWest = new JPanel(); 
-		jpPageWest.setLayout(new GridLayout( 2, 1));
+		jpPageWest.setLayout(new BorderLayout());
+		
+		JPanel jpListsFollowing = new JPanel(new BorderLayout());
+		jpListsFollowing.setBorder(BorderFactory.createTitledBorder("PLAYLIST FOLLOWING"));
+		jtaListsfollowing = new JTextArea(); 
+		jtaListsfollowing.setBackground(CustomColor.icon);
+		jtaListsfollowing.setEditable(false);
+		JScrollPane jspListsFollowing = new JScrollPane(jtaListsfollowing);
+		jspListsFollowing.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		jspListsFollowing.setPreferredSize(new Dimension(250,250));
+		jpListsFollowing.add(jspListsFollowing, BorderLayout.CENTER);
+		jpListsFollowing.setBackground(CustomColor.secondary);
+		jpPageWest.add(jpListsFollowing, BorderLayout.NORTH);
+	
 		
 		JPanel jpLists = new JPanel(new BorderLayout());
 		jpLists.setBorder(BorderFactory.createTitledBorder("PLAYLIST"));
 		jtaLists = new JTextArea(); 
+		jtaLists.setBackground(CustomColor.icon);
 		jtaLists.setEditable(false);
 		JScrollPane jspLists = new JScrollPane(jtaLists);
 		jspLists.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		jspLists.setPreferredSize(new Dimension(250,250));
 		jpLists.add(jspLists, BorderLayout.CENTER);
+		jpLists.setBackground(CustomColor.secondary);
 		jpPageWest.add(jpLists, BorderLayout.CENTER); //INSERIM PANELL 1 LLISTAT DE MUSICA
 		
-		jbAdd = new JButton("Nueva Lista");
-		jpPageWest.add(jbAdd);
 		
+		jbAdd = new JButton(" + Nueva Lista");
+		//jpLists.add(jbAdd);
+		
+		jpPageWest.add(jbAdd, BorderLayout.SOUTH);
+		//jpPageWest.add(jbAdd);
+		jpPageWest.setBackground(CustomColor.secondary);
 		
 		//END (jpPageWest)
 		jpMain.add(jpPageWest, BorderLayout.WEST);
@@ -103,24 +139,30 @@ public class MainWindow extends JFrame {
 		JLabel jlArtist = new JLabel("Artista:");
 		jpPageEast.add(jlArtist, BorderLayout.CENTER);
 		jtfArtist = new JTextField();
+		jtfArtist.setBackground(CustomColor.icon);
 		jpPageEast.add(jtfArtist, BorderLayout.CENTER);
 		
 		JLabel jlAlbum = new JLabel("�?lbum:");
 		jpPageEast.add(jlAlbum, BorderLayout.CENTER);
 		jtfAlbum = new JTextField();
+		jtfAlbum.setBackground(CustomColor.icon);
 		jpPageEast.add(jtfAlbum, BorderLayout.CENTER);
 		
 		JLabel jlGenre = new JLabel("Género:");
 		jpPageEast.add(jlGenre, BorderLayout.CENTER);
 		jtfGenre = new JTextField();
+		jtfGenre.setBackground(CustomColor.icon);
 		jpPageEast.add(jtfGenre, BorderLayout.CENTER);
 		
 		JLabel jlSongTitle = new JLabel("Nombre de la canción:");
 		jpPageEast.add(jlSongTitle, BorderLayout.CENTER);
 		jtfSongTitle = new JTextField();
+		jtfSongTitle.setBackground(CustomColor.icon);
 		jpPageEast.add(jtfSongTitle, BorderLayout.CENTER);
+		jpPageEast.setBackground(CustomColor.secondary);
 		
 		jpMain.add(jpPageEast, BorderLayout.EAST);
+		
 		 
 		//END(jpPageEast) 
 			
@@ -130,6 +172,7 @@ public class MainWindow extends JFrame {
 		
 		
 		this.getContentPane().add(jpMain, BorderLayout.CENTER);
+		
 		
 		this.setSize(1280, 720);
 		this.setTitle("Espotifai");
