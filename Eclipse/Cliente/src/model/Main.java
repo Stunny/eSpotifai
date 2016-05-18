@@ -33,8 +33,8 @@ public class Main {
 				selecteduserwindow.registerController(controller);
 				
 				//iniciamos la pantalla de login
-				loginWindow.setVisible(false);
-				mainWindow.setVisible(true);
+				loginWindow.setVisible(true);
+				mainWindow.setVisible(false);
 			
 				
 			

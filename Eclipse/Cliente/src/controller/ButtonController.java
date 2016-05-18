@@ -65,7 +65,7 @@ public class ButtonController implements ActionListener {
 		
 		
 		//PANTALLA ACCEDIR
-		if(event.getActionCommand().equals("LoginWindow.registerWindowsterActionCommand")){
+		if(event.getActionCommand().equals("LoginWindow.registerActionCommand")){
 			registerWindow.setVisible(true);
 			loginWindow.setVisible(false);
 		}

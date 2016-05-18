@@ -59,7 +59,8 @@ public class RequestBuilder {
 
 		return this.build();
 	}
-	public String getFriendListRequest(String userName) throws IOException{
+	
+	public String getFriendListRequest(String userName) throws IOException {
 
 		JsonObject user = new JsonObject();
 		this.requestType = "getFriendsList";

@@ -37,7 +37,7 @@ public class AccessLogic {
 				JOptionPane.showMessageDialog(null, resposta + "!", " ", JOptionPane.ERROR_MESSAGE);
 				return false;
 			} else {
-				JOptionPane.showMessageDialog(null, resposta + ". Please fill in the fields.", " ", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, resposta + ".", " ", JOptionPane.ERROR_MESSAGE);
 				return false;
 			}
 		}
@@ -45,7 +45,7 @@ public class AccessLogic {
 	
 	public static boolean Register (String username, String password) {
 		
-		if (password.length() < 6 && !password.matches(".*[A-Z].*") && !password.matches(".*[0-9].*")) {
+		if (password.length() < 6 || !password.matches(".*[A-Z].*") || !password.matches(".*[0-9].*")) {
 			JOptionPane.showMessageDialog(null, "Invalid password!", " ", JOptionPane.PLAIN_MESSAGE);
 			return false;
 		} else {
@@ -58,8 +58,11 @@ public class AccessLogic {
 			if (resposta.equals("Added")) {
 				JOptionPane.showMessageDialog(null, "Welcome to eSpotyfai, " + username + "!", " ", JOptionPane.PLAIN_MESSAGE);
 				return true;
-			} else {
+			} else if (resposta.equals("Username already in use")){
 				JOptionPane.showMessageDialog(null, "Username already in use!", " ", JOptionPane.PLAIN_MESSAGE);
+				return false;
+			} else {
+				JOptionPane.showMessageDialog(null, resposta + ".", " ", JOptionPane.ERROR_MESSAGE);
 				return false;
 			}
 			
