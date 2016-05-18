@@ -60,6 +60,24 @@ public class RequestBuilder {
 
 		return this.build();
 	}
+	public String getSongsFromArtistsRequest(String[] artistArray) throws IOException{
+
+		JsonArray artists = new JsonArray();
+		JsonObject name = new JsonObject();
+		this.requestType = "getSongsFromArtist";
+
+		for(int i = 0; i < artistArray.length; i++){
+			name.addProperty("name", artistArray[i]);
+			artists.add(name);
+		}
+
+		obj = null;
+		obj = new JsonArray();
+		obj.add(artists);
+
+
+		return this.build();
+	}
 	public String build() throws IOException{
 		Gson gson = new Gson();
 		JsonObject r = new JsonObject();
