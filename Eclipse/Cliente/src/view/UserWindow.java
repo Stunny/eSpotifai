@@ -78,4 +78,10 @@ public class UserWindow extends JFrame{
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	}
+	
+	public void refreshUser(String string){
+		jtaUsername.setText(string);
+	}
+	
+	
 }

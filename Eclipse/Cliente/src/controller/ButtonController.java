@@ -21,6 +21,7 @@ public class ButtonController implements ActionListener {
 	private ServerCommunication serverCommunication;
 	private SelectedUserWindow selecteduserwindow;
 	private RegisterWindow registerWindow;
+	private String User; 
 
 	
 	public ButtonController(LoginWindow loginWindow, RegisterWindow registerWindow, MainWindow mainWindow, SelectedUserWindow selecteduserwindow){
@@ -44,6 +45,8 @@ public class ButtonController implements ActionListener {
 					if (AccessLogic.Login(loginWindow.getTypedUsername(), loginWindow.getTypedPassword())) {
 						mainWindow.setVisible(true);
 						loginWindow.setVisible(false);
+						User = loginWindow.getTypedUsername();
+						//System.out.println("User:" + User);
 					}
 				}
 			}
@@ -107,7 +110,9 @@ public class ButtonController implements ActionListener {
 		//PANTALLA INICIO (USUARI)
 		if(event.getActionCommand().equals("MainWindow.profileActionCommand")){
 			UserWindow userWindow = new UserWindow(); 
+			userWindow.refreshUser(User);
 			userWindow.setVisible(true);
+			
 		}
 		
 		
