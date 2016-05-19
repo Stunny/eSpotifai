@@ -103,7 +103,7 @@ public class DDBBConnection {
 		LinkedList<Object[]> list =new LinkedList<Object[]>();
 		for (int i = 0; i < userList.size(); i++){
 			Object[] objs = {userList.get(i).getId(), userList.get(i).getUsername(), userList.get(i).getRegistre(),
-							userList.get(i).getLastAcces(), nPlaylists(userList.get(i).getId()),
+							userList.get(i).getLastAccess(), nPlaylists(userList.get(i).getId()),
 							totalSongs(userList.get(i).getId()),
 							nFollowers(userList.get(i).getId()), nFolloweds(userList.get(i).getId())};
 			list.add(objs);

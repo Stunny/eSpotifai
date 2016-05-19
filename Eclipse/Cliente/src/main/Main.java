@@ -5,6 +5,8 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import controller.ButtonController;
+import controller.NetworkController;
+import model.User;
 import threads.RefreshThread;
 import view.LoginWindow;
 import view.MainWindow;
@@ -29,15 +31,20 @@ public class Main {
 				MainWindow mainWindow = new MainWindow();
 				//UserWindow userWindow = new UserWindow();
 				SelectedUserWindow selecteduserwindow = new SelectedUserWindow();
+				NetworkController networkcontroller = new NetworkController();
+				//nwc.getUserList();
+				//nwc.getSongList();
 				
 				//Creamos el controlador
-				ButtonController controller = new ButtonController(loginWindow, registerWindow, mainWindow, selecteduserwindow);
+				ButtonController controller = new ButtonController(loginWindow, registerWindow, mainWindow, selecteduserwindow, networkcontroller);
 				
 				//Juntamos las pantallas y el controlador
 				loginWindow.registerController(controller);
 				registerWindow.registerController(controller);
 				mainWindow.registerController(controller);
 				selecteduserwindow.registerController(controller);
+				
+				
 				
 				//iniciamos la pantalla de login
 				loginWindow.setVisible(true);

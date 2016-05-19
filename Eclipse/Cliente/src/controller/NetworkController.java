@@ -26,6 +26,10 @@ public class NetworkController {
 		User[] u = gson.fromJson(resposta, User[].class);
 
 		LinkedList<User> userlist = new LinkedList<User>(Arrays.asList(u));
+		
+		for(int i = 0; i < userlist.size(); i++){
+			System.out.println(userlist.get(i).getUsername());
+		}
 			
 		return userlist;
 
@@ -42,8 +46,12 @@ public class NetworkController {
 		GsonBuilder gsonBuilder = new GsonBuilder();
 	    Gson gson = gsonBuilder.create();
 		Song[] s = gson.fromJson(resposta, Song[].class);
+		
 
 		LinkedList<Song> songlist = new LinkedList<Song>(Arrays.asList(s));
+		/*for(int  i = 0; i < songlist.size(); i++){
+			System.out.println(songlist.get(i).getName());
+		}*/
 			
 		return songlist;
 	}
