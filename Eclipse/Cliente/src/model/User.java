@@ -1,6 +1,6 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class User {
 	private int id;
@@ -8,10 +8,10 @@ public class User {
 	private String registre;
 	private String lastAccess;
 	private String password;
-	private ArrayList<Playlist> playlist; 
-	private ArrayList<User> following;
+	private LinkedList<Playlist> playlist; 
+	private LinkedList<User> following;
 	
-	public User(int id, String username, String registre, String lastAccess, String password, ArrayList<Playlist> playlist, ArrayList<User> following){
+	public User(int id, String username, String registre, String lastAccess, String password, LinkedList<Playlist> playlist, LinkedList<User> following){
 		this.id = id;
 		this.username = username; 
 		this.registre = registre;
@@ -27,8 +27,8 @@ public class User {
 		super();
 		this.id = id;
 		this.username = username;
-		this.playlist = new ArrayList<Playlist>();
-		this.following = new ArrayList<User>();
+		this.playlist = new LinkedList<Playlist>();
+		this.following = new LinkedList<User>();
 	}
 	
 	public User(int id, String username, String registre, String lastAccess, String password) {
@@ -38,8 +38,8 @@ public class User {
 		this.registre = registre;
 		this.lastAccess = lastAccess;
 		this.password = password;
-		this.playlist = new ArrayList<Playlist>();
-		this.following = new ArrayList<User>();
+		this.playlist = new LinkedList<Playlist>();
+		this.following = new LinkedList<User>();
 	}
 
 
@@ -52,11 +52,11 @@ public class User {
 		this.username = username;
 	}
 
-	public ArrayList<Playlist> getPlaylist() {
+	public LinkedList<Playlist> getPlaylist() {
 		return playlist;
 	}
 
-	public void setPlaylist(ArrayList<Playlist> playlist) {
+	public void setPlaylist(LinkedList<Playlist> playlist) {
 		this.playlist = playlist;
 	}
 
@@ -68,11 +68,11 @@ public class User {
 		this.id = id;
 	}
 
-	public ArrayList<User> getFollowing() {
+	public LinkedList<User> getFollowing() {
 		return following;
 	}
 
-	public void setFollowing(ArrayList<User> following) {
+	public void setFollowing(LinkedList<User> following) {
 		this.following = following;
 	}
 	

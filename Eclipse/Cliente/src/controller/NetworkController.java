@@ -21,10 +21,7 @@ public class NetworkController {
 		GsonBuilder gsonBuilder = new GsonBuilder();
 	    Gson gson = gsonBuilder.create();
 		User[] u = gson.fromJson(resposta, User[].class);
-		
-		System.out.println(u[1].getId());
-		System.out.println(u[1].getUsername());
-		System.out.println(u[1].getLastAccess());
+
 	}
 
 }

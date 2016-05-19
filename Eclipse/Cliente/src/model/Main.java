@@ -1,6 +1,7 @@
 
 package model;
 
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import controller.ButtonController;
@@ -16,6 +17,7 @@ public class Main {
 			@Override
 			public void run() {
 				
+				try {
 				//Creamos las pantallas
 				LoginWindow loginWindow = new LoginWindow();
 				RegisterWindow registerWindow = new RegisterWindow();
@@ -36,7 +38,9 @@ public class Main {
 				loginWindow.setVisible(true);
 				mainWindow.setVisible(false);
 
-			
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(null, "Hi ha hagut un problema.", " ", JOptionPane.ERROR_MESSAGE);
+				}
 				
 			
 			}
