@@ -21,8 +21,9 @@ public class ButtonController implements ActionListener {
 	private RegisterWindow registerWindowsterWindow;
 	private ServerCommunication serverCommunication;
 	private SelectedUserWindow selecteduserwindow;
+
 	
-	public ButtonController(LoginWindow loginWindow, RegisterWindow registerWindowsterWindow, MainWindow mainWindow, SelectedUserWindow selecteduserwindow){
+	public ButtonController(LoginWindow loginWindow, RegisterWindow registerWindowsterWindow, MainWindow mainWindow, SelectedUserWindow selecteduserwindow ){
 		this.loginWindow = loginWindow;
 		this.mainWindow = mainWindow;
 		this.registerWindowsterWindow= registerWindowsterWindow;
@@ -113,11 +114,13 @@ public class ButtonController implements ActionListener {
 			}
 		}
 		
+		//PANTALLA SEARCH USUARIO
 		if(event.getActionCommand().equals("FOLLOW")){
 			String p = "Following";
 			selecteduserwindow.refreshFollowing(p);
 		}
 		
+		//PANTALLA SEARCH USUARI
 		if(event.getActionCommand().equals("UNFOLLOW")){
 			String s = new String();
 			s = "Unfollow";
