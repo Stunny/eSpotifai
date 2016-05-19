@@ -31,7 +31,6 @@ public class Main {
 				MainWindow mainWindow = new MainWindow();
 				//UserWindow userWindow = new UserWindow();
 				SelectedUserWindow selecteduserwindow = new SelectedUserWindow();
-				
 				NetworkController networkcontroller = new NetworkController();
 				//nwc.getUserList();
 				//nwc.getSongList();

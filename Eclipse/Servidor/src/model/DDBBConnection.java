@@ -13,14 +13,14 @@ public class DDBBConnection {
 	DataBase ddbb;
 	
 	/*
-	 * Contructor que crea la clase DataBase que permite la conexión y modificación con la base de datos.
+	 * Contructor que crea la clase DataBase que permite la conexiï¿½n y modificaciï¿½n con la base de datos.
 	 */
 	public DDBBConnection (String username, String password, String ddbbName, int port){
 		ddbb = new DataBase(username, password, ddbbName, port);
 	}
 	
 	/*
-	 * Conexión con el servidor 
+	 * Conexiï¿½n con el servidor 
 	 */
 	public void startConnection() throws DatabaseNotLoadedException {
 		ddbb.connect();
@@ -34,12 +34,14 @@ public class DDBBConnection {
 	}
 	
 	/*
-	 * Busca si el usuario existe en la base de datos y comprueba si la contraseña es correcta.
+	 * Busca si el usuario existe en la base de datos y comprueba si la contraseï¿½a es correcta.
 	 * Posibilidades: 
 	 * 		"Incorrect username" -> Usuario no encontrado 
-	 * 		"Welcome" -> Usuario enncontrado y la contraseña coincide
-	 * 		"Incorrect password" -> Usuario encontrado pero la contraseá no coincide
+	 * 		"Welcome" -> Usuario enncontrado y la contraseï¿½a coincide
+	 * 		"Incorrect password" -> Usuario encontrado pero la contraseï¿½ no coincide
 	 */
+	
+	
 	public String userConnection(String username, String password){
 		try {
 			ResultSet resultSet = ddbb.selectQuery("SELECT count(user_name) FROM users WHERE user_name like '"+ username +"'");
@@ -69,17 +71,17 @@ public class DDBBConnection {
 	
 	/*
 	 * Devuelve un String que todos los usuarios con sus respectivos datos
-	 * Formato: Name/Fecha de registro/Fecha de la última conexión/contraseña
+	 * Formato: Name/Fecha de registro/Fecha de la ï¿½ltima conexiï¿½n/contraseï¿½a
 	 */
 	public LinkedList<User> showUsers(){
 		ResultSet resultSet = ddbb.selectQuery("SELECT * FROM users");
 		LinkedList<User> list = new LinkedList<User> ();
 		
 		try {
-			//Recorrem el ResultSet que ens retorna el selectQuery i agafem els paràmetres desitjats
+			//Recorrem el ResultSet que ens retorna el selectQuery i agafem els parï¿½metres desitjats
 			while (resultSet.next())
 			{
-			    //Per recuperar el valor utilitzem la funció .getObject() amb el nom del camp a recuperar
+			    //Per recuperar el valor utilitzem la funciï¿½ .getObject() amb el nom del camp a recuperar
 				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 				java.sql.Timestamp aux = (java.sql.Timestamp) resultSet.getObject("date_reg");
 				String string  = dateFormat.format(aux);

@@ -37,7 +37,7 @@ public class GeneralController {
 					userList.get(i).getLastAcces()+" "+ ""+" "+ ""+" "+ ""+" "+ "");*/
 			Object[] user = {userList.get(i).getId(), userList.get(i).getUsername(), userList.get(i).getRegistre(),
 
-							userList.get(i).getLastAcces(), "", "", "", ""};
+							userList.get(i).getLastAccess(), "", "", "", ""};
 			list.add(user);
 		}
 		view.refreshUsers(list);
