@@ -106,6 +106,34 @@ public class DDBBConnection {
 		return list;
 	}
 	
+	public LinkedList<Object[]> getFollowersDates(int id){
+		LinkedList<User> userList = getUsers();
+		LinkedList<Object[]> list =new LinkedList<Object[]>();
+	
+		try {
+			ResultSet resultSet = ddbb.selectQuery("SELECT user_follower FROM followers WHERE user_followed="+id);
+			while (resultSet.next())
+				{
+					for (int i = 0; i < userList.size(); i++){
+						if (userList.get(i).getId() == resultSet.getInt(1)){
+							Object[] obj = {userList.get(i).getId(), userList.get(i).getName(), userList.get(i).getRegistre(),
+									userList.get(i).getLastAcces(), nPlaylists(userList.get(i).getId()),
+									totalSongs(userList.get(i).getId()),
+									nFollowers(userList.get(i).getId()), nFolloweds(userList.get(i).getId())};
+							list.add(obj);
+						}
+		
+					}
+				}
+				
+			return list;
+
+		} catch (SQLException e) {
+					// TODO Auto-generated catch block
+			return list;
+		}
+	}
+	
 	public LinkedList<Song> getSongs(){
 		ResultSet resultSet = ddbb.selectQuery("SELECT * FROM songs");
 		LinkedList<Song> list = new LinkedList<Song> (); 
@@ -242,26 +270,11 @@ public class DDBBConnection {
 			return "Problems";
 		}
 	}
-	
-	public String showFollows(){
-		String text = "";
-		try {
-			ResultSet resultSet = ddbb.selectQuery("SELECT u.user_name as username, p.name as name FROM followers as fol, users as u, playlists as p "
-					+ "WHERE u.id_user = fol.user_follower and p.id_playlist = fol.list_followed");
-			while (resultSet.next())
-				{
-					text = text + "Name: " + resultSet.getObject("name") + "/" +"Seguidor: "+ resultSet.getObject("username")+"\n";
-				}	
-					return text;
-		} catch (SQLException e) {
-					// TODO Auto-generated catch block
-			return "Problems";
-		}
-	}
+
 	
 	public int nFollowers(int id){
 		try{
-			ResultSet resultSet = ddbb.selectQuery("SELECT count(*) FROM followers WHERE user_follower="+id);
+			ResultSet resultSet = ddbb.selectQuery("SELECT count(*) FROM followers WHERE user_followed="+id);
 			resultSet.next();
 			return  resultSet.getInt(1);
 		} catch (SQLException e) {
@@ -273,7 +286,7 @@ public class DDBBConnection {
 	
 	public int nFolloweds(int id){
 		try{
-			ResultSet resultSet = ddbb.selectQuery("SELECT count(*) FROM followers WHERE user_followed="+id);
+			ResultSet resultSet = ddbb.selectQuery("SELECT count(*) FROM followers WHERE user_follower="+id);
 			resultSet.next();
 			return  resultSet.getInt(1);
 		} catch (SQLException e) {

@@ -2,6 +2,7 @@ package main;
 
 import provaConfigurationServer.ManagementConfiguration;
 import view.AddMusicWindow;
+import view.FollowersWindow;
 import view.MainWindow;
 import view.StatisticsWindow;
 import controller.ButtonsController;
@@ -24,7 +25,7 @@ public class Main {
 			
 			MainWindow mainWindow = new MainWindow();
 			ButtonsController buttonscontroller = new ButtonsController(mainWindow);
-			PopUpController popupcontroller = new PopUpController (mainWindow);
+			PopUpController popupcontroller = new PopUpController (mainWindow,ddbbConnection);
 			GeneralController controller = new GeneralController (ddbbConnection, mainWindow);
 			mainWindow.registerController(buttonscontroller, popupcontroller);
 			mainWindow.setVisible(true);

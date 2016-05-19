@@ -21,7 +21,7 @@ public class Main {
 		MainWindow mainWindow = new MainWindow();
 		FollowersWindow followerswindow = new FollowersWindow();
 		ButtonsController controller = new ButtonsController(mainWindow);
-		PopUpController popupcontroller = new PopUpController (mainWindow);
+		PopUpController popupcontroller = new PopUpController (followerswindow);
 		mainWindow.registerController(controller, popupcontroller);
 		mainWindow.setVisible(true);
 		

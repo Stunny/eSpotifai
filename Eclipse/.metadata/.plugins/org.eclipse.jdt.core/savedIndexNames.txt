@@ -10,7 +10,6 @@ INDEX VERSION 1.127+C:\Users\Miguel¡ngel\Documents\GitHub\eSpotifai\Eclipse\.met
 2334050384.index
 3232870235.index
 3887496914.index
-363738115.index
 1760935762.index
 4078855296.index
 3814180264.index
