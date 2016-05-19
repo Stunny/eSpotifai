@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import controller.ButtonController;
+import threads.RefreshThread;
 import view.LoginWindow;
 import view.MainWindow;
 import view.NewListDialog;
@@ -13,6 +14,9 @@ import view.SelectedUserWindow;
 import view.UserWindow;
 
 public class Main {
+	
+	public static RefreshThread refreshThread;
+	
 	public static void main(String[] args){
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -35,10 +39,10 @@ public class Main {
 				mainWindow.registerController(controller);
 				selecteduserwindow.registerController(controller);
 				
-				
 				//iniciamos la pantalla de login
 				loginWindow.setVisible(true);
 				mainWindow.setVisible(false);
+				
 
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(null, "Hi ha hagut un problema.", " ", JOptionPane.ERROR_MESSAGE);

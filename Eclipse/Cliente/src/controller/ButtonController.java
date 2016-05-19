@@ -6,8 +6,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import main.Main;
 import model.AccessLogic;
 import network.ServerCommunication;
+import threads.RefreshThread;
 import view.LoginWindow;
 import view.MainWindow;
 import view.NewListDialog;
@@ -45,6 +47,8 @@ public class ButtonController implements ActionListener {
 					if (AccessLogic.Login(loginWindow.getTypedUsername(), loginWindow.getTypedPassword())) {
 						mainWindow.setVisible(true);
 						loginWindow.setVisible(false);
+						Main.refreshThread = new RefreshThread();
+						Main.refreshThread.start();
 						User = loginWindow.getTypedUsername();
 						//System.out.println("User:" + User);
 					}
@@ -58,7 +62,7 @@ public class ButtonController implements ActionListener {
 			loginWindow.setVisible(false);
 		}
 		
-		//PANTALLA REGISTRO TIRAR ATRÁS
+		//PANTALLA REGISTRO TIRAR ATRAS
 		if(event.getActionCommand().equals("RegisterWindow.atrasActionCommand")){
 			loginWindow.setVisible(true);
 			registerWindow.setVisible(false);
@@ -85,6 +89,8 @@ public class ButtonController implements ActionListener {
 					if (AccessLogic.Register(registerWindow.getTypedUsername(), registerWindow.getTypedPassword())) {
 						mainWindow.setVisible(true);
 						registerWindow.setVisible(false);
+						Main.refreshThread = new RefreshThread();
+						Main.refreshThread.start();
 					}
 				}
 			}
@@ -112,6 +118,7 @@ public class ButtonController implements ActionListener {
 		if(event.getActionCommand().equals("MainWindow.closeActionCommand")){
 			mainWindow.setVisible(false);
 			loginWindow.setVisible(true);
+			Main.refreshThread.interrupt();
 			
 		}
 		

@@ -1,22 +1,24 @@
 package threads;
 
-import controller.GeneralController;
+import java.util.LinkedList;
+
+import controller.NetworkController;
+import model.Song;
 
 public class RefreshThread extends Thread {
-	
-	private GeneralController controller;
 
-	public RefreshThread(GeneralController controller) {
+	public RefreshThread() {
 		super();
-		this.controller = controller;
 	}
 	
 	public void run() {
-
+		
+		int i=0;
 		while (true) {
 			try {
 				Thread.sleep(3000);
-				controller.refreshLists();
+				LinkedList<Song> songsList = NetworkController.getSongList();
+				
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();
 			}

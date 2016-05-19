@@ -29,9 +29,6 @@ public class Main {
 					ServerConfiguration sc = mc.getServerConfiguration();
 
 					DDBBConnection ddbbConnection = new DDBBConnection(sc.getUserBBDD(), sc.getPasswordBBDD(), sc.getNameBBDD(), sc.getPortConexionBBDD());
-
-
-
 					ddbbConnection.startConnection();
 
 					// Creem la VISTA
