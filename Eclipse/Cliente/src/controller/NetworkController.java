@@ -22,9 +22,9 @@ public class NetworkController {
 	    Gson gson = gsonBuilder.create();
 		User[] u = gson.fromJson(resposta, User[].class);
 		
-		System.out.println(u[0].getId());
-		System.out.println(u[0].getUsername());
-		System.out.println(u[0].getLastAccess());
+		System.out.println(u[1].getId());
+		System.out.println(u[1].getUsername());
+		System.out.println(u[1].getLastAccess());
 	}
 
 }
