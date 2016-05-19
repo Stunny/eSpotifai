@@ -1,6 +1,7 @@
 package main;
 
 import view.AddMusicWindow;
+import view.FollowersWindow;
 import view.MainWindow;
 import view.StatisticsWindow;
 
@@ -10,6 +11,7 @@ import javax.swing.SwingUtilities;
 import controller.ButtonsController;
 import controller.GeneralController;
 import controller.NetworkController;
+import controller.PopUpController;
 import customExceptions.DatabaseNotLoadedException;
 import database.DDBBConnection;
 import model.ManagementConfiguration;
@@ -20,6 +22,7 @@ import threads.RefreshThread;
 public class Main {
 
 	public static void main(String[] args) {
+
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -35,8 +38,11 @@ public class Main {
 
 					MainWindow mainWindow = new MainWindow();
 					ButtonsController buttonscontroller = new ButtonsController(mainWindow);
+					//PopUpController popupcontroller = new PopUpController (mainWindow);
 					GeneralController controller = new GeneralController (ddbbConnection, mainWindow);
-					mainWindow.registerController(buttonscontroller);
+					
+					mainWindow.registerController(buttonscontroller, /*popupcontroller*/null);
+					
 					mainWindow.setVisible(true);
 
 					//Creem la vista temporal de adició

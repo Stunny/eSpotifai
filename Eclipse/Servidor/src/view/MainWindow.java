@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.LinkedList;
@@ -15,25 +16,31 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.Popup;
 import javax.swing.SwingUtilities;
+import javax.swing.border.BevelBorder;
 //import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
+import view.PopupMenu.PopupPrintListener;
 import model.User;
 import controller.ButtonsController;
+import controller.PopUpController;
 
 public class MainWindow extends JFrame{
 
 	private JTabbedPane jtpTabs;
 	private JPanel jpMusic;
-	private JPanel jpUsers;
+	private JTable jpUsers;
 	private JPanel jpPageEnd;
 	private JPanel jpButtons;
 	private JPanel jpPlayer;
@@ -73,11 +80,19 @@ public class MainWindow extends JFrame{
 	private ImageIcon iiPrevious3;
 	//private ImageIcon temporalSong;
 	
-	Object[][] jtUserDataController = new Object[][]{};
-	Object[][] jtUserData = {{"1","Prueba1","","","","","",""},{"2","Prueba2","","","","","",""},{"3","Prueba3","","","","","",""}};
 	DefaultTableModel tableModelUser;
-	JTable jtUser;
+	DefaultTableModel tableModelMusic;
+	
+	private JMenuItem seguidores;
+	private JMenuItem seguidos;
+	private JMenuItem listas;
+	private JMenuItem eliminar;
+	
+	private int id = 0;
+	
 
+	 public JPopupMenu popup;
+	
 	public MainWindow() {
 
 		//Creem el conjunt de pestanyes
@@ -94,13 +109,13 @@ public class MainWindow extends JFrame{
 		//Creo el panell Scroll de la llista de cançons
 		//table
 		//hardcodeo de columnas y datos 
-		String[] jtMusicColumns = {"Name", "Genre", "Album", "Artist"};
-		Object[][] jtMusicData = {{"El tractor amarillo", "Pop", "Zapato Veloz", "Manuel Calderon"},{"Cantando", "Rap", "Vivir para contarlo", "Kase O"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"}};
+		String[] jtMusicColumns = {"Id","Name", "Genre", "Album", "Artist", "Location", "Stars", "Reproducciones"};
+		Object[][] jtMusicData = {};
 		//se crea la tabla
 		JTable jtMusicList = new JTable(jtMusicData, jtMusicColumns);
 
 		//se hace que los datos no sean editables
-		DefaultTableModel tableModelMusic = new DefaultTableModel(jtMusicData, jtMusicColumns) {
+		tableModelMusic = new DefaultTableModel(jtMusicData, jtMusicColumns) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				//all cells false
@@ -221,10 +236,9 @@ public class MainWindow extends JFrame{
 		//table
 		//hardcodeo de columnas y datos 
 		String[] jtUserColumns = {"id","Username", "Register date", "Last login", "Song lists", "Songs", "Followers", "Following"};
-		
-		
+		Object[][] jtUserData = {};
 		//se crea la tabla
-		jtUser = new JTable(jtUserData, jtUserColumns);
+		JTable jtUser = new JTable(jtUserData, jtUserColumns);
 		
 		//se hace que los datos no sean editables
 		tableModelUser = new DefaultTableModel(jtUserData, jtUserColumns) {
@@ -236,45 +250,69 @@ public class MainWindow extends JFrame{
 			
 		}; 
 		
+		popup = new JPopupMenu();
+		popup.add(seguidores = new JMenuItem("Mostrar seguidores", new ImageIcon("1.gif")));
+		seguidores.setHorizontalTextPosition(JMenuItem.RIGHT);
+		    
+		popup.add(seguidos = new JMenuItem("Mostrar seguidos", new ImageIcon("2.gif")));
+		seguidos.setHorizontalTextPosition(JMenuItem.RIGHT);
+		   
+		popup.add(listas = new JMenuItem("Mostrar listas de reproduccion", new ImageIcon("3.gif")));
+		listas.setHorizontalTextPosition(JMenuItem.RIGHT);
+		    
+		popup.addSeparator();
+		popup.add(eliminar = new JMenuItem("Eliminar "));
+		    
+
+		popup.setLabel("Justification");
+		popup.setBorder(new BevelBorder(BevelBorder.RAISED));
+		    
 		jtUser.addMouseListener(new MouseAdapter() {
 	        public void mousePressed(MouseEvent e) {
 	            if ( SwingUtilities.isLeftMouseButton(e)) {
-	               
+	            	popup.setVisible(false);
 	            } else {
 	                 if ( SwingUtilities.isRightMouseButton(e)) {
 	                    Point p = e.getPoint();
 	                    int rowNumber = jtUser.rowAtPoint( p );
 	                    ListSelectionModel modelo = jtUser.getSelectionModel();
 	                    modelo.setSelectionInterval( rowNumber, rowNumber );
-	                    System.out.println ("Informacion seleccionada: "+modelo.getSelectionMode());
-	                	
-	                    
-	                  
-	            		String valores="";
-	         
-	            		 String valor = String.valueOf(jtUser.getValueAt(rowNumber, 0));
-	            	
-	            		JOptionPane.showMessageDialog(null, "valores de la columna1: " +valor);
-	  
-	                	
+	            		 id = Integer.parseInt(String.valueOf( jtUser.getValueAt(rowNumber, 0)));
+	            		 popup.show(jtpTabs,  e.getX(), e.getY());
+	            		 
 	                }
 	            }
 	        }
 	    });
-
+		
 		jtUser.setModel(tableModelUser);
 		jtUser.setFocusable(false);
-	
-		
-		JScrollPane jspUsers = new JScrollPane(jtUser);
-		jpUsers = new JPanel();
-		jpUsers.add(jspUsers, BorderLayout.CENTER);
 
+		JScrollPane jspUsers = new JScrollPane(jtUser);
+		jpUsers = new JTable();
+		jpUsers.add(jspUsers, BorderLayout.CENTER);
+	
+		 jspUsers.addMouseListener(new MouseAdapter() {
+		        public void mousePressed(MouseEvent e) {
+		            if ( SwingUtilities.isLeftMouseButton(e)) {
+		            	popup.setVisible(false);
+		            }
+		        }
+		  });
+		 
+		//jpUsers.add(popup = new PopupMenu());
 		//Incloeixo les pestañes a la finestra
 		jtpTabs.addTab("Music", jpMusic);
 		jtpTabs.addTab("Users", jspUsers);
-
+		jtpTabs.addMouseListener(new MouseAdapter() {
+	        public void mousePressed(MouseEvent e) {
+	            if ( SwingUtilities.isLeftMouseButton(e)) {
+	            	popup.setVisible(false);
+	            }
+	        }
+	    });
 		this.getContentPane().add(jtpTabs, BorderLayout.CENTER);
+	
 		this.setResizable(true);
 		this.setSize(new Dimension(1600,870));
 		this.setTitle("eSpotifai - Server Management");
@@ -303,15 +341,27 @@ public class MainWindow extends JFrame{
 
 	}
 
-	public void registerController(ButtonsController controller) {
+	public void registerController(ButtonsController controller, PopUpController controller2) {
 		jbAdd.addActionListener(controller);
 		jbAdd.setActionCommand("MainWindow.addActionCommand");
 
 		jbStatistics.addActionListener(controller);
 		jbStatistics.setActionCommand("MainWindow.statisticsActionCommand");	
+	
+		seguidores.addActionListener(controller2);
+		seguidores.setActionCommand("MainWindow.seguidoresActionCommand");
 		
+		seguidos.addActionListener(controller2);
+		seguidos.setActionCommand("MainWindow.seguidosActionCommand");
 		
+		listas.addActionListener(controller2);
+		listas.setActionCommand("MainWindow.listasActionCommand");
+		
+		eliminar.addActionListener(controller2);
+		eliminar.setActionCommand("MainWindow.eliminarActionCommand");
+		    
 	}
+	
 	
 	public void refreshUsers(LinkedList <Object[]> list){
 		while (tableModelUser.getRowCount()!= 0){
@@ -320,5 +370,17 @@ public class MainWindow extends JFrame{
 		for (int i = 0; i<list.size(); i++){
 			tableModelUser.addRow(list.get(i));
 		}
+	}
+	public void refreshSongs(LinkedList<Object[]> list) {
+		while (tableModelMusic.getRowCount()!= 0){
+			tableModelMusic.removeRow(0);
+		}
+		for (int i = 0; i<list.size(); i++){
+			tableModelMusic.addRow(list.get(i));
+		}
+	}
+	
+	public int getId (){
+		return id;
 	}
 }

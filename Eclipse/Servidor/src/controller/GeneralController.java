@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import view.MainWindow;
 import customExceptions.DatabaseNotLoadedException;
 import database.DDBBConnection;
+import model.Song;
 import model.User;
 
 public class GeneralController {
@@ -55,4 +56,19 @@ public class GeneralController {
 		}
 	}*/
 	
-}
+
+	public void refreshLists2(){
+		LinkedList<Object[]> list =new LinkedList<Object[]>();
+		view.refreshUsers(ddbbConnection.getUsersDates());
+		
+		LinkedList<Song> songList =  ddbbConnection.getSongs();
+		list =new LinkedList<Object[]>();
+		for (int i = 0; i < songList.size(); i++){
+			Object[] objs = {songList.get(i).getId(), songList.get(i).getName(), songList.get(i).getGenre(),
+							songList.get(i).getAlbum(), songList.get(i).getArtist(), songList.get(i).getLocation(), 
+							songList.get(i).getStars(), songList.get(i).getReproducciones()};
+			list.add(objs);
+		}
+		view.refreshSongs(list);
+	}
+	}

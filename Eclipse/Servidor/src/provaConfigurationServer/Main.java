@@ -6,7 +6,10 @@ import controller.ButtonsController;
 import controller.NetworkController;
 import model.ManagementConfiguration;
 import network.Server;
+import controller.GeneralController;
+import controller.PopUpController;
 import view.AddMusicWindow;
+import view.FollowersWindow;
 import view.MainWindow;
 import view.StatisticsWindow;
 
@@ -19,8 +22,10 @@ public class Main {
 		
 		// Creem la VISTA
 		MainWindow mainWindow = new MainWindow();
+		//FollowersWindow followerswindow = new FollowersWindow();
 		ButtonsController controller = new ButtonsController(mainWindow);
-		mainWindow.registerController(controller);
+		//PopUpController popupcontroller = new PopUpController (mainWindow);
+		mainWindow.registerController(controller, /*popupcontroller*/null);
 		mainWindow.setVisible(true);
 		
 		//Creem la vista temporal de adició

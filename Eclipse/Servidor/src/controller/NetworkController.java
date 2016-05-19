@@ -24,7 +24,6 @@ public class NetworkController {
 	    Gson gson = gsonBuilder.create();
 	    String args[] = null;
 		
-	    System.out.println(request);
 	    String s[] = request.split(":");
 	    
 	    String response = "Invalid request";
@@ -56,7 +55,7 @@ public class NetworkController {
 			response = gson.toJson(ddbbconnection.showUsers());
 			break;
 		case "getSongs":
-			response = gson.toJson(ddbbconnection.showSongs());
+			response = gson.toJson(ddbbconnection.getSongs());
 			break; 
 		case "deleteSong":
 			response = ddbbconnection.deleteSong(Integer.parseInt(s[1]));

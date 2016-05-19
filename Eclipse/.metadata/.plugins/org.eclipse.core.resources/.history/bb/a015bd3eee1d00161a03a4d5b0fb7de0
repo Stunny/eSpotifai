@@ -1,0 +1,35 @@
+package controller;
+
+import java.awt.event.ActionEvent;
+
+import view.AddMusicWindow;
+import view.MainWindow;
+import view.StatisticsWindow;
+
+public class PopUpController {
+	private MainWindow view;
+		
+	public PopUpController(MainWindow view) {
+		this.view = view;
+	
+	}
+
+	public void actionPerformed(ActionEvent event) {
+		
+		if (event.getActionCommand().equals("MainWindow.addActionCommand")) {
+			// Recuperem la informació que sha escrit a la vista
+			// i l'enviem al servidor
+			
+			//Creem la vista temporal de adició
+			AddMusicWindow addView = new AddMusicWindow();
+			addView.setVisible(true);
+			
+			// Actualitzem la vista
+			//vista.addText(vista.getTypedMessage());
+		}else if (event.getActionCommand().equals("MainWindow.statisticsActionCommand")){
+			StatisticsWindow StadisticsView = new StatisticsWindow();
+			StadisticsView.setVisible(true);
+
+		}
+	}
+}
