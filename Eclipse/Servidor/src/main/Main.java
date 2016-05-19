@@ -13,8 +13,8 @@ import customExceptions.DatabaseNotLoadedException;
 import database.DDBBConnection;
 import model.ManagementConfiguration;
 import model.ServerConfiguration;
-import controller.RefreshThread;
 import network.Server;
+import threads.RefreshThread;
 
 public class Main {
 
