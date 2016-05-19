@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 import view.MainWindow;
 import customExceptions.DatabaseNotLoadedException;
-import model.DDBBConnection;
+import database.DDBBConnection;
 import model.User;
 
 public class GeneralController {

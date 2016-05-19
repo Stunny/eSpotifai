@@ -3,7 +3,7 @@ package controller;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import model.DDBBConnection;
+import database.DDBBConnection;
 
 public class NetworkController {
 	

@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import controller.ButtonsController;
 import controller.NetworkController;
+import model.ManagementConfiguration;
 import network.Server;
 import view.AddMusicWindow;
 import view.MainWindow;

@@ -1,7 +1,5 @@
 package main;
 
-import provaConfigurationServer.ManagementConfiguration;
-import provaConfigurationServer.ServerConfiguration;
 import view.AddMusicWindow;
 import view.MainWindow;
 import view.StatisticsWindow;
@@ -12,7 +10,9 @@ import controller.ButtonsController;
 import controller.GeneralController;
 import controller.NetworkController;
 import customExceptions.DatabaseNotLoadedException;
-import model.DDBBConnection;
+import database.DDBBConnection;
+import model.ManagementConfiguration;
+import model.ServerConfiguration;
 import controller.RefreshThread;
 import network.Server;
 
