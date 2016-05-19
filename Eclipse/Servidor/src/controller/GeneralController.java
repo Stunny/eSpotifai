@@ -33,9 +33,11 @@ public class GeneralController {
 		LinkedList<User> userList = ddbbConnection.showUsers();
 		LinkedList<Object[]> list =new LinkedList<Object[]>();
 		for (int i = 0; i < userList.size(); i++){
+
 			/*System.out.println(userList.get(i).getName()+" "+ userList.get(i).getPassword()+" "+ userList.get(i).getRegistre()+" "+
 					userList.get(i).getLastAcces()+" "+ ""+" "+ ""+" "+ ""+" "+ "");*/
-			Object[] user = {userList.get(i).getId(), userList.get(i).getName(), userList.get(i).getRegistre(),
+			Object[] user = {userList.get(i).getId(), userList.get(i).getUsername(), userList.get(i).getRegistre(),
+
 							userList.get(i).getLastAcces(), "", "", "", ""};
 			list.add(user);
 		}
