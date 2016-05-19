@@ -7,6 +7,7 @@ import javax.swing.SwingUtilities;
 import controller.ButtonController;
 import view.LoginWindow;
 import view.MainWindow;
+import view.NewListDialog;
 import view.RegisterWindow;
 import view.SelectedUserWindow;
 import view.UserWindow;
@@ -22,7 +23,7 @@ public class Main {
 				LoginWindow loginWindow = new LoginWindow();
 				RegisterWindow registerWindow = new RegisterWindow();
 				MainWindow mainWindow = new MainWindow();
-				UserWindow userWindow = new UserWindow();
+				//UserWindow userWindow = new UserWindow();
 				SelectedUserWindow selecteduserwindow = new SelectedUserWindow();
 				
 				//Creamos el controlador
@@ -33,6 +34,7 @@ public class Main {
 				registerWindow.registerController(controller);
 				mainWindow.registerController(controller);
 				selecteduserwindow.registerController(controller);
+				
 				
 				//iniciamos la pantalla de login
 				loginWindow.setVisible(true);

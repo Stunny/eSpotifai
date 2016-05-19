@@ -18,10 +18,14 @@ import view.UserWindow;
 public class ButtonController implements ActionListener {
 	private LoginWindow loginWindow;
 	private MainWindow mainWindow;
-	private RegisterWindow registerWindow;
+	private ServerCommunication serverCommunication;
 	private SelectedUserWindow selecteduserwindow;
+	private RegisterWindow registerWindow;
+	private String User; 
+
 	
 	public ButtonController(LoginWindow loginWindow, RegisterWindow registerWindow, MainWindow mainWindow, SelectedUserWindow selecteduserwindow){
+		
 		this.loginWindow = loginWindow;
 		this.mainWindow = mainWindow;
 		this.registerWindow= registerWindow;
@@ -41,6 +45,8 @@ public class ButtonController implements ActionListener {
 					if (AccessLogic.Login(loginWindow.getTypedUsername(), loginWindow.getTypedPassword())) {
 						mainWindow.setVisible(true);
 						loginWindow.setVisible(false);
+						User = loginWindow.getTypedUsername();
+						//System.out.println("User:" + User);
 					}
 				}
 			}
@@ -50,6 +56,12 @@ public class ButtonController implements ActionListener {
 		if(event.getActionCommand().equals("LoginWindow.registerActionCommand")){
 			registerWindow.setVisible(true);
 			loginWindow.setVisible(false);
+		}
+		
+		//PANTALLA REGISTRO TIRAR ATRÁS
+		if(event.getActionCommand().equals("RegisterWindow.atrasActionCommand")){
+			loginWindow.setVisible(true);
+			registerWindow.setVisible(false);
 		}
 		
 		
@@ -88,8 +100,10 @@ public class ButtonController implements ActionListener {
 		//PANTALLA INICIO (USUARI)
 		if(event.getActionCommand().equals("MainWindow.profileActionCommand")){
 			UserWindow userWindow = new UserWindow(); 
+			userWindow.refreshUser(User);
 			userWindow.setVisible(true);
-			NetworkController.showUserList();
+			
+
 		}
 		
 		
@@ -110,16 +124,20 @@ public class ButtonController implements ActionListener {
 			}
 		}
 		
+		//PANTALLA SEARCH USUARIO
 		if(event.getActionCommand().equals("FOLLOW")){
 			String p = "Following";
 			selecteduserwindow.refreshFollowing(p);
 		}
 		
+		//PANTALLA SEARCH USUARI
 		if(event.getActionCommand().equals("UNFOLLOW")){
 			String s = new String();
 			s = "Unfollow";
 			selecteduserwindow.refreshFollowing(s);
 		}
+		
+		
 		
 		
 		

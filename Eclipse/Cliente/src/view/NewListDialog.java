@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 
@@ -21,15 +22,19 @@ public class NewListDialog extends JFrame{
 		
 		
 		JLabel jlNewList = new JLabel("Nueva Lista");
+		jlNewList.setForeground(Color.white);
 		jpMain.add(jlNewList);
-		jtfList = new JTextField(); 
+		jtfList = new JTextField();
+		jtfList.setBackground(CustomColor.icon);
 		jpMain.add(jtfList);
 		jbCreate = new JButton("CREAR");
 		jbCancel = new JButton("CANCELAR");
 		jpMain.add(jbCreate);
 		jpMain.add(jbCancel);
+		jpMain.setBackground(CustomColor.background);
 		
 		this.getContentPane().add(jpMain, BorderLayout.CENTER);
+		
 		
 		this.setSize(350, 120);
 		this.setTitle("Crear nueva lista");
