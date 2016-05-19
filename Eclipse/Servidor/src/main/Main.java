@@ -6,6 +6,7 @@ import view.MainWindow;
 import view.StatisticsWindow;
 import controller.ButtonsController;
 import controller.GeneralController;
+import controller.PopUpController;
 import customExceptions.DatabaseNotLoadedException;
 import model.DDBBConnection;
 
@@ -23,8 +24,9 @@ public class Main {
 			
 			MainWindow mainWindow = new MainWindow();
 			ButtonsController buttonscontroller = new ButtonsController(mainWindow);
+			PopUpController popupcontroller = new PopUpController (mainWindow);
 			GeneralController controller = new GeneralController (ddbbConnection, mainWindow);
-			mainWindow.registerController(buttonscontroller);
+			mainWindow.registerController(buttonscontroller, popupcontroller);
 			mainWindow.setVisible(true);
 			controller.run();
 			//Creem la vista temporal de adició

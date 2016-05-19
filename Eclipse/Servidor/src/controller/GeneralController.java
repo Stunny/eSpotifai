@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import view.MainWindow;
 import customExceptions.DatabaseNotLoadedException;
 import model.DDBBConnection;
+import model.Song;
 import model.User;
 
 public class GeneralController {
@@ -14,8 +15,6 @@ public class GeneralController {
 	//VIEW
 	private MainWindow view;
 
-	private LinkedList<User> ArrayUtils;
-	
 	public GeneralController(DDBBConnection ddbbConnection, MainWindow view){
 		this.ddbbConnection = ddbbConnection;
 		this.view = view;
@@ -30,17 +29,20 @@ public class GeneralController {
 	}
 	
 	public void refreshLists(){
-		LinkedList<User> userList = ddbbConnection.showUsers();
 		LinkedList<Object[]> list =new LinkedList<Object[]>();
-		for (int i = 0; i < userList.size(); i++){
-			System.out.println(userList.get(i).getId()+" "+ userList.get(i).getName()+" "+ userList.get(i).getRegistre()+" "+
-					userList.get(i).getLastAcces()+" "+ ""+" "+ ""+" "+ ""+" "+ "");
-			Object[] user = {userList.get(i).getId(), userList.get(i).getName(), userList.get(i).getRegistre(),
-							userList.get(i).getLastAcces(), "", "", "", ""};
-			list.add(user);
+		view.refreshUsers(ddbbConnection.getUsersDates());
+		
+		LinkedList<Song> songList =  ddbbConnection.getSongs();
+		list =new LinkedList<Object[]>();
+		for (int i = 0; i < songList.size(); i++){
+			Object[] objs = {songList.get(i).getId(), songList.get(i).getName(), songList.get(i).getGenre(),
+							songList.get(i).getAlbum(), songList.get(i).getArtist(), songList.get(i).getLocation(), 
+							songList.get(i).getStars(), songList.get(i).getReproducciones()};
+			list.add(objs);
 		}
-		view.refreshUsers(list);
+		view.refreshSongs(list);
 	}
+	
 	
 	public void run() {
 		while (true){
