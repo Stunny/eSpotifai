@@ -29,7 +29,7 @@ public class Main {
 		StatisticsWindow statisticsWindow = new StatisticsWindow();
 		//statisticsWindow.setVisible(true);
 		
-		Server server = new Server(new NetworkController());
+		Server server = new Server(new NetworkController(null));
 		server.startServer();
 		
 	}

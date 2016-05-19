@@ -24,7 +24,7 @@ public class Main {
 				//UserWindow userWindow = new UserWindow();
 				SelectedUserWindow selecteduserwindow = new SelectedUserWindow();
 				
-				//Creamos el ontrolador
+				//Creamos el controlador
 				ButtonController controller = new ButtonController(loginWindow, registerWindow, mainWindow, selecteduserwindow);
 				
 				//Juntamos las pantallas y el controlador
@@ -36,7 +36,8 @@ public class Main {
 				
 				//iniciamos la pantalla de login
 				loginWindow.setVisible(true);
-				
+				mainWindow.setVisible(false);
+
 			
 				
 			

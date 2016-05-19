@@ -24,9 +24,12 @@ public class ServerCommunication {
 	public String sendData(String s) {
 		try {
 			// establim comunicacio amb el servidor
+			System.out.println("Dummy0");
 			sServer = new Socket("127.0.0.1", 50000);
+			System.out.println("Dummy1");
 			// enviem l'alumne
 			dataOut = new DataOutputStream(sServer.getOutputStream());
+			System.out.println("Dummy2");
 			dataOut.writeUTF(s);
 			dataIn = new DataInputStream(sServer.getInputStream());
 			String resposta = dataIn.readUTF();
