@@ -38,6 +38,7 @@ public class DataBase {
         }
         catch(SQLException ex) {
             System.out.println("Problema al connecta-nos a la BBDD --> "+ url);
+            System.out.println(ex);
             throw new DatabaseNotLoadedException("Database not loaded.");
         }
         catch(ClassNotFoundException ex2) {

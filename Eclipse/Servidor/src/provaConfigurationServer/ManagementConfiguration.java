@@ -25,6 +25,16 @@ public class ManagementConfiguration {
 		}
 	}
 	
+	
+	
+	public ServerConfiguration getServerConfiguration() {
+		return serverConfiguration;
+	}
+
+	public void setServerConfiguration(ServerConfiguration serverConfiguration) {
+		this.serverConfiguration = serverConfiguration;
+	}
+
 	public boolean readJSON(){
 		boolean error = false;
 		Gson gson = new Gson();

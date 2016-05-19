@@ -35,19 +35,14 @@ public class NetworkController {
 		switch (s[0]) {
 		
 		case "validateLogin" :
-			//response = ddbbconnection.userConnection(args[0], args[1]);
-			if (args[0].equals("username") && args[1].equals("password")) response = "Welcome";
-			else {
-				if (args[0].equals("username")) response = "Incorrect password";
-				else response = "Incorrect username";
-			}
+			response = ddbbconnection.userConnection(args[0], args[1]);
 			break;
 		case "addUser":
-			//response = ddbbconnection.addUser(args[0], args[1]);
-			if (args[0].equals("username")) response = "Username already exists";
+			response = ddbbconnection.addUser(args[0], args[1]);
+			/*if (args[0].equals("username")) response = "Username already exists";
 			else {
 				response = "Added";
-			}
+			}*/
 			break;
 		case "deleteUser":
 			response = ddbbconnection.deleteUser(args[0]);

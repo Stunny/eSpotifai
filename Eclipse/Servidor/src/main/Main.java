@@ -1,23 +1,39 @@
 package main;
 
 import provaConfigurationServer.ManagementConfiguration;
+import provaConfigurationServer.ServerConfiguration;
 import view.AddMusicWindow;
 import view.MainWindow;
 import view.StatisticsWindow;
+
+import javax.swing.SwingUtilities;
+
 import controller.ButtonsController;
 import controller.GeneralController;
+import controller.NetworkController;
 import customExceptions.DatabaseNotLoadedException;
 import model.DDBBConnection;
+import network.Server;
 
 public class Main {
 
 	public static void main(String[] args) {
-		DDBBConnection ddbbConnection = new DDBBConnection ("root", "", "espotyfai", 3306);
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+			
+		
+		
+		ManagementConfiguration mc = new ManagementConfiguration();
+		mc.runConfiguration();
+		ServerConfiguration sc = mc.getServerConfiguration();
+		
+		DDBBConnection ddbbConnection = new DDBBConnection(sc.getUserBBDD(), sc.getPasswordBBDD(), sc.getNameBBDD(), sc.getPortConexionBBDD());
+		
 		try {
 			
 			ddbbConnection.startConnection();
-			ManagementConfiguration mc = new ManagementConfiguration();
-			mc.runConfiguration();
+			
 			
 			// Creem la VISTA
 			
@@ -26,7 +42,7 @@ public class Main {
 			GeneralController controller = new GeneralController (ddbbConnection, mainWindow);
 			mainWindow.registerController(buttonscontroller);
 			mainWindow.setVisible(true);
-			controller.run();
+			
 			//Creem la vista temporal de adició
 			AddMusicWindow addView = new AddMusicWindow();
 			//addView.setVisible(true);
@@ -34,12 +50,19 @@ public class Main {
 			StatisticsWindow statisticsWindow = new StatisticsWindow();
 			//statisticsWindow.setVisible(true);
 			
-			ddbbConnection.stopConnection();
+			//controller.run();
+			Server server = new Server(new NetworkController(ddbbConnection));
+			server.startServer();
+			
+			
+			//ddbbConnection.stopConnection();
+			
 			
 		} catch (DatabaseNotLoadedException e) {
 			System.out.println(e.getMessage());
 		}
-		
+			}
+		});
 		
 	}
 }
