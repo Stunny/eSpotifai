@@ -13,6 +13,7 @@ import controller.GeneralController;
 import controller.NetworkController;
 import customExceptions.DatabaseNotLoadedException;
 import model.DDBBConnection;
+import controller.RefreshThread;
 import network.Server;
 
 public class Main {
@@ -50,6 +51,7 @@ public class Main {
 			StatisticsWindow statisticsWindow = new StatisticsWindow();
 			//statisticsWindow.setVisible(true);
 			
+			(new RefreshThread(controller)).start();
 			//controller.run();
 			Server server = new Server(new NetworkController(ddbbConnection));
 			server.startServer();

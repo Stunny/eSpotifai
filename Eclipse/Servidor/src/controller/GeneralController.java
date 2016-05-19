@@ -42,7 +42,7 @@ public class GeneralController {
 		view.refreshUsers(list);
 	}
 	
-	public void run() {
+	/*public void run() {
 		while (true){
 			
 			try {
@@ -52,6 +52,6 @@ public class GeneralController {
 				e.printStackTrace();
 			}
 		}
-	}
+	}*/
 	
 }
