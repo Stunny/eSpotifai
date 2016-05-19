@@ -24,7 +24,7 @@ public class NetworkController {
 	    Gson gson = gsonBuilder.create();
 	    String args[] = null;
 		
-	    System.out.println(request);
+	    //System.out.println(request);
 	    String s[] = request.split(":");
 	    
 	    String response = "Invalid request";

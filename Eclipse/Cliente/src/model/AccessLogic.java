@@ -1,16 +1,28 @@
 package model;
 
+import java.util.LinkedList;
+
 import javax.swing.JOptionPane;
 
+import controller.NetworkController;
 import network.ServerCommunication;
 
 public class AccessLogic {
 	
 	
-	
-	public static boolean searchUser( String username){
-		
-		if(username.equalsIgnoreCase("elna")){
+	//BUSCA EL USUARI Y SI LO ENCUENTRA MUESTRA SU PERFIL
+	public static boolean searchUser( String username, NetworkController networkcontroller){
+		LinkedList<User>  userlist = new LinkedList<User>();
+		boolean ok;
+		ok = false;
+		userlist = networkcontroller.getUserList();
+		for(int i = 0; i < userlist.size(); i++){
+			if(username.equals(userlist.get(i).getUsername())){
+				ok = true;
+			}
+		}
+		System.out.println("OK"+ok);
+		if(ok == true){
 			return true;
 		}else{
 			JOptionPane.showMessageDialog(null, "User not found!", " ", JOptionPane.ERROR_MESSAGE);

@@ -2,7 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
 
@@ -24,14 +24,18 @@ public class ButtonController implements ActionListener {
 	private SelectedUserWindow selecteduserwindow;
 	private RegisterWindow registerWindow;
 	private String User; 
+	private NetworkController networkcontroller;
+
 
 	
-	public ButtonController(LoginWindow loginWindow, RegisterWindow registerWindow, MainWindow mainWindow, SelectedUserWindow selecteduserwindow){
+	public ButtonController(LoginWindow loginWindow, RegisterWindow registerWindow, MainWindow mainWindow, SelectedUserWindow selecteduserwindow, NetworkController networkcontroller){
 		
 		this.loginWindow = loginWindow;
 		this.mainWindow = mainWindow;
 		this.registerWindow= registerWindow;
 		this.selecteduserwindow = selecteduserwindow;
+		this.networkcontroller = networkcontroller;
+
 	}
 	
 	public void actionPerformed(ActionEvent event){
@@ -70,12 +74,6 @@ public class ButtonController implements ActionListener {
 		
 		
 		
-		//PANTALLA ACCEDIR
-		if(event.getActionCommand().equals("LoginWindow.registerActionCommand")){
-			registerWindow.setVisible(true);
-			loginWindow.setVisible(false);
-		}
-		
 		
 		//PANTALLA registerWindow
 		if(event.getActionCommand().equals("RegisterWindow.registerActionCommand")){
@@ -89,6 +87,7 @@ public class ButtonController implements ActionListener {
 					if (AccessLogic.Register(registerWindow.getTypedUsername(), registerWindow.getTypedPassword())) {
 						mainWindow.setVisible(true);
 						registerWindow.setVisible(false);
+						User = registerWindow.getTypedUsername();
 						Main.refreshThread = new RefreshThread();
 						Main.refreshThread.start();
 					}
@@ -124,7 +123,7 @@ public class ButtonController implements ActionListener {
 		
 		//PANTALLA MAIN (CERCAR USUARI)
 		if(event.getActionCommand().equals("MainWindow.searchActionCommand")){
-			if(AccessLogic.searchUser(mainWindow.getTypedSearch())){
+			if(AccessLogic.searchUser(mainWindow.getTypedSearch(), networkcontroller)){
 				selecteduserwindow.refreshUser(mainWindow.getTypedSearch());
 				selecteduserwindow.setVisible(true);
 				
