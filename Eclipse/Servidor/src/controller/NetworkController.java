@@ -22,12 +22,10 @@ public class NetworkController {
 		
 		GsonBuilder gsonBuilder = new GsonBuilder();
 	    Gson gson = gsonBuilder.create();
+	    String args[] = null;
 		
 	    System.out.println(request);
 	    String s[] = request.split(":");
-	    System.out.println(s[0]);
-	    System.out.println(s[1]);
-	    String args[] = s[1].split("/");
 	    
 	    String response = "Invalid request";
 	    
@@ -35,9 +33,11 @@ public class NetworkController {
 		switch (s[0]) {
 		
 		case "validateLogin" :
+			args = s[1].split("/");
 			response = ddbbconnection.userConnection(args[0], args[1]);
 			break;
 		case "addUser":
+			args = s[1].split("/");
 			response = ddbbconnection.addUser(args[0], args[1]);
 			/*if (args[0].equals("username")) response = "Username already exists";
 			else {
@@ -45,10 +45,11 @@ public class NetworkController {
 			}*/
 			break;
 		case "deleteUser":
-			response = ddbbconnection.deleteUser(args[0]);
+			response = ddbbconnection.deleteUser(s[1]);
 			break;
 		case "addSong":
 			//extreure dades de la request
+			args = s[1].split("/");
 			response = ddbbconnection.addSong(args[0], args[1], args[2], args[3], args[4], Integer.parseInt(args[5]));
 			break;
 		case "getUsers":
@@ -58,7 +59,7 @@ public class NetworkController {
 			response = gson.toJson(ddbbconnection.showSongs());
 			break; 
 		case "deleteSong":
-			response = ddbbconnection.deleteSong(Integer.parseInt(args[0]));
+			response = ddbbconnection.deleteSong(Integer.parseInt(s[1]));
 			break;
 		default: 
 			response = "Invalid request";

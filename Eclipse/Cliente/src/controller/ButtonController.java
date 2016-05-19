@@ -52,16 +52,6 @@ public class ButtonController implements ActionListener {
 			loginWindow.setVisible(false);
 		}
 		
-		//PANTALLA registerWindowSTRE
-		if(event.getActionCommand().equals("registerWindowSTRE")){
-			
-			if (AccessLogic.Register(registerWindow.getTypedUsername(), registerWindow.getTypedPassword())) {
-				mainWindow.setVisible(true);
-				registerWindow.setVisible(false);
-
-			}
-		}
-		
 		
 		
 		//PANTALLA ACCEDIR
@@ -71,7 +61,7 @@ public class ButtonController implements ActionListener {
 		}
 		
 		
-		//PANTALLA registerWindowSTRE
+		//PANTALLA registerWindow
 		if(event.getActionCommand().equals("RegisterWindow.registerActionCommand")){
 
 			if (registerWindow.getTypedUsername().equals("") || registerWindow.getTypedPassword().equals("")) {
@@ -99,6 +89,7 @@ public class ButtonController implements ActionListener {
 		if(event.getActionCommand().equals("MainWindow.profileActionCommand")){
 			UserWindow userWindow = new UserWindow(); 
 			userWindow.setVisible(true);
+			NetworkController.showUserList();
 		}
 		
 		

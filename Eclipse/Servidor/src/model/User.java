@@ -2,24 +2,24 @@ package model;
 
 public class User {
 	private int id;
-	private String name;
+	private String username;
 	private String registre;
-	private String lastAcces;
+	private String lastAccess;
 	private String password;
 	
-	public User (int id, String name, String registre, String lastAcces, String password){
+	public User (int id, String username, String registre, String lastAccess, String password){
 		this.id = id; 
-		this.name = name;
+		this.username = username;
 		this.registre = registre;
-		this.lastAcces = lastAcces;
+		this.lastAccess = lastAccess;
 		this.password = password;
 	}
 	
 	public String getLastAcces() {
-		return lastAcces;
+		return lastAccess;
 	}
-	public void setLastAcces(String lastAcces) {
-		this.lastAcces = lastAcces;
+	public void setLastAcces(String lastAccess) {
+		this.lastAccess = lastAccess;
 	}
 	
 	public int getId() {
@@ -29,11 +29,11 @@ public class User {
 		this.id = id;
 	}
 	
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
 	public String getRegistre() {

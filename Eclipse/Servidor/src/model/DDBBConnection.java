@@ -53,6 +53,7 @@ public class DDBBConnection {
 				resultSet= ddbb.selectQuery("SELECT user_name, password FROM users WHERE user_name like '"+ username +"'");
 				resultSet.next();
 				if (password.equals(resultSet.getObject("password")) || password.equals("password")){
+					updateLastAccess(username);
 					return "Welcome";
 				}
 				else {
@@ -113,9 +114,10 @@ public class DDBBConnection {
 		return list;
 	}
 	
-	public void updateLastAcces (String username){
+	public void updateLastAccess (String username){
 		ddbb.updateQuery("UPDATE users SET date_last_acces = now() WHERE user_name='"+username+"'");
 	}
+	
 	
 	public String addUser (String username, String password){
 		try {

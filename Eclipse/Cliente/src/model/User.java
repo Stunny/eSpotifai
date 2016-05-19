@@ -5,12 +5,18 @@ import java.util.ArrayList;
 public class User {
 	private int id;
 	private String username; 
+	private String registre;
+	private String lastAccess;
+	private String password;
 	private ArrayList<Playlist> playlist; 
 	private ArrayList<User> following;
 	
-	public User(int id, String username, ArrayList<Playlist> playlist, ArrayList<User> following){
+	public User(int id, String username, String registre, String lastAccess, String password, ArrayList<Playlist> playlist, ArrayList<User> following){
 		this.id = id;
 		this.username = username; 
+		this.registre = registre;
+		this.lastAccess = lastAccess;
+		this.password = password;
 		this.playlist = playlist;
 		this.following = following;
 	}
@@ -21,6 +27,17 @@ public class User {
 		super();
 		this.id = id;
 		this.username = username;
+		this.playlist = new ArrayList<Playlist>();
+		this.following = new ArrayList<User>();
+	}
+	
+	public User(int id, String username, String registre, String lastAccess, String password) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.registre = registre;
+		this.lastAccess = lastAccess;
+		this.password = password;
 		this.playlist = new ArrayList<Playlist>();
 		this.following = new ArrayList<User>();
 	}
@@ -66,6 +83,43 @@ public class User {
 	public void addFollowing(User following) {
 		this.following.add(following);
 	}
+
+
+
+	public String getRegistre() {
+		return registre;
+	}
+
+
+
+	public void setRegistre(String registre) {
+		this.registre = registre;
+	}
+
+
+
+	public String getLastAccess() {
+		return lastAccess;
+	}
+
+
+
+	public void setLastAccess(String lastAccess) {
+		this.lastAccess = lastAccess;
+	}
+
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 	
 	
 }
