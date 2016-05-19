@@ -2,5 +2,5 @@
 	configuration: {
 		portConexionBBDD: 3306,
 		IPBBDD: "localhost",
-		nameBBDD: "eSpotifai"
+		nameBBDD: "eSpotyfai"
 ,		userBBDD: "root",		passwordBBDD: "",		portClientComunication: 3307	 }}

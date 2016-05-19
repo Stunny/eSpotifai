@@ -129,7 +129,7 @@ public class MainWindow extends JFrame {
 		
 		jpMain.add(jspMusic, BorderLayout.CENTER);
 		
-		//START(jpPageEast)
+		/*//START(jpPageEast)
 		
 		JPanel jpPageEast = new JPanel(); 
 		jpPageEast.setLayout(new GridLayout(8,1));
@@ -165,7 +165,7 @@ public class MainWindow extends JFrame {
 		
 		 
 		//END(jpPageEast) 
-			
+		*/	
 			
 
 		//END P2

@@ -17,7 +17,8 @@ import javax.swing.border.TitledBorder;
 public class RegisterWindow extends JFrame{
 	private JTextField jtfUsername; 
 	private JTextField jtfPassword; 
-	private JButton jbRegister; 
+	private JButton jbRegister;
+	private JButton jbAtras;
 	
 	public RegisterWindow(){
 		
@@ -54,15 +55,17 @@ public class RegisterWindow extends JFrame{
 		jpPassword.add(jtfPassword, BorderLayout.CENTER);
 		jpPassword.setBackground(CustomColor.background);
 		
-		JPanel jpRegisterButton = new JPanel(); 
+		JPanel jpRegisterButton = new JPanel(new GridLayout(1, 2)); 
+		jbAtras = new JButton("ENRERE");
 		jbRegister = new JButton("REGISTRA'T");
+		jpRegisterButton.add(jbAtras,BorderLayout.CENTER);
 		jpRegisterButton.add(jbRegister, BorderLayout.CENTER);
 		jpRegisterButton.setBackground(CustomColor.background);
 		//jpRegisterButton.setBackground(Color.gray);
 		
-		jpRegister.add(jpUsername);
-		jpRegister.add(jpPassword);
-		jpRegister.add(jpRegisterButton);
+		jpRegister.add(jpUsername, BorderLayout.NORTH);
+		jpRegister.add(jpPassword, BorderLayout.CENTER);
+		jpRegister.add(jpRegisterButton, BorderLayout.SOUTH);
 		TitledBorder titledBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Registrar-se", javax.swing.border.
 			      TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.
 			      TitledBorder.DEFAULT_POSITION, null, java.awt.Color.white);
@@ -80,7 +83,9 @@ public class RegisterWindow extends JFrame{
 	
 	public void registerController(ActionListener controller){
 		jbRegister.addActionListener(controller);
+		jbAtras.addActionListener(controller);
 		jbRegister.setActionCommand("RegisterWindow.registerActionCommand");
+		jbAtras.setActionCommand("RegisterWindow.atrasActionCommand");
 	}
 	
 	public String getTypedUsername(){

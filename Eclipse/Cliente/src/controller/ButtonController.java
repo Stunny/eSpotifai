@@ -55,6 +55,12 @@ public class ButtonController implements ActionListener {
 			loginWindow.setVisible(false);
 		}
 		
+		//PANTALLA REGISTRO TIRAR ATRÁS
+		if(event.getActionCommand().equals("RegisterWindow.atrasActionCommand")){
+			loginWindow.setVisible(true);
+			registerWindow.setVisible(false);
+		}
+		
 		//PANTALLA registerWindowSTRE
 		if(event.getActionCommand().equals("registerWindowSTRE")){
 			
@@ -134,6 +140,8 @@ public class ButtonController implements ActionListener {
 			s = "Unfollow";
 			selecteduserwindow.refreshFollowing(s);
 		}
+		
+		
 		
 		
 		
