@@ -4,6 +4,7 @@ import view.AddMusicWindow;
 import view.MainWindow;
 import view.StatisticsWindow;
 
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import controller.ButtonsController;
@@ -22,49 +23,48 @@ public class Main {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-			
-		
-		
-		ManagementConfiguration mc = new ManagementConfiguration();
-		mc.runConfiguration();
-		ServerConfiguration sc = mc.getServerConfiguration();
-		
-		DDBBConnection ddbbConnection = new DDBBConnection(sc.getUserBBDD(), sc.getPasswordBBDD(), sc.getNameBBDD(), sc.getPortConexionBBDD());
-		
-		try {
-			
-			ddbbConnection.startConnection();
-			
-			
-			// Creem la VISTA
-			
-			MainWindow mainWindow = new MainWindow();
-			ButtonsController buttonscontroller = new ButtonsController(mainWindow);
-			GeneralController controller = new GeneralController (ddbbConnection, mainWindow);
-			mainWindow.registerController(buttonscontroller);
-			mainWindow.setVisible(true);
-			
-			//Creem la vista temporal de adició
-			AddMusicWindow addView = new AddMusicWindow();
-			//addView.setVisible(true);
-			
-			StatisticsWindow statisticsWindow = new StatisticsWindow();
-			//statisticsWindow.setVisible(true);
-			
-			(new RefreshThread(controller)).start();
-			//controller.run();
-			Server server = new Server(new NetworkController(ddbbConnection));
-			server.startServer();
-			
-			
-			//ddbbConnection.stopConnection();
-			
-			
-		} catch (DatabaseNotLoadedException e) {
-			System.out.println(e.getMessage());
-		}
+				try {
+					ManagementConfiguration mc = new ManagementConfiguration();
+					mc.runConfiguration();
+					ServerConfiguration sc = mc.getServerConfiguration();
+
+					DDBBConnection ddbbConnection = new DDBBConnection(sc.getUserBBDD(), sc.getPasswordBBDD(), sc.getNameBBDD(), sc.getPortConexionBBDD());
+
+
+
+					ddbbConnection.startConnection();
+
+					// Creem la VISTA
+
+					MainWindow mainWindow = new MainWindow();
+					ButtonsController buttonscontroller = new ButtonsController(mainWindow);
+					GeneralController controller = new GeneralController (ddbbConnection, mainWindow);
+					mainWindow.registerController(buttonscontroller);
+					mainWindow.setVisible(true);
+
+					//Creem la vista temporal de adició
+					AddMusicWindow addView = new AddMusicWindow();
+					//addView.setVisible(true);
+
+					StatisticsWindow statisticsWindow = new StatisticsWindow();
+					//statisticsWindow.setVisible(true);
+
+					(new RefreshThread(controller)).start();
+					//controller.run();
+					Server server = new Server(new NetworkController(ddbbConnection));
+					server.startServer();
+
+
+					//ddbbConnection.stopConnection();
+
+
+				} catch (DatabaseNotLoadedException e) {
+					JOptionPane.showMessageDialog(null, "No s'ha pogut accedir a la base de dades.", " ", JOptionPane.ERROR_MESSAGE);
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(null, "Hi ha hagut un error.", " ", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
-		
+
 	}
 }
