@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
+import model.DDBBConnection;
 import view.AddMusicWindow;
 import view.MainWindow;
 import view.StatisticsWindow;
@@ -11,12 +12,19 @@ import view.StatisticsWindow;
 public class ButtonsController implements ActionListener{
 
 	// VISTA
-	private MainWindow view;
+	private MainWindow main;
+	private AddMusicWindow music;
+	
 	// NETWORK
 	//private InformationService infoService;
+	
+	//Modelo 
+	private DDBBConnection model;
 
-	public ButtonsController(MainWindow view) {
-		this.view = view;
+	public ButtonsController(MainWindow view, DDBBConnection model,  AddMusicWindow music) {
+		this.main = view;
+		this.model = model;
+		this.music = music;
 		// Instanciem la classe per poder enviar missatges.
 		// Passem una referencia a lobjecte per si cal notificar alguna informacio.
 		// Aquest tambe podria ser creat des del prinicpal.	
@@ -24,14 +32,13 @@ public class ButtonsController implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent event) {
-		
+		System.out.println(event.getActionCommand());
 		if (event.getActionCommand().equals("MainWindow.addActionCommand")) {
 			// Recuperem la informació que sha escrit a la vista
 			// i l'enviem al servidor
 			
 			//Creem la vista temporal de adició
-			AddMusicWindow addView = new AddMusicWindow();
-			addView.setVisible(true);
+			music.setVisible(true);
 			
 			// Actualitzem la vista
 			//vista.addText(vista.getTypedMessage());
@@ -39,6 +46,11 @@ public class ButtonsController implements ActionListener{
 			StatisticsWindow StadisticsView = new StatisticsWindow();
 			StadisticsView.setVisible(true);
 
+		}
+		if (event.getActionCommand().equals("AddMusicWindow.acceptActionCommand")){
+			model.addSong(music.getTypedSongTitle(), music.getTypedGenre(), music.getTypedArtist(),
+					music.getTypedAlbum(), music.getTypedPath(), 0);
+			System.out.println("Añadida: "+music.getTypedSongTitle());
 		}
 	}
 }

@@ -16,26 +16,30 @@ public class Main {
 	public static void main(String[] args) {
 		DDBBConnection ddbbConnection = new DDBBConnection ("root", "", "espotyfai", 3306);
 		try {
-			
+			//Creem la DDBB
 			ddbbConnection.startConnection();
 			ManagementConfiguration mc = new ManagementConfiguration();
 			mc.runConfiguration();
 			
 			// Creem la VISTA
-			
 			MainWindow mainWindow = new MainWindow();
-			ButtonsController buttonscontroller = new ButtonsController(mainWindow);
+			AddMusicWindow addView = new AddMusicWindow();
+			
+			//Creem el CONTROLADOR
+			ButtonsController buttonscontroller = new ButtonsController(mainWindow, ddbbConnection, addView);
 			PopUpController popupcontroller = new PopUpController (mainWindow,ddbbConnection);
 			GeneralController controller = new GeneralController (ddbbConnection, mainWindow);
+			
+			addView.registerControllerAdd(buttonscontroller);
 			mainWindow.registerController(buttonscontroller, popupcontroller);
 			mainWindow.setVisible(true);
 			controller.run();
-			//Creem la vista temporal de adició
-			AddMusicWindow addView = new AddMusicWindow();
-			//addView.setVisible(true);
 			
-			StatisticsWindow statisticsWindow = new StatisticsWindow();
-			//statisticsWindow.setVisible(true);
+			
+			/*
+			 	StatisticsWindow statisticsWindow = new StatisticsWindow();
+			 	statisticsWindow.setVisible(true);
+			*/
 			
 			ddbbConnection.stopConnection();
 			

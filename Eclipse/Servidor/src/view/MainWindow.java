@@ -5,8 +5,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.LinkedList;
@@ -17,7 +15,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
@@ -25,14 +22,11 @@ import javax.swing.JSlider;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
-import javax.swing.Popup;
 import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 //import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
-import view.PopupMenu.PopupPrintListener;
-import model.User;
 import controller.ButtonsController;
 import controller.PopUpController;
 
@@ -87,11 +81,14 @@ public class MainWindow extends JFrame{
 	private JMenuItem seguidos;
 	private JMenuItem listas;
 	private JMenuItem eliminar;
+	private JMenuItem eliminar2;
 	
 	private int id = 0;
+	private int idSong = 0;
 	
 
 	 public JPopupMenu popup;
+	 public JPopupMenu popupSong;
 	
 	public MainWindow() {
 
@@ -122,6 +119,33 @@ public class MainWindow extends JFrame{
 				return false;
 			}
 		}; 
+		
+		popupSong = new JPopupMenu();
+		eliminar2 = new JMenuItem("Eliminar ");
+		eliminar2.setHorizontalTextPosition(JMenuItem.RIGHT);
+		popupSong.add(eliminar2);
+		    
+
+		popupSong.setLabel("Justification");
+		popupSong.setBorder(new BevelBorder(BevelBorder.RAISED));
+		    
+		jtMusicList.addMouseListener(new MouseAdapter() {
+	        public void mousePressed(MouseEvent e) {
+	            if ( SwingUtilities.isLeftMouseButton(e)) {
+	            	popupSong.setVisible(false);
+	            } else {
+	                 if ( SwingUtilities.isRightMouseButton(e)) {
+	                    Point p = e.getPoint();
+	                    int rowNumber = jtMusicList.rowAtPoint( p );
+	                    ListSelectionModel modelo = jtMusicList.getSelectionModel();
+	                    modelo.setSelectionInterval( rowNumber, rowNumber );
+	            		 idSong = Integer.parseInt(String.valueOf( jtMusicList.getValueAt(rowNumber, 0)));
+	            		 popupSong.show(jtMusicList,  e.getX(), e.getY());
+	            		 
+	                }
+	            }
+	        }
+	    });
 		jtMusicList.setModel(tableModelMusic);
 		jtMusicList.setForeground(Color.BLACK);
 		//jtMusicList.setBackground(Color.DARK_GRAY);
@@ -251,13 +275,13 @@ public class MainWindow extends JFrame{
 		}; 
 		
 		popup = new JPopupMenu();
-		popup.add(seguidores = new JMenuItem("Mostrar seguidores", new ImageIcon("1.gif")));
+		popup.add(seguidores = new JMenuItem("Mostrar seguidores", null));
 		seguidores.setHorizontalTextPosition(JMenuItem.RIGHT);
 		    
-		popup.add(seguidos = new JMenuItem("Mostrar seguidos", new ImageIcon("2.gif")));
+		popup.add(seguidos = new JMenuItem("Mostrar seguidos", null));
 		seguidos.setHorizontalTextPosition(JMenuItem.RIGHT);
 		   
-		popup.add(listas = new JMenuItem("Mostrar listas de reproduccion", new ImageIcon("3.gif")));
+		popup.add(listas = new JMenuItem("Mostrar listas de reproduccion", null));
 		listas.setHorizontalTextPosition(JMenuItem.RIGHT);
 		    
 		popup.addSeparator();
@@ -359,6 +383,9 @@ public class MainWindow extends JFrame{
 		
 		eliminar.addActionListener(controller2);
 		eliminar.setActionCommand("MainWindow.eliminarActionCommand");
+		
+		eliminar2.addActionListener(controller2);
+		eliminar2.setActionCommand("MainWindow.eliminar2ActionCommand");
 		    
 	}
 	
@@ -382,5 +409,9 @@ public class MainWindow extends JFrame{
 	
 	public int getId (){
 		return id;
+	}
+	
+	public int getIdSong(){
+		return idSong;
 	}
 }

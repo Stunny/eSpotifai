@@ -106,6 +106,29 @@ public class DDBBConnection {
 		return list;
 	}
 	
+	public String getName(int id){
+		LinkedList<User> userList = getUsers();
+		for (int i = 0; i<userList.size(); i++){
+			if (userList.get(i).getId()== id){
+				return userList.get(i).getName();
+			}
+		}
+		return "Desconocido";
+	}
+
+	public LinkedList<Song> getTopSongs(){
+		LinkedList<Song> songList = getSongs();
+		LinkedList<Song> top = new LinkedList<Song>();
+		Song aux;
+		if (songList.size() != 0){
+			top.addFirst(songList.get(0));
+			
+		}
+		for(int i = 0; i<songList.size(); i++){
+			aux = 
+		}
+	}
+	
 	public LinkedList<Object[]> getFollowersDates(int id){
 		LinkedList<User> userList = getUsers();
 		LinkedList<Object[]> list =new LinkedList<Object[]>();
@@ -133,6 +156,35 @@ public class DDBBConnection {
 			return list;
 		}
 	}
+	
+	public LinkedList<Object[]> getFollowedsDates(int id){
+		LinkedList<User> userList = getUsers();
+		LinkedList<Object[]> list =new LinkedList<Object[]>();
+	
+		try {
+			ResultSet resultSet = ddbb.selectQuery("SELECT user_follower FROM followers WHERE user_follower="+id);
+			while (resultSet.next())
+				{
+					for (int i = 0; i < userList.size(); i++){
+						if (userList.get(i).getId() == resultSet.getInt(1)){
+							Object[] obj = {userList.get(i).getId(), userList.get(i).getName(), userList.get(i).getRegistre(),
+									userList.get(i).getLastAcces(), nPlaylists(userList.get(i).getId()),
+									totalSongs(userList.get(i).getId()),
+									nFollowers(userList.get(i).getId()), nFolloweds(userList.get(i).getId())};
+							list.add(obj);
+						}
+		
+					}
+				}
+				
+			return list;
+
+		} catch (SQLException e) {
+					// TODO Auto-generated catch block
+			return list;
+		}
+	}
+	
 	
 	public LinkedList<Song> getSongs(){
 		ResultSet resultSet = ddbb.selectQuery("SELECT * FROM songs");
@@ -212,6 +264,7 @@ public class DDBBConnection {
 				System.out.println("Eliminar->id: "+id);
 				ddbb.deleteQuery("DELETE FROM users WHERE user_name='"+username+"'");
 				ddbb.deleteQuery("DELETE FROM followers WHERE user_follower="+id);
+				ddbb.deleteQuery("DELETE FROM followers WHERE user_followed="+id);
 				
 				ResultSet consulta3 = ddbb.selectQuery("SELECT id_playlist FROM playlists WHERE creator_user ="+id);
 				while (consulta3.next())
@@ -306,6 +359,51 @@ public class DDBBConnection {
 			System.out.println("Problemas al obtener el numero de playlists");
 			return 0;
 		}
+	}
+	
+	public int nSongs (int id){
+		try{
+			ResultSet resultSet = ddbb.selectQuery("SELECT count(*) FROM playlists_songs WHERE cf_playlist="+id);
+			resultSet.next();
+			return  resultSet.getInt(1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Problemas al obtener el numero de canciones");
+			return 0;
+		}
+	}
+	
+	public LinkedList<Object[]> getPlaylistsDates(int id){
+		LinkedList<Object[]> list =new LinkedList<Object[]>();
+	
+		try {
+			ResultSet resultSet = ddbb.selectQuery("SELECT * FROM playlists WHERE creator_user="+id);
+			while (resultSet.next())
+				{
+					String publica ="Publica";
+					if ((int)resultSet.getObject("id_playlist") != 1){
+						publica ="Privada";
+					}
+					Object[] obj = {(int)resultSet.getObject("id_playlist"),(String)resultSet.getObject("name"), nSongs((int)resultSet.getObject("id_playlist")), publica};
+					list.add(obj);
+				}
+				
+			return list;
+
+		} catch (SQLException e) {
+					// TODO Auto-generated catch block
+			return list;
+		}
+	}
+	
+	public User getUser (int id){
+		LinkedList<User> userList = getUsers();
+		for (int i = 0; i<userList.size(); i++){
+			if (userList.get(i).getId()==id){
+				return userList.get(i);
+			}
+		}
+		return null;
 	}
 	
 	public int totalSongs (int id){
