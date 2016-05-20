@@ -13,13 +13,21 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
-
+/**
+ * Clase de la ventana de regisre d'usuari
+ * @author Elna Cabot, Miguel Diaz, Marc Millan, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see JFrame
+ *
+ */
 public class RegisterWindow extends JFrame{
 	private JTextField jtfUsername; 
 	private JTextField jtfPassword; 
 	private JButton jbRegister;
 	private JButton jbAtras;
-	
+	/**
+	 * Construeix la nova ventana d'usuari
+	 */
 	public RegisterWindow(){
 		
 		JPanel jpLogo = new JPanel(); 
@@ -80,18 +88,28 @@ public class RegisterWindow extends JFrame{
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-	
+	/**
+	 * Controlador de informació introduida als camps de la ventana
+	 * @param controller Listener de informació entrada 
+	 * @see ActionListener
+	 */
 	public void registerController(ActionListener controller){
 		jbRegister.addActionListener(controller);
 		jbAtras.addActionListener(controller);
 		jbRegister.setActionCommand("RegisterWindow.registerActionCommand");
 		jbAtras.setActionCommand("RegisterWindow.atrasActionCommand");
 	}
-	
+	/**
+	 * Getter del nom d'usuari entrat 
+	 * @return User name
+	 */
 	public String getTypedUsername(){
 		return jtfUsername.getText();
 	}
-	
+	/**
+	 * Getter de la contrasenya d'usuari entraa
+	 * @return User password
+	 */
 	public String getTypedPassword(){
 		return jtfPassword.getText();
 	}
