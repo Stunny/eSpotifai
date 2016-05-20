@@ -51,6 +51,7 @@ public class MainWindow extends JFrame {
 	
 	public JPopupMenu popup;
 	public JPopupMenu popupPlaylist;
+	public JPopupMenu popupPlaylist1;
 	
 	private JTable jpUsers;
 	private int id = 0;
@@ -62,6 +63,8 @@ public class MainWindow extends JFrame {
 	private JMenuItem eliminar;
 	private JMenuItem visualitzar;
 	private JMenuItem delate;
+	private JMenuItem visualitzarPlaylist;
+	private JMenuItem delatePlaylist;
 	//private JMenuItem eliminar;
 	
 	
@@ -118,7 +121,7 @@ public class MainWindow extends JFrame {
 		//-----------------------------------------------------------------
 		
 		String[] jtFollowedListsColumns = {"Followed Lists"};
-		Object[][] jtFollowedListsData = {};
+		Object[][] jtFollowedListsData = {{"HOLA"}};
 		//se crea la tabla
 		JTable jtFollowedLists = new JTable(jtFollowedListsData, jtFollowedListsColumns);
 
@@ -132,33 +135,6 @@ public class MainWindow extends JFrame {
 
 		}; 
 		
-		jtFollowedLists.setModel(tableModelFollowedLists);
-		jtFollowedLists.setFocusable(false);
-
-		JScrollPane jspListsFollowing = new JScrollPane(jtFollowedLists);
-		JTable jpFollowedLists = new JTable();
-		jpFollowedLists.add(jspListsFollowing, BorderLayout.CENTER);
-		
-		//-----------------------------------------------------------------
-		
-		jpListsFollowing.add(jspListsFollowing, BorderLayout.CENTER);
-		jpListsFollowing.setBackground(CustomColor.secondary);
-		jpPageWest.add(jpListsFollowing, BorderLayout.NORTH);
-	
-		
-		//JPanel jpLists = new JPanel();
-		//jpLists.setBorder(BorderFactory.createTitledBorder("PLAYLIST"));
-		/*String[] columnsplaylist = {"PLAYLIST"};
-		Object[][] informationplaylist = {{"playlist1"}};
-		JTable jtPlayList = new JTable(informationplaylist, columnsplaylist); 
-		tablePlaylist = new DefaultTableModel(informationplaylist, columnsplaylist){
-			@Override
-			public boolean isCellEditable(int row, int column) {
-				//all cells false
-				return false;
-			}
-		};
-		
 		popupPlaylist = new JPopupMenu();
 		popupPlaylist.add(visualitzar = new JMenuItem("Visualitzar llista"));
 		visualitzar.setHorizontalTextPosition(JMenuItem.RIGHT);
@@ -166,15 +142,15 @@ public class MainWindow extends JFrame {
 		delate.setHorizontalTextPosition(JMenuItem.RIGHT);
 		popupPlaylist.setLabel("Justificacion");
 		popupPlaylist.setBorder(new BevelBorder(BevelBorder.RAISED));
-		jtPlayList.addMouseListener(new MouseAdapter(){
+		jtFollowedLists.addMouseListener(new MouseAdapter(){
 			  public void mousePressed(MouseEvent e) {
 		            if ( SwingUtilities.isLeftMouseButton(e)) {
 		            	popupPlaylist.setVisible(false);
 		            } else {
 		                 if ( SwingUtilities.isRightMouseButton(e)) {
 		                    Point p = e.getPoint();
-		                    int rowNumber = jtPlayList.rowAtPoint(p);
-		                    ListSelectionModel modelo = jtPlayList.getSelectionModel();
+		                    int rowNumber = jtFollowedLists.rowAtPoint(p);
+		                    ListSelectionModel modelo = jtFollowedLists.getSelectionModel();
 		                    modelo.setSelectionInterval( rowNumber, rowNumber );
 		            		// id = Integer.parseInt(String.valueOf( jtMusic.getValueAt(rowNumber, 0)));
 		            		popupPlaylist.show(jpPageWest,  e.getX(), e.getY());
@@ -183,23 +159,79 @@ public class MainWindow extends JFrame {
 		            }
 		        }
 		    });
-		jtPlayList.setModel(tableMusic);
-		jtPlayList.setFocusable(false);
-		JScrollPane jspUsers1 = new JScrollPane(jtPlayList);
 		
-		jpPageWest.addMouseListener(new MouseAdapter() {
-	        public void mousePressed(MouseEvent e) {
-	            if ( SwingUtilities.isLeftMouseButton(e)) {
-	            	popupPlaylist.setVisible(false);
-	            }
-	        }
-		});
+		jtFollowedLists.setModel(tableModelFollowedLists);
+		jtFollowedLists.setFocusable(false);
+
+		JScrollPane jspListsFollowing = new JScrollPane(jtFollowedLists);
+		JTable jpFollowedLists = new JTable();
+		jpFollowedLists.add(jspListsFollowing, BorderLayout.CENTER);
+		jpListsFollowing.add(jspListsFollowing, BorderLayout.CENTER);
+		jpListsFollowing.setBackground(CustomColor.secondary);
+		jpPageWest.add(jpListsFollowing, BorderLayout.NORTH);
+		
+		//-----------------------------------------------------------------
+		
+		JPanel jpLists = new JPanel(new BorderLayout());
+		jpLists.setBorder(BorderFactory.createTitledBorder("PLAYLIST "));
+		
+		String[] jtListsColumns1 = {"Lists"};
+		Object[][] jtListsData1 = {{"HOLA"}};
+		//se crea la tabla
+		JTable jtLists = new JTable(jtListsData1, jtListsColumns1);
+
+		//se hace que los datos no sean editables
+		DefaultTableModel tableModelLists = new DefaultTableModel(jtListsData1, jtListsColumns1) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				//all cells false
+				return false;
+			}
+
+		}; 
+		
+		popupPlaylist1 = new JPopupMenu();
+		popupPlaylist1.add(visualitzarPlaylist = new JMenuItem("Visualitzar llista"));
+		visualitzarPlaylist.setHorizontalTextPosition(JMenuItem.RIGHT);
+		popupPlaylist1.add(delatePlaylist  = new JMenuItem("Eliminar Llista"));
+		delatePlaylist.setHorizontalTextPosition(JMenuItem.RIGHT);
+		popupPlaylist1.setLabel("Justificacion");
+		popupPlaylist1.setBorder(new BevelBorder(BevelBorder.RAISED));
+		jtLists.addMouseListener(new MouseAdapter(){
+			  public void mousePressed(MouseEvent e) {
+		            if ( SwingUtilities.isLeftMouseButton(e)) {
+		            	popupPlaylist1.setVisible(false);
+		            } else {
+		                 if ( SwingUtilities.isRightMouseButton(e)) {
+		                    Point p = e.getPoint();
+		                    int rowNumber = jtLists.rowAtPoint(p);
+		                    ListSelectionModel modelo = jtLists.getSelectionModel();
+		                    modelo.setSelectionInterval( rowNumber, rowNumber );
+		            		// id = Integer.parseInt(String.valueOf( jtMusic.getValueAt(rowNumber, 0)));
+		            		popupPlaylist1.show(jpPageWest,  e.getX(), e.getY());
+		            		 
+		                }
+		            }
+		        }
+		    });
+		
+		jtLists.setModel(tableModelLists);
+		jtLists.setFocusable(false);
+
+		JScrollPane jspLists = new JScrollPane(jtLists);
+		JTable jpListsPlaylist = new JTable();
+		jpListsPlaylist.add(jspLists, BorderLayout.CENTER);
+		jpLists.add(jspLists, BorderLayout.CENTER);
+		jpLists.setBackground(CustomColor.secondary);
+		jpPageWest.add(jpLists, BorderLayout.CENTER);
 		
 		
 		
-		jpPageWest.add(jspUsers1, BorderLayout.CENTER);
-		*/
+	
 		
+		
+		
+		/*
 		JPanel jpLists = new JPanel();
 		jpLists.setBorder(BorderFactory.createTitledBorder("PLAYLIST"));
 		jtaLists = new JTextArea(); 
@@ -211,7 +243,7 @@ public class MainWindow extends JFrame {
 		jpLists.add(jspLists, BorderLayout.CENTER);
 		jpLists.setBackground(CustomColor.secondary);
 		jpPageWest.add(jpLists, BorderLayout.CENTER); //INSERIM PANELL 1 LLISTAT DE MUSICA
-	
+		*/
 		
 		
 		
