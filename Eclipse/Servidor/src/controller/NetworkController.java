@@ -52,7 +52,7 @@ public class NetworkController {
 			response = ddbbconnection.addSong(args[0], args[1], args[2], args[3], args[4], Integer.parseInt(args[5]));
 			break;
 		case "getUsers":
-			response = gson.toJson(ddbbconnection.showUsers());
+			response = gson.toJson(ddbbconnection.getUsers());
 			break;
 		case "getSongs":
 			response = gson.toJson(ddbbconnection.getSongs());
