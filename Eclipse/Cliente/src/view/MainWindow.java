@@ -143,6 +143,7 @@ public class MainWindow extends JFrame {
 		
 		jpListsFollowing.add(jspListsFollowing, BorderLayout.CENTER);
 		jpListsFollowing.setBackground(CustomColor.secondary);
+		jpListsFollowing.setPreferredSize(new Dimension(0, 300));
 		jpPageWest.add(jpListsFollowing, BorderLayout.NORTH);
 	
 		
