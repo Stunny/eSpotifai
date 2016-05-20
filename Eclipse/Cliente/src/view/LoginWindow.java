@@ -16,6 +16,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
+/**
+ * Clase de la pantalla de login de l'aplicacio d'Espotyfai
+ * @author Elna Cabot, Miguel Diaz, Marc Millan, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see JFrame
+ * 
+ */
 public class LoginWindow  extends JFrame{
 	private JTextField jtfUsername; 
 	private JTextField jtfPassword;
@@ -25,7 +32,9 @@ public class LoginWindow  extends JFrame{
 	
 	// Color.decode("#282324");  COLOR FONS
 	
-	
+	/**
+	 * Constructor de la ventana de inici de sessió de usuari.
+	 */
 	public LoginWindow(){
 		
 		JPanel jpLogo = new JPanel(); 
@@ -123,7 +132,11 @@ public class LoginWindow  extends JFrame{
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-	
+	/**
+	 * Controlador de input de informació d'usuari
+	 * @param controller Action listener utilitzat per a controlar l'interacció de l'usuari
+	 * @see ActionListener
+	 */
 	public void registerController(ActionListener controller){
 		jbLogin.addActionListener(controller);
 		jbRegister.addActionListener(controller);
@@ -131,11 +144,17 @@ public class LoginWindow  extends JFrame{
 		jbRegister.setActionCommand("LoginWindow.registerActionCommand");
 	}
 	
-	
+	/**
+	 * Métode que retorna el nom d'susari entrat
+	 * @return Es torna el nom d'usuari entrat
+	 */
 	public String getTypedUsername() {
 		return jtfUsername.getText();
 	}
-	
+	/**
+	 * Métode que retorna la contrasenya d'usuari entrada
+	 * @return Es torna la contrasenya entrada
+	 */
 	public String getTypedPassword() {
 		return jtfPassword.getText();
 	}

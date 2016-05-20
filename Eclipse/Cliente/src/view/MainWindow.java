@@ -16,6 +16,12 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+/**
+ * Clase de la ventana principal de l'aplicació Espotyfai.
+ * @author Elna Cabot, Miguel Diaz, Marc Millan, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see <a>JFrame</a>
+ */
 public class MainWindow extends JFrame {
 	private JTextArea jtaLists; 
 	private JTextArea jtaListsfollowing;
@@ -32,7 +38,9 @@ public class MainWindow extends JFrame {
 	private JButton jbClose;
 	
 	
-	
+	/**
+	 * Constructor de la pantalla principal.
+	 */
 	
 	public MainWindow(){
 		JPanel jpMain = new JPanel(); 
@@ -181,6 +189,12 @@ public class MainWindow extends JFrame {
 		
 	}
 	
+	/**
+	 * 
+	 * @param controller 
+	 * @see ActionListener
+	 */
+	
 	public void registerController(ActionListener controller){
 		jbAdd.addActionListener(controller);
 		jbProfile.addActionListener(controller);
@@ -191,27 +205,45 @@ public class MainWindow extends JFrame {
 		jbClose.setActionCommand("MainWindow.closeActionCommand");
 		jbSearch.setActionCommand("MainWindow.searchActionCommand");
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getTypedSearch(){
 		return jtfSearch.getText();
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getTypedArtist(){
 		return jtfArtist.getText();
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getTypedAlbum(){
 		return jtfArtist.getText();
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getTypedGenre(){
 		return jtfGenre.getText();
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getTypedSongTitle(){
 		return jtfSongTitle.getText();
 	}
-	
+	/**
+	 * 
+	 * @param string
+	 */
 	public void refreshLists(String string){
 		jtaLists.setText(string);
 	}
