@@ -73,7 +73,7 @@ public class DDBBConnection {
 	 * Devuelve un String que todos los usuarios con sus respectivos datos
 	 * Formato: Name/Fecha de registro/Fecha de la última conexión/contraseña
 	 */
-	public LinkedList<User> showUsers(){
+	public LinkedList<User> getUsers(){
 		ResultSet resultSet = ddbb.selectQuery("SELECT * FROM users");
 		LinkedList<User> list = new LinkedList<User> ();
 		
@@ -99,7 +99,7 @@ public class DDBBConnection {
 	}
 	
 	public LinkedList<Object[]> getUsersDates(){
-		LinkedList<User> userList = showUsers();
+		LinkedList<User> userList = getUsers();
 		LinkedList<Object[]> list =new LinkedList<Object[]>();
 		for (int i = 0; i < userList.size(); i++){
 			Object[] objs = {userList.get(i).getId(), userList.get(i).getUsername(), userList.get(i).getRegistre(),
@@ -109,6 +109,34 @@ public class DDBBConnection {
 			list.add(objs);
 		}
 		return list;
+	}
+	
+	public LinkedList<Object[]> getFollowersDates(int id){
+		LinkedList<User> userList = getUsers();
+		LinkedList<Object[]> list =new LinkedList<Object[]>();
+	
+		try {
+			ResultSet resultSet = ddbb.selectQuery("SELECT user_follower FROM followers WHERE user_followed="+id);
+			while (resultSet.next())
+				{
+					for (int i = 0; i < userList.size(); i++){
+						if (userList.get(i).getId() == resultSet.getInt(1)){
+							Object[] obj = {userList.get(i).getId(), userList.get(i).getUsername(), userList.get(i).getRegistre(),
+									userList.get(i).getLastAccess(), nPlaylists(userList.get(i).getId()),
+									totalSongs(userList.get(i).getId()),
+									nFollowers(userList.get(i).getId()), nFolloweds(userList.get(i).getId())};
+							list.add(obj);
+						}
+		
+					}
+				}
+				
+			return list;
+
+		} catch (SQLException e) {
+					// TODO Auto-generated catch block
+			return list;
+		}
 	}
 	
 	public LinkedList<Song> getSongs(){
@@ -248,26 +276,11 @@ public class DDBBConnection {
 			return "Problems";
 		}
 	}
-	
-	public String showFollows(){
-		String text = "";
-		try {
-			ResultSet resultSet = ddbb.selectQuery("SELECT u.user_name as username, p.name as name FROM followers as fol, users as u, playlists as p "
-					+ "WHERE u.id_user = fol.user_follower and p.id_playlist = fol.list_followed");
-			while (resultSet.next())
-				{
-					text = text + "Name: " + resultSet.getObject("name") + "/" +"Seguidor: "+ resultSet.getObject("username")+"\n";
-				}	
-					return text;
-		} catch (SQLException e) {
-					// TODO Auto-generated catch block
-			return "Problems";
-		}
-	}
+
 	
 	public int nFollowers(int id){
 		try{
-			ResultSet resultSet = ddbb.selectQuery("SELECT count(*) FROM followers WHERE user_follower="+id);
+			ResultSet resultSet = ddbb.selectQuery("SELECT count(*) FROM followers WHERE user_followed="+id);
 			resultSet.next();
 			return  resultSet.getInt(1);
 		} catch (SQLException e) {
@@ -279,7 +292,7 @@ public class DDBBConnection {
 	
 	public int nFolloweds(int id){
 		try{
-			ResultSet resultSet = ddbb.selectQuery("SELECT count(*) FROM followers WHERE user_followed="+id);
+			ResultSet resultSet = ddbb.selectQuery("SELECT count(*) FROM followers WHERE user_follower="+id);
 			resultSet.next();
 			return  resultSet.getInt(1);
 		} catch (SQLException e) {

@@ -29,6 +29,12 @@ import javax.swing.table.DefaultTableModel;
 
 import controller.PopUpController;
 
+/**
+ * Clase de la ventana principal de l'aplicaci� Espotyfai.
+ * @author Elna Cabot, Miguel Diaz, Marc Millan, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see <a>JFrame</a>
+ */
 public class MainWindow extends JFrame {
 	private JTextArea jtaLists; 
 	private JTextArea jtaListsfollowing;
@@ -52,7 +58,7 @@ public class MainWindow extends JFrame {
 	DefaultTableModel tablePlaylist;
 	
 	private JMenuItem reproducir;
-	private JMenuItem añadir;
+	private JMenuItem anadir;
 	private JMenuItem eliminar;
 	private JMenuItem visualitzar;
 	private JMenuItem delate;
@@ -60,7 +66,9 @@ public class MainWindow extends JFrame {
 	
 	
 	
-	
+	/**
+	 * Constructor de la pantalla principal.
+	 */
 	
 	public MainWindow(){
 		JPanel jpMain = new JPanel(); 
@@ -207,7 +215,9 @@ public class MainWindow extends JFrame {
 		popup.add(reproducir = new JMenuItem("Reproduir Canço"));
 		reproducir.setHorizontalTextPosition(JMenuItem.RIGHT);
 		
-		popup.add(añadir = new JMenuItem("Afeguir a una Playlist"));
+
+		popup.add(anadir = new JMenuItem("Afeguir a una Playlist"));
+
 		reproducir.setHorizontalTextPosition(JMenuItem.RIGHT);
 		
 		//popup.add(reproducir = new JMenuItem("Eliminar Canço", new ImageIcon("1.gif")));
@@ -262,6 +272,12 @@ public class MainWindow extends JFrame {
 		
 	}
 	
+	/**
+	 * 
+	 * @param controller 
+	 * @see ActionListener
+	 */
+	
 	public void registerController(ActionListener controller){
 		jbAdd.addActionListener(controller);
 		jbProfile.addActionListener(controller);
@@ -279,33 +295,51 @@ public class MainWindow extends JFrame {
 	
 	public void registerController1(PopUpController controller2){
 		reproducir.addActionListener(controller2);
-		añadir.addActionListener(controller2);
+
+		anadir.addActionListener(controller2);
 		visualitzar.addActionListener(controller2);
 		delate.addActionListener(controller2);
 		reproducir.setActionCommand("MainWindow.reproducirActionCommand");
-		añadir.setActionCommand("MainWindow.añadirActionCommand");
+		anadir.setActionCommand("MainWindow.añadirActionCommand");
 		visualitzar.setActionCommand("MainWindow.visualitzarActionCommand");
 		delate.setActionCommand("MainWindow.delateActionCommand");
+
 	}
 	
 	
-	
+	/**
+	 * 
+	 * @return
+	 */
+
 	public String getTypedSearch(){
 		return jtfSearch.getText();
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getTypedArtist(){
 		return jtfArtist.getText();
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getTypedAlbum(){
 		return jtfArtist.getText();
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getTypedGenre(){
 		return jtfGenre.getText();
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getTypedSongTitle(){
 		return jtfSongTitle.getText();
 	}
@@ -326,6 +360,15 @@ public class MainWindow extends JFrame {
 		for (int i = 0; i<list.size(); i++){
 			tableMusic.addRow(list.get(i));
 		}
+	}
+
+	/**
+	 * 
+	 * @param string
+	 */
+	public void refreshLists(String string){
+		jtaLists.setText(string);
+
 	}
 	
 	public void refreshListsFollowing(String string){

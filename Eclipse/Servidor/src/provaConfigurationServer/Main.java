@@ -22,10 +22,10 @@ public class Main {
 		
 		// Creem la VISTA
 		MainWindow mainWindow = new MainWindow();
-		//FollowersWindow followerswindow = new FollowersWindow();
+		FollowersWindow followerswindow = new FollowersWindow(null);
 		ButtonsController controller = new ButtonsController(mainWindow);
-		//PopUpController popupcontroller = new PopUpController (mainWindow);
-		mainWindow.registerController(controller, /*popupcontroller*/null);
+		PopUpController popupcontroller = new PopUpController(mainWindow, null);
+		mainWindow.registerController(controller, popupcontroller);
 		mainWindow.setVisible(true);
 		
 		//Creem la vista temporal de adició

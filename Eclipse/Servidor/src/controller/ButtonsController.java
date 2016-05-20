@@ -3,7 +3,9 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.net.MalformedURLException;
 
+import model.CustomPlayer;
 import view.AddMusicWindow;
 import view.MainWindow;
 import view.StatisticsWindow;
@@ -11,12 +13,13 @@ import view.StatisticsWindow;
 public class ButtonsController implements ActionListener{
 
 	// VISTA
-	private MainWindow view;
+	private MainWindow mainWindow;
+	private CustomPlayer p;
 	// NETWORK
 	//private InformationService infoService;
 
-	public ButtonsController(MainWindow view) {
-		this.view = view;
+	public ButtonsController(MainWindow mainWindow) {
+		this.mainWindow = mainWindow;
 		// Instanciem la classe per poder enviar missatges.
 		// Passem una referencia a lobjecte per si cal notificar alguna informacio.
 		// Aquest tambe podria ser creat des del prinicpal.	
@@ -39,6 +42,28 @@ public class ButtonsController implements ActionListener{
 			StatisticsWindow StadisticsView = new StatisticsWindow();
 			StadisticsView.setVisible(true);
 
+		}else if (event.getActionCommand().equals("MainWindow.playActionCommand")){
+			
+			try {
+				mainWindow.goMP3();
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}else if (event.getActionCommand().equals("RIGHTSONG")){
+			StatisticsWindow StadisticsView = new StatisticsWindow();
+			StadisticsView.setVisible(true);
+			
+		}else if (event.getActionCommand().equals("LEFTSONG")){
+			
+			StatisticsWindow StadisticsView = new StatisticsWindow();
+			StadisticsView.setVisible(true);
 		}
 	}
+	
 }

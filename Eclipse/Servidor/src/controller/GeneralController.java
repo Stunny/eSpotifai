@@ -31,7 +31,7 @@ public class GeneralController {
 	}
 	
 	public void refreshLists(){
-		LinkedList<User> userList = ddbbConnection.showUsers();
+		LinkedList<User> userList = ddbbConnection.getUsers();
 		LinkedList<Object[]> list =new LinkedList<Object[]>();
 		for (int i = 0; i < userList.size(); i++){
 			/*System.out.println(userList.get(i).getName()+" "+ userList.get(i).getPassword()+" "+ userList.get(i).getRegistre()+" "+

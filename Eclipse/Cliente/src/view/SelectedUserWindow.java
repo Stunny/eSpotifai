@@ -14,7 +14,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
-
+/**
+ * Ventana de "perfil" de un usuari seleccionat
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see JFrame
+ *
+ */
 public class SelectedUserWindow extends JFrame {
 	
 	private JTextArea jtaPlaylist;
@@ -22,7 +28,9 @@ public class SelectedUserWindow extends JFrame {
 	private JTextArea jtaUsername;
 	private JButton jbFollow; 
 	private JButton jbUnfollow;
-	
+	/**
+	 * Constructor de la ventana
+	 */
 	public SelectedUserWindow(){
 		
 		JPanel superior = new JPanel();
@@ -97,7 +105,11 @@ public class SelectedUserWindow extends JFrame {
 		this.setLocationRelativeTo(null);
 		
 	}
-	
+	/**
+	 * 
+	 * @param controller 
+	 * @see ActionListener
+	 */
 	public void registerController(ActionListener controller){
 		jbFollow.addActionListener(controller);
 		jbUnfollow.addActionListener(controller);
@@ -105,15 +117,24 @@ public class SelectedUserWindow extends JFrame {
 		jbUnfollow.setActionCommand("UNFOLLOW");
 	
 	}
-	
+	/**
+	 * 
+	 * @param string
+	 */
 	public void refreshFollowing(String string){
 		jtafollow.setText(string);
 	}
-	
+	/**
+	 * 
+	 * @param string
+	 */
 	public void refreshFollowing1(String string){
 		jtafollow.setText(string);
 	}
-	
+	/**
+	 * 
+	 * @param string
+	 */
 	public void refreshUser(String string){
 		jtaUsername.setText(string);
 	}
