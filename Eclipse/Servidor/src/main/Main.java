@@ -45,7 +45,7 @@ public class Main {
 					
 					mainWindow.setVisible(true);
 
-					//Creem la vista temporal de adiciï¿½
+					//Creem la vista temporal de adiciï¿
 					AddMusicWindow addView = new AddMusicWindow();
 					//addView.setVisible(true); g
 

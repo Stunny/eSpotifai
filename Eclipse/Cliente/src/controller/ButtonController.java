@@ -54,6 +54,9 @@ public class ButtonController implements ActionListener {
 						Main.refreshThread = new RefreshThread();
 						Main.refreshThread.start();
 						User = loginWindow.getTypedUsername();
+						
+						String d  = "HOLA";
+						mainWindow.refreshListsFollowing(d);
 						//System.out.println("User:" + User);
 					}
 				}
