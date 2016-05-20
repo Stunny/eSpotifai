@@ -224,6 +224,7 @@ public class MainWindow extends JFrame {
 		jpListsPlaylist.add(jspLists, BorderLayout.CENTER);
 		jpLists.add(jspLists, BorderLayout.CENTER);
 		jpLists.setBackground(CustomColor.secondary);
+		jpLists.setPreferredSize(new Dimension(250, 0));
 		jpPageWest.add(jpLists, BorderLayout.CENTER);
 		
 		
