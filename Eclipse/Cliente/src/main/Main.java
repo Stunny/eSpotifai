@@ -6,6 +6,7 @@ import javax.swing.SwingUtilities;
 
 import controller.ButtonController;
 import controller.NetworkController;
+import controller.PopUpController;
 import model.User;
 import threads.RefreshThread;
 import view.LoginWindow;
@@ -37,7 +38,7 @@ public class Main {
 				
 				//Creamos el controlador
 				ButtonController controller = new ButtonController(loginWindow, registerWindow, mainWindow, selecteduserwindow, networkcontroller);
-				
+				//PopUpController controller2 = new PopUpController(mainWindow);
 				//Juntamos las pantallas y el controlador
 				loginWindow.registerController(controller);
 				registerWindow.registerController(controller);

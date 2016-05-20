@@ -45,9 +45,9 @@ public class Main {
 					
 					mainWindow.setVisible(true);
 
-					//Creem la vista temporal de adició
+					//Creem la vista temporal de adiciï¿½
 					AddMusicWindow addView = new AddMusicWindow();
-					//addView.setVisible(true);
+					//addView.setVisible(true); g
 
 					StatisticsWindow statisticsWindow = new StatisticsWindow();
 					//statisticsWindow.setVisible(true);
