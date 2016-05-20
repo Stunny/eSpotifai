@@ -340,6 +340,7 @@ public class MainWindow extends JFrame{
 		popup.setBorder(new BevelBorder(BevelBorder.RAISED));
 
 		jtUser.addMouseListener(new MouseAdapter() {
+
 			public void mousePressed(MouseEvent e) {
 				if ( SwingUtilities.isLeftMouseButton(e)) {
 					popup.setVisible(false);

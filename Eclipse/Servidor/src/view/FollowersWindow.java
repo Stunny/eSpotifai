@@ -1,10 +1,10 @@
+
 package view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.util.LinkedList;
 
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -57,3 +57,4 @@ public class FollowersWindow extends JFrame{
 	this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 }
+

@@ -1,7 +1,6 @@
 package main;
 
 import view.AddMusicWindow;
-import view.FollowersWindow;
 import view.MainWindow;
 import view.StatisticsWindow;
 
@@ -42,23 +41,18 @@ public class Main {
 					GeneralController controller = new GeneralController (ddbbConnection, mainWindow);
 					
 					mainWindow.registerController(buttonscontroller, popupcontroller);
-					
+					addView.registerControllerAdd(buttonscontroller);
 					mainWindow.setVisible(true);
 
-					//Creem la vista temporal de adici�
 					addView.registerControllerAdd(buttonscontroller);
-					//addView.setVisible(true); g
 
 					StatisticsWindow statisticsWindow = new StatisticsWindow();
-					//statisticsWindow.setVisible(true);
 
 					(new RefreshThread(controller)).start();
-					//controller.run();
 					Server server = new Server(new NetworkController(ddbbConnection));
 					server.startServer();
 
 
-					//ddbbConnection.stopConnection();
 
 
 				} catch (DatabaseNotLoadedException e) {

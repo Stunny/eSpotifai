@@ -110,7 +110,7 @@ public class DDBBConnection {
 		}
 		return list;
 	}
-	
+
 	public String getName(int id){
 		LinkedList<User> userList = getUsers();
 		for (int i = 0; i<userList.size(); i++){
@@ -121,7 +121,6 @@ public class DDBBConnection {
 		return "Desconocido";
 	}
 
-	
 	public LinkedList<Object[]> getFollowersDates(int id){
 		LinkedList<User> userList = getUsers();
 		LinkedList<Object[]> list =new LinkedList<Object[]>();

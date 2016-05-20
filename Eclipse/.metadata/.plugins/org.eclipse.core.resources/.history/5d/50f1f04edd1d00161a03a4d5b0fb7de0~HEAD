@@ -73,11 +73,11 @@ public class MainWindow extends JFrame{
 	private ImageIcon iiPrevious3;
 	//private ImageIcon temporalSong;
 	
+	private PopUpMenuEdit windowAux = new PopUpMenuEdit();
+	
 	DefaultTableModel tableModelUser;
 	DefaultTableModel tableModelMusic;
 
-	private PopupMenu popup;
-	
 	public MainWindow() {
 
 		//Creem el conjunt de pestanyes
@@ -234,6 +234,8 @@ public class MainWindow extends JFrame{
 			}
 			
 		}; 
+
+		
 		jtUser.addMouseListener(new MouseAdapter() {
 	        public void mousePressed(MouseEvent e) {
 	            if ( SwingUtilities.isLeftMouseButton(e)) {
@@ -246,23 +248,28 @@ public class MainWindow extends JFrame{
 	                    modelo.setSelectionInterval( rowNumber, rowNumber );
 	            		 String valor = String.valueOf(jtUser.getValueAt(rowNumber, 0));
 	            		 System.out.println(valor);
+	            		//windowAux.show(e.getComponent(), e.getX(), e.getY()); 
+	            		//esto le dice donde se tiene que mostrar
+	            		windowAux.setLocation(e.getX(), e.getY());
+	            		windowAux.setVisible(true);
 	            		 //ventana emergente 
 	                }
 	            }
 	        }
 	    });
+
 		jtUser.setModel(tableModelUser);
 		jtUser.setFocusable(false);
-	
+		jtUser.add(new PopUpMenuEdit());
 		
 		JScrollPane jspUsers = new JScrollPane(jtUser);
 		jpUsers = new JPanel();
 		jpUsers.add(jspUsers, BorderLayout.CENTER);
-		//jpUsers.add(popup = new PopupMenu());
+
 		//Incloeixo les pestañes a la finestra
 		jtpTabs.addTab("Music", jpMusic);
 		jtpTabs.addTab("Users", jspUsers);
-		this.setContentPane(popup = new PopupMenu());
+
 		this.getContentPane().add(jtpTabs, BorderLayout.CENTER);
 		this.setResizable(true);
 		this.setSize(new Dimension(1600,870));
