@@ -35,9 +35,9 @@ public class Main {
 					ddbbConnection.startConnection();
 
 					// Creem la VISTA
-
+					AddMusicWindow addView = new AddMusicWindow();
 					MainWindow mainWindow = new MainWindow();
-					ButtonsController buttonscontroller = new ButtonsController(mainWindow);
+					ButtonsController buttonscontroller = new ButtonsController(mainWindow, ddbbConnection, addView);
 					PopUpController popupcontroller = new PopUpController (mainWindow, ddbbConnection);
 					GeneralController controller = new GeneralController (ddbbConnection, mainWindow);
 					
@@ -46,7 +46,7 @@ public class Main {
 					mainWindow.setVisible(true);
 
 					//Creem la vista temporal de adici�
-					AddMusicWindow addView = new AddMusicWindow();
+					addView.registerControllerAdd(buttonscontroller);
 					//addView.setVisible(true); g
 
 					StatisticsWindow statisticsWindow = new StatisticsWindow();

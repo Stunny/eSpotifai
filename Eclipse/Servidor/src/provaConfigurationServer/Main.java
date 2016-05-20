@@ -21,15 +21,17 @@ public class Main {
 		mc.runConfiguration();
 		
 		// Creem la VISTA
+		AddMusicWindow addView = new AddMusicWindow();
 		MainWindow mainWindow = new MainWindow();
-		FollowersWindow followerswindow = new FollowersWindow(null);
-		ButtonsController controller = new ButtonsController(mainWindow);
-		PopUpController popupcontroller = new PopUpController(mainWindow, null);
-		mainWindow.registerController(controller, popupcontroller);
+		//FollowersWindow followerswindow = new FollowersWindow(null);
+		//FollowersWindow followerswindow = new FollowersWindow();
+		ButtonsController controller = new ButtonsController(mainWindow, null, addView);
+		//PopUpController popupcontroller = new PopUpController(mainWindow, null);
+		//mainWindow.registerController(controller, popupcontroller);
 		mainWindow.setVisible(true);
 		
 		//Creem la vista temporal de adició
-		AddMusicWindow addView = new AddMusicWindow();
+		
 		//addView.setVisible(true);
 		
 		StatisticsWindow statisticsWindow = new StatisticsWindow();

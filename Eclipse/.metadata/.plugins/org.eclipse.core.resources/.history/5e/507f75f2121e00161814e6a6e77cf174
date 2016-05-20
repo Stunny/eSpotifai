@@ -1,0 +1,72 @@
+<<<<<<< HEAD:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/37/e042468fed1d00161a03a4d5b0fb7de0
+package provaConfigurationServer;
+
+import java.util.Scanner;
+
+import controller.ButtonsController;
+import view.AddMusicWindow;
+import view.MainWindow;
+import view.StatisticsWindow;
+
+public class Main {
+	
+	public static void main(String[] args ){
+		
+		ManagementConfiguration mc = new ManagementConfiguration();
+		mc.runConfiguration();
+		
+		// Creem la VISTA
+		MainWindow mainWindow = new MainWindow();
+		ButtonsController controller = new ButtonsController(mainWindow);
+		mainWindow.registerController(controller);
+		mainWindow.setVisible(true);
+		
+		//Creem la vista temporal de adició
+		AddMusicWindow addView = new AddMusicWindow();
+		//addView.setVisible(true);
+		
+		StatisticsWindow statisticsWindow = new StatisticsWindow();
+		//statisticsWindow.setVisible(true);
+		
+	}
+	
+}
+=======
+package provaConfigurationServer;
+
+import java.util.Scanner;
+
+import controller.ButtonsController;
+import controller.GeneralController;
+import controller.PopUpController;
+import view.AddMusicWindow;
+import view.FollowersWindow;
+import view.MainWindow;
+import view.StatisticsWindow;
+
+public class Main {
+	
+	public static void main(String[] args ){
+		
+		ManagementConfiguration mc = new ManagementConfiguration();
+		mc.runConfiguration();
+		
+		// Creem la VISTA
+		MainWindow mainWindow = new MainWindow();
+		FollowersWindow followerswindow = new FollowersWindow();
+		ButtonsController controller = new ButtonsController(mainWindow);
+		PopUpController popupcontroller = new PopUpController (followerswindow);
+		mainWindow.registerController(controller, popupcontroller);
+		mainWindow.setVisible(true);
+		
+		//Creem la vista temporal de adició
+		AddMusicWindow addView = new AddMusicWindow();
+		//addView.setVisible(true);
+		
+		StatisticsWindow statisticsWindow = new StatisticsWindow();
+		//statisticsWindow.setVisible(true);
+		
+	}
+	
+}
+>>>>>>> 1b323e92e95a47b6f0bdd13f3bcde9c2fa2dbcaa:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/5e/507f75f2121e00161814e6a6e77cf174
