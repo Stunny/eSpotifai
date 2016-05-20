@@ -116,18 +116,6 @@ public class DDBBConnection {
 		return "Desconocido";
 	}
 
-	public LinkedList<Song> getTopSongs(){
-		LinkedList<Song> songList = getSongs();
-		LinkedList<Song> top = new LinkedList<Song>();
-		Song aux;
-		if (songList.size() != 0){
-			top.addFirst(songList.get(0));
-			
-		}
-		for(int i = 0; i<songList.size(); i++){
-			aux = 
-		}
-	}
 	
 	public LinkedList<Object[]> getFollowersDates(int id){
 		LinkedList<User> userList = getUsers();

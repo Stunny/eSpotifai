@@ -293,10 +293,10 @@ public class MainWindow extends JFrame{
 		    
 		jtUser.addMouseListener(new MouseAdapter() {
 	        public void mousePressed(MouseEvent e) {
-	            if ( SwingUtilities.isLeftMouseButton(e)) {
+	            if (SwingUtilities.isRightMouseButton(e)) {
 	            	popup.setVisible(false);
 	            } else {
-	                 if ( SwingUtilities.isRightMouseButton(e)) {
+	                 if (  SwingUtilities.isLeftMouseButton(e)) {
 	                    Point p = e.getPoint();
 	                    int rowNumber = jtUser.rowAtPoint( p );
 	                    ListSelectionModel modelo = jtUser.getSelectionModel();
