@@ -13,6 +13,13 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+/**
+ * Classe que obre una ventana emergent per a la creació d'una nova llista de reproduccio.
+ * @author Elna Cabot, Miguel Diaz, Marc Millan, Marta Zapatero, Alejandro Vogel
+ * @version 1.0
+ * @see JFrame
+ *
+ */
 public class NewListDialog extends JFrame{
 	private JTextField jtfList;
 	private JButton jbCreate; 
@@ -20,6 +27,13 @@ public class NewListDialog extends JFrame{
 	private JRadioButton jrbPublic;
 	private JRadioButton jrbPrivate;
 	
+
+	/**
+	 * Constructor de la ventana emergent
+	 * @see JPanel
+	 * @see GridLayout
+	 */
+
 	public NewListDialog(){
 		JPanel jpMain = new JPanel();
 		jpMain.setLayout(new GridLayout(3,2));
@@ -59,6 +73,11 @@ public class NewListDialog extends JFrame{
 	
 		
 	}
+	/**
+	 * Controlador de interacció de l'usuari
+	 * @param controller Listener utilitzat per controlar la selecció de l'usuari
+	 * @see ActionListener
+	 */
 	public void registerController(ActionListener controller){
 		jbCreate.addActionListener(controller);
 		jbCancel.addActionListener(controller);

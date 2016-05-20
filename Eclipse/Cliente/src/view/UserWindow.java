@@ -15,11 +15,20 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
-
+/**
+ * Ventana de opcions de les que disposa l'usuari
+ * @author Elna Cabot, Miguel Diaz, Marc Millan, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see JFrame
+ *
+ */
 public class UserWindow extends JFrame{
 
 	private JTextArea jtaFollowing; 
 	private JTextArea jtaUsername;
+	/**
+	 * 
+	 */
 	public UserWindow(){
 		
 		JPanel jpHead = new JPanel(); 
@@ -78,7 +87,10 @@ public class UserWindow extends JFrame{
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	}
-	
+	/**
+	 * 
+	 * @param string
+	 */
 	public void refreshUser(String string){
 		jtaUsername.setText(string);
 	}

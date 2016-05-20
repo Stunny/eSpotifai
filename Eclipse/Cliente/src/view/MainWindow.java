@@ -4,18 +4,36 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Point;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
+import javax.swing.border.BevelBorder;
+import javax.swing.table.DefaultTableModel;
 
+import controller.PopUpController;
+
+/**
+ * Clase de la ventana principal de l'aplicaci� Espotyfai.
+ * @author Elna Cabot, Miguel Diaz, Marc Millan, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see <a>JFrame</a>
+ */
 public class MainWindow extends JFrame {
 	private JTextArea jtaLists; 
 	private JTextArea jtaListsfollowing;
@@ -24,15 +42,26 @@ public class MainWindow extends JFrame {
 	private JTextField jtfSearch; 
 	private JButton jbSearch;
 	private JButton jbProfile;
-	private JTable jtMusic; 
 	private JTextField jtfArtist; 
 	private JTextField jtfAlbum; 
 	private JTextField jtfGenre; 
 	private JTextField jtfSongTitle; 
 	private JButton jbClose;
+	public JPopupMenu popup;
+	
+	private JTable jpUsers;
+	private int id = 0;
+	DefaultTableModel tableMusic;
+	
+	private JMenuItem reproducir;
+	private JMenuItem anadir;
+	private JMenuItem eliminar;
 	
 	
 	
+	/**
+	 * Constructor de la pantalla principal.
+	 */
 	
 	public MainWindow(){
 		JPanel jpMain = new JPanel(); 
@@ -118,68 +147,82 @@ public class MainWindow extends JFrame {
 		jpMain.add(jpPageWest, BorderLayout.WEST);
 		
 		//START jpPageCenter
-		String[] columnas = {"NOMBRE", "GÉNERO", "ALBUM", "ARTISTA", "ESTRELLAS", "REPRODUCCIONES"};
-		String [][] dades = {{"Nuria Canta Mal", " Punk", "Puta Vida Tete", "Erna", "5", "10000000000"}};
-		jtMusic = new JTable(dades, columnas);
-		//jtMusic.setPreferredScrollableViewportSize(new Dimension(400, 450));
-		//jtMusic.setFillsViewportHeight(true);
-		JScrollPane jspMusic = new JScrollPane(jtMusic);
-		jspMusic.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		JPanel panel = new JPanel();
+		String[] columns = {"NOMBRE", "GÉNERO", "ALBUM", "ARTISTA", "ESTRELLAS", "REPRODUCCIONES"};
+		Object[][] information = {{"Idiota", "Rock", "Ninguno", "Elna", "5", "1000000"}};
+		JTable jtMusic = new JTable(information, columns);
+		tableMusic = new DefaultTableModel(information, columns){
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				//all cells false
+				return false;
+			}
+		};
 		
+		popup = new JPopupMenu();
+		popup.add(reproducir = new JMenuItem("Reproduir Canço", new ImageIcon("1.gif")));
+		reproducir.setHorizontalTextPosition(JMenuItem.RIGHT);
 		
-		jpMain.add(jspMusic, BorderLayout.CENTER);
+		popup.add(anadir = new JMenuItem("Afeguir a una Playlist", new ImageIcon("2.gif")));
+		reproducir.setHorizontalTextPosition(JMenuItem.RIGHT);
 		
-		/*//START(jpPageEast)
+		//popup.add(reproducir = new JMenuItem("Eliminar Canço", new ImageIcon("1.gif")));
+		//reproducir.setHorizontalTextPosition(JMenuItem.RIGHT);
 		
-		JPanel jpPageEast = new JPanel(); 
-		jpPageEast.setLayout(new GridLayout(8,1));
+		popup.setLabel("Justificacion");
+		popup.setBorder(new BevelBorder(BevelBorder.RAISED));
 		
-		jpPageEast.setBorder(BorderFactory.createTitledBorder("Filtro"));
+		jtMusic.addMouseListener(new MouseAdapter(){
+			  public void mousePressed(MouseEvent e) {
+		            if ( SwingUtilities.isLeftMouseButton(e)) {
+		            	popup.setVisible(false);
+		            } else {
+		                 if ( SwingUtilities.isRightMouseButton(e)) {
+		                    Point p = e.getPoint();
+		                    int rowNumber = jtMusic.rowAtPoint(p);
+		                    ListSelectionModel modelo = jtMusic.getSelectionModel();
+		                    modelo.setSelectionInterval( rowNumber, rowNumber );
+		            		// id = Integer.parseInt(String.valueOf( jtMusic.getValueAt(rowNumber, 0)));
+		            		popup.show(jpMain,  e.getX(), e.getY());
+		            		 
+		                }
+		            }
+		        }
+		    });
 		
-		JLabel jlArtist = new JLabel("Artista:");
-		jpPageEast.add(jlArtist, BorderLayout.CENTER);
-		jtfArtist = new JTextField();
-		jtfArtist.setBackground(CustomColor.icon);
-		jpPageEast.add(jtfArtist, BorderLayout.CENTER);
+		jtMusic.setModel(tableMusic);
+		jtMusic.setFocusable(false);
 		
-		JLabel jlAlbum = new JLabel("�?lbum:");
-		jpPageEast.add(jlAlbum, BorderLayout.CENTER);
-		jtfAlbum = new JTextField();
-		jtfAlbum.setBackground(CustomColor.icon);
-		jpPageEast.add(jtfAlbum, BorderLayout.CENTER);
+		JScrollPane jspUsers = new JScrollPane(jtMusic);
 		
-		JLabel jlGenre = new JLabel("Género:");
-		jpPageEast.add(jlGenre, BorderLayout.CENTER);
-		jtfGenre = new JTextField();
-		jtfGenre.setBackground(CustomColor.icon);
-		jpPageEast.add(jtfGenre, BorderLayout.CENTER);
-		
-		JLabel jlSongTitle = new JLabel("Nombre de la canción:");
-		jpPageEast.add(jlSongTitle, BorderLayout.CENTER);
-		jtfSongTitle = new JTextField();
-		jtfSongTitle.setBackground(CustomColor.icon);
-		jpPageEast.add(jtfSongTitle, BorderLayout.CENTER);
-		jpPageEast.setBackground(CustomColor.secondary);
-		
-		jpMain.add(jpPageEast, BorderLayout.EAST);
-		
+	
+		 jpMain.addMouseListener(new MouseAdapter() {
+		        public void mousePressed(MouseEvent e) {
+		            if ( SwingUtilities.isLeftMouseButton(e)) {
+		            	popup.setVisible(false);
+		            }
+		        }
+		  });
 		 
-		//END(jpPageEast) 
-		*/	
-			
-
-		//END P2
-		
+		  jpMain.add(jspUsers, BorderLayout.CENTER);
+		  
 		
 		this.getContentPane().add(jpMain, BorderLayout.CENTER);
 		
-		
+		this.setResizable(true);
 		this.setSize(1280, 720);
 		this.setTitle("Espotifai");
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		
 	}
+	
+	/**
+	 * 
+	 * @param controller 
+	 * @see ActionListener
+	 */
 	
 	public void registerController(ActionListener controller){
 		jbAdd.addActionListener(controller);
@@ -190,28 +233,58 @@ public class MainWindow extends JFrame {
 		jbProfile.setActionCommand("MainWindow.profileActionCommand");
 		jbClose.setActionCommand("MainWindow.closeActionCommand");
 		jbSearch.setActionCommand("MainWindow.searchActionCommand");
+		
+		
+		
+		
 	}
 	
+	public void registerController(PopUpController controller2){
+		reproducir.addActionListener(controller2);
+		anadir.addActionListener(controller2);
+		reproducir.setActionCommand("MainWindow.reproducirActionCommand");
+		anadir.setActionCommand("MainWindow.anadirActionCommand");
+	}
+	/**
+	 * 
+	 * @return
+	 */
+
 	public String getTypedSearch(){
 		return jtfSearch.getText();
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getTypedArtist(){
 		return jtfArtist.getText();
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getTypedAlbum(){
 		return jtfArtist.getText();
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getTypedGenre(){
 		return jtfGenre.getText();
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getTypedSongTitle(){
 		return jtfSongTitle.getText();
 	}
-	
+	/**
+	 * 
+	 * @param string
+	 */
 	public void refreshLists(String string){
 		jtaLists.setText(string);
 	}
