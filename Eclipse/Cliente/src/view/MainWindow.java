@@ -8,6 +8,7 @@ import java.awt.Point;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -41,15 +42,21 @@ public class MainWindow extends JFrame {
 	private JTextField jtfGenre; 
 	private JTextField jtfSongTitle; 
 	private JButton jbClose;
+	
 	public JPopupMenu popup;
+	public JPopupMenu popupPlaylist;
 	
 	private JTable jpUsers;
 	private int id = 0;
 	DefaultTableModel tableMusic;
+	DefaultTableModel tablePlaylist;
 	
 	private JMenuItem reproducir;
 	private JMenuItem añadir;
 	private JMenuItem eliminar;
+	private JMenuItem visualitzar;
+	private JMenuItem delate;
+	//private JMenuItem eliminar;
 	
 	
 	
@@ -71,18 +78,6 @@ public class MainWindow extends JFrame {
 		jtfSearch.setBackground(CustomColor.icon);
 		jpPageStart.add(jtfSearch, BorderLayout.CENTER);
 		jbSearch = new JButton("BUSCAR"); 
-
-		/*jbSearch.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
-		jbSearch.setContentAreaFilled(false);
-		jbSearch.setBackground(Color.BLACK);
-		jbSearch.setForeground(Color.WHITE);
-		jbSearch.setOpaque(true);
-		
-		/*jbSearch.setBackground(Color.red);
-		jbSearch.setContentAreaFilled(false);
-        jbSearch.setOpaque(true);
-        jbSearch.setBorderPainted(true);
-        jbSearch.getBackground();*/
         
 		jpPageStart.add(jbSearch, BorderLayout.CENTER);
 		jbClose = new JButton("CERRAR SESIÓN"); 
@@ -115,7 +110,61 @@ public class MainWindow extends JFrame {
 		jpPageWest.add(jpListsFollowing, BorderLayout.NORTH);
 	
 		
-		JPanel jpLists = new JPanel(new BorderLayout());
+		//JPanel jpLists = new JPanel();
+		//jpLists.setBorder(BorderFactory.createTitledBorder("PLAYLIST"));
+		/*String[] columnsplaylist = {"PLAYLIST"};
+		Object[][] informationplaylist = {{"playlist1"}};
+		JTable jtPlayList = new JTable(informationplaylist, columnsplaylist); 
+		tablePlaylist = new DefaultTableModel(informationplaylist, columnsplaylist){
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				//all cells false
+				return false;
+			}
+		};
+		
+		popupPlaylist = new JPopupMenu();
+		popupPlaylist.add(visualitzar = new JMenuItem("Visualitzar llista"));
+		visualitzar.setHorizontalTextPosition(JMenuItem.RIGHT);
+		popupPlaylist.add(delate  = new JMenuItem("Eliminar Llista"));
+		delate.setHorizontalTextPosition(JMenuItem.RIGHT);
+		popupPlaylist.setLabel("Justificacion");
+		popupPlaylist.setBorder(new BevelBorder(BevelBorder.RAISED));
+		jtPlayList.addMouseListener(new MouseAdapter(){
+			  public void mousePressed(MouseEvent e) {
+		            if ( SwingUtilities.isLeftMouseButton(e)) {
+		            	popupPlaylist.setVisible(false);
+		            } else {
+		                 if ( SwingUtilities.isRightMouseButton(e)) {
+		                    Point p = e.getPoint();
+		                    int rowNumber = jtPlayList.rowAtPoint(p);
+		                    ListSelectionModel modelo = jtPlayList.getSelectionModel();
+		                    modelo.setSelectionInterval( rowNumber, rowNumber );
+		            		// id = Integer.parseInt(String.valueOf( jtMusic.getValueAt(rowNumber, 0)));
+		            		popupPlaylist.show(jpPageWest,  e.getX(), e.getY());
+		            		 
+		                }
+		            }
+		        }
+		    });
+		jtPlayList.setModel(tableMusic);
+		jtPlayList.setFocusable(false);
+		JScrollPane jspUsers1 = new JScrollPane(jtPlayList);
+		
+		jpPageWest.addMouseListener(new MouseAdapter() {
+	        public void mousePressed(MouseEvent e) {
+	            if ( SwingUtilities.isLeftMouseButton(e)) {
+	            	popupPlaylist.setVisible(false);
+	            }
+	        }
+		});
+		
+		
+		
+		jpPageWest.add(jspUsers1, BorderLayout.CENTER);
+		*/
+		
+		JPanel jpLists = new JPanel();
 		jpLists.setBorder(BorderFactory.createTitledBorder("PLAYLIST"));
 		jtaLists = new JTextArea(); 
 		jtaLists.setBackground(CustomColor.icon);
@@ -126,20 +175,23 @@ public class MainWindow extends JFrame {
 		jpLists.add(jspLists, BorderLayout.CENTER);
 		jpLists.setBackground(CustomColor.secondary);
 		jpPageWest.add(jpLists, BorderLayout.CENTER); //INSERIM PANELL 1 LLISTAT DE MUSICA
+	
 		
 		
+		
+		// ----------------------------------------------------------------
+	
 		jbAdd = new JButton(" + Nueva Lista");
-		//jpLists.add(jbAdd);
+		
 		
 		jpPageWest.add(jbAdd, BorderLayout.SOUTH);
-		//jpPageWest.add(jbAdd);
 		jpPageWest.setBackground(CustomColor.secondary);
 		
 		//END (jpPageWest)
 		jpMain.add(jpPageWest, BorderLayout.WEST);
 		
 		//START jpPageCenter
-		JPanel panel = new JPanel();
+		
 		String[] columns = {"NOMBRE", "GÉNERO", "ALBUM", "ARTISTA", "ESTRELLAS", "REPRODUCCIONES"};
 		Object[][] information = {{"Idiota", "Rock", "Ninguno", "Elna", "5", "1000000"}};
 		JTable jtMusic = new JTable(information, columns);
@@ -152,10 +204,10 @@ public class MainWindow extends JFrame {
 		};
 		
 		popup = new JPopupMenu();
-		popup.add(reproducir = new JMenuItem("Reproduir Canço", new ImageIcon("1.gif")));
+		popup.add(reproducir = new JMenuItem("Reproduir Canço"));
 		reproducir.setHorizontalTextPosition(JMenuItem.RIGHT);
 		
-		popup.add(añadir = new JMenuItem("Afeguir a una Playlist", new ImageIcon("2.gif")));
+		popup.add(añadir = new JMenuItem("Afeguir a una Playlist"));
 		reproducir.setHorizontalTextPosition(JMenuItem.RIGHT);
 		
 		//popup.add(reproducir = new JMenuItem("Eliminar Canço", new ImageIcon("1.gif")));
@@ -225,11 +277,15 @@ public class MainWindow extends JFrame {
 		
 	}
 	
-	public void registerController(PopUpController controller2){
+	public void registerController1(PopUpController controller2){
 		reproducir.addActionListener(controller2);
 		añadir.addActionListener(controller2);
+		visualitzar.addActionListener(controller2);
+		delate.addActionListener(controller2);
 		reproducir.setActionCommand("MainWindow.reproducirActionCommand");
 		añadir.setActionCommand("MainWindow.añadirActionCommand");
+		visualitzar.setActionCommand("MainWindow.visualitzarActionCommand");
+		delate.setActionCommand("MainWindow.delateActionCommand");
 	}
 	
 	
@@ -254,9 +310,30 @@ public class MainWindow extends JFrame {
 		return jtfSongTitle.getText();
 	}
 	
-	public void refreshLists(String string){
-		jtaLists.setText(string);
+	public void refreshUsers(LinkedList <Object[]> list){
+		while (tablePlaylist.getRowCount()!= 0){
+			tablePlaylist.removeRow(0);
+		}
+		for (int i = 0; i<list.size(); i++){
+			tablePlaylist.addRow(list.get(i));
+		}
 	}
+	
+	public void refreshMusic(LinkedList<Object[]> list){
+		while (tableMusic.getRowCount()!= 0){
+			tableMusic.removeRow(0);
+		}
+		for (int i = 0; i<list.size(); i++){
+			tableMusic.addRow(list.get(i));
+		}
+	}
+	
+	public void refreshListsFollowing(String string){
+		jtaListsfollowing.setText(string);
+		jtaListsfollowing.setForeground(Color.white);
+	}
+	
+	
 	
 	
 	

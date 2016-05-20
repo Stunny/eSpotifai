@@ -19,9 +19,17 @@ public class PopUpController implements ActionListener{
 		
 		if (event.getActionCommand().equals("MainWindow.reproducirActionCommand")) {
 			
-		}else if (event.getActionCommand().equals("MainWindow.añadirActionCommand")){
+		}
+		if (event.getActionCommand().equals("MainWindow.añadirActionCommand")){
 			AddList addlist = new AddList();
 			addlist.setVisible(true);
+		}
+		if(event.getActionCommand().equals("MainWindow.delateActionCommand")){
+			
+		}
+		
+		if(event.getActionCommand().equals("MainWindow.visualitzarActionCommand")){
+			
 		}
 		
 	}
