@@ -34,8 +34,6 @@ public class GeneralController {
 		LinkedList<User> userList = ddbbConnection.getUsers();
 		LinkedList<Object[]> list =new LinkedList<Object[]>();
 		for (int i = 0; i < userList.size(); i++){
-			/*System.out.println(userList.get(i).getName()+" "+ userList.get(i).getPassword()+" "+ userList.get(i).getRegistre()+" "+
-					userList.get(i).getLastAcces()+" "+ ""+" "+ ""+" "+ ""+" "+ "");*/
 			Object[] user = {userList.get(i).getId(), userList.get(i).getUsername(), userList.get(i).getRegistre(),
 
 							userList.get(i).getLastAccess(), "", "", "", ""};
@@ -62,7 +60,7 @@ public class GeneralController {
 		view.refreshUsers(ddbbConnection.getUsersDates());
 		
 		LinkedList<Song> songList =  ddbbConnection.getSongs();
-		list =new LinkedList<Object[]>();
+		list = new LinkedList<Object[]>();
 		for (int i = 0; i < songList.size(); i++){
 			Object[] objs = {songList.get(i).getId(), songList.get(i).getName(), songList.get(i).getGenre(),
 							songList.get(i).getAlbum(), songList.get(i).getArtist(), songList.get(i).getLocation(), 
