@@ -129,7 +129,7 @@ public class MainWindow extends JFrame{
 		jpMusic.setLayout(blMusic);
 
 
-		//Creo el panell Scroll de la llista de cançons
+		//Creo el panell Scroll de la llista de canï¿½ons
 		//table
 		//hardcodeo de columnas y datos 
 		String[] jtMusicColumns = {"Id","Name", "Genre", "Album", "Artist", "Location", "Stars", "Reproducciones"};
@@ -182,7 +182,7 @@ public class MainWindow extends JFrame{
 		//jspMusicList = new JScrollPane(jtListOfSongs);
 		jspMusicList = new JScrollPane(jtMusicList);
 
-		//Asigno un titul al apartat de la llista de cançons
+		//Asigno un titul al apartat de la llista de canï¿½ons
 		jspMusicList.setBorder(BorderFactory.createTitledBorder("List of songs"));
 
 		//Introdueixo aquest apartat/Panell a la primera fila del panell
@@ -196,18 +196,18 @@ public class MainWindow extends JFrame{
 		glPageEnd = new GridLayout(2,1);
 		jpPageEnd.setLayout(glPageEnd);
 
-		//Estructura de subsubpanell només de botons
+		//Estructura de subsubpanell nomï¿½s de botons
 		jpButtons = new JPanel();
 		glButtons = new GridLayout(1,2);
 		jpButtons.setLayout(glButtons);	
 
 
-		//Creo botó de afegir canço "Add"
+		//Creo botï¿½ de afegir canï¿½o "Add"
 		jbAdd = new JButton("Add");
 		jbAdd.setHorizontalAlignment(JButton.CENTER);
 		jpButtons.add(jbAdd);
 
-		//Creo botó per veure les estadistiques de les millors cançons "Top 10 songs"
+		//Creo botï¿½ per veure les estadistiques de les millors canï¿½ons "Top 10 songs"
 		jbStatistics = new JButton("Top 10 songs");
 		jbStatistics.setHorizontalAlignment(JButton.CENTER);
 		jpButtons.add(jbStatistics);
@@ -219,7 +219,7 @@ public class MainWindow extends JFrame{
 		 */
 
 		customPlayer = new CustomPlayer();
-		//Estructura de subsubpanell només de botons del reproductor
+		//Estructura de subsubpanell nomï¿½s de botons del reproductor
 		jpPlayer = new JPanel();
 		blPlayer = new BorderLayout();
 		jpPlayer.setLayout(blPlayer);
@@ -265,17 +265,17 @@ public class MainWindow extends JFrame{
 		jpPlayerButtons.add(jbPlay);
 		jpPlayerButtons.add(jbNext);
 
-		//Creem el la linia temporal de la cançó
+		//Creem el la linia temporal de la canï¿½ï¿½
 		jSlider = new JSlider();
 		jSlider.setValue(0);
 		jSlider.setPreferredSize(new Dimension(100, 20));
 
-		//Creem el panell que anirà al BorderLayout de NORTH, que contindrà dos JLabels amb l'etiqueta de la canço i l'estat d'aquesta
+		//Creem el panell que anirï¿½ al BorderLayout de NORTH, que contindrï¿½ dos JLabels amb l'etiqueta de la canï¿½o i l'estat d'aquesta
 		jpSong = new JPanel();
 		glSong = new GridLayout(1,2);
 		jpSong.setLayout(glSong);
 
-		//Creem etiqueta de la cançó que está sonant y de l'estat d'aquesta
+		//Creem etiqueta de la canï¿½ï¿½ que estï¿½ sonant y de l'estat d'aquesta
 		jlSongName = new JLabel();
 		jlSongName.setForeground(new Color(22, 88, 210));
 		jlSongName.setFont(new Font("Britannic Bold", Font.ITALIC, 16));
@@ -374,7 +374,7 @@ public class MainWindow extends JFrame{
 		});
 
 		//jpUsers.add(popup = new PopupMenu());
-		//Incloeixo les pestañes a la finestra
+		//Incloeixo les pestaï¿½es a la finestra
 		jtpTabs.addTab("Music", jpMusic);
 		jtpTabs.addTab("Users", jspUsers);
 		jtpTabs.addMouseListener(new MouseAdapter() {
@@ -398,21 +398,21 @@ public class MainWindow extends JFrame{
 	
 	public void ConfigurationButton(JButton boton,ImageIcon imatge1,ImageIcon imatge2,ImageIcon imatge3){
 
-		//Definim que l'icon tindrá una imatge assignada per defecte
+		//Definim que l'icon tindrï¿½ una imatge assignada per defecte
 		boton.setIcon(imatge1);
 
-		//Configurem que el botó no tingui marc 
+		//Configurem que el botï¿½ no tingui marc 
 		boton.setBorderPainted(false);
 
-		//Per a que no es pinti el botó
+		//Per a que no es pinti el botï¿½
 		boton.setContentAreaFilled(false);
 		boton.setFocusable(false);
 		boton.setRolloverEnabled(true);
 
-		//Definim l'icon que es mostrará quan l'usuari estigui sobre el botó 
+		//Definim l'icon que es mostrarï¿½ quan l'usuari estigui sobre el botï¿½ 
 		boton.setRolloverIcon(imatge2);
 
-		//Definim l'icon que es mostrará quan l'usuari premi el botó 
+		//Definim l'icon que es mostrarï¿½ quan l'usuari premi el botï¿½ 
 		boton.setPressedIcon(imatge3);
 
 	}
@@ -421,7 +421,7 @@ public class MainWindow extends JFrame{
 	
 	public void goMP3() throws Exception{
 
-		//Si la canço s'ha reproduit un cop i esta en pause, continua reproduint PAUSE
+		//Si la canï¿½o s'ha reproduit un cop i esta en pause, continua reproduint PAUSE
 		//if (!stateSong && state.equals("Reproduciendo")){
 		if (customPlayer.getStatus() == 1){
 
@@ -429,7 +429,7 @@ public class MainWindow extends JFrame{
 			ConfigurationButton(jbPlay, iiPause1, iiPause2, iiPause3);
 			stateSong = true;
 
-			//Si la canço s'està reproduint pula pausa PLAY
+			//Si la canï¿½o s'estï¿½ reproduint pula pausa PLAY
 		}else if (customPlayer.getStatus() == 0){
 
 			//}else if (stateSong){
@@ -438,7 +438,7 @@ public class MainWindow extends JFrame{
 			ConfigurationButton(jbPlay, iiPlay1, iiPlay2, iiPlay3);
 			stateSong = false;
 		}else {//if (player.getStatus() == 2 || (player.getStatus() != 0 && player.getStatus() != 1)){
-			//Si no ha arrancat encara la canço obre el fitxer mp3
+			//Si no ha arrancat encara la canï¿½o obre el fitxer mp3
 			//}else{
 			try{
 
@@ -449,7 +449,7 @@ public class MainWindow extends JFrame{
 				//String songLink = "C:/Users/Marc/Downloads/Quentin Tarantino Soundtracks Discography - HTD 2015/Pulp Fiction (Collector's Edition) (2009) - Soundtrack/04. Let's Stay Together.mp3";
 				//String songLink = "C:/Users/Marc/Downloads/Quentin Tarantino Soundtracks Discography - HTD 2015/Pulp Fiction (Collector's Edition) (2009) - Soundtrack/14. Personality Goes a Long Way.mp3";
 				//String songLink = "C:/Users/Marc/Downloads/grillos05_mp3.mp3";
-				String songLink = "C:/Users/Marta/Music/DIE IS CAST.mp3";
+				String songLink = "/Users/elnacabotparedes/Music/iTunes/iTunes Media/Music/Martin Garrix/Unknown Album/01 Poison.mp3";
 
 				customPlayer.abrirMp3(songLink);
 				state = customPlayer.play(jSlider);
@@ -462,7 +462,7 @@ public class MainWindow extends JFrame{
 			jlSongName.setText(customPlayer.getName());
 
 		}
-		/*//Si el player está parat i fa clik
+		/*//Si el player estï¿½ parat i fa clik
 		if (player.isEnded()){
 
 			try{
@@ -470,7 +470,7 @@ public class MainWindow extends JFrame{
 				//Creo un reproductor un altre cop ja que internament el BasicPlayer ha fet un closeStrem();
 				player = new Player();
 
-				System.out.println("\nENTRO EN EL VISUALITZADOR DE CANçO PER SEGON COP\n");
+				System.out.println("\nENTRO EN EL VISUALITZADOR DE CANï¿½O PER SEGON COP\n");
 				state = "";
 				String songLink = "C:/Users/Marc/Downloads/Quentin Tarantino Soundtracks Discography - HTD 2015/Pulp Fiction (Collector's Edition) (2009) - Soundtrack/14. Personality Goes a Long Way.mp3";
 				//String songLink = "C:/Users/Marc/Downloads/grillos05_mp3.mp3";
@@ -486,7 +486,7 @@ public class MainWindow extends JFrame{
 		 */
 
 
-		//miro l'estat i el printo per pantalla i el nom de la canço
+		//miro l'estat i el printo per pantalla i el nom de la canï¿½o
 		if(customPlayer.getStatus() == 0){
 
 			jlSongState.setForeground(new Color(26, 140, 60));
