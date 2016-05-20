@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 
 import controller.ButtonsController;
 
-public class AddMusicWindow extends JDialog{
+public class AddMusicWindow extends JFrame{
 	
 	private JPanel jpAddMusic;
 	
@@ -114,7 +114,7 @@ public class AddMusicWindow extends JDialog{
 		
 		this.setSize(new Dimension(400,200));
 		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}	
 	
 	public void registerControllerAdd(ButtonsController controller) {

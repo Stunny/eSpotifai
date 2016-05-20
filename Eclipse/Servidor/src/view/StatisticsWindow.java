@@ -26,7 +26,7 @@ public class StatisticsWindow extends JDialog{
     
     private BorderLayout blStatistics;
     private GridLayout glGraphic;
-    
+    /*
     private JLabel jlSong1;
     private JLabel jlSong2;
     private JLabel jlSong3;
@@ -47,7 +47,7 @@ public class StatisticsWindow extends JDialog{
     private JLabel jlNumSong8;
     private JLabel jlNumSong9;
     private JLabel jlNumSong10;
-    
+    */
     
     
     public StatisticsWindow() {

@@ -17,7 +17,7 @@ public class RefreshThread extends Thread {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			controller.refreshLists();
+			controller.refreshLists2();
 		}
 
 	}

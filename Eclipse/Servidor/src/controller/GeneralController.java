@@ -42,18 +42,6 @@ public class GeneralController {
 		view.refreshUsers(list);
 	}
 	
-	/*public void run() {
-		while (true){
-			
-			try {
-				Thread.sleep(5000);
-				refreshLists();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-	}*/
-	
 
 	public void refreshLists2(){
 		LinkedList<Object[]> list =new LinkedList<Object[]>();
@@ -69,4 +57,5 @@ public class GeneralController {
 		}
 		view.refreshSongs(list);
 	}
+
 	}

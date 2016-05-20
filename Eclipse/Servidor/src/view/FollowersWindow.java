@@ -1,3 +1,4 @@
+
 package view;
 
 import java.awt.BorderLayout;
@@ -12,12 +13,11 @@ import javax.swing.table.DefaultTableModel;
 
 public class FollowersWindow extends JFrame{
 	
-	private JPanel jpPanel;
 	private DefaultTableModel tableModelUser;
 	private JTable jpUsers;
 
-	public FollowersWindow(LinkedList<Object[]> infTable){
-		jpPanel = new JPanel();
+	public FollowersWindow(LinkedList<Object[]> infTable, String name){
+		new JPanel();
 		
 	
 	String[] jtUserColumns = {"id","Username", "Register date", "Last login", "Song lists", "Songs", "Followers", "Following"};
@@ -52,8 +52,9 @@ public class FollowersWindow extends JFrame{
 	
 	this.setResizable(true);
 	this.setSize(new Dimension(1600,870));
-	this.setTitle("eSpotifai - Server Management");
+	this.setTitle("User Followers - "+name);
 	this.setLocationRelativeTo(null);
-	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 }
+

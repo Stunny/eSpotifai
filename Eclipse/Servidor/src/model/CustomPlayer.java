@@ -245,7 +245,7 @@ public class CustomPlayer implements BasicPlayerListener {
 			durationSong = Double.parseDouble(arg1.get("duration").toString());
 		}
 		
-		System.out.println("propiedades: " + arg1);
+		//System.out.println("propiedades: " + arg1);
 		
 	}
 	
@@ -282,7 +282,7 @@ public class CustomPlayer implements BasicPlayerListener {
 		//System.out.println("PROGRESS framesSongActual: " + framesSongActual );
 		//System.out.println(" -&gt; " + progressNow);
 
-		System.out.println("progressUpdate: " + progressUpdate + "bytesLength: " + bytesLength);
+		//System.out.println("progressUpdate: " + progressUpdate + "bytesLength: " + bytesLength);
 		if( progressUpdate == 1.0){
 			
 			try {
