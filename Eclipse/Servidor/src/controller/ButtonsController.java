@@ -65,5 +65,4 @@ public class ButtonsController implements ActionListener{
 			StadisticsView.setVisible(true);
 		}
 	}
-	
 }
