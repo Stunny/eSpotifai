@@ -225,12 +225,6 @@ public class MainWindow extends JFrame {
 		jpLists.setBackground(CustomColor.secondary);
 		jpPageWest.add(jpLists, BorderLayout.CENTER);
 		
-		
-		
-	
-		
-		
-		
 		/*
 		JPanel jpLists = new JPanel();
 		jpLists.setBorder(BorderFactory.createTitledBorder("PLAYLIST"));
