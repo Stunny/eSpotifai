@@ -20,95 +20,94 @@ import controller.ButtonsController;
 
 public class AddMusicWindow extends JDialog{
 	
-	private JPanel jpViewAdd;
+	private JPanel jpAddMusic;
 	
-	private JLabel jlMessageAdd;
-	private JLabel jlName;
+
+	private JLabel jlSongTitle;
 	private JLabel jlGenre;
 	private JLabel jlAlbum;
 	private JLabel jlArtist;
 	private JLabel jlPath;
 	
-	private JTextField jtWriteName;
-	private JTextField jtWriteGenre;
-	private JTextField jtWriteAlbum;
-	private JTextField jtWriteArtist;
-	private JTextField jtWritePath;
+	private JTextField jtfSongTitle;
+	private JTextField jtfGenre;
+	private JTextField jtfAlbum;
+	private JTextField jtfArtist;
+	private JTextField jtfPath;
 	
 	private JButton jbAccept;
 
 	public AddMusicWindow() {
 		
 		//Redistribucuó per guias simetricas de 6 files i dos columnes
-		jpViewAdd = new JPanel();
-		GridLayout gljpViewAdd = new GridLayout(6,2);
-		jpViewAdd.setLayout(gljpViewAdd);
+		jpAddMusic = new JPanel();
+		GridLayout glAddMusic = new GridLayout(6,2);
+		jpAddMusic.setLayout(glAddMusic);
 
-		//Creo la etiqueta de "Name"
-		jlName = new JLabel();
-		jlName.setHorizontalAlignment(JLabel.LEFT);
-		jlName.setText("Name");
-		jpViewAdd.add(jlName);
+		//Creo la etiqueta de "SongTitle"
+		jlSongTitle = new JLabel();
+		jlSongTitle.setHorizontalAlignment(JLabel.LEFT);
+		jlSongTitle.setText("Song title");
+		jpAddMusic.add(jlSongTitle);
 				
 		//Creo area de text per la inscripció del nom de la canço
-		jtWriteName = new JTextField("");
-		jtWriteName.setHorizontalAlignment(JTextField.CENTER);
-		jpViewAdd.add(jtWriteName);
+		jtfSongTitle = new JTextField("");
+		jtfSongTitle.setHorizontalAlignment(JTextField.CENTER);
+		jpAddMusic.add(jtfSongTitle);
 		
 		//Creo la etiqueta de "music genre"
 		jlGenre = new JLabel();
 		jlGenre.setHorizontalAlignment(JLabel.LEFT);
 		jlGenre.setText("Music genre");
-		jpViewAdd.add(jlGenre);
+		jpAddMusic.add(jlGenre);
 						
 		//Creo area de text per la inscripció del nom del genere de la cançó
-		jtWriteGenre = new JTextField("");
-		jtWriteGenre.setHorizontalAlignment(JTextField.CENTER);
-		jpViewAdd.add(jtWriteGenre);
+		jtfGenre = new JTextField("");
+		jtfGenre.setHorizontalAlignment(JTextField.CENTER);
+		jpAddMusic.add(jtfGenre);
 		
 		//Creo la etiqueta de "album"
 		jlAlbum = new JLabel();
 		jlAlbum.setHorizontalAlignment(JLabel.LEFT);
 		jlAlbum.setText("Album");
-		jpViewAdd.add(jlAlbum);
+		jpAddMusic.add(jlAlbum);
 								
 		//Creo area de text per la inscripció del nom del Album
-		jtWriteAlbum = new JTextField("");
-		jtWriteAlbum.setHorizontalAlignment(JTextField.CENTER);
-		jpViewAdd.add(jtWriteAlbum);
+		jtfAlbum = new JTextField("");
+		jtfAlbum.setHorizontalAlignment(JTextField.CENTER);
+		jpAddMusic.add(jtfAlbum);
 						
 		//Creo la etiqueta de "artista"
 		jlArtist = new JLabel();
 		jlArtist.setHorizontalAlignment(JLabel.LEFT);
 		jlArtist.setText("Artist");
-		jpViewAdd.add(jlArtist);
+		jpAddMusic.add(jlArtist);
 								
 		//Creo area de text per la inscripció del nom de Artista
-		jtWriteArtist = new JTextField("");
-		jtWriteArtist.setHorizontalAlignment(JTextField.CENTER);
-		jpViewAdd.add(jtWriteArtist);
+		jtfArtist = new JTextField("");
+		jtfArtist.setHorizontalAlignment(JTextField.CENTER);
+		jpAddMusic.add(jtfArtist);
 		
 		//Creo la etiqueta de de la ubicació de la cançó
 		jlPath = new JLabel();
 		jlPath.setHorizontalAlignment(JLabel.LEFT);
 		jlPath.setText("Path");
-		jpViewAdd.add(jlPath);
+		jpAddMusic.add(jlPath);
 			
 		//Creo area de text per la inscripció del nom de "Path" de la cançó
-		jtWritePath = new JTextField("");
-		jtWritePath.setHorizontalAlignment(JTextField.CENTER);
-		jpViewAdd.add(jtWritePath);
-		
-		jpViewAdd.setBorder(BorderFactory.createTitledBorder("Insert information"));
+		jtfPath = new JTextField("");
+		jtfPath.setHorizontalAlignment(JTextField.CENTER);
+		jpAddMusic.add(jtfPath);
+		jpAddMusic.setBorder(BorderFactory.createTitledBorder("Insert information"));
 		
 		//Creo botó de addició
 		jbAccept = new JButton("Accept");
 		//jbAccept.setPreferedSize(new Dimension(400, 20));
 		jbAccept.setHorizontalAlignment(JButton.CENTER);
-		jpViewAdd.add(jbAccept);
+		jpAddMusic.add(jbAccept);
 		
 		//L'inserto en el panell general
-		this.getContentPane().add(jpViewAdd, BorderLayout.CENTER);
+		this.getContentPane().add(jpAddMusic, BorderLayout.CENTER);
 		
 		//Assignem titol a la finestra
 		this.setTitle(" Music addition ");
@@ -120,6 +119,26 @@ public class AddMusicWindow extends JDialog{
 	
 	public void registerControllerAdd(ButtonsController controller) {
 		jbAccept.addActionListener(controller);
-		jbAccept.setActionCommand("ACCEPT");
+		jbAccept.setActionCommand("AddMusicWindow.acceptActionCommand");
+	}
+	
+	public String getTypedSongTitle() {
+		return jtfSongTitle.getText();
+	}
+	
+	public String getTypedArtist() {
+		return jtfArtist.getText();
+	}
+	
+	public String getTypedAlbum() {
+		return jtfAlbum.getText();
+	}
+	
+	public String getTypedGenre() {
+		return jtfGenre.getText();
+	}
+	
+	public String getTypedPath() {
+		return jtfPath.getText();
 	}
 }

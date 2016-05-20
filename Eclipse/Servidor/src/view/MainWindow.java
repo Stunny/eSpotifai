@@ -4,166 +4,195 @@ import java.awt.Color;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.Popup;
+import javax.swing.SwingUtilities;
+import javax.swing.border.BevelBorder;
 //import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
+import view.PopupMenu.PopupPrintListener;
+import model.User;
 import controller.ButtonsController;
+import controller.PopUpController;
 
 public class MainWindow extends JFrame{
 
-	private JTabbedPane jtpPestanyas;
-	private JPanel jpPanellMusic;
-	private JPanel jpPanellUsers;
-	private JPanel jpPanellMusicButtonsPlayer;
-	private JPanel jpPanellButtons;
-	private JPanel jpPanellPlay;
-	private JPanel jpPanellOnlyButtons;
+	private JTabbedPane jtpTabs;
+	private JPanel jpMusic;
+	private JTable jpUsers;
+	private JPanel jpPageEnd;
+	private JPanel jpButtons;
+	private JPanel jpPlayer;
+	private JPanel jpPlayerButtons;
 
-	private GridLayout glPanellButtons;
-	private GridLayout glPanellOnlyButtons;
-	private GridLayout glPanellMusicButtonsPlayer;
-	private BorderLayout blPanellMusic;
-	private BorderLayout blPanellPlay;
+	private GridLayout glButtons;
+	private GridLayout glPlayerButtons;
+	private GridLayout glPageEnd;
+	private BorderLayout blMusic;
+	private BorderLayout blPlayer;
 
 	//private JTextArea jtListOfSongs;
-	private JScrollPane jspListOfSongs;
-	private JSlider jSlider1;
+	private JScrollPane jspMusicList;
+	private JSlider jSlider;
 	
 	private JButton jbAdd;
-	private JButton jbEstadistics;
-	private JButton playButton;
-	private JButton rightButton;
-	private JButton leftButton;
+	private JButton jbStatistics;
+	private JButton jbPlay;
+	private JButton jbPrevious;
+	private JButton jbNext;
 
-	private ImageIcon leftbutton1;
-	private ImageIcon leftbutton2;
-	private ImageIcon leftbutton3;
+	private ImageIcon iiNext1;
+	private ImageIcon iiNext2;
+	private ImageIcon iiNext3;
 
-	private ImageIcon playbutton1;
-	private ImageIcon playbutton2;
-	private ImageIcon playbutton3;
+	private ImageIcon iiPlay1;
+	private ImageIcon iiPlay2;
+	private ImageIcon iiPlay3;
 
 	//private JLabel jlTemporalSong;
 	private JLabel jlTime;
 	//private JLabel SongState;
-	private JLabel NameSong;
+	private JLabel jlSongName;
 
-	private ImageIcon rightbutton1;
-	private ImageIcon rightbutton2;
-	private ImageIcon rightbutton3;
+	private ImageIcon iiPrevious1;
+	private ImageIcon iiPrevious2;
+	private ImageIcon iiPrevious3;
 	//private ImageIcon temporalSong;
+	
+	DefaultTableModel tableModelUser;
+	DefaultTableModel tableModelMusic;
+	
+	private JMenuItem seguidores;
+	private JMenuItem seguidos;
+	private JMenuItem listas;
+	private JMenuItem eliminar;
+	
+	private int id = 0;
+	
 
+	 public JPopupMenu popup;
+	
 	public MainWindow() {
 
 		//Creem el conjunt de pestanyes
-		jtpPestanyas = new JTabbedPane();
+		jtpTabs = new JTabbedPane();
 
 		//Creem el panell per montar l'estructura de l'apartat "Music"
-		jpPanellMusic = new JPanel();
+		jpMusic = new JPanel();
 
 		//Estructura de panell de tipus BorderLayout
-		blPanellMusic = new BorderLayout();
-		jpPanellMusic.setLayout(blPanellMusic);
+		blMusic = new BorderLayout();
+		jpMusic.setLayout(blMusic);
 
 
 		//Creo el panell Scroll de la llista de cançons
 		//table
 		//hardcodeo de columnas y datos 
-		String[] columnNamessongs = {"Name", "Genre", "Album", "Artist"};
-		Object[][] datasongs = {{"El tractor amarillo", "Pop", "Zapato Veloz", "Manuel Calderon"},{"Cantando", "Rap", "Vivir para contarlo", "Kase O"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"},{"Ballantines", "Rap", "Vicios y Virtudes", "Kase O"},{"Set Me Free", "Electro House", "The Remixes Part 1", "Martin Garrix"}};
+		String[] jtMusicColumns = {"Id","Name", "Genre", "Album", "Artist", "Location", "Stars", "Reproducciones"};
+		Object[][] jtMusicData = {};
 		//se crea la tabla
-		JTable songstable = new JTable(datasongs, columnNamessongs);
+		JTable jtMusicList = new JTable(jtMusicData, jtMusicColumns);
 
 		//se hace que los datos no sean editables
-		DefaultTableModel tableModelsongs = new DefaultTableModel(datasongs, columnNamessongs) {
+		tableModelMusic = new DefaultTableModel(jtMusicData, jtMusicColumns) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				//all cells false
 				return false;
 			}
 		}; 
-		songstable.setModel(tableModelsongs);
-		songstable.setForeground(Color.BLACK);
-		//songstable.setBackground(Color.DARK_GRAY);
+		jtMusicList.setModel(tableModelMusic);
+		jtMusicList.setForeground(Color.BLACK);
+		//jtMusicList.setBackground(Color.DARK_GRAY);
 		Color myColor = Color.getHSBColor(0.51F,  0.93F,  0.5F);          
-		songstable.setBackground(myColor);
+		jtMusicList.setBackground(myColor);
 	
 		//Li assigno a aquesta area de text que pugui fer scroll
-		//jspListOfSongs = new JScrollPane(jtListOfSongs);
-		jspListOfSongs = new JScrollPane(songstable);
+		//jspMusicList = new JScrollPane(jtListOfSongs);
+		jspMusicList = new JScrollPane(jtMusicList);
 
 		//Asigno un titul al apartat de la llista de cançons
-		jspListOfSongs.setBorder(BorderFactory.createTitledBorder("Llist of songs"));
+		jspMusicList.setBorder(BorderFactory.createTitledBorder("List of songs"));
 		
 		//Introdueixo aquest apartat/Panell a la primera fila del panell
-		jpPanellMusic.add(jspListOfSongs, BorderLayout.CENTER);
+		jpMusic.add(jspMusicList, BorderLayout.CENTER);
 
 		//Creem el subpanell per montar l'estructura del apartat "butons  - ADD i estadistiques - i el reproductor "
-		jpPanellMusicButtonsPlayer = new JPanel();
-		jpPanellMusicButtonsPlayer.setPreferredSize(new Dimension(400,90));			
+		jpPageEnd = new JPanel();
+		jpPageEnd.setPreferredSize(new Dimension(400,90));			
 
 		//Estructura de panell de 2 files per 1 columna
-		glPanellMusicButtonsPlayer = new GridLayout(2,1);
-		jpPanellMusicButtonsPlayer.setLayout(glPanellMusicButtonsPlayer);
+		glPageEnd = new GridLayout(2,1);
+		jpPageEnd.setLayout(glPageEnd);
 
 		//Estructura de subsubpanell només de botons
-		jpPanellButtons = new JPanel();
-		glPanellButtons = new GridLayout(1,2);
-		jpPanellButtons.setLayout(glPanellButtons);	
+		jpButtons = new JPanel();
+		glButtons = new GridLayout(1,2);
+		jpButtons.setLayout(glButtons);	
 		
 		
 		//Creo botó de afegir canço "Add"
 		jbAdd = new JButton("Add");
 		jbAdd.setHorizontalAlignment(JButton.CENTER);
-		jpPanellButtons.add(jbAdd);
+		jpButtons.add(jbAdd);
 
 		//Creo botó per veure les estadistiques de les millors cançons "Top 10 songs"
-		jbEstadistics = new JButton("Top 10 songs");
-		jbEstadistics.setHorizontalAlignment(JButton.CENTER);
-		jpPanellButtons.add(jbEstadistics);
+		jbStatistics = new JButton("Top 10 songs");
+		jbStatistics.setHorizontalAlignment(JButton.CENTER);
+		jpButtons.add(jbStatistics);
 		
-		jpPanellMusicButtonsPlayer.add(jpPanellButtons);
+		jpPageEnd.add(jpButtons);
 
 		/*
 		 * AQUI S'HA DE CREAR EL REPRODUCTOR !!
 		 */
 		//Estructura de subsubpanell només de botons del reproductor
-		jpPanellPlay = new JPanel();
-		blPanellPlay = new BorderLayout();
-		jpPanellPlay.setLayout(blPanellPlay);
+		jpPlayer = new JPanel();
+		blPlayer = new BorderLayout();
+		jpPlayer.setLayout(blPlayer);
 
-		playButton = new JButton();
+		jbPlay = new JButton();
 
-		rightButton = new JButton();
+		jbPrevious = new JButton();
 
-		jpPanellOnlyButtons = new JPanel();
-		glPanellOnlyButtons = new GridLayout(1,3);
-		jpPanellOnlyButtons.setLayout(glPanellOnlyButtons);
+		jpPlayerButtons = new JPanel();
+		glPlayerButtons = new GridLayout(1,3);
+		jpPlayerButtons.setLayout(glPlayerButtons);
 
-		leftButton = new JButton();
+		jbNext = new JButton();
 
-		playbutton1 = new ImageIcon("src/imagenes/playButn1.png");
-		playbutton2 = new ImageIcon("src/imagenes/playButn2.png");
-		playbutton3 = new ImageIcon("src/imagenes/playButn3.png");
+		iiPlay1 = new ImageIcon("src/imagenes/playButn1.png");
+		iiPlay2 = new ImageIcon("src/imagenes/playButn2.png");
+		iiPlay3 = new ImageIcon("src/imagenes/playButn3.png");
 
-		rightbutton1 = new ImageIcon("src/imagenes/rightbutn1.png");
-		rightbutton2 = new ImageIcon("src/imagenes/rightbutn2.png");
-		rightbutton3 = new ImageIcon("src/imagenes/rightbutn3.png");
+		iiPrevious1 = new ImageIcon("src/imagenes/rightbutn1.png");
+		iiPrevious2 = new ImageIcon("src/imagenes/rightbutn2.png");
+		iiPrevious3 = new ImageIcon("src/imagenes/rightbutn3.png");
 
-		leftbutton1 = new ImageIcon("src/imagenes/leftbutn1.png");
-		leftbutton2 = new ImageIcon("src/imagenes/leftbutn2.png");
-		leftbutton3 = new ImageIcon("src/imagenes/leftbutn3.png");
+		iiNext1 = new ImageIcon("src/imagenes/leftbutn1.png");
+		iiNext2 = new ImageIcon("src/imagenes/leftbutn2.png");
+		iiNext3 = new ImageIcon("src/imagenes/leftbutn3.png");
 
 		//temporalSong = new ImageIcon("src/imagenes/secuencialSong.png");
 		//jlTemporalSong = new JLabel(temporalSong);
@@ -173,64 +202,117 @@ public class MainWindow extends JFrame{
 		jlTime.setHorizontalAlignment(JLabel.CENTER);
 		jlTime.setText(" 00:00");
 
-		ConfigurationButton(playButton, playbutton1, playbutton2, playbutton3);
-		ConfigurationButton(rightButton, rightbutton1, rightbutton2, rightbutton3);
-		ConfigurationButton(leftButton, leftbutton1, leftbutton2, leftbutton3);
+		ConfigurationButton(jbPlay, iiPlay1, iiPlay2, iiPlay3);
+		ConfigurationButton(jbPrevious, iiPrevious1, iiPrevious2, iiPrevious3);
+		ConfigurationButton(jbNext, iiNext1, iiNext2, iiNext3);
 
-		jpPanellOnlyButtons.add(rightButton);
-		jpPanellOnlyButtons.add(playButton);
-		jpPanellOnlyButtons.add(leftButton);
+		jpPlayerButtons.add(jbPrevious);
+		jpPlayerButtons.add(jbPlay);
+		jpPlayerButtons.add(jbNext);
 		
 		//Creem el la linia temporal de la cançó
-		jSlider1 = new JSlider();
-		jSlider1.setValue(0);
-		jSlider1.setPreferredSize(new Dimension(700, 20));
+		jSlider = new JSlider();
+		jSlider.setValue(0);
+		jSlider.setPreferredSize(new Dimension(700, 20));
 
 		//Creem etiqueta de la cançó que está sonant y de l'estat d'aquesta
-		NameSong = new JLabel();
-		NameSong.setForeground(new Color(0, 0, 0));
-		NameSong.setText("          Lalalla Song" + "                      --> STOPED <--");
+		jlSongName = new JLabel();
+		jlSongName.setForeground(new Color(0, 0, 0));
+		jlSongName.setText("          Lalalla Song" + "                      --> STOPED <--");
 		
-		jpPanellPlay.add(NameSong, BorderLayout.NORTH);
-		jpPanellPlay.add(jpPanellOnlyButtons, BorderLayout.WEST);
-		//jpPanellPlay.add(jlTemporalSong, BorderLayout.CENTER);
-		jpPanellPlay.add(jSlider1, BorderLayout.CENTER);
-		jpPanellPlay.add(jlTime, BorderLayout.EAST);
+		jpPlayer.add(jlSongName, BorderLayout.NORTH);
+		jpPlayer.add(jpPlayerButtons, BorderLayout.WEST);
+		//jpPlayer.add(jlTemporalSong, BorderLayout.CENTER);
+		jpPlayer.add(jSlider, BorderLayout.CENTER);
+		jpPlayer.add(jlTime, BorderLayout.EAST);
 
-		jpPanellMusicButtonsPlayer.add(jpPanellPlay);
+		jpPageEnd.add(jpPlayer);
 
-		jpPanellMusic.add(jpPanellMusicButtonsPlayer, BorderLayout.PAGE_END);
+		jpMusic.add(jpPageEnd, BorderLayout.PAGE_END);
 
 
 		//TAB USERS
 
 		//table
 		//hardcodeo de columnas y datos 
-		String[] columnNames = {"Username", "Register date", "Last login", "Song lists", "Songs", "Followers", "Following"};
-		Object[][] data = {{"a", "b", "c", "d", "e", "f", "g"}, {"1", "2", "3", "4", "5", "6", "7"}};
+		String[] jtUserColumns = {"id","Username", "Register date", "Last login", "Song lists", "Songs", "Followers", "Following"};
+		Object[][] jtUserData = {};
 		//se crea la tabla
-		JTable usertable = new JTable(data, columnNames);
-
+		JTable jtUser = new JTable(jtUserData, jtUserColumns);
+		
 		//se hace que los datos no sean editables
-		DefaultTableModel tableModel = new DefaultTableModel(data, columnNames) {
+		tableModelUser = new DefaultTableModel(jtUserData, jtUserColumns) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				//all cells false
 				return false;
 			}
+			
 		}; 
+		
+		popup = new JPopupMenu();
+		popup.add(seguidores = new JMenuItem("Mostrar seguidores", new ImageIcon("1.gif")));
+		seguidores.setHorizontalTextPosition(JMenuItem.RIGHT);
+		    
+		popup.add(seguidos = new JMenuItem("Mostrar seguidos", new ImageIcon("2.gif")));
+		seguidos.setHorizontalTextPosition(JMenuItem.RIGHT);
+		   
+		popup.add(listas = new JMenuItem("Mostrar listas de reproduccion", new ImageIcon("3.gif")));
+		listas.setHorizontalTextPosition(JMenuItem.RIGHT);
+		    
+		popup.addSeparator();
+		popup.add(eliminar = new JMenuItem("Eliminar "));
+		    
 
-		usertable.setModel(tableModel);
+		popup.setLabel("Justification");
+		popup.setBorder(new BevelBorder(BevelBorder.RAISED));
+		    
+		jtUser.addMouseListener(new MouseAdapter() {
+	        public void mousePressed(MouseEvent e) {
+	            if ( SwingUtilities.isLeftMouseButton(e)) {
+	            	popup.setVisible(false);
+	            } else {
+	                 if ( SwingUtilities.isRightMouseButton(e)) {
+	                    Point p = e.getPoint();
+	                    int rowNumber = jtUser.rowAtPoint( p );
+	                    ListSelectionModel modelo = jtUser.getSelectionModel();
+	                    modelo.setSelectionInterval( rowNumber, rowNumber );
+	            		 id = Integer.parseInt(String.valueOf( jtUser.getValueAt(rowNumber, 0)));
+	            		 popup.show(jtpTabs,  e.getX(), e.getY());
+	            		 
+	                }
+	            }
+	        }
+	    });
+		
+		jtUser.setModel(tableModelUser);
+		jtUser.setFocusable(false);
 
-		JScrollPane jspPanellUsers = new JScrollPane(usertable);
-		jpPanellUsers = new JPanel();
-		jpPanellUsers.add(jspPanellUsers, BorderLayout.CENTER);
-
+		JScrollPane jspUsers = new JScrollPane(jtUser);
+		jpUsers = new JTable();
+		jpUsers.add(jspUsers, BorderLayout.CENTER);
+	
+		 jspUsers.addMouseListener(new MouseAdapter() {
+		        public void mousePressed(MouseEvent e) {
+		            if ( SwingUtilities.isLeftMouseButton(e)) {
+		            	popup.setVisible(false);
+		            }
+		        }
+		  });
+		 
+		//jpUsers.add(popup = new PopupMenu());
 		//Incloeixo les pestañes a la finestra
-		jtpPestanyas.addTab("Music", jpPanellMusic);
-		jtpPestanyas.addTab("Users", jspPanellUsers);
-
-		this.getContentPane().add(jtpPestanyas, BorderLayout.CENTER);
+		jtpTabs.addTab("Music", jpMusic);
+		jtpTabs.addTab("Users", jspUsers);
+		jtpTabs.addMouseListener(new MouseAdapter() {
+	        public void mousePressed(MouseEvent e) {
+	            if ( SwingUtilities.isLeftMouseButton(e)) {
+	            	popup.setVisible(false);
+	            }
+	        }
+	    });
+		this.getContentPane().add(jtpTabs, BorderLayout.CENTER);
+	
 		this.setResizable(true);
 		this.setSize(new Dimension(1600,870));
 		this.setTitle("eSpotifai - Server Management");
@@ -259,11 +341,46 @@ public class MainWindow extends JFrame{
 
 	}
 
-	public void registerController(ButtonsController controller) {
+	public void registerController(ButtonsController controller, PopUpController controller2) {
 		jbAdd.addActionListener(controller);
-		jbAdd.setActionCommand("ADD");
+		jbAdd.setActionCommand("MainWindow.addActionCommand");
 
-		jbEstadistics.addActionListener(controller);
-		jbEstadistics.setActionCommand("ESTADISTICS");	
+		jbStatistics.addActionListener(controller);
+		jbStatistics.setActionCommand("MainWindow.statisticsActionCommand");	
+	
+		seguidores.addActionListener(controller2);
+		seguidores.setActionCommand("MainWindow.seguidoresActionCommand");
+		
+		seguidos.addActionListener(controller2);
+		seguidos.setActionCommand("MainWindow.seguidosActionCommand");
+		
+		listas.addActionListener(controller2);
+		listas.setActionCommand("MainWindow.listasActionCommand");
+		
+		eliminar.addActionListener(controller2);
+		eliminar.setActionCommand("MainWindow.eliminarActionCommand");
+		    
+	}
+	
+	
+	public void refreshUsers(LinkedList <Object[]> list){
+		while (tableModelUser.getRowCount()!= 0){
+			tableModelUser.removeRow(0);
+		}
+		for (int i = 0; i<list.size(); i++){
+			tableModelUser.addRow(list.get(i));
+		}
+	}
+	public void refreshSongs(LinkedList<Object[]> list) {
+		while (tableModelMusic.getRowCount()!= 0){
+			tableModelMusic.removeRow(0);
+		}
+		for (int i = 0; i<list.size(); i++){
+			tableModelMusic.addRow(list.get(i));
+		}
+	}
+	
+	public int getId (){
+		return id;
 	}
 }

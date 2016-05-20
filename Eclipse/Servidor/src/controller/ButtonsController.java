@@ -2,6 +2,8 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+
 import view.AddMusicWindow;
 import view.MainWindow;
 import view.StatisticsWindow;
@@ -23,7 +25,7 @@ public class ButtonsController implements ActionListener{
 
 	public void actionPerformed(ActionEvent event) {
 		
-		if (event.getActionCommand().equals("ADD")) {
+		if (event.getActionCommand().equals("MainWindow.addActionCommand")) {
 			// Recuperem la informació que sha escrit a la vista
 			// i l'enviem al servidor
 			
@@ -33,7 +35,7 @@ public class ButtonsController implements ActionListener{
 			
 			// Actualitzem la vista
 			//vista.addText(vista.getTypedMessage());
-		}else if (event.getActionCommand().equals("ESTADISTICS")){
+		}else if (event.getActionCommand().equals("MainWindow.statisticsActionCommand")){
 			StatisticsWindow StadisticsView = new StatisticsWindow();
 			StadisticsView.setVisible(true);
 

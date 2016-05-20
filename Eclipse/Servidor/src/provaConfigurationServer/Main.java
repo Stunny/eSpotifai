@@ -2,58 +2,42 @@ package provaConfigurationServer;
 
 import java.util.Scanner;
 
+import controller.ButtonsController;
+import controller.NetworkController;
+import model.ManagementConfiguration;
+import network.Server;
+import controller.GeneralController;
+import controller.PopUpController;
 import view.AddMusicWindow;
-import view.MainWindow;;
+import view.FollowersWindow;
+import view.MainWindow;
+import view.StatisticsWindow;
 
 public class Main {
 	
 	public static void main(String[] args ){
 		
-		login();
-		
 		ManagementConfiguration mc = new ManagementConfiguration();
 		mc.runConfiguration();
 		
 		// Creem la VISTA
-		MainWindow mainView = new MainWindow();
-		mainView.setVisible(true);
+		MainWindow mainWindow = new MainWindow();
+		//FollowersWindow followerswindow = new FollowersWindow();
+		ButtonsController controller = new ButtonsController(mainWindow);
+		//PopUpController popupcontroller = new PopUpController (mainWindow);
+		mainWindow.registerController(controller, /*popupcontroller*/null);
+		mainWindow.setVisible(true);
 		
 		//Creem la vista temporal de adició
 		AddMusicWindow addView = new AddMusicWindow();
-		addView.setVisible(true);
+		//addView.setVisible(true);
+		
+		StatisticsWindow statisticsWindow = new StatisticsWindow();
+		//statisticsWindow.setVisible(true);
+		
+		Server server = new Server(new NetworkController(null));
+		server.startServer();
 		
 	}
 	
-	private static void login() {
-		boolean ok = false;
-		Scanner sc = new Scanner(System.in);
-		LoginManager lm = new LoginManager();
-		
-		
-		while (!ok) {
-		System.out.println("1.-login 2.-register");
-		int option = sc.nextInt();
-		String dummy = sc.nextLine();
-		
-		System.out.println("user? ");
-		String user = sc.nextLine();
-		
-		System.out.println("password? ");
-		String password = sc.nextLine();
-		
-		
-		switch (option) {
-		case 1: ok = lm.login(user, password);
-		break;
-		case 2: ok = lm.register(user, password);
-		break;
-		default: ok = false;
-		}
-		
-		
-		if (ok) System.out.println("ok!");
-		
-		}
-	}
 }
-
