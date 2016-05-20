@@ -38,13 +38,14 @@ public class Main {
 				
 				//Creamos el controlador
 				ButtonController controller = new ButtonController(loginWindow, registerWindow, mainWindow, selecteduserwindow, networkcontroller);
-				//PopUpController controller2 = new PopUpController(mainWindow);
+				PopUpController controller2 = new PopUpController(mainWindow);
+				
 				//Juntamos las pantallas y el controlador
 				loginWindow.registerController(controller);
 				registerWindow.registerController(controller);
 				mainWindow.registerController(controller);
 				selecteduserwindow.registerController(controller);
-				
+				mainWindow.registerController(controller2);
 				
 				
 				//iniciamos la pantalla de login

@@ -199,32 +199,6 @@ public class MainWindow extends JFrame {
 		  jpMain.add(jspUsers, BorderLayout.CENTER);
 		  
 		
-		
-		//jpUsers = new JTable();
-		//jpUsers.add(jspUsers, BorderLayout.CENTER);
-	
-		//JScrollPane jspUsers = new JScrollPane(jtMusic);
-		/*jspUsers.addMouseListener(new MouseAdapter() {
-		        public void mousePressed(MouseEvent e) {
-		            if ( SwingUtilities.isLeftMouseButton(e)) {
-		            	popup.setVisible(false);
-		            }
-		        }
-		  });*/
-		 
-		 
-		
-		//jtMusic.setPreferredScrollableViewportSize(new Dimension(400, 450));
-		//jtMusic.setFillsViewportHeight(true);
-		//JScrollPane jspMusic = new JScrollPane(jtMusic);
-		//jspMusic.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		
-		
-		//jpMain.add(jspUsers, BorderLayout.CENTER);
-		
-		
-		
-		
 		this.getContentPane().add(jpMain, BorderLayout.CENTER);
 		
 		this.setResizable(true);

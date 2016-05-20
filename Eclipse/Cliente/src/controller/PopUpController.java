@@ -3,24 +3,25 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
+import view.AddList;
 import view.MainWindow;
 
 
 public class PopUpController implements ActionListener{
-	
+	private MainWindow mainwindow;
 		
-	public PopUpController() {
-	
-	
+	public PopUpController(MainWindow mainwindow){
+		this.mainwindow = mainwindow;
 	}
+
 
 	public void actionPerformed(ActionEvent event) {
 		
 		if (event.getActionCommand().equals("MainWindow.reproducirActionCommand")) {
 			
 		}else if (event.getActionCommand().equals("MainWindow.añadirActionCommand")){
-	
+			AddList addlist = new AddList();
+			addlist.setVisible(true);
 		}
 		
 	}
