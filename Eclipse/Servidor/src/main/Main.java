@@ -40,7 +40,7 @@ public class Main {
 					ButtonsController buttonscontroller = new ButtonsController(mainWindow);
 					PopUpController popupcontroller = new PopUpController (mainWindow, ddbbConnection);
 					GeneralController controller = new GeneralController (ddbbConnection, mainWindow);
-					
+			
 					mainWindow.registerController(buttonscontroller, popupcontroller);
 					
 					mainWindow.setVisible(true);
@@ -48,15 +48,17 @@ public class Main {
 					//Creem la vista temporal de adiciï¿
 					AddMusicWindow addView = new AddMusicWindow();
 					//addView.setVisible(true); g
-
+					
 					StatisticsWindow statisticsWindow = new StatisticsWindow();
 					//statisticsWindow.setVisible(true);
-
+				
 					(new RefreshThread(controller)).start();
 					//controller.run();
+					
 					Server server = new Server(new NetworkController(ddbbConnection));
 					server.startServer();
 
+					
 
 					//ddbbConnection.stopConnection();
 
@@ -66,6 +68,7 @@ public class Main {
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(null, "Hi ha hagut un error.", " ", JOptionPane.ERROR_MESSAGE);
 				}
+
 			}
 		});
 	}

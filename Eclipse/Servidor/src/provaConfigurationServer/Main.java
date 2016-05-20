@@ -22,7 +22,7 @@ public class Main {
 		
 		// Creem la VISTA
 		MainWindow mainWindow = new MainWindow();
-		FollowersWindow followerswindow = new FollowersWindow(null);
+		//FollowersWindow followerswindow = new FollowersWindow(null);
 		ButtonsController controller = new ButtonsController(mainWindow);
 		PopUpController popupcontroller = new PopUpController(mainWindow, null);
 		mainWindow.registerController(controller, popupcontroller);
@@ -34,6 +34,8 @@ public class Main {
 		
 		StatisticsWindow statisticsWindow = new StatisticsWindow();
 		//statisticsWindow.setVisible(true);
+		
+		controller.run();
 		
 		Server server = new Server(new NetworkController(null));
 		server.startServer();

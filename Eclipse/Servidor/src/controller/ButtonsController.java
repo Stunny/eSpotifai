@@ -65,4 +65,10 @@ public class ButtonsController implements ActionListener{
 			StadisticsView.setVisible(true);
 		}
 	}
+
+	public void run(){
+		while (true){
+			mainWindow.refreshTime();
+		}
+	}
 }

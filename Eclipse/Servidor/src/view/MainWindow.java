@@ -111,8 +111,6 @@ public class MainWindow extends JFrame{
 	private int max = 0, value = 0;
 
 
-
-
 	public MainWindow() {
 
 		//Creem el conjunt de pestanyes
@@ -394,32 +392,28 @@ public class MainWindow extends JFrame{
 		//if (!stateSong && state.equals("Reproduciendo")){
 		if (customPlayer.getStatus() == 1){
 
-			customPlayer.resume();
+			customPlayer.Continue();
 			ConfigurationButton(jbPlay, iiPause1, iiPause2, iiPause3);
 			stateSong = true;
 
 			//Si la canço s'està reproduint pula pausa PLAY
 		}else if (customPlayer.getStatus() == 0){
 
-			//}else if (stateSong){
-
-			customPlayer.pause();
+			customPlayer.Pause();
 			ConfigurationButton(jbPlay, iiPlay1, iiPlay2, iiPlay3);
 			stateSong = false;
-		}else {//if (player.getStatus() == 2 || (player.getStatus() != 0 && player.getStatus() != 1)){
-			//Si no ha arrancat encara la canço obre el fitxer mp3
-			//}else{
+		}else {
 
 			try{
 
 				state = "";
-				//String songLink = "C:/Users/Marc/Downloads/Quentin Tarantino Soundtracks Discography - HTD 2015/Pulp Fiction (Collector's Edition) (2009) - Soundtrack/04. Let's Stay Together.mp3";
+				String songLink = "C:/Users/Marc/Downloads/Quentin Tarantino Soundtracks Discography - HTD 2015/Pulp Fiction (Collector's Edition) (2009) - Soundtrack/04. Let's Stay Together.mp3";
 				//String songLink = "C:/Users/Marc/Downloads/Quentin Tarantino Soundtracks Discography - HTD 2015/Pulp Fiction (Collector's Edition) (2009) - Soundtrack/14. Personality Goes a Long Way.mp3";
-				//String songLink = "C:/Users/Marc/Downloads/grillos05_mp3.mp3";
-				String songLink = "C:/Users/Marta/Music/DIE IS CAST.mp3";
+				//String songLink = "src/storeSongs/grillos05_mp3.mp3";
+				//String songLink = "src/storeSongs/Avicii - Hey Brother.mp3";
 
 				customPlayer.abrirMp3(songLink);
-				state = customPlayer.play(jSlider);
+				state = customPlayer.Play(jSlider);
 
 			}catch (Exception ex) {
 				System.out.println("Error: " + ex.getMessage());
@@ -429,31 +423,6 @@ public class MainWindow extends JFrame{
 			jlSongName.setText(customPlayer.getName());
 
 		}
-
-		/*//Si el player está parat i fa clik
-		if (player.isEnded()){
-
-			try{
-
-				//Creo un reproductor un altre cop ja que internament el BasicPlayer ha fet un closeStrem();
-				player = new Player();
-
-				System.out.println("\nENTRO EN EL VISUALITZADOR DE CANçO PER SEGON COP\n");
-				state = "";
-				String songLink = "C:/Users/Marc/Downloads/Quentin Tarantino Soundtracks Discography - HTD 2015/Pulp Fiction (Collector's Edition) (2009) - Soundtrack/14. Personality Goes a Long Way.mp3";
-				//String songLink = "C:/Users/Marc/Downloads/grillos05_mp3.mp3";
-				player.AbrirMp3(songLink);
-				state = player.Play(jSlider1);
-
-			}catch (Exception ex) {
-				System.out.println("Error: " + ex.getMessage());
-			}
-			ConfigurationButton(playButton, pausebutton1, pausebutton2, pausebutton3);
-			NameSong.setText(player.getName());
-		}
-		 */
-
-
 
 		//miro l'estat i el printo per pantalla i el nom de la canço
 		if(customPlayer.getStatus() == 0){
@@ -474,8 +443,6 @@ public class MainWindow extends JFrame{
 
 		jlSongName.setText(customPlayer.getName());
 	}
-	
-	
 
 	public void registerController(ButtonsController controller, PopUpController controller2) {
 		jbAdd.addActionListener(controller);
@@ -512,8 +479,7 @@ public class MainWindow extends JFrame{
 		}
 	}
 	
-	
-	
+
 	public void refreshTime() {
 
 		int auxMinutes = 0;
@@ -538,7 +504,7 @@ public class MainWindow extends JFrame{
 		}
 
 		String finalSting = auxMinutesString + ":" + auxSecondsString;
-
+		
 		jlTime.setText(auxMinutesString + ":" + auxSecondsString);
 
 		jSlider.setValue(customPlayer.getFrameSlider());
@@ -548,8 +514,6 @@ public class MainWindow extends JFrame{
 		}
 	}
 
-	
-	
 	public void refreshUsers(LinkedList <Object[]> list){
 		while (tableModelUser.getRowCount()!= 0){
 			tableModelUser.removeRow(0);
@@ -569,8 +533,6 @@ public class MainWindow extends JFrame{
 			tableModelMusic.addRow(list.get(i));
 		}
 	}
-
-	
 	
 	public int getId (){
 		return id;
