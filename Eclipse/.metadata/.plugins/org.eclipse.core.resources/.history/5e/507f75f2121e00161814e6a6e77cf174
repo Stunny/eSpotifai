@@ -1,3 +1,4 @@
+<<<<<<< HEAD:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/5e/507f75f2121e00161814e6a6e77cf174
 package provaConfigurationServer;
 
 import java.util.Scanner;
@@ -35,3 +36,37 @@ public class Main {
 	}
 	
 }
+=======
+package provaConfigurationServer;
+
+import java.util.Scanner;
+
+import controller.ButtonsController;
+import view.AddMusicWindow;
+import view.MainWindow;
+import view.StatisticsWindow;
+
+public class Main {
+	
+	public static void main(String[] args ){
+		
+		ManagementConfiguration mc = new ManagementConfiguration();
+		mc.runConfiguration();
+		
+		// Creem la VISTA
+		MainWindow mainWindow = new MainWindow();
+		ButtonsController controller = new ButtonsController(mainWindow);
+		mainWindow.registerController(controller);
+		mainWindow.setVisible(true);
+		
+		//Creem la vista temporal de adició
+		AddMusicWindow addView = new AddMusicWindow();
+		//addView.setVisible(true);
+		
+		StatisticsWindow statisticsWindow = new StatisticsWindow();
+		//statisticsWindow.setVisible(true);
+		
+	}
+	
+}
+>>>>>>> cbc1e0d816a6c726ec7db5d9b7bdbb0a77ce6231:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/37/e042468fed1d00161a03a4d5b0fb7de0

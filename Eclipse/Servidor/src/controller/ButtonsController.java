@@ -1,10 +1,13 @@
+
 package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.net.MalformedURLException;
 
-import model.DDBBConnection;
+//import model.DDBBConnection;
+import database.DDBBConnection;
 import view.AddMusicWindow;
 import view.MainWindow;
 import view.StatisticsWindow;
@@ -46,6 +49,28 @@ public class ButtonsController implements ActionListener{
 			StatisticsWindow StadisticsView = new StatisticsWindow();
 			StadisticsView.setVisible(true);
 
+		}else if (event.getActionCommand().equals("MainWindow.playActionCommand")){
+			
+			try {
+				main.goMP3();
+				//mainWindow.goMP3();
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}else if (event.getActionCommand().equals("RIGHTSONG")){
+			StatisticsWindow StadisticsView = new StatisticsWindow();
+			StadisticsView.setVisible(true);
+			
+		}else if (event.getActionCommand().equals("LEFTSONG")){
+			
+			StatisticsWindow StadisticsView = new StatisticsWindow();
+			StadisticsView.setVisible(true);
 		}
 		if (event.getActionCommand().equals("AddMusicWindow.acceptActionCommand")){
 			model.addSong(music.getTypedSongTitle(), music.getTypedGenre(), music.getTypedArtist(),
@@ -54,3 +79,4 @@ public class ButtonsController implements ActionListener{
 		}
 	}
 }
+

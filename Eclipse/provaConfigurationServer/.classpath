@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="llibs/gson-2.5.jar"/>
+	<classpathentry kind="lib" path="llibs/mediaplayer.jar"/>
+	<classpathentry kind="lib" path="llibs/jmf.jar"/>
+	<classpathentry kind="lib" path="llibs/multiplayer.jar"/>
+	<classpathentry kind="lib" path="llibs/jl1.0.1.jar"/>
+	<classpathentry kind="lib" path="llibs/commons-logging-api.jar"/>
+	<classpathentry kind="lib" path="llibs/jl1.0.jar"/>
+	<classpathentry kind="lib" path="llibs/jorbis-0.0.15.jar"/>
+	<classpathentry kind="lib" path="llibs/jspeex0.9.7.jar"/>
+	<classpathentry kind="lib" path="llibs/jogg-0.0.7.jar"/>
+	<classpathentry kind="lib" path="llibs/mp3spi1.9.4.jar"/>
+	<classpathentry kind="lib" path="llibs/tritonus_share.jar"/>
+	<classpathentry kind="lib" path="llibs/vorbisspi1.0.2.jar"/>
+	<classpathentry kind="lib" path="llibs/basicplayer3.0.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

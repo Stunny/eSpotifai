@@ -1,3 +1,4 @@
+<<<<<<< HEAD:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/fa/c0bafe2a9b1e00161da2bb5c48f34085
 package main;
 
 import provaConfigurationServer.ManagementConfiguration;
@@ -49,3 +50,49 @@ public class Main {
 		
 	}
 }
+=======
+package main;
+
+import provaConfigurationServer.ManagementConfiguration;
+import view.AddMusicWindow;
+import view.MainWindow;
+import view.StatisticsWindow;
+import controller.ButtonsController;
+import controller.GeneralController;
+import customExceptions.DatabaseNotLoadedException;
+import model.DDBBConnection;
+
+public class Main {
+
+	public static void main(String[] args) {
+		DDBBConnection ddbbConnection = new DDBBConnection ("root", "", "espotyfai", 3306);
+		try {
+			
+			ddbbConnection.startConnection();
+			ManagementConfiguration mc = new ManagementConfiguration();
+			mc.runConfiguration();
+			
+			// Creem la VISTA
+			MainWindow mainWindow = new MainWindow();
+			ButtonsController buttonscontroller = new ButtonsController(mainWindow);
+			GeneralController controller = new GeneralController (ddbbConnection);
+			mainWindow.registerController(buttonscontroller);
+			mainWindow.setVisible(true);
+			
+			//Creem la vista temporal de adició
+			AddMusicWindow addView = new AddMusicWindow();
+			//addView.setVisible(true);
+			
+			StatisticsWindow statisticsWindow = new StatisticsWindow();
+			//statisticsWindow.setVisible(true);
+			
+			ddbbConnection.stopConnection();
+			
+		} catch (DatabaseNotLoadedException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
+	}
+}
+>>>>>>> cbc1e0d816a6c726ec7db5d9b7bdbb0a77ce6231:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/28/0015ce1f01190016130de910bc1e1c13
