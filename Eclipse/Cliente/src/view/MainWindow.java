@@ -107,12 +107,40 @@ public class MainWindow extends JFrame {
 		
 		JPanel jpListsFollowing = new JPanel(new BorderLayout());
 		jpListsFollowing.setBorder(BorderFactory.createTitledBorder("PLAYLIST FOLLOWING"));
-		jtaListsfollowing = new JTextArea(); 
+		/*jtaListsfollowing = new JTextArea(); 
 		jtaListsfollowing.setBackground(CustomColor.icon);
 		jtaListsfollowing.setEditable(false);
 		JScrollPane jspListsFollowing = new JScrollPane(jtaListsfollowing);
 		jspListsFollowing.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		jspListsFollowing.setPreferredSize(new Dimension(250,250));
+		*/
+		
+		//-----------------------------------------------------------------
+		
+		String[] jtFollowedListsColumns = {"Followed Lists"};
+		Object[][] jtFollowedListsData = {};
+		//se crea la tabla
+		JTable jtFollowedLists = new JTable(jtFollowedListsData, jtFollowedListsColumns);
+
+		//se hace que los datos no sean editables
+		DefaultTableModel tableModelFollowedLists = new DefaultTableModel(jtFollowedListsData, jtFollowedListsColumns) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				//all cells false
+				return false;
+			}
+
+		}; 
+		
+		jtFollowedLists.setModel(tableModelFollowedLists);
+		jtFollowedLists.setFocusable(false);
+
+		JScrollPane jspListsFollowing = new JScrollPane(jtFollowedLists);
+		JTable jpFollowedLists = new JTable();
+		jpFollowedLists.add(jspListsFollowing, BorderLayout.CENTER);
+		
+		//-----------------------------------------------------------------
+		
 		jpListsFollowing.add(jspListsFollowing, BorderLayout.CENTER);
 		jpListsFollowing.setBackground(CustomColor.secondary);
 		jpPageWest.add(jpListsFollowing, BorderLayout.NORTH);
@@ -372,8 +400,8 @@ public class MainWindow extends JFrame {
 	}
 	
 	public void refreshListsFollowing(String string){
-		jtaListsfollowing.setText(string);
-		jtaListsfollowing.setForeground(Color.white);
+		//jtaListsfollowing.setText(string);
+		//jtaListsfollowing.setForeground(Color.white);
 	}
 	
 	

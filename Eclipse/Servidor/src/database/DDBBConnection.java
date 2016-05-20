@@ -100,7 +100,7 @@ public class DDBBConnection {
 	
 	public LinkedList<Object[]> getUsersDates(){
 		LinkedList<User> userList = getUsers();
-		LinkedList<Object[]> list =new LinkedList<Object[]>();
+		LinkedList<Object[]> list = new LinkedList<Object[]>();
 		for (int i = 0; i < userList.size(); i++){
 			Object[] objs = {userList.get(i).getId(), userList.get(i).getUsername(), userList.get(i).getRegistre(),
 							userList.get(i).getLastAccess(), nPlaylists(userList.get(i).getId()),
@@ -110,6 +110,8 @@ public class DDBBConnection {
 		}
 		return list;
 	}
+	
+	
 	
 	public LinkedList<Object[]> getFollowersDates(int id){
 		LinkedList<User> userList = getUsers();

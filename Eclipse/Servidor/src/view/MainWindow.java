@@ -362,6 +362,9 @@ public class MainWindow extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
+	
+	
+	
 	public void ConfigurationButton(JButton boton,ImageIcon imatge1,ImageIcon imatge2,ImageIcon imatge3){
 
 		//Definim que l'icon tindr� una imatge assignada per defecte
@@ -383,6 +386,8 @@ public class MainWindow extends JFrame{
 
 	}
 
+	
+	
 	public void goMP3() throws Exception{
 
 		//Si la can�o s'ha reproduit un cop i esta en pause, continua reproduint PAUSE
@@ -470,6 +475,8 @@ public class MainWindow extends JFrame{
 		jlSongName.setText(customPlayer.getName());
 
 	}
+	
+	
 
 	public void registerController(ButtonsController controller, PopUpController controller2) {
 		jbAdd.addActionListener(controller);
@@ -505,6 +512,9 @@ public class MainWindow extends JFrame{
 
 		}
 	}
+	
+	
+	
 	public void refreshTime() {
 
 		int auxMinutes = 0;
@@ -541,6 +551,8 @@ public class MainWindow extends JFrame{
 		//jlTime.setText(String.valueOf(player.getMinutes() + ":" + player.getSeconds()));
 	}
 
+	
+	
 	public void refreshUsers(LinkedList <Object[]> list){
 		while (tableModelUser.getRowCount()!= 0){
 			tableModelUser.removeRow(0);
@@ -549,6 +561,9 @@ public class MainWindow extends JFrame{
 			tableModelUser.addRow(list.get(i));
 		}
 	}
+	
+	
+	
 	public void refreshSongs(LinkedList<Object[]> list) {
 		while (tableModelMusic.getRowCount()!= 0){
 			tableModelMusic.removeRow(0);
@@ -558,6 +573,8 @@ public class MainWindow extends JFrame{
 		}
 	}
 
+	
+	
 	public int getId (){
 		return id;
 	}
