@@ -151,7 +151,6 @@ public class MainWindow extends JFrame{
 				return false;
 			}
 		}; 
-		
 		popupSong = new JPopupMenu();
 		eliminar2 = new JMenuItem("Eliminar ");
 		eliminar2.setHorizontalTextPosition(JMenuItem.RIGHT);
@@ -162,7 +161,6 @@ public class MainWindow extends JFrame{
 		popupSong.setBorder(new BevelBorder(BevelBorder.RAISED));
 		    
 		jtMusicList.addMouseListener(new MouseAdapter() {
-			@Override
 	        public void mousePressed(MouseEvent e) {
 	            if ( SwingUtilities.isLeftMouseButton(e)) {
 	            	popupSong.setVisible(false);
@@ -180,6 +178,8 @@ public class MainWindow extends JFrame{
 	            }
 	        }
 	    });
+		jtMusicList.getTableHeader().setReorderingAllowed(false);
+		jtMusicList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		jtMusicList.setModel(tableModelMusic);
 		jtMusicList.setFocusable(false);
 		//jtMusicList.setForeground(Color.BLACK);
@@ -331,7 +331,7 @@ public class MainWindow extends JFrame{
 			}
 
 		}; 
-
+		
 		popup = new JPopupMenu();
 		popup.add(seguidores = new JMenuItem("Mostrar seguidores", null));
 		seguidores.setHorizontalTextPosition(JMenuItem.RIGHT);
@@ -367,7 +367,8 @@ public class MainWindow extends JFrame{
 				}
 			}
 	    });
-		
+		jtUser.getTableHeader().setReorderingAllowed(false);
+		jtUser.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		jtUser.setModel(tableModelUser);
 		jtUser.setFocusable(false);
 
