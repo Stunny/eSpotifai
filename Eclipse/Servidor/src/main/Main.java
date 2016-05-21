@@ -44,7 +44,6 @@ public class Main {
 					addView.registerControllerAdd(buttonscontroller);
 					mainWindow.setVisible(true);
 
-					addView.registerControllerAdd(buttonscontroller);
 
 					StatisticsWindow statisticsWindow = new StatisticsWindow();
 

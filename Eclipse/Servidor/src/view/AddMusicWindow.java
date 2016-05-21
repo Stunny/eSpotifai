@@ -9,12 +9,14 @@ import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import controller.ButtonsController;
 
@@ -36,6 +38,7 @@ public class AddMusicWindow extends JFrame{
 	private JTextField jtfPath;
 	
 	private JButton jbAccept;
+	private JButton jbFindPath;
 
 	public AddMusicWindow() {
 		
@@ -106,6 +109,10 @@ public class AddMusicWindow extends JFrame{
 		jbAccept.setHorizontalAlignment(JButton.CENTER);
 		jpAddMusic.add(jbAccept);
 		
+		jbFindPath = new JButton("Find path...");
+		jbFindPath.setHorizontalAlignment(JTextField.CENTER);
+		jpAddMusic.add(jbFindPath);
+		
 		//L'inserto en el panell general
 		this.getContentPane().add(jpAddMusic, BorderLayout.CENTER);
 		
@@ -120,6 +127,8 @@ public class AddMusicWindow extends JFrame{
 	public void registerControllerAdd(ButtonsController controller) {
 		jbAccept.addActionListener(controller);
 		jbAccept.setActionCommand("AddMusicWindow.acceptActionCommand");
+		jbFindPath.addActionListener(controller);
+		jbFindPath.setActionCommand("AddMusicWindow.findPathActionCommand");
 	}
 	
 	public String getTypedSongTitle() {
@@ -140,6 +149,10 @@ public class AddMusicWindow extends JFrame{
 	
 	public String getTypedPath() {
 		return jtfPath.getText();
+	}
+	
+	public void setFoundPath(String path) {
+		jtfPath.setText(path);
 	}
 	
 	public void clearTextFields() {
