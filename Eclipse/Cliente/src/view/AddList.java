@@ -23,14 +23,40 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controller.PopUpController;
-
+/**
+ * 
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see JFrame
+ * @see DefaultTableModel
+ * @see JPopUpMenu
+ * @see JMenuItem
+ *
+ */
 public class AddList extends JFrame{
+	/**
+	 * Taula del contingut de la pantalla
+	 * @see DefaultTableModel
+	 */
 	DefaultTableModel tableMusic;
+	/**
+	 * Menu emergent 
+	 * @see JPopUpMenu
+	 */
 	private JPopupMenu popup;
+	/**
+	 * Opció del menú emergent per a insertar
+	 * @see JMenuItem
+	 */
 	private JMenuItem insert;
 	
 	
-	
+	/**
+	 * Construeix la pantalla de afegir una nova <i>playlist</i>.
+	 * @see JPanel
+	 * @see JTable
+	 * @see JScrollPane
+	 */
 	public AddList(){
 		/*JTabbedPane jtbTabs = new JTabbedPane();
 		JPanel panellists = new JPanel(); 
@@ -112,7 +138,12 @@ public class AddList extends JFrame{
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	}
-	
+	/**
+	 * Controlador d'input a la pantalla d'afegir lista
+	 * @param controller2 Listener de input a la pantalla AddList
+	 * @see PopUpController
+	 * @see ActionListener
+	 */
 	public void registerController1(PopUpController controller2){
 		insert.addActionListener(controller2);
 		insert.setActionCommand("AddList.insertActionCommand");
