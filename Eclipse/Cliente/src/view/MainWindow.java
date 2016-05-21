@@ -219,7 +219,7 @@ public class MainWindow extends JFrame {
 		        }
 		    });
 		
-		
+		jtFollowedLists.getTableHeader().setReorderingAllowed(false);
 		jtFollowedLists.setModel(tableModelFollowedLists);
 		jtFollowedLists.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		jtFollowedLists.setFocusable(false);
@@ -281,6 +281,7 @@ public class MainWindow extends JFrame {
 		        }
 		    });
 		
+		jtLists.getTableHeader().setReorderingAllowed(false);
 		jtLists.setModel(tableModelLists);
 		jtLists.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		jtLists.setFocusable(false);
@@ -368,6 +369,7 @@ public class MainWindow extends JFrame {
 			  
 		    });
 		
+		jtMusic.getTableHeader().setReorderingAllowed(false);
 		jtMusic.setModel(tableMusic);
 		jtMusic.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		jtMusic.setFocusable(false);
