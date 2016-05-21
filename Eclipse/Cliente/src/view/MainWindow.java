@@ -181,7 +181,7 @@ public class MainWindow extends JFrame {
 		Object[][] jtFollowedListsData = {{"HOLA"}};
 		//se crea la tabla
 		JTable jtFollowedLists = new JTable(jtFollowedListsData, jtFollowedListsColumns);
-
+		
 		//se hace que los datos no sean editables
 		DefaultTableModel tableModelFollowedLists = new DefaultTableModel(jtFollowedListsData, jtFollowedListsColumns) {
 			@Override
@@ -201,13 +201,16 @@ public class MainWindow extends JFrame {
 			  public void mousePressed(MouseEvent e) {
 		            if ( SwingUtilities.isLeftMouseButton(e)) {
 		            	popupPlaylist.setVisible(false);
+		            	
+		            	
 		            } else {
 		                 if ( SwingUtilities.isRightMouseButton(e)) {
 		                    Point p = e.getPoint();
 		                    int rowNumber = jtFollowedLists.rowAtPoint(p);
 		                    modelo = jtFollowedLists.getSelectionModel();
 		                    modelo.setSelectionInterval( rowNumber, rowNumber );
-		                    
+		                    modelo1.clearSelection();
+		                    modelo2.clearSelection();
 		            		// id = Integer.parseInt(String.valueOf( jtMusic.getValueAt(rowNumber, 0)));
 		            		popupPlaylist.show(jpListsFollowing,  e.getX(), e.getY());
 		            		 
@@ -215,6 +218,7 @@ public class MainWindow extends JFrame {
 		            }
 		        }
 		    });
+		
 		
 		jtFollowedLists.setModel(tableModelFollowedLists);
 		jtFollowedLists.setFocusable(false);
@@ -256,14 +260,18 @@ public class MainWindow extends JFrame {
 		popupPlaylist1.setBorder(new BevelBorder(BevelBorder.RAISED));
 		jtLists.addMouseListener(new MouseAdapter(){
 			  public void mousePressed(MouseEvent e) {
-		            if ( SwingUtilities.isLeftMouseButton(e)) {
+				  if ( SwingUtilities.isLeftMouseButton(e)) {
 		            	popupPlaylist1.setVisible(false);
+
+		            	
 		            } else {
 		                 if ( SwingUtilities.isRightMouseButton(e)) {
 		                    Point p = e.getPoint();
 		                    int rowNumber = jtLists.rowAtPoint(p);
 		                    modelo1 = jtLists.getSelectionModel();
 		                    modelo1.setSelectionInterval( rowNumber, rowNumber );
+		                    modelo.clearSelection();
+		                    modelo2.clearSelection();
 		            		// id = Integer.parseInt(String.valueOf( jtMusic.getValueAt(rowNumber, 0)));
 		            		popupPlaylist1.show(jpLists,  e.getX(), e.getY());
 		            		 
@@ -347,6 +355,8 @@ public class MainWindow extends JFrame {
 		                    int rowNumber = jtMusic.rowAtPoint(p);
 		                    modelo2 = jtMusic.getSelectionModel();
 		                    modelo2.setSelectionInterval( rowNumber, rowNumber );
+		                    modelo.clearSelection();
+		                    modelo1.clearSelection();
 		            		// id = Integer.parseInt(String.valueOf( jtMusic.getValueAt(rowNumber, 0)));
 		            		popup.show(jpMain,  e.getX(), e.getY());
 		            		 
