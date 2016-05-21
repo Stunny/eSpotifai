@@ -10,9 +10,11 @@ import view.MainWindow;
 
 public class PopUpController implements ActionListener{
 	private MainWindow mainwindow;
+	private AddList addlist;
 		
-	public PopUpController(MainWindow mainwindow){
+	public PopUpController(MainWindow mainwindow, AddList addlist){
 		this.mainwindow = mainwindow;
+		this.addlist = addlist;
 	}
 
 
@@ -21,7 +23,7 @@ public class PopUpController implements ActionListener{
 		if (event.getActionCommand().equals("MainWindow.reproducirActionCommand")) {
 			
 		}
-		if (event.getActionCommand().equals("MainWindow.añadirActionCommand")){
+		if (event.getActionCommand().equals("MainWindow.anadirActionCommand")){
 			AddList addlist = new AddList();
 			addlist.setVisible(true);
 		}
