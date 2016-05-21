@@ -93,71 +93,73 @@ public class User {
 
 
 	/**
-	 * 
-	 * @return
+	 * Getter del nom d'usuari
+	 * @return User name
 	 */
 	public String getUsername() {
 		return username;
 	}
 	/**
-	 * 
-	 * @param username
+	 * Setter del nom d'usuari
+	 * @param username User name
 	 */
 	public void setUsername(String username) {
 		this.username = username;
 	}
 	/**
-	 * 
-	 * @return
+	 * Getter del conjunt de <i>playlists</i> de l'usuari
+	 * @return User <i>playlists</i>
 	 */
 	public LinkedList<Playlist> getPlaylist() {
 		return playlist;
 	}
 	/**
-	 * 
-	 * @param playlist
+	 * Setter del conjunt de <i>playlists</i> de l'usuari
+	 * @param playlist User <i>playlists</i>
 	 */
 	public void setPlaylist(LinkedList<Playlist> playlist) {
 		this.playlist = playlist;
 	}
 	/**
-	 * 
-	 * @return
+	 * Getter de l'IDentificador de l'usuari
+	 * @return User ID
 	 */
 	public int getId() {
 		return id;
 	}
 	/**
-	 * 
-	 * @param id
+	 * Setter de l'IDentificador de l'usuari
+	 * @param id User ID
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 	/**
-	 * 
-	 * @return
+	 * Getter de la llista d'usuaris als que segueix el seleccionat
+	 * @return Followed Users List
+	 * @see model.User
 	 */
 	public LinkedList<User> getFollowing() {
 		return following;
 	}
 	/**
-	 * 
-	 * @param following
+	 * Setter de la llista d'usuaris als que segueix el seleccionat
+	 * @param following Followed Users List
+	 * @see model.User
 	 */
 	public void setFollowing(LinkedList<User> following) {
 		this.following = following;
 	}
 	/**
-	 * 
-	 * @param playlist
+	 * Afegeix una nova <i>playlist</i> a la llista de <i>playlists</i> de l'usuari
+	 * @param playlist <i>Playlist</i>
 	 */
 	public void addPlaylist(Playlist playlist) {
 		this.playlist.add(playlist);
 	}
 	/**
-	 * 
-	 * @param following
+	 * Afegeix un altre usuari a la llista d'usuaris seguits
+	 * @param following New followed user
 	 */
 	public void addFollowing(User following) {
 		this.following.add(following);
@@ -165,8 +167,8 @@ public class User {
 
 
 	/**
-	 * 
-	 * @return
+	 * Getter de la data de registre de l'usuari
+	 * @return Register date
 	 */
 	public String getRegistre() {
 		return registre;
@@ -174,8 +176,8 @@ public class User {
 
 
 	/**
-	 * 
-	 * @param registre
+	 * Setter de la data de registre de l'usuari
+	 * @param registre Register date
 	 */
 	public void setRegistre(String registre) {
 		this.registre = registre;
@@ -183,8 +185,8 @@ public class User {
 
 
 	/**
-	 * 
-	 * @return
+	 * Getter de la data de l'última conexió de l'usuari a l'aplicació
+	 * @return Last access date
 	 */
 	public String getLastAccess() {
 		return lastAccess;
@@ -192,8 +194,8 @@ public class User {
 
 
 	/**
-	 * 
-	 * @param lastAccess
+	 * Setter de la data de l'última conexió de l'usuari a l'aplicació
+	 * @param lastAccess Last access date
 	 */
 	public void setLastAccess(String lastAccess) {
 		this.lastAccess = lastAccess;
@@ -201,8 +203,8 @@ public class User {
 
 
 	/**
-	 * 
-	 * @return
+	 * Getter de la contrassenya de l'usuari
+	 * @return User password
 	 */
 	public String getPassword() {
 		return password;
@@ -210,8 +212,8 @@ public class User {
 
 
 	/**
-	 * 
-	 * @param password
+	 * Setter de la contrassenya de l'usuari
+	 * @param password User password
 	 */
 	public void setPassword(String password) {
 		this.password = password;

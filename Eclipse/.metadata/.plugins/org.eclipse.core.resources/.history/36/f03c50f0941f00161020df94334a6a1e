@@ -38,32 +38,26 @@ public class ButtonController implements ActionListener {
 	private LoginWindow loginWindow;
 	/**
 	 * Pantalla principal
-	 * @see view.LoginWindow
 	 */
 	private MainWindow mainWindow;
 	/**
 	 * Comunicador amb el servidor
-	 * @see view.MainWindow
 	 */
 	private ServerCommunication serverCommunication;
 	/**
 	 * Pantalla d'usuari seleccionat
-	 * @see network.ServerCommunication
 	 */
 	private SelectedUserWindow selecteduserwindow;
 	/**
 	 * Pantalla de registre d'usuari
-	 * @see view.SelectedUserWindow
 	 */
 	private RegisterWindow registerWindow;
 	/**
 	 * Nom d'usuari
-	 * @see model.User
 	 */
 	private String User; 
 	/**
 	 * Controlador de xarxa
-	 * @see controller.NetworkController
 	 */
 	private NetworkController networkcontroller;
 
