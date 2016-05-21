@@ -24,18 +24,8 @@ public class Main {
 		AddMusicWindow addView = new AddMusicWindow();
 		MainWindow mainWindow = new MainWindow();
 		//FollowersWindow followerswindow = new FollowersWindow(null);
-/*<<<<<<< HEAD
-		//FollowersWindow followerswindow = new FollowersWindow();
-		ButtonsController controller = new ButtonsController(mainWindow, null, addView);
-		//PopUpController popupcontroller = new PopUpController(mainWindow, null);
-		//mainWindow.registerController(controller, popupcontroller);
-=======
-		FollowersWindow followerswindow = new FollowersWindow(null);
-		ButtonsController controller = new ButtonsController(mainWindow);
-		PopUpController popupcontroller = new PopUpController(mainWindow, null);
-		mainWindow.registerController(controller, popupcontroller);
->>>>>>> cbc1e0d816a6c726ec7db5d9b7bdbb0a77ce6231
-*/
+
+
 		mainWindow.setVisible(true);
 		
 		//Creem la vista temporal de adició
@@ -44,6 +34,8 @@ public class Main {
 		
 		StatisticsWindow statisticsWindow = new StatisticsWindow();
 		//statisticsWindow.setVisible(true);
+		
+		//controller.run();
 		
 		Server server = new Server(new NetworkController(null));
 		server.startServer();
