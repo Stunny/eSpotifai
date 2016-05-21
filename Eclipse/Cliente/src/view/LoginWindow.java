@@ -21,12 +21,32 @@ import javax.swing.border.TitledBorder;
  * @author Elna Cabot, Miguel Diaz, Marc Millan, Alejandro Vogel, Marta Zapatero
  * @version 1.0
  * @see JFrame
+ * @see MainWindow
+ * @see BorderLayout
+ * 
  * 
  */
 public class LoginWindow  extends JFrame{
+	/**
+	 * Area d'introduccio de nom d'usuari per fer login.
+	 * @see JTextField
+	 */
 	private JTextField jtfUsername; 
+	/**
+	 * Area d'introduccio de contrassenya per fer login.
+	 * @see JTextField
+	 */
 	private JTextField jtfPassword;
+	/**
+	 * Acciona el login una vegada introduida la informació requerida.
+	 * @see JButton
+	 */
 	private JButton jbLogin; 
+	/**
+	 * Redirigeix a la finestra de registre d'usuari.
+	 * @see JButton
+	 * @see RegisterWindow
+	 */
 	private JButton jbRegister; 
 	
 	
@@ -34,6 +54,9 @@ public class LoginWindow  extends JFrame{
 	
 	/**
 	 * Constructor de la ventana de inici de sessió de usuari.
+	 * @see JPanel
+	 * @see JLabel
+	 * @see TitledBorder
 	 */
 	public LoginWindow(){
 		

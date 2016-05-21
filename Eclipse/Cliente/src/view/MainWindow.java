@@ -38,20 +38,49 @@ import model.Song;
  * Clase de la ventana principal de l'aplicaciï¿½ Espotyfai.
  * @author Elna Cabot, Miguel Diaz, Marc Millan, Alejandro Vogel, Marta Zapatero
  * @version 1.0
- * @see <a>JFrame</a>
+ * @see JFrame
+ * 
  */
 public class MainWindow extends JFrame {
+	/**
+	 * Area de text on es mostren les <i>playlists</i> de l'usuari.
+	 * @see JTextArea
+	 */
 	private JTextArea jtaLists; 
+	/**
+	 * Area de text on es mostren les <i>playlists</i> seguides per l'usuari.
+	 * @see JTextArea
+	 */
 	private JTextArea jtaListsfollowing;
-	private JButton jbRemove; 
+	/**
+	 * Botó per a afegir una nova llista.
+	 * @see JButton
+	 */
 	private JButton jbAdd;
+	/**
+	 * Area de text per introduir les paraules de les que es vol fer una cerca.
+	 * @see JTextField
+	 */
 	private JTextField jtfSearch; 
+	/**
+	 * Acciona la cerca del que s'ha introduit a <i style="color:indigo;">jtfSearch</i>.
+	 * @see JButton
+	 */
 	private JButton jbSearch;
+	/**
+	 * Botó que obre la finestra <i style="color:indigo;">UserWindow</i>
+	 * @see JButton
+	 * @see UserWindow
+	 */
 	private JButton jbProfile;
-	private JTextField jtfArtist; 
-	private JTextField jtfAlbum; 
-	private JTextField jtfGenre; 
-	private JTextField jtfSongTitle; 
+	/**
+	 * Taula on es mostra la llista de cançons amb els detalls de cadascuna.
+	 * @see JTable
+	 */
+	/**
+	 * Botó per que l'usuari indiqui que vol tancar la sessió
+	 * @see JButton
+	 */
 	private JButton jbClose;
 	
 	public JPopupMenu popup;
@@ -488,8 +517,8 @@ public class MainWindow extends JFrame {
 	}
 	
 	/**
-	 * 
-	 * @param controller 
+	 * Controlador de interacció de l'usuari amb MainWindow
+	 * @param controller Listener que captura la acció que l'usuari vol dur a terme
 	 * @see ActionListener
 	 */
 	
@@ -529,41 +558,14 @@ public class MainWindow extends JFrame {
 	
 	
 	/**
-	 * 
+	 * Getter de la String introduida al camp de cerca
 	 * @return
 	 */
 
 	public String getTypedSearch(){
 		return jtfSearch.getText();
 	}
-	/**
-	 * 
-	 * @return
-	 */
-	public String getTypedArtist(){
-		return jtfArtist.getText();
-	}
-	/**
-	 * 
-	 * @return
-	 */
-	public String getTypedAlbum(){
-		return jtfArtist.getText();
-	}
-	/**
-	 * 
-	 * @return
-	 */
-	public String getTypedGenre(){
-		return jtfGenre.getText();
-	}
-	/**
-	 * 
-	 * @return
-	 */
-	public String getTypedSongTitle(){
-		return jtfSongTitle.getText();
-	}
+	
 	
 	public void refreshUsers(LinkedList <Object[]> list){
 		while (tablePlaylist.getRowCount()!= 0){
@@ -584,8 +586,9 @@ public class MainWindow extends JFrame {
 	}
 
 	/**
-	 * 
+	 * Actualitza continuament la llista de playlists mostrada.
 	 * @param string
+	 * @see JTextArea
 	 */
 	public void refreshLists(String string){
 		jtaLists.setText(string);

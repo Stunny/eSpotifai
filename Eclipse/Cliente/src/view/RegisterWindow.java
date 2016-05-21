@@ -21,12 +21,33 @@ import javax.swing.border.TitledBorder;
  *
  */
 public class RegisterWindow extends JFrame{
+	/**
+	 * Area d'introducció de nom d'usuari
+	 * @see JTextField
+	 */
 	private JTextField jtfUsername; 
+	/**
+	 * Area d'introducció de contrassenya 
+	 * @see JTextField
+	 */
 	private JTextField jtfPassword; 
+	/**
+	 * Acciona el registre una vegada introduides les dades requerides.
+	 * @see JButton
+	 * @see jtfUsername 
+	 * @see jtfPassword
+	 * @see RegisterWindow
+	 */
 	private JButton jbRegister;
+	/**
+	 * Acciona el tornar enrere.
+	 * @see JButton
+	 */
 	private JButton jbAtras;
 	/**
 	 * Construeix la nova ventana d'usuari
+	 * @see Jpanel
+	 * @see JLabel
 	 */
 	public RegisterWindow(){
 		
