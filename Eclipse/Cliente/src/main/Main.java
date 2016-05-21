@@ -60,7 +60,6 @@ public class Main {
 				loginWindow.setVisible(true);
 				mainWindow.setVisible(false);
 				
-				
 
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(null, "Hi ha hagut un problema.", " ", JOptionPane.ERROR_MESSAGE);

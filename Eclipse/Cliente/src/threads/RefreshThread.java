@@ -21,7 +21,7 @@ public class RefreshThread extends Thread {
 		int i=0;
 		while (true) {
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(3000);
 				System.out.println("Dummy");
 				threadController.refreshSongList();
 				
