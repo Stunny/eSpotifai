@@ -2,7 +2,7 @@ package model;
 
 import java.util.LinkedList;
 /**
- * 
+ * Usuari
  * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
  * @version 1.0
  * @see Playlist
@@ -10,42 +10,43 @@ import java.util.LinkedList;
  */
 public class User {
 	/**
-	 * 
+	 * IDentificador de l'usuari
 	 */
 	private int id;
 	/**
-	 * 
+	 * Nom d'usuari
 	 */
 	private String username; 
 	/**
-	 * 
+	 * Data de registre de l'usuari
 	 */
 	private String registre;
 	/**
-	 * 
+	 * Data de l'ultim accés de l'usuari a l'aplicació
 	 */
 	private String lastAccess;
 	/**
-	 * 
+	 * Contrassenya a l'usuari
 	 */
 	private String password;
 	/**
-	 * 
+	 * Conjunt de playlist
 	 */
 	private LinkedList<Playlist> playlist; 
 	/**
-	 * 
+	 * Conjunt d'usuaris als que segueix l'usuari
 	 */
 	private LinkedList<User> following;
 	/**
-	 * 
-	 * @param id
-	 * @param username
-	 * @param registre
-	 * @param lastAccess
-	 * @param password
-	 * @param playlist
-	 * @param following
+	 * Construeix un usuari amb un conjunt de <i>playlists</i> inicialitzat.
+	 * @param id IDentificador de l'usuari
+	 * @param username Nom d'usuari
+	 * @param registre Data de registre de l'usuari
+	 * @param lastAccess Data de l'ultim accés de l'usuari a l'aplicació
+	 * @param password Contrassenya a l'usuari
+	 * @param playlist Conjunt de playlist
+	 * @param following Conjunt d'usuaris als que segueix l'usuari
+	 * @see Playlist
 	 */
 	public User(int id, String username, String registre, String lastAccess, String password, LinkedList<Playlist> playlist, LinkedList<User> following){
 		this.id = id;
@@ -59,9 +60,9 @@ public class User {
 	
 	
 	/**
-	 * 
-	 * @param id
-	 * @param username
+	 * Construeix un usuari amb la llista d'usuaris als que segueix buida. La llista de <i>playlists</i> també s'inicialitzarà buida.
+	 * @param id IDentificador de l'usuari
+	 * @param username Nom d'usuari
 	 */
 	public User(int id, String username) {
 		super();
@@ -71,12 +72,13 @@ public class User {
 		this.following = new LinkedList<User>();
 	}
 	/**
-	 * 
-	 * @param id
-	 * @param username
-	 * @param registre
-	 * @param lastAccess
-	 * @param password
+	 * Construeix un usuari amb data de registre i d'últim accés, la llista d'usuaris als que segueix buida, i la llista de <i>playlists</i> també s'inicialitzarà buida.
+	 * @param id IDentificador de l'usuari
+	 * @param username Nom d'usuari
+	 * @param registre Data de registre de l'usuari
+	 * @param lastAccess Data de l'ultim accés de l'usuari a l'aplicació
+	 * @param password Contrassenya a l'usuari
+	 * @see Playlist
 	 */
 	public User(int id, String username, String registre, String lastAccess, String password) {
 		super();
