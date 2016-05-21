@@ -52,7 +52,7 @@ public class ButtonController implements ActionListener {
 					if (AccessLogic.Login(loginWindow.getTypedUsername(), loginWindow.getTypedPassword())) {
 						mainWindow.setVisible(true);
 						loginWindow.setVisible(false);
-						Main.refreshThread = new RefreshThread();
+						Main.refreshThread = new RefreshThread(new ThreadController(mainWindow));
 						Main.refreshThread.start();
 						User = loginWindow.getTypedUsername();
 						
@@ -92,7 +92,7 @@ public class ButtonController implements ActionListener {
 						mainWindow.setVisible(true);
 						registerWindow.setVisible(false);
 						User = registerWindow.getTypedUsername();
-						Main.refreshThread = new RefreshThread();
+						Main.refreshThread = new RefreshThread(new ThreadController(mainWindow));
 						Main.refreshThread.start();
 					}
 				}

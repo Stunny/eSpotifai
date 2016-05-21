@@ -32,6 +32,7 @@ import javax.swing.table.DefaultTableModel;
 
 import controller.PopUpController;
 import model.CustomPlayer;
+import model.Song;
 
 /**
  * Clase de la ventana principal de l'aplicaci� Espotyfai.
@@ -743,7 +744,25 @@ public class MainWindow extends JFrame {
 		//jlTime.setText(String.valueOf(player.getMinutes() + ":" + player.getSeconds()));
 	}
 		
+	public void refreshSongs(LinkedList<Song> songsList) {
 		
+		LinkedList<Object[]> list = new LinkedList<Object[]>();
+		for (int i = 0; i < songsList.size(); i++){
+			Object[] objs = {songsList.get(i).getName(), songsList.get(i).getGenre(),
+							songsList.get(i).getAlbum(), songsList.get(i).getArtist(), 
+							songsList.get(i).getStars(), songsList.get(i).getReproductions()};
+			list.add(objs);
+		}
+		
+		while (tableMusic.getRowCount()!= 0){
+			tableMusic.removeRow(0);
+		}
+		for (int i = 0; i<list.size(); i++){
+			tableMusic.addRow(list.get(i));
+		}
+		
+		
+	}
 	
 	
 	

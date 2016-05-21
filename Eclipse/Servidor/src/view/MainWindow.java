@@ -178,7 +178,7 @@ public class MainWindow extends JFrame{
 	        }
 	    });
 		jtMusicList.setModel(tableModelMusic);
-		jtMusicList.setForeground(Color.BLACK);
+		//jtMusicList.setForeground(Color.BLACK);
 		//jtMusicList.setBackground(Color.DARK_GRAY);
 		Color myColor = Color.getHSBColor(0.51F,  0.93F,  0.5F);          
 		jtMusicList.setBackground(myColor);
