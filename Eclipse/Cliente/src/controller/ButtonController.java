@@ -119,7 +119,7 @@ public class ButtonController implements ActionListener {
 						Main.timeThread.start();
 						
 						User = loginWindow.getTypedUsername();
-						
+						mainWindow.setUser(User);
 						String d  = "HOLA";
 						mainWindow.refreshListsFollowing(d);
 						//System.out.println("User:" + User);

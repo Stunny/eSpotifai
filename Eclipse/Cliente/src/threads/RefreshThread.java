@@ -25,6 +25,7 @@ public class RefreshThread extends Thread {
 			try {
 				Thread.sleep(3000);
 				threadController.refreshSongList();
+				threadController.refresUserPlaylistList();
 				
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();
