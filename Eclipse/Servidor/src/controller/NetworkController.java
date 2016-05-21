@@ -60,7 +60,7 @@ public class NetworkController {
 		case "deleteSong":
 			response = ddbbconnection.deleteSong(Integer.parseInt(s[1]));
 			break;
-		/*case "deletePlay"
+		/*case "deletePlaylist"
 			response  = ddbbconnection.deletePlaylist(Integer.parseInt(s[1]));
 			break;
 		*/

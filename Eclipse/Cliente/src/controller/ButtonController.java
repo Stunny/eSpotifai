@@ -11,25 +11,80 @@ import main.Main;
 import model.AccessLogic;
 import network.ServerCommunication;
 import threads.RefreshThread;
+import threads.TimeThread;
 import view.LoginWindow;
 import view.MainWindow;
 import view.NewListDialog;
 import view.RegisterWindow;
 import view.SelectedUserWindow;
 import view.UserWindow;
-
+/**
+ * Controlador de botons de la vista
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see ActionListener
+ * @see view.loginWindow
+ * @see view.RegisterWindow
+ * @see view.MainWindow
+ * @see view.SelecteduserWindow
+ * @see controller.NetworkController
+ * @see model.User
+ * 
+ *
+ */
 public class ButtonController implements ActionListener {
+	/**
+	 * Pantalla de login
+	 */
 	private LoginWindow loginWindow;
+	/**
+	 * Pantalla principal
+	 * @see view.LoginWindow
+	 */
 	private MainWindow mainWindow;
+	/**
+	 * Comunicador amb el servidor
+	 * @see view.MainWindow
+	 */
 	private ServerCommunication serverCommunication;
+	/**
+	 * Pantalla d'usuari seleccionat
+	 * @see network.ServerCommunication
+	 */
 	private SelectedUserWindow selecteduserwindow;
+	/**
+	 * Pantalla de registre d'usuari
+	 * @see view.SelectedUserWindow
+	 */
 	private RegisterWindow registerWindow;
+	/**
+	 * Nom d'usuari
+	 * @see model.User
+	 */
 	private String User; 
+	/**
+	 * Controlador de xarxa
+	 * @see controller.NetworkController
+	 */
 	private NetworkController networkcontroller;
 	private UserWindow userwindow;
 
 
-	
+	/**
+	 * Construeix un controlador de botons.
+	 * @param loginWindow
+	 * @param registerWindow
+	 * @param mainWindow
+	 * @param selecteduserwindow
+	 * @param networkcontroller
+	 * @see javax.swing.JButton
+	 * @see view.loginWindow
+	 * @see view.RegisterWindow
+	 * @see view.MainWindow
+	 * @see view.SelecteduserWindow
+	 * @see controller.NetworkController
+	 * 
+	 */
 	public ButtonController(LoginWindow loginWindow, RegisterWindow registerWindow, MainWindow mainWindow, SelectedUserWindow selecteduserwindow, NetworkController networkcontroller, UserWindow userwindow){
 		
 		this.loginWindow = loginWindow;
@@ -40,7 +95,9 @@ public class ButtonController implements ActionListener {
 		this.userwindow = userwindow;
 
 	}
-	
+	/**
+	 *  
+	 */
 	public void actionPerformed(ActionEvent event){
 		
 		//PANTALLA ACCEDIR (ACCEDIR)
@@ -54,10 +111,15 @@ public class ButtonController implements ActionListener {
 					if (AccessLogic.Login(loginWindow.getTypedUsername(), loginWindow.getTypedPassword())) {
 						mainWindow.setVisible(true);
 						loginWindow.setVisible(false);
-						Main.refreshThread = new RefreshThread(new ThreadController(mainWindow));
-						Main.refreshThread.start();
-						User = loginWindow.getTypedUsername();
 						
+						ThreadController threadController = new ThreadController(mainWindow);
+						Main.refreshThread = new RefreshThread(threadController);
+						Main.refreshThread.start();
+						Main.timeThread = new TimeThread(threadController);
+						Main.timeThread.start();
+						
+						User = loginWindow.getTypedUsername();
+						mainWindow.setUser(User);
 						String d  = "HOLA";
 						mainWindow.refreshListsFollowing(d);
 						//System.out.println("User:" + User);
@@ -94,8 +156,11 @@ public class ButtonController implements ActionListener {
 						mainWindow.setVisible(true);
 						registerWindow.setVisible(false);
 						User = registerWindow.getTypedUsername();
-						Main.refreshThread = new RefreshThread(new ThreadController(mainWindow));
+						ThreadController threadController = new ThreadController(mainWindow);
+						Main.refreshThread = new RefreshThread(threadController);
 						Main.refreshThread.start();
+						Main.timeThread = new TimeThread(threadController);
+						Main.timeThread.start();
 					}
 				}
 			}
@@ -123,7 +188,7 @@ public class ButtonController implements ActionListener {
 			mainWindow.setVisible(false);
 			loginWindow.setVisible(true);
 			Main.refreshThread.interrupt();
-			
+			Main.timeThread.interrupt();
 		}
 		
 		//PANTALLA MAIN (CERCAR USUARI)

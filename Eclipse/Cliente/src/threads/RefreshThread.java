@@ -15,7 +15,8 @@ public class RefreshThread extends Thread {
 		super();
 		this.threadController = threadController;
 	}
-	
+
+
 	
 	public void run() {
 		
@@ -23,8 +24,8 @@ public class RefreshThread extends Thread {
 		while (true) {
 			try {
 				Thread.sleep(3000);
-				//System.out.println("Dummy");
 				threadController.refreshSongList();
+				threadController.refresUserPlaylistList();
 				
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();

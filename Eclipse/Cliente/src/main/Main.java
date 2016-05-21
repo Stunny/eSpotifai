@@ -13,6 +13,7 @@ import model.Playlist;
 import model.Song;
 import model.User;
 import threads.RefreshThread;
+import threads.TimeThread;
 import view.AddList;
 import view.LoginWindow;
 import view.MainWindow;
@@ -43,6 +44,7 @@ public class Main {
 	 */
 	
 	public static RefreshThread refreshThread;
+	public static TimeThread timeThread;
 	
 	public static void main(String[] args){
 		SwingUtilities.invokeLater(new Runnable() {

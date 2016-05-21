@@ -65,61 +65,49 @@ public class CustomPlayer implements BasicPlayerListener {
 		return this.seconds;
 	}
 	public int getMinutes(){
-		
+
 		return this.minutes;
 	}
-	
-	public String playPlayer(JSlider b)throws Exception{
+
+	public String playPlayer(JSlider b) throws Exception{
 		t = "No existe ningun archivo...";
-		if (todoOk){
+
+		if (todoOk) {
 			//si no se esta reproduciendo
 
-			if(!run){
+			if(!run){ //if stopped
 				player.play();
 				this.run = true;
 				t = "Reproduciendo";
-			//this.startAnimation(b);
-			//this.startSeconds(b);
-			}else{
-				//player.stop();
-				System.out.println("SON IGUALLLLLLLLLLLLs STOP2");
+
+			}else{ //if playing
+				player.play();
 			}
 		}
 		return t;
 	}
 
-	//public String AbrirMp3(String ruta) throws Exception{
+
 	public void abrirMp3(String ruta) throws Exception{
 
-		//URL url = new URL("file:/C:/Users/Marc/Downloads/Quentin Tarantino Soundtracks Discography - HTD 2015/Pulp Fiction (Collector's Edition) (2009) - Soundtrack/04. Let's Stay Together.mp3");
-		//try {
 
 		//si se esta reproduciendo un mp3, se detiene
 		if(todoOk){
 			this.stopPlayer();
 		}
 
-		//se coloca el nombre de la cancion en la variable file
-		//this.file = fileChooser.getSelectedFile().getName();
-		//try{
-		//se coloca a true
+
 		//se asigna el mp3 al reproductor
 		player.open(new File(ruta));
-		
 		this.nameSong = ruta;
 
-		/*		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}*/
+
 		this.todoOk = true;
-		//System.out.println(player.getMixerName());
-		//player.setPan(0.50);
 
-
-		//System.out.println("El get pan es : " + player.getPan());
 	}
+
+
+
 	public String getName(){
 
 		String[] itemsSong = nameSong.split("/");
@@ -128,23 +116,28 @@ public class CustomPlayer implements BasicPlayerListener {
 			finalName = itemsSong[i];
 		}
 		return finalName;
-		
-	}
-	public int getStatus(){
-		
-		return player.getStatus();
-	
-	}
-	
-	public void stopAnimation() {
-		//System.out.println("INDICO al temps que es cancela");
 
+	}
+	
+	
+	
+	public int getStatus(){
+		return player.getStatus();
+	}
+	
+	
+	
+
+	public void stopAnimation() {
+		
+		//System.out.println("INDICO al temps que es cancela");
 		tiempo.cancel();
 
 		//System.out.println("INDICO al task time temps que es cancela");
 		task.cancel();            
 	}
 
+	
 	public void pause() throws Exception {
 		//this.nameSong = "/PAUSE";
 		player.pause();
@@ -165,7 +158,7 @@ public class CustomPlayer implements BasicPlayerListener {
 			return false;
 		}
 	}
-	
+
 	public void stopPlayer() throws Exception {
 		player.stop();
 		this.todoOk = false;
@@ -190,24 +183,21 @@ public class CustomPlayer implements BasicPlayerListener {
 
 			String durationString = arg1.get("duration").toString();
 			durationSong = Integer.valueOf(durationString);
-
-
 		}
-		
-		//System.out.println("propiedades: " + arg1);
-		//System.out.println("time: " + durationSong);
-		//System.out.println("propiedades: " + arg1);
-		
 	}
+
 	
 	public int getFrameSlider(){
 		return frameSlider;
 	}
-	//Imaginad que queréis usarlo en un jSlider, solamente habría que fijar el máximo del slider en bytesLength y el valor actual en lo que diga progress
+	//Imaginad que queréis usarlo en un jSlider, solamente habría que fijar el máximo del
+	//slider en bytesLength y el valor actual en lo que diga progress
 
+	
 	/** * Necesario por implementar BasicPlayerListener. Según la documentación,
 	 * este método es llamado varias veces por segundo para informar del
 	 * progreso en la reproducción. */
+	
 	public void progress(int bytesread, long microseconds, byte[] pcmdata,  Map properties) {
 		float progressUpdate = (float)((bytesread* 1.0f)/ (bytesLength* 1.0f));
 		int progressNow = (int) (bytesLength*1.0f * progressUpdate);
@@ -236,41 +226,34 @@ public class CustomPlayer implements BasicPlayerListener {
 		//frameSlider = microdecondsSongActual * 100 / durationSong;
 		frameSlider = (int) (actualTime * 100 / songDuration);
 
-		/*System.out.println("microdecondsSongActual : "+ microdecondsSongActual);
-		System.out.println("durationSong : "+ durationSong);
 		
-		System.out.println("minutes : "+ minutes + "seconds" + seconds);
-		System.out.println("frameSlider : "+ frameSlider);
-		System.out.println("progressNow : "+ progressNow);
-		System.out.println(framesSong + "=" + framesSongActual);*/
 		if( progressUpdate == 1.0){
-			
+
 			try {
 				player.stop();
 				seconds = 0;
 				seconds = 0;
 				frameSlider = 0;
 				run = false;
-				
+
 			} catch (BasicPlayerException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		
+
 	}
-	
-	//PROCEDIMENTS OBLIGATORIS D'IMPLEMENTAR JA QUE ESTEM UTILITZANT una clase implementada de BasicPlayerListener
+
+	//PROCEDIMENTS OBLIGATORIS D'IMPLEMENTAR JA QUE ESTEM UTILITZANT
+	//una clase implementada de BasicPlayerListener
 	@Override
 	public void setController(BasicController arg0) {
 		// TODO Auto-generated method stub
-
 	}
-	
+
 
 	@Override
 	public void stateUpdated(BasicPlayerEvent arg0) {
 		// TODO Auto-generated method stub
-
 	}
 }

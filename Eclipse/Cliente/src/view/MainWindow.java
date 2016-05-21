@@ -32,6 +32,7 @@ import javax.swing.table.DefaultTableModel;
 
 import controller.PopUpController;
 import model.CustomPlayer;
+import model.Playlist;
 import model.Song;
 
 /**
@@ -91,6 +92,7 @@ public class MainWindow extends JFrame {
 	private int id = 0;
 	DefaultTableModel tableMusic;
 	DefaultTableModel tablePlaylist;
+	DefaultTableModel tableModelLists;
 	
 	private JMenuItem reproducir;
 	private JMenuItem anadir;
@@ -136,11 +138,13 @@ public class MainWindow extends JFrame {
 	private ListSelectionModel modelo1;
 	private ListSelectionModel modelo2;
 	
+
 	
-	DefaultTableModel tableModelLists;
+	//DefaultTableModel tableModelLists;
 	DefaultTableModel tableModelFollowedLists;
 	
-	
+	private String user;
+
 	//private ImageIcon temporalSong;
 	//=====
 	
@@ -665,10 +669,10 @@ public class MainWindow extends JFrame {
 				//String songLink = "C:/Users/Marc/Downloads/Quentin Tarantino Soundtracks Discography - HTD 2015/Pulp Fiction (Collector's Edition) (2009) - Soundtrack/14. Personality Goes a Long Way.mp3";
 				//String songLink = "C:/Users/Marc/Downloads/grillos05_mp3.mp3";
 				//String songLink = "/Users/elnacabotparedes/Music/iTunes/iTunes Media/Music/Martin Garrix/Unknown Album/01 Poison.mp3";
-				String songLink = "C:/Users/Marta/Music/Mystery Skulls - Money.mp3";
+				String songLink = "C:/Users/Marta/Music/Mystery_Skulls_-Magic.mp3";
 
 				customPlayer.abrirMp3(songLink);
-				state = customPlayer.play(jSlider);
+				state = customPlayer.playPlayer(jSlider);
 
 			}catch (Exception ex) {
 				System.out.println("Error: " + ex.getMessage());
@@ -791,6 +795,29 @@ public class MainWindow extends JFrame {
 		
 		
 	}
+	
+public void refreshPlaylists(LinkedList<Playlist> playlistList) {
+	LinkedList<Playlist> playlistListUser = new LinkedList<Playlist>();
+	
+	for (int i = 0; i<playlistList.size(); i++){
+		if (playlistList.get(i).getUsername().equals(user)){
+			playlistListUser.add(playlistList.get(i));
+		}
+	}
+		LinkedList<Object[]> list = new LinkedList<Object[]>();
+		for (int i = 0; i < playlistListUser.size(); i++){
+			Object[] objs = {playlistListUser.get(i).getId(), playlistListUser.get(i).getName()};
+			list.add(objs);
+		}
+		
+		while (tableModelLists.getRowCount()!= 0){
+			tableModelLists.removeRow(0);
+		}
+		for (int i = 0; i<list.size(); i++){
+			tableModelLists.addRow(list.get(i));
+		}
+		
+	}
 
 	public int getId() {
 		return id;
@@ -799,6 +826,10 @@ public class MainWindow extends JFrame {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public void setUser (String user){
+		this.user = user;
 	}
 	
 	

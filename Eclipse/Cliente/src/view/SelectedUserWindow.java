@@ -20,6 +20,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
@@ -43,14 +44,14 @@ public class SelectedUserWindow extends JFrame {
 	private JTextArea jtaPlaylist;
 	/**
 	 * Area de text on es mostra
-	 * @see JTextArea
+	 * @see JTextField
 	 */
-	private JTextArea jtafollow;
+	private JTextField jtffollow;
 	/**
 	 * Area de text on es mostra
-	 * @see JTextArea
+	 * @see JTextField
 	 */
-	private JTextArea jtaUsername;
+	private JTextField jtfUsername;
 	/**
 	 * 
 	 * @see JButton
@@ -81,11 +82,14 @@ public class SelectedUserWindow extends JFrame {
 		jpHead.setLayout(new GridLayout(1, 2));
 		JLabel jlUsername = new JLabel("Nickname:");
 		jlUsername.setForeground(Color.white);
-		jtaUsername = new JTextArea(); 
-		jtaUsername.setEditable(false);
-		jtaUsername.setBackground(CustomColor.icon);
+		jtfUsername = new JTextField(); 
+		jtfUsername.setEditable(false);
+		jtfUsername.setBackground(CustomColor.icon);
+		jtfUsername.setForeground(Color.white);
+		jtfUsername.setHorizontalAlignment(JTextField.CENTER);
+		jtfUsername.setEditable(false);
 		jpHead.add(jlUsername, BorderLayout.CENTER);
-		jpHead.add(jtaUsername, BorderLayout.CENTER);
+		jpHead.add(jtfUsername, BorderLayout.CENTER);
 		TitledBorder titledBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Usuario", javax.swing.border.
 			      TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.
 			      TitledBorder.DEFAULT_POSITION, null, java.awt.Color.white);
@@ -98,12 +102,15 @@ public class SelectedUserWindow extends JFrame {
 		jpSecond.setLayout(new GridLayout(2, 2));
 		JLabel jlfollowing = new JLabel("Estado");
 		jlfollowing.setForeground(Color.white);
-		jtafollow = new JTextArea();
-		jtafollow.setBackground(CustomColor.icon);
+		jtffollow = new JTextField();
+		jtffollow.setBackground(CustomColor.icon);
+		jtffollow.setForeground(Color.white);
+		jtffollow.setHorizontalAlignment(JTextField.CENTER);
+		jtffollow.setEditable(false);
 		jbFollow = new JButton("FOLLOW");
 		jbUnfollow = new JButton("UNFOLLOW");
 		jpSecond.add(jlfollowing, BorderLayout.CENTER);
-		jpSecond.add(jtafollow, BorderLayout.CENTER);
+		jpSecond.add(jtffollow, BorderLayout.CENTER);
 		jpSecond.add(jbFollow, BorderLayout.CENTER);
 		jpSecond.add(jbUnfollow, BorderLayout.CENTER);
 		jpSecond.setBackground(CustomColor.background);
@@ -136,7 +143,7 @@ public class SelectedUserWindow extends JFrame {
 				//all cells false
 				return false;
 			}
-
+			
 		}; 
 		
 		popupPlaylist = new JPopupMenu();
@@ -221,18 +228,18 @@ public class SelectedUserWindow extends JFrame {
 	/**
 	 * Actualitza continuament la llista de usuaris seguits
 	 * @param string 
-	 * @see JTextArea
+	 * @see JTextField
 	 */
 	public void refreshFollowing(String string){
-		jtafollow.setText(string);
+		jtffollow.setText(string);
 	}
 	/**
 	 * Actualitza la pagina d'usuari seleccionat en la seva totalitat.
 	 * @param string
-	 * @see JTextArea
+	 * @see JTextField
 	 */
 	public void refreshUser(String string){
-		jtaUsername.setText(string);
+		jtfUsername.setText(string);
 	}
 	
 }

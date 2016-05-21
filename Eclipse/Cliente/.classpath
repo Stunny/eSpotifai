@@ -10,9 +10,9 @@
 	<classpathentry kind="lib" path="libs/jogg-0.0.7.jar"/>
 	<classpathentry kind="lib" path="libs/jorbis-0.0.15.jar"/>
 	<classpathentry kind="lib" path="libs/jspeex0.9.7.jar"/>
-	<classpathentry kind="lib" path="libs/mp3spi1.9.4.jar"/>
 	<classpathentry kind="lib" path="libs/mysql-connector-java-5.1.18-bin.jar"/>
 	<classpathentry kind="lib" path="libs/tritonus_share.jar"/>
 	<classpathentry kind="lib" path="libs/vorbisspi1.0.2.jar"/>
+	<classpathentry kind="lib" path="libs/mp3spi1.9.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
