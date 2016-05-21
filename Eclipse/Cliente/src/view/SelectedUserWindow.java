@@ -25,6 +25,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+
+import controller.PopUpController;
 /**
  * Ventana de "perfil" de un usuari seleccionat
  * @author Elna Cabot, Miguel D�az, Marc Mill�n, Alejandro Vogel, Marta Zapatero
@@ -182,6 +184,12 @@ public class SelectedUserWindow extends JFrame {
 		
 	
 	}
+	
+	public void registerController1(PopUpController controller2){
+		visualitzar.addActionListener(controller2);
+		visualitzar.setActionCommand("SelectedUserWindow.visualitzarActionCommand");
+	}
+	
 	/**
 	 * 
 	 * @param string

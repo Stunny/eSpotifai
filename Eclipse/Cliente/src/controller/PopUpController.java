@@ -8,6 +8,8 @@ import javax.swing.JOptionPane;
 
 import view.AddList;
 import view.MainWindow;
+import view.PlaylistSearchUser;
+import view.SelectedUserWindow;
 import view.Vots;
 
 
@@ -15,11 +17,15 @@ public class PopUpController implements ActionListener{
 	private MainWindow mainwindow;
 	private AddList addlist;
 	private Vots vots;
+	private SelectedUserWindow selecteduserwindow;
+	private PlaylistSearchUser playlistsearchuser;
 		
-	public PopUpController(MainWindow mainwindow, AddList addlist, Vots vots){
+	public PopUpController(MainWindow mainwindow, AddList addlist, Vots vots, SelectedUserWindow selecteduserwindow,PlaylistSearchUser playlistsearchuser ){
 		this.mainwindow = mainwindow;
 		this.addlist = addlist;
 		this.vots = vots;
+		this.selecteduserwindow = selecteduserwindow;
+		this.playlistsearchuser = playlistsearchuser;
 	}
 
 
@@ -29,7 +35,6 @@ public class PopUpController implements ActionListener{
 			
 		}
 		if (event.getActionCommand().equals("MainWindow.anadirActionCommand")){
-			AddList addlist = new AddList();
 			addlist.setVisible(true);
 		}
 		if(event.getActionCommand().equals("MainWindow.delatePlaylistActionCommand")){
@@ -68,6 +73,13 @@ public class PopUpController implements ActionListener{
 			JOptionPane.showMessageDialog(null, "puta5");
 		}
 		
+		//-------------------------------------------
+		
+		
+		if( event.getActionCommand().equals("SelectedUserWindow.visualitzarActionCommand")){
+			System.out.println("hola");
+			playlistsearchuser.setVisible(true);
+		}
 		
 		
 		

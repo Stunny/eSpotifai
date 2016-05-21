@@ -13,6 +13,7 @@ import view.AddList;
 import view.LoginWindow;
 import view.MainWindow;
 import view.NewListDialog;
+import view.PlaylistSearchUser;
 import view.RegisterWindow;
 import view.SelectedUserWindow;
 import view.UserWindow;
@@ -39,12 +40,13 @@ public class Main {
 				SelectedUserWindow selecteduserwindow = new SelectedUserWindow();
 				NetworkController networkcontroller = new NetworkController();
 				Vots vots = new Vots();
+				PlaylistSearchUser playlistsearchuser = new PlaylistSearchUser();
 				//nwc.getUserList();
 				//nwc.getSongList();
 				
 				//Creamos el controlador
 				ButtonController controller = new ButtonController(loginWindow, registerWindow, mainWindow, selecteduserwindow, networkcontroller);
-				PopUpController controller2 = new PopUpController(mainWindow, addlist, vots);
+				PopUpController controller2 = new PopUpController(mainWindow, addlist, vots, selecteduserwindow, playlistsearchuser);
 				
 				//Juntamos las pantallas y el controlador
 				loginWindow.registerController(controller);
@@ -54,6 +56,7 @@ public class Main {
 				mainWindow.registerController1(controller2);
 				addlist.registerController1(controller2);
 				vots.registerController(controller2);
+				selecteduserwindow.registerController1(controller2);
 				
 				
 				//iniciamos la pantalla de login
