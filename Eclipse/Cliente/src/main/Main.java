@@ -77,6 +77,7 @@ public class Main {
 				vots.registerController(controller2);
 				userWindow.registerController1(controller2);
 				selecteduserwindow.registerController1(controller2);
+				playlistsearchuser.registerController(controller2);
 				
 				
 				

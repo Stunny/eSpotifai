@@ -80,13 +80,19 @@ public class PopUpController implements ActionListener{
 		// VISUALITZEM LES CANÇONS EN EL PANELL GRAN
 		if( event.getActionCommand().equals("SelectedUserWindow.visualitzarActionCommand")){
 			//System.out.println("hola");
-			playlistsearchuser.setVisible(true);
+			//playlistsearchuser.setVisible(true);
 		}
 		
 		// -----------------------------------------
 		
 		if(event.getActionCommand().equals("UserWindow.visualitzarActionCommand")){
 			playlistsearchuser.setVisible(true);
+			userwindow.setVisible(false);
+		}
+		
+		if(event.getActionCommand().equals("PlaylistSearchUser.beforeActionCommand")){
+			userwindow.setVisible(true);
+			playlistsearchuser.setVisible(false);
 		}
 		
 	}
