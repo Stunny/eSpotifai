@@ -1,54 +1,54 @@
 package model;
 /**
- * 
+ * Cançó
  * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
  * @version 1.0
- * 
+ * @see Playlist
  *
  */
 public class Song {
 	/**
-	 * 
+	 * IDentificador de la cançó.
 	 */
 	private int id;
 	/**
-	 * 
+	 * Nom de la cançó.
 	 */
 	private String name; 
 	/**
-	 * 
+	 * Génere al que pertany la cançó.
 	 */
 	private String genre; 
 	/**
-	 * 
+	 * Àlbum al que pertany la cançó.
 	 */
 	private String album; 
 	/**
-	 * 
+	 * Ruta de l'arxiu (.mp3) de la cançó
 	 */
 	private String location; 
 	/**
-	 * 
+	 * Nom de l'artista intèrpret de la cançó.
 	 */
 	private String artist; 
 	/**
-	 * 
+	 * Rating: Popularitat de la cançó.
 	 */
 	private int stars;
 	/**
-	 * 
+	 * Quantitat de reproduccions que té la cançó.
 	 */
 	private int reproductions;
 	/**
-	 * 
-	 * @param id
-	 * @param name
-	 * @param genre
-	 * @param album
-	 * @param location
-	 * @param artist
-	 * @param stars
-	 * @param reproductions
+	 * Construeix una nova cançó
+	 * @param id IDentificador de la cançó
+	 * @param name Nom de la cançó
+	 * @param genre Génere al que pertany la cançó
+	 * @param album Àlbum al que pertany la cançó
+	 * @param location Ruta de l'arxiu (.mp3) de la cançó
+	 * @param artist Nom de l'artista intèrpret de la cançó
+	 * @param stars Popularitat de la cançó
+	 * @param reproductions Quantitat de reproduccions que té la cançó
 	 */
 	public Song(int id, String name, String genre, String album, String location, String artist, int stars, int reproductions){
 		this.id = id;
@@ -61,113 +61,113 @@ public class Song {
 		this.reproductions = reproductions;
 	}
 	/**
-	 * 
-	 * @return
+	 * Getter del nom de la cançó
+	 * @return Song name
 	 */
 	public String getName() {
 		return name;
 	}
 	/**
-	 * 
-	 * @param name
+	 * Setter del nom de la cançó
+	 * @param name Song name
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 	/**
-	 * 
-	 * @return
+	 * Getter del gènere al que pertany la cançó. 
+	 * @return Song genre
 	 */
 	public String getGenre() {
 		return genre;
 	}
 	/**
-	 * 
-	 * @param genre
+	 * Setter del gènere al que pertany la cançó
+	 * @param genre Song genre
 	 */
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
 	/**
-	 * 
-	 * @return
+	 * Getter del nom de l'àlbum al que pertany la cançó.
+	 * @return Song album
 	 */
 	public String getAlbum() {
 		return album;
 	}
 	/**
-	 * 
-	 * @param album
+	 * Setter del nom del album al que pertany la cançó
+	 * @param album Song album
 	 */
 	public void setAlbum(String album) {
 		this.album = album;
 	}
 	/**
-	 * 
+	 * Getter de la ruta de l'arxiu (.mp3) de la cançó
 	 * @return
 	 */
 	public String getLocation() {
 		return location;
 	}
 	/**
-	 * 
+	 * Setter de la ruta de l'arxiu (.mp3) de la cançó
 	 * @param location
 	 */
 	public void setLocation(String location) {
 		this.location = location;
 	}
 	/**
-	 * 
-	 * @return
+	 * Getter del nom de l'artista intèrpret de la cançó
+	 * @return Song artist
 	 */
 	public String getArtist() {
 		return artist;
 	}
 	/**
-	 * 
-	 * @param artist
+	 * Setter de l'artista intèrpret de la cançó
+	 * @param artist Song Artist
 	 */
 	public void setArtist(String artist) {
 		this.artist = artist;
 	}
 	/**
-	 * 
-	 * @return
+	 * Getter de la popularitat (<i>rating</i>) de la cançó
+	 * @return Song rating
 	 */
 	public int getStars() {
 		return stars;
 	}
 	/**
-	 * 
-	 * @param stars
+	 * Setter de la popularitat (<i>rating</i>) de la cançó
+	 * @param stars Song rating
 	 */
 	public void setStars(int stars) {
 		this.stars = stars;
 	}
 	/**
-	 * 
-	 * @return
+	 * Getter de l'IDentificador de la cançó
+	 * @return Song ID
 	 */
 	public int getId() {
 		return id;
 	}
 	/**
-	 * 
-	 * @param id
+	 * Setter de l'IDentificador de la cançó
+	 * @param id Song ID
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 	/**
-	 * 
-	 * @return
+	 * Getter de la quantitat de reproduccions que té una cançó.
+	 * @return Reproduccions totals
 	 */
 	public int getReproductions() {
 		return reproductions;
 	}
 	/**
-	 * 
-	 * @param reproductions
+	 * Setter de la quantitat de reproduccions que té un cançó
+	 * @param reproductions Repreoduccions totals
 	 */
 	public void setReproductions(int reproductions) {
 		this.reproductions = reproductions;
