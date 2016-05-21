@@ -2,12 +2,15 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.net.MalformedURLException;
+import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
 
+import main.Main;
 import model.AccessLogic;
 import network.ServerCommunication;
+import threads.RefreshThread;
 import view.LoginWindow;
 import view.MainWindow;
 import view.NewListDialog;
@@ -22,14 +25,18 @@ public class ButtonController implements ActionListener {
 	private SelectedUserWindow selecteduserwindow;
 	private RegisterWindow registerWindow;
 	private String User; 
+	private NetworkController networkcontroller;
+
 
 	
-	public ButtonController(LoginWindow loginWindow, RegisterWindow registerWindow, MainWindow mainWindow, SelectedUserWindow selecteduserwindow){
+	public ButtonController(LoginWindow loginWindow, RegisterWindow registerWindow, MainWindow mainWindow, SelectedUserWindow selecteduserwindow, NetworkController networkcontroller){
 		
 		this.loginWindow = loginWindow;
 		this.mainWindow = mainWindow;
 		this.registerWindow= registerWindow;
 		this.selecteduserwindow = selecteduserwindow;
+		this.networkcontroller = networkcontroller;
+
 	}
 	
 	public void actionPerformed(ActionEvent event){
@@ -45,7 +52,12 @@ public class ButtonController implements ActionListener {
 					if (AccessLogic.Login(loginWindow.getTypedUsername(), loginWindow.getTypedPassword())) {
 						mainWindow.setVisible(true);
 						loginWindow.setVisible(false);
+						Main.refreshThread = new RefreshThread(new ThreadController(mainWindow));
+						Main.refreshThread.start();
 						User = loginWindow.getTypedUsername();
+						
+						String d  = "HOLA";
+						mainWindow.refreshListsFollowing(d);
 						//System.out.println("User:" + User);
 					}
 				}
@@ -58,19 +70,13 @@ public class ButtonController implements ActionListener {
 			loginWindow.setVisible(false);
 		}
 		
-		//PANTALLA REGISTRO TIRAR ATRÁS
+		//PANTALLA REGISTRO TIRAR ATRAS
 		if(event.getActionCommand().equals("RegisterWindow.atrasActionCommand")){
 			loginWindow.setVisible(true);
 			registerWindow.setVisible(false);
 		}
 		
 		
-		
-		//PANTALLA ACCEDIR
-		if(event.getActionCommand().equals("LoginWindow.registerActionCommand")){
-			registerWindow.setVisible(true);
-			loginWindow.setVisible(false);
-		}
 		
 		
 		//PANTALLA registerWindow
@@ -85,6 +91,9 @@ public class ButtonController implements ActionListener {
 					if (AccessLogic.Register(registerWindow.getTypedUsername(), registerWindow.getTypedPassword())) {
 						mainWindow.setVisible(true);
 						registerWindow.setVisible(false);
+						User = registerWindow.getTypedUsername();
+						Main.refreshThread = new RefreshThread(new ThreadController(mainWindow));
+						Main.refreshThread.start();
 					}
 				}
 			}
@@ -112,14 +121,16 @@ public class ButtonController implements ActionListener {
 		if(event.getActionCommand().equals("MainWindow.closeActionCommand")){
 			mainWindow.setVisible(false);
 			loginWindow.setVisible(true);
+			Main.refreshThread.interrupt();
 			
 		}
 		
 		//PANTALLA MAIN (CERCAR USUARI)
 		if(event.getActionCommand().equals("MainWindow.searchActionCommand")){
-			if(AccessLogic.searchUser(mainWindow.getTypedSearch())){
+			if(AccessLogic.searchUser(mainWindow.getTypedSearch(), networkcontroller)){
 				selecteduserwindow.refreshUser(mainWindow.getTypedSearch());
 				selecteduserwindow.setVisible(true);
+				
 				
 			}
 		}
@@ -138,6 +149,19 @@ public class ButtonController implements ActionListener {
 		}
 		
 		
+		//PANTALLA MAIN (PLAY SONG)
+		if(event.getActionCommand().equals("MainWindow.playActionCommand")) {
+			try {
+				mainWindow.goMP3();
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		
 		
 		

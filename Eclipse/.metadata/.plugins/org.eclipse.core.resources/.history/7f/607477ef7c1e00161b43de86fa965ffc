@@ -1,0 +1,2141 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/c7/409430c6d91d00161a03a4d5b0fb7de0
+package view;
+
+import java.awt.Color;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.LinkedList;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSlider;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
+//import javax.swing.JTextArea;
+import javax.swing.table.DefaultTableModel;
+
+import model.User;
+import controller.ButtonsController;
+
+public class MainWindow extends JFrame{
+
+	private JTabbedPane jtpTabs;
+	private JPanel jpMusic;
+	private JPanel jpUsers;
+	private JPanel jpPageEnd;
+	private JPanel jpButtons;
+	private JPanel jpPlayer;
+	private JPanel jpPlayerButtons;
+
+	private GridLayout glButtons;
+	private GridLayout glPlayerButtons;
+	private GridLayout glPageEnd;
+	private BorderLayout blMusic;
+	private BorderLayout blPlayer;
+
+	//private JTextArea jtListOfSongs;
+	private JScrollPane jspMusicList;
+	private JSlider jSlider;
+	
+	private JButton jbAdd;
+	private JButton jbStatistics;
+	private JButton jbPlay;
+	private JButton jbPrevious;
+	private JButton jbNext;
+
+	private ImageIcon iiNext1;
+	private ImageIcon iiNext2;
+	private ImageIcon iiNext3;
+
+	private ImageIcon iiPlay1;
+	private ImageIcon iiPlay2;
+	private ImageIcon iiPlay3;
+
+	//private JLabel jlTemporalSong;
+	private JLabel jlTime;
+	//private JLabel SongState;
+	private JLabel jlSongName;
+
+	private ImageIcon iiPrevious1;
+	private ImageIcon iiPrevious2;
+	private ImageIcon iiPrevious3;
+	//private ImageIcon temporalSong;
+	
+	private PopUpMenu windowAux = new PopUpMenu();
+	
+	DefaultTableModel tableModelUser;
+	DefaultTableModel tableModelMusic;
+
+	public MainWindow() {
+
+		//Creem el conjunt de pestanyes
+		jtpTabs = new JTabbedPane();
+
+		//Creem el panell per montar l'estructura de l'apartat "Music"
+		jpMusic = new JPanel();
+
+		//Estructura de panell de tipus BorderLayout
+		blMusic = new BorderLayout();
+		jpMusic.setLayout(blMusic);
+
+
+		//Creo el panell Scroll de la llista de cançons
+		//table
+		//hardcodeo de columnas y datos 
+		String[] jtMusicColumns = {"Id","Name", "Genre", "Album", "Artist", "Location", "Stars", "Reproducciones"};
+		Object[][] jtMusicData = {};
+		//se crea la tabla
+		JTable jtMusicList = new JTable(jtMusicData, jtMusicColumns);
+
+		//se hace que los datos no sean editables
+		tableModelMusic = new DefaultTableModel(jtMusicData, jtMusicColumns) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				//all cells false
+				return false;
+			}
+		}; 
+		jtMusicList.setModel(tableModelMusic);
+		jtMusicList.setForeground(Color.BLACK);
+		//jtMusicList.setBackground(Color.DARK_GRAY);
+		Color myColor = Color.getHSBColor(0.51F,  0.93F,  0.5F);          
+		jtMusicList.setBackground(myColor);
+	
+		//Li assigno a aquesta area de text que pugui fer scroll
+		//jspMusicList = new JScrollPane(jtListOfSongs);
+		jspMusicList = new JScrollPane(jtMusicList);
+
+		//Asigno un titul al apartat de la llista de cançons
+		jspMusicList.setBorder(BorderFactory.createTitledBorder("List of songs"));
+		
+		//Introdueixo aquest apartat/Panell a la primera fila del panell
+		jpMusic.add(jspMusicList, BorderLayout.CENTER);
+
+		//Creem el subpanell per montar l'estructura del apartat "butons  - ADD i estadistiques - i el reproductor "
+		jpPageEnd = new JPanel();
+		jpPageEnd.setPreferredSize(new Dimension(400,90));			
+
+		//Estructura de panell de 2 files per 1 columna
+		glPageEnd = new GridLayout(2,1);
+		jpPageEnd.setLayout(glPageEnd);
+
+		//Estructura de subsubpanell només de botons
+		jpButtons = new JPanel();
+		glButtons = new GridLayout(1,2);
+		jpButtons.setLayout(glButtons);	
+		
+		
+		//Creo botó de afegir canço "Add"
+		jbAdd = new JButton("Add");
+		jbAdd.setHorizontalAlignment(JButton.CENTER);
+		jpButtons.add(jbAdd);
+
+		//Creo botó per veure les estadistiques de les millors cançons "Top 10 songs"
+		jbStatistics = new JButton("Top 10 songs");
+		jbStatistics.setHorizontalAlignment(JButton.CENTER);
+		jpButtons.add(jbStatistics);
+		
+		jpPageEnd.add(jpButtons);
+
+		/*
+		 * AQUI S'HA DE CREAR EL REPRODUCTOR !!
+		 */
+		//Estructura de subsubpanell només de botons del reproductor
+		jpPlayer = new JPanel();
+		blPlayer = new BorderLayout();
+		jpPlayer.setLayout(blPlayer);
+
+		jbPlay = new JButton();
+
+		jbPrevious = new JButton();
+
+		jpPlayerButtons = new JPanel();
+		glPlayerButtons = new GridLayout(1,3);
+		jpPlayerButtons.setLayout(glPlayerButtons);
+
+		jbNext = new JButton();
+
+		iiPlay1 = new ImageIcon("src/imagenes/playButn1.png");
+		iiPlay2 = new ImageIcon("src/imagenes/playButn2.png");
+		iiPlay3 = new ImageIcon("src/imagenes/playButn3.png");
+
+		iiPrevious1 = new ImageIcon("src/imagenes/rightbutn1.png");
+		iiPrevious2 = new ImageIcon("src/imagenes/rightbutn2.png");
+		iiPrevious3 = new ImageIcon("src/imagenes/rightbutn3.png");
+
+		iiNext1 = new ImageIcon("src/imagenes/leftbutn1.png");
+		iiNext2 = new ImageIcon("src/imagenes/leftbutn2.png");
+		iiNext3 = new ImageIcon("src/imagenes/leftbutn3.png");
+
+		//temporalSong = new ImageIcon("src/imagenes/secuencialSong.png");
+		//jlTemporalSong = new JLabel(temporalSong);
+		//jlTemporalSong.setPreferredSize(new Dimension(700,10));
+
+		jlTime = new JLabel();
+		jlTime.setHorizontalAlignment(JLabel.CENTER);
+		jlTime.setText(" 00:00");
+
+		ConfigurationButton(jbPlay, iiPlay1, iiPlay2, iiPlay3);
+		ConfigurationButton(jbPrevious, iiPrevious1, iiPrevious2, iiPrevious3);
+		ConfigurationButton(jbNext, iiNext1, iiNext2, iiNext3);
+
+		jpPlayerButtons.add(jbPrevious);
+		jpPlayerButtons.add(jbPlay);
+		jpPlayerButtons.add(jbNext);
+		
+		//Creem el la linia temporal de la cançó
+		jSlider = new JSlider();
+		jSlider.setValue(0);
+		jSlider.setPreferredSize(new Dimension(700, 20));
+
+		//Creem etiqueta de la cançó que está sonant y de l'estat d'aquesta
+		jlSongName = new JLabel();
+		jlSongName.setForeground(new Color(0, 0, 0));
+		jlSongName.setText("          Lalalla Song" + "                      --> STOPED <--");
+		
+		jpPlayer.add(jlSongName, BorderLayout.NORTH);
+		jpPlayer.add(jpPlayerButtons, BorderLayout.WEST);
+		//jpPlayer.add(jlTemporalSong, BorderLayout.CENTER);
+		jpPlayer.add(jSlider, BorderLayout.CENTER);
+		jpPlayer.add(jlTime, BorderLayout.EAST);
+
+		jpPageEnd.add(jpPlayer);
+
+		jpMusic.add(jpPageEnd, BorderLayout.PAGE_END);
+
+
+		//TAB USERS
+
+		//table
+		//hardcodeo de columnas y datos 
+		String[] jtUserColumns = {"id","Username", "Register date", "Last login", "Song lists", "Songs", "Followers", "Following"};
+		Object[][] jtUserData = {};
+		//se crea la tabla
+		JTable jtUser = new JTable(jtUserData, jtUserColumns);
+		
+		//se hace que los datos no sean editables
+		tableModelUser = new DefaultTableModel(jtUserData, jtUserColumns) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				//all cells false
+				return false;
+			}
+			
+		}; 
+
+		
+		jtUser.addMouseListener(new MouseAdapter() {
+	        public void mousePressed(MouseEvent e) {
+	            if ( SwingUtilities.isLeftMouseButton(e)) {
+	               
+	            } else {
+	                 if ( SwingUtilities.isRightMouseButton(e)) {
+	                    Point p = e.getPoint();
+	                    int rowNumber = jtUser.rowAtPoint( p );
+	                    ListSelectionModel modelo = jtUser.getSelectionModel();
+	                    modelo.setSelectionInterval( rowNumber, rowNumber );
+	            		 String valor = String.valueOf(jtUser.getValueAt(rowNumber, 0));
+	            		 System.out.println(valor);
+	            		//windowAux.show(e.getComponent(), e.getX(), e.getY()); 
+	            		//esto le dice donde se tiene que mostrar
+	            		windowAux.setLocation(e.getX(), e.getY());
+	            		windowAux.setVisible(true);
+	            		 //ventana emergente 
+	                }
+	            }
+	        }
+	    });
+
+		jtUser.setModel(tableModelUser);
+		jtUser.setFocusable(false);
+	
+		
+		JScrollPane jspUsers = new JScrollPane(jtUser);
+		jpUsers = new JPanel();
+		jpUsers.add(jspUsers, BorderLayout.CENTER);
+
+		//Incloeixo les pestañes a la finestra
+		jtpTabs.addTab("Music", jpMusic);
+		jtpTabs.addTab("Users", jspUsers);
+
+		this.getContentPane().add(jtpTabs, BorderLayout.CENTER);
+		this.setResizable(true);
+		this.setSize(new Dimension(1600,870));
+		this.setTitle("eSpotifai - Server Management");
+		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+	}
+	public void ConfigurationButton(JButton boton,ImageIcon imatge1,ImageIcon imatge2,ImageIcon imatge3){
+
+		//Definim que l'icon tindrá una imatge assignada per defecte
+		boton.setIcon(imatge1);
+
+		//Configurem que el botó no tingui marc 
+		boton.setBorderPainted(false);
+
+		//Per a que no es pinti el botó
+		boton.setContentAreaFilled(false);
+		boton.setFocusable(false);
+		boton.setRolloverEnabled(true);
+
+		//Definim l'icon que es mostrará quan l'usuari estigui sobre el botó 
+		boton.setRolloverIcon(imatge2);
+
+		//Definim l'icon que es mostrará quan l'usuari premi el botó 
+		boton.setPressedIcon(imatge3);
+
+	}
+
+	public void registerController(ButtonsController controller) {
+		jbAdd.addActionListener(controller);
+		jbAdd.setActionCommand("MainWindow.addActionCommand");
+
+		jbStatistics.addActionListener(controller);
+		jbStatistics.setActionCommand("MainWindow.statisticsActionCommand");	
+		
+		
+	}
+	
+	public void refreshUsers(LinkedList <Object[]> list){
+		while (tableModelUser.getRowCount()!= 0){
+			tableModelUser.removeRow(0);
+		}
+		for (int i = 0; i<list.size(); i++){
+			tableModelUser.addRow(list.get(i));
+		}
+	}
+	public void refreshSongs(LinkedList<Object[]> list) {
+		while (tableModelMusic.getRowCount()!= 0){
+			tableModelMusic.removeRow(0);
+		}
+		for (int i = 0; i<list.size(); i++){
+			tableModelMusic.addRow(list.get(i));
+		}
+	}
+}
+=======
+=======
+<<<<<<< HEAD:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/7f/607477ef7c1e00161b43de86fa965ffc
+>>>>>>> fc06ce784d2430f51a70eff376f51b92ce7a3698
+package view;
+
+import java.awt.Color;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.LinkedList;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
+import javax.swing.JSlider;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
+import javax.swing.border.BevelBorder;
+//import javax.swing.JTextArea;
+import javax.swing.table.DefaultTableModel;
+
+import controller.ButtonsController;
+import controller.PopUpController;
+
+public class MainWindow extends JFrame{
+
+	private JTabbedPane jtpTabs;
+	private JPanel jpMusic;
+	private JTable jpUsers;
+	private JPanel jpPageEnd;
+	private JPanel jpButtons;
+	private JPanel jpPlayer;
+	private JPanel jpPlayerButtons;
+
+	private GridLayout glButtons;
+	private GridLayout glPlayerButtons;
+	private GridLayout glPageEnd;
+	private BorderLayout blMusic;
+	private BorderLayout blPlayer;
+
+	//private JTextArea jtListOfSongs;
+	private JScrollPane jspMusicList;
+	private JSlider jSlider;
+	
+	private JButton jbAdd;
+	private JButton jbStatistics;
+	private JButton jbPlay;
+	private JButton jbPrevious;
+	private JButton jbNext;
+
+	private ImageIcon iiNext1;
+	private ImageIcon iiNext2;
+	private ImageIcon iiNext3;
+
+	private ImageIcon iiPlay1;
+	private ImageIcon iiPlay2;
+	private ImageIcon iiPlay3;
+
+	//private JLabel jlTemporalSong;
+	private JLabel jlTime;
+	//private JLabel SongState;
+	private JLabel jlSongName;
+
+	private ImageIcon iiPrevious1;
+	private ImageIcon iiPrevious2;
+	private ImageIcon iiPrevious3;
+	//private ImageIcon temporalSong;
+	
+	DefaultTableModel tableModelUser;
+	DefaultTableModel tableModelMusic;
+	
+	private JMenuItem seguidores;
+	private JMenuItem seguidos;
+	private JMenuItem listas;
+	private JMenuItem eliminar;
+	
+	private int id = 0;
+	
+
+	 public JPopupMenu popup;
+	 public JPopupMenu popup2;
+	
+	public MainWindow() {
+
+		//Creem el conjunt de pestanyes
+		jtpTabs = new JTabbedPane();
+
+		//Creem el panell per montar l'estructura de l'apartat "Music"
+		jpMusic = new JPanel();
+
+		//Estructura de panell de tipus BorderLayout
+		blMusic = new BorderLayout();
+		jpMusic.setLayout(blMusic);
+
+
+		//Creo el panell Scroll de la llista de cançons
+		//table
+		//hardcodeo de columnas y datos 
+		String[] jtMusicColumns = {"Id","Name", "Genre", "Album", "Artist", "Location", "Stars", "Reproducciones"};
+		Object[][] jtMusicData = {};
+		//se crea la tabla
+		JTable jtMusicList = new JTable(jtMusicData, jtMusicColumns);
+
+		//se hace que los datos no sean editables
+		tableModelMusic = new DefaultTableModel(jtMusicData, jtMusicColumns) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				//all cells false
+				return false;
+			}
+		}; 
+		
+		jtMusicList.addMouseListener(new MouseAdapter() {
+	        public void mousePressed(MouseEvent e) {
+	            if ( SwingUtilities.isLeftMouseButton(e)) {
+	            	popup2.setVisible(false);
+	            } else {
+	                 if ( SwingUtilities.isRightMouseButton(e)) {
+	                    Point p = e.getPoint();
+	                    int rowNumber = jtMusicList.rowAtPoint( p );
+	                    ListSelectionModel modelo = jtMusicList.getSelectionModel();
+	                    modelo.setSelectionInterval( rowNumber, rowNumber );
+	            		 id = Integer.parseInt(String.valueOf( jtMusicList.getValueAt(rowNumber, 0)));
+	            		 popup2.show(jtpTabs,  e.getX(), e.getY());
+	            		 
+	                }
+	            }
+	        }
+	    });
+		jtMusicList.setModel(tableModelMusic);
+		jtMusicList.setForeground(Color.BLACK);
+		//jtMusicList.setBackground(Color.DARK_GRAY);
+		Color myColor = Color.getHSBColor(0.51F,  0.93F,  0.5F);          
+		jtMusicList.setBackground(myColor);
+	
+		//Li assigno a aquesta area de text que pugui fer scroll
+		//jspMusicList = new JScrollPane(jtListOfSongs);
+		jspMusicList = new JScrollPane(jtMusicList);
+
+		//Asigno un titul al apartat de la llista de cançons
+		jspMusicList.setBorder(BorderFactory.createTitledBorder("List of songs"));
+		
+		//Introdueixo aquest apartat/Panell a la primera fila del panell
+		jpMusic.add(jspMusicList, BorderLayout.CENTER);
+
+		//Creem el subpanell per montar l'estructura del apartat "butons  - ADD i estadistiques - i el reproductor "
+		jpPageEnd = new JPanel();
+		jpPageEnd.setPreferredSize(new Dimension(400,90));			
+
+		//Estructura de panell de 2 files per 1 columna
+		glPageEnd = new GridLayout(2,1);
+		jpPageEnd.setLayout(glPageEnd);
+
+		//Estructura de subsubpanell només de botons
+		jpButtons = new JPanel();
+		glButtons = new GridLayout(1,2);
+		jpButtons.setLayout(glButtons);	
+		
+		
+		//Creo botó de afegir canço "Add"
+		jbAdd = new JButton("Add");
+		jbAdd.setHorizontalAlignment(JButton.CENTER);
+		jpButtons.add(jbAdd);
+
+		//Creo botó per veure les estadistiques de les millors cançons "Top 10 songs"
+		jbStatistics = new JButton("Top 10 songs");
+		jbStatistics.setHorizontalAlignment(JButton.CENTER);
+		jpButtons.add(jbStatistics);
+		
+		jpPageEnd.add(jpButtons);
+
+		/*
+		 * AQUI S'HA DE CREAR EL REPRODUCTOR !!
+		 */
+		//Estructura de subsubpanell només de botons del reproductor
+		jpPlayer = new JPanel();
+		blPlayer = new BorderLayout();
+		jpPlayer.setLayout(blPlayer);
+
+		jbPlay = new JButton();
+
+		jbPrevious = new JButton();
+
+		jpPlayerButtons = new JPanel();
+		glPlayerButtons = new GridLayout(1,3);
+		jpPlayerButtons.setLayout(glPlayerButtons);
+
+		jbNext = new JButton();
+
+		iiPlay1 = new ImageIcon("src/imagenes/playButn1.png");
+		iiPlay2 = new ImageIcon("src/imagenes/playButn2.png");
+		iiPlay3 = new ImageIcon("src/imagenes/playButn3.png");
+
+		iiPrevious1 = new ImageIcon("src/imagenes/rightbutn1.png");
+		iiPrevious2 = new ImageIcon("src/imagenes/rightbutn2.png");
+		iiPrevious3 = new ImageIcon("src/imagenes/rightbutn3.png");
+
+		iiNext1 = new ImageIcon("src/imagenes/leftbutn1.png");
+		iiNext2 = new ImageIcon("src/imagenes/leftbutn2.png");
+		iiNext3 = new ImageIcon("src/imagenes/leftbutn3.png");
+
+		//temporalSong = new ImageIcon("src/imagenes/secuencialSong.png");
+		//jlTemporalSong = new JLabel(temporalSong);
+		//jlTemporalSong.setPreferredSize(new Dimension(700,10));
+
+		jlTime = new JLabel();
+		jlTime.setHorizontalAlignment(JLabel.CENTER);
+		jlTime.setText(" 00:00");
+
+		ConfigurationButton(jbPlay, iiPlay1, iiPlay2, iiPlay3);
+		ConfigurationButton(jbPrevious, iiPrevious1, iiPrevious2, iiPrevious3);
+		ConfigurationButton(jbNext, iiNext1, iiNext2, iiNext3);
+
+		jpPlayerButtons.add(jbPrevious);
+		jpPlayerButtons.add(jbPlay);
+		jpPlayerButtons.add(jbNext);
+		
+		//Creem el la linia temporal de la cançó
+		jSlider = new JSlider();
+		jSlider.setValue(0);
+		jSlider.setPreferredSize(new Dimension(700, 20));
+
+		//Creem etiqueta de la cançó que está sonant y de l'estat d'aquesta
+		jlSongName = new JLabel();
+		jlSongName.setForeground(new Color(0, 0, 0));
+		jlSongName.setText("          Lalalla Song" + "                      --> STOPED <--");
+		
+		jpPlayer.add(jlSongName, BorderLayout.NORTH);
+		jpPlayer.add(jpPlayerButtons, BorderLayout.WEST);
+		//jpPlayer.add(jlTemporalSong, BorderLayout.CENTER);
+		jpPlayer.add(jSlider, BorderLayout.CENTER);
+		jpPlayer.add(jlTime, BorderLayout.EAST);
+
+		jpPageEnd.add(jpPlayer);
+
+		jpMusic.add(jpPageEnd, BorderLayout.PAGE_END);
+
+
+		//TAB USERS
+
+		//table
+		//hardcodeo de columnas y datos 
+		String[] jtUserColumns = {"id","Username", "Register date", "Last login", "Song lists", "Songs", "Followers", "Following"};
+		Object[][] jtUserData = {};
+		//se crea la tabla
+		JTable jtUser = new JTable(jtUserData, jtUserColumns);
+		
+		//se hace que los datos no sean editables
+		tableModelUser = new DefaultTableModel(jtUserData, jtUserColumns) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				//all cells false
+				return false;
+			}
+			
+		}; 
+		
+		popup = new JPopupMenu();
+		popup.add(seguidores = new JMenuItem("Mostrar seguidores", new ImageIcon("1.gif")));
+		seguidores.setHorizontalTextPosition(JMenuItem.RIGHT);
+		    
+		popup.add(seguidos = new JMenuItem("Mostrar seguidos", new ImageIcon("2.gif")));
+		seguidos.setHorizontalTextPosition(JMenuItem.RIGHT);
+		   
+		popup.add(listas = new JMenuItem("Mostrar listas de reproduccion", new ImageIcon("3.gif")));
+		listas.setHorizontalTextPosition(JMenuItem.RIGHT);
+		    
+		popup.addSeparator();
+		popup.add(eliminar = new JMenuItem("Eliminar "));
+		    
+
+		popup.setLabel("Justification");
+		popup.setBorder(new BevelBorder(BevelBorder.RAISED));
+		    
+		jtUser.addMouseListener(new MouseAdapter() {
+	        public void mousePressed(MouseEvent e) {
+	            if ( SwingUtilities.isLeftMouseButton(e)) {
+	            	popup.setVisible(false);
+	            } else {
+	                 if ( SwingUtilities.isRightMouseButton(e)) {
+	                    Point p = e.getPoint();
+	                    int rowNumber = jtUser.rowAtPoint( p );
+	                    ListSelectionModel modelo = jtUser.getSelectionModel();
+	                    modelo.setSelectionInterval( rowNumber, rowNumber );
+	            		 id = Integer.parseInt(String.valueOf( jtUser.getValueAt(rowNumber, 0)));
+	            		 popup.show(jtpTabs,  e.getX(), e.getY());
+	            		 
+	                }
+	            }
+	        }
+	    });
+		
+		jtUser.setModel(tableModelUser);
+		jtUser.setFocusable(false);
+
+		JScrollPane jspUsers = new JScrollPane(jtUser);
+		jpUsers = new JTable();
+		jpUsers.add(jspUsers, BorderLayout.CENTER);
+	
+		 jspUsers.addMouseListener(new MouseAdapter() {
+		        public void mousePressed(MouseEvent e) {
+		            if ( SwingUtilities.isLeftMouseButton(e)) {
+		            	popup.setVisible(false);
+		            }
+		        }
+		  });
+		 
+		//jpUsers.add(popup = new PopupMenu());
+		//Incloeixo les pestañes a la finestra
+		jtpTabs.addTab("Music", jpMusic);
+		jtpTabs.addTab("Users", jspUsers);
+		jtpTabs.addMouseListener(new MouseAdapter() {
+	        public void mousePressed(MouseEvent e) {
+	            if ( SwingUtilities.isLeftMouseButton(e)) {
+	            	popup.setVisible(false);
+	            }
+	        }
+	    });
+		this.getContentPane().add(jtpTabs, BorderLayout.CENTER);
+	
+		this.setResizable(true);
+		this.setSize(new Dimension(1600,870));
+		this.setTitle("eSpotifai - Server Management");
+		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+	}
+	public void ConfigurationButton(JButton boton,ImageIcon imatge1,ImageIcon imatge2,ImageIcon imatge3){
+
+		//Definim que l'icon tindrá una imatge assignada per defecte
+		boton.setIcon(imatge1);
+
+		//Configurem que el botó no tingui marc 
+		boton.setBorderPainted(false);
+
+		//Per a que no es pinti el botó
+		boton.setContentAreaFilled(false);
+		boton.setFocusable(false);
+		boton.setRolloverEnabled(true);
+
+		//Definim l'icon que es mostrará quan l'usuari estigui sobre el botó 
+		boton.setRolloverIcon(imatge2);
+
+		//Definim l'icon que es mostrará quan l'usuari premi el botó 
+		boton.setPressedIcon(imatge3);
+
+	}
+
+	public void registerController(ButtonsController controller, PopUpController controller2) {
+		jbAdd.addActionListener(controller);
+		jbAdd.setActionCommand("MainWindow.addActionCommand");
+
+		jbStatistics.addActionListener(controller);
+		jbStatistics.setActionCommand("MainWindow.statisticsActionCommand");	
+	
+		seguidores.addActionListener(controller2);
+		seguidores.setActionCommand("MainWindow.seguidoresActionCommand");
+		
+		seguidos.addActionListener(controller2);
+		seguidos.setActionCommand("MainWindow.seguidosActionCommand");
+		
+		listas.addActionListener(controller2);
+		listas.setActionCommand("MainWindow.listasActionCommand");
+		
+		eliminar.addActionListener(controller2);
+		eliminar.setActionCommand("MainWindow.eliminarActionCommand");
+		    
+	}
+	
+	
+	public void refreshUsers(LinkedList <Object[]> list){
+		while (tableModelUser.getRowCount()!= 0){
+			tableModelUser.removeRow(0);
+		}
+		for (int i = 0; i<list.size(); i++){
+			tableModelUser.addRow(list.get(i));
+		}
+	}
+	public void refreshSongs(LinkedList<Object[]> list) {
+		while (tableModelMusic.getRowCount()!= 0){
+			tableModelMusic.removeRow(0);
+		}
+		for (int i = 0; i<list.size(); i++){
+			tableModelMusic.addRow(list.get(i));
+		}
+	}
+	
+	public int getId (){
+		return id;
+	}
+}
+<<<<<<< HEAD
+>>>>>>> 1b323e92e95a47b6f0bdd13f3bcde9c2fa2dbcaa:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/7f/607477ef7c1e00161b43de86fa965ffc
+=======
+=======
+package view;
+
+import java.awt.Color;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.LinkedList;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSlider;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
+//import javax.swing.JTextArea;
+import javax.swing.table.DefaultTableModel;
+
+import model.User;
+import controller.ButtonsController;
+
+public class MainWindow extends JFrame{
+
+	private JTabbedPane jtpTabs;
+	private JPanel jpMusic;
+	private JPanel jpUsers;
+	private JPanel jpPageEnd;
+	private JPanel jpButtons;
+	private JPanel jpPlayer;
+	private JPanel jpPlayerButtons;
+
+	private GridLayout glButtons;
+	private GridLayout glPlayerButtons;
+	private GridLayout glPageEnd;
+	private BorderLayout blMusic;
+	private BorderLayout blPlayer;
+
+	//private JTextArea jtListOfSongs;
+	private JScrollPane jspMusicList;
+	private JSlider jSlider;
+	
+	private JButton jbAdd;
+	private JButton jbStatistics;
+	private JButton jbPlay;
+	private JButton jbPrevious;
+	private JButton jbNext;
+
+	private ImageIcon iiNext1;
+	private ImageIcon iiNext2;
+	private ImageIcon iiNext3;
+
+	private ImageIcon iiPlay1;
+	private ImageIcon iiPlay2;
+	private ImageIcon iiPlay3;
+
+	//private JLabel jlTemporalSong;
+	private JLabel jlTime;
+	//private JLabel SongState;
+	private JLabel jlSongName;
+
+	private ImageIcon iiPrevious1;
+	private ImageIcon iiPrevious2;
+	private ImageIcon iiPrevious3;
+	//private ImageIcon temporalSong;
+	
+	private PopUpMenuEdit windowAux = new PopUpMenuEdit();
+	
+	DefaultTableModel tableModelUser;
+	DefaultTableModel tableModelMusic;
+
+	public MainWindow() {
+
+		//Creem el conjunt de pestanyes
+		jtpTabs = new JTabbedPane();
+
+		//Creem el panell per montar l'estructura de l'apartat "Music"
+		jpMusic = new JPanel();
+
+		//Estructura de panell de tipus BorderLayout
+		blMusic = new BorderLayout();
+		jpMusic.setLayout(blMusic);
+
+
+		//Creo el panell Scroll de la llista de cançons
+		//table
+		//hardcodeo de columnas y datos 
+		String[] jtMusicColumns = {"Id","Name", "Genre", "Album", "Artist", "Location", "Stars", "Reproducciones"};
+		Object[][] jtMusicData = {};
+		//se crea la tabla
+		JTable jtMusicList = new JTable(jtMusicData, jtMusicColumns);
+
+		//se hace que los datos no sean editables
+		tableModelMusic = new DefaultTableModel(jtMusicData, jtMusicColumns) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				//all cells false
+				return false;
+			}
+		}; 
+		jtMusicList.setModel(tableModelMusic);
+		jtMusicList.setForeground(Color.BLACK);
+		//jtMusicList.setBackground(Color.DARK_GRAY);
+		Color myColor = Color.getHSBColor(0.51F,  0.93F,  0.5F);          
+		jtMusicList.setBackground(myColor);
+	
+		//Li assigno a aquesta area de text que pugui fer scroll
+		//jspMusicList = new JScrollPane(jtListOfSongs);
+		jspMusicList = new JScrollPane(jtMusicList);
+
+		//Asigno un titul al apartat de la llista de cançons
+		jspMusicList.setBorder(BorderFactory.createTitledBorder("List of songs"));
+		
+		//Introdueixo aquest apartat/Panell a la primera fila del panell
+		jpMusic.add(jspMusicList, BorderLayout.CENTER);
+
+		//Creem el subpanell per montar l'estructura del apartat "butons  - ADD i estadistiques - i el reproductor "
+		jpPageEnd = new JPanel();
+		jpPageEnd.setPreferredSize(new Dimension(400,90));			
+
+		//Estructura de panell de 2 files per 1 columna
+		glPageEnd = new GridLayout(2,1);
+		jpPageEnd.setLayout(glPageEnd);
+
+		//Estructura de subsubpanell només de botons
+		jpButtons = new JPanel();
+		glButtons = new GridLayout(1,2);
+		jpButtons.setLayout(glButtons);	
+		
+		
+		//Creo botó de afegir canço "Add"
+		jbAdd = new JButton("Add");
+		jbAdd.setHorizontalAlignment(JButton.CENTER);
+		jpButtons.add(jbAdd);
+
+		//Creo botó per veure les estadistiques de les millors cançons "Top 10 songs"
+		jbStatistics = new JButton("Top 10 songs");
+		jbStatistics.setHorizontalAlignment(JButton.CENTER);
+		jpButtons.add(jbStatistics);
+		
+		jpPageEnd.add(jpButtons);
+
+		/*
+		 * AQUI S'HA DE CREAR EL REPRODUCTOR !!
+		 */
+		//Estructura de subsubpanell només de botons del reproductor
+		jpPlayer = new JPanel();
+		blPlayer = new BorderLayout();
+		jpPlayer.setLayout(blPlayer);
+
+		jbPlay = new JButton();
+
+		jbPrevious = new JButton();
+
+		jpPlayerButtons = new JPanel();
+		glPlayerButtons = new GridLayout(1,3);
+		jpPlayerButtons.setLayout(glPlayerButtons);
+
+		jbNext = new JButton();
+
+		iiPlay1 = new ImageIcon("src/imagenes/playButn1.png");
+		iiPlay2 = new ImageIcon("src/imagenes/playButn2.png");
+		iiPlay3 = new ImageIcon("src/imagenes/playButn3.png");
+
+		iiPrevious1 = new ImageIcon("src/imagenes/rightbutn1.png");
+		iiPrevious2 = new ImageIcon("src/imagenes/rightbutn2.png");
+		iiPrevious3 = new ImageIcon("src/imagenes/rightbutn3.png");
+
+		iiNext1 = new ImageIcon("src/imagenes/leftbutn1.png");
+		iiNext2 = new ImageIcon("src/imagenes/leftbutn2.png");
+		iiNext3 = new ImageIcon("src/imagenes/leftbutn3.png");
+
+		//temporalSong = new ImageIcon("src/imagenes/secuencialSong.png");
+		//jlTemporalSong = new JLabel(temporalSong);
+		//jlTemporalSong.setPreferredSize(new Dimension(700,10));
+
+		jlTime = new JLabel();
+		jlTime.setHorizontalAlignment(JLabel.CENTER);
+		jlTime.setText(" 00:00");
+
+		ConfigurationButton(jbPlay, iiPlay1, iiPlay2, iiPlay3);
+		ConfigurationButton(jbPrevious, iiPrevious1, iiPrevious2, iiPrevious3);
+		ConfigurationButton(jbNext, iiNext1, iiNext2, iiNext3);
+
+		jpPlayerButtons.add(jbPrevious);
+		jpPlayerButtons.add(jbPlay);
+		jpPlayerButtons.add(jbNext);
+		
+		//Creem el la linia temporal de la cançó
+		jSlider = new JSlider();
+		jSlider.setValue(0);
+		jSlider.setPreferredSize(new Dimension(700, 20));
+
+		//Creem etiqueta de la cançó que está sonant y de l'estat d'aquesta
+		jlSongName = new JLabel();
+		jlSongName.setForeground(new Color(0, 0, 0));
+		jlSongName.setText("          Lalalla Song" + "                      --> STOPED <--");
+		
+		jpPlayer.add(jlSongName, BorderLayout.NORTH);
+		jpPlayer.add(jpPlayerButtons, BorderLayout.WEST);
+		//jpPlayer.add(jlTemporalSong, BorderLayout.CENTER);
+		jpPlayer.add(jSlider, BorderLayout.CENTER);
+		jpPlayer.add(jlTime, BorderLayout.EAST);
+
+		jpPageEnd.add(jpPlayer);
+
+		jpMusic.add(jpPageEnd, BorderLayout.PAGE_END);
+
+
+		//TAB USERS
+
+		//table
+		//hardcodeo de columnas y datos 
+		String[] jtUserColumns = {"id","Username", "Register date", "Last login", "Song lists", "Songs", "Followers", "Following"};
+		Object[][] jtUserData = {};
+		//se crea la tabla
+		JTable jtUser = new JTable(jtUserData, jtUserColumns);
+		
+		//se hace que los datos no sean editables
+		tableModelUser = new DefaultTableModel(jtUserData, jtUserColumns) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				//all cells false
+				return false;
+			}
+			
+		}; 
+
+		
+		jtUser.addMouseListener(new MouseAdapter() {
+	        public void mousePressed(MouseEvent e) {
+	            if ( SwingUtilities.isLeftMouseButton(e)) {
+	               
+	            } else {
+	                 if ( SwingUtilities.isRightMouseButton(e)) {
+	                    Point p = e.getPoint();
+	                    int rowNumber = jtUser.rowAtPoint( p );
+	                    ListSelectionModel modelo = jtUser.getSelectionModel();
+	                    modelo.setSelectionInterval( rowNumber, rowNumber );
+	            		 String valor = String.valueOf(jtUser.getValueAt(rowNumber, 0));
+	            		 System.out.println(valor);
+	            		//windowAux.show(e.getComponent(), e.getX(), e.getY()); 
+	            		//esto le dice donde se tiene que mostrar
+	            		windowAux.setLocation(e.getX(), e.getY());
+	            		windowAux.setVisible(true);
+	            		 //ventana emergente 
+	                }
+	            }
+	        }
+	    });
+
+		jtUser.setModel(tableModelUser);
+		jtUser.setFocusable(false);
+	
+		
+		JScrollPane jspUsers = new JScrollPane(jtUser);
+		jpUsers = new JPanel();
+		jpUsers.add(jspUsers, BorderLayout.CENTER);
+
+		//Incloeixo les pestañes a la finestra
+		jtpTabs.addTab("Music", jpMusic);
+		jtpTabs.addTab("Users", jspUsers);
+
+		this.getContentPane().add(jtpTabs, BorderLayout.CENTER);
+		this.setResizable(true);
+		this.setSize(new Dimension(1600,870));
+		this.setTitle("eSpotifai - Server Management");
+		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+	}
+	public void ConfigurationButton(JButton boton,ImageIcon imatge1,ImageIcon imatge2,ImageIcon imatge3){
+
+		//Definim que l'icon tindrá una imatge assignada per defecte
+		boton.setIcon(imatge1);
+
+		//Configurem que el botó no tingui marc 
+		boton.setBorderPainted(false);
+
+		//Per a que no es pinti el botó
+		boton.setContentAreaFilled(false);
+		boton.setFocusable(false);
+		boton.setRolloverEnabled(true);
+
+		//Definim l'icon que es mostrará quan l'usuari estigui sobre el botó 
+		boton.setRolloverIcon(imatge2);
+
+		//Definim l'icon que es mostrará quan l'usuari premi el botó 
+		boton.setPressedIcon(imatge3);
+
+	}
+
+	public void registerController(ButtonsController controller) {
+		jbAdd.addActionListener(controller);
+		jbAdd.setActionCommand("MainWindow.addActionCommand");
+
+		jbStatistics.addActionListener(controller);
+		jbStatistics.setActionCommand("MainWindow.statisticsActionCommand");	
+		
+		
+	}
+	
+	public void refreshUsers(LinkedList <Object[]> list){
+		while (tableModelUser.getRowCount()!= 0){
+			tableModelUser.removeRow(0);
+		}
+		for (int i = 0; i<list.size(); i++){
+			tableModelUser.addRow(list.get(i));
+		}
+	}
+	public void refreshSongs(LinkedList<Object[]> list) {
+		while (tableModelMusic.getRowCount()!= 0){
+			tableModelMusic.removeRow(0);
+		}
+		for (int i = 0; i<list.size(); i++){
+			tableModelMusic.addRow(list.get(i));
+		}
+	}
+}
+>>>>>>> cbc1e0d816a6c726ec7db5d9b7bdbb0a77ce6231:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/7d/d00f701edc1d00161a03a4d5b0fb7de0
+>>>>>>> fc06ce784d2430f51a70eff376f51b92ce7a3698
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/c7/409430c6d91d00161a03a4d5b0fb7de0
+package view;
+
+import java.awt.Color;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.LinkedList;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSlider;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
+//import javax.swing.JTextArea;
+import javax.swing.table.DefaultTableModel;
+
+import model.User;
+import controller.ButtonsController;
+
+public class MainWindow extends JFrame{
+
+	private JTabbedPane jtpTabs;
+	private JPanel jpMusic;
+	private JPanel jpUsers;
+	private JPanel jpPageEnd;
+	private JPanel jpButtons;
+	private JPanel jpPlayer;
+	private JPanel jpPlayerButtons;
+
+	private GridLayout glButtons;
+	private GridLayout glPlayerButtons;
+	private GridLayout glPageEnd;
+	private BorderLayout blMusic;
+	private BorderLayout blPlayer;
+
+	//private JTextArea jtListOfSongs;
+	private JScrollPane jspMusicList;
+	private JSlider jSlider;
+	
+	private JButton jbAdd;
+	private JButton jbStatistics;
+	private JButton jbPlay;
+	private JButton jbPrevious;
+	private JButton jbNext;
+
+	private ImageIcon iiNext1;
+	private ImageIcon iiNext2;
+	private ImageIcon iiNext3;
+
+	private ImageIcon iiPlay1;
+	private ImageIcon iiPlay2;
+	private ImageIcon iiPlay3;
+
+	//private JLabel jlTemporalSong;
+	private JLabel jlTime;
+	//private JLabel SongState;
+	private JLabel jlSongName;
+
+	private ImageIcon iiPrevious1;
+	private ImageIcon iiPrevious2;
+	private ImageIcon iiPrevious3;
+	//private ImageIcon temporalSong;
+	
+	private PopUpMenu windowAux = new PopUpMenu();
+	
+	DefaultTableModel tableModelUser;
+	DefaultTableModel tableModelMusic;
+
+	public MainWindow() {
+
+		//Creem el conjunt de pestanyes
+		jtpTabs = new JTabbedPane();
+
+		//Creem el panell per montar l'estructura de l'apartat "Music"
+		jpMusic = new JPanel();
+
+		//Estructura de panell de tipus BorderLayout
+		blMusic = new BorderLayout();
+		jpMusic.setLayout(blMusic);
+
+
+		//Creo el panell Scroll de la llista de cançons
+		//table
+		//hardcodeo de columnas y datos 
+		String[] jtMusicColumns = {"Id","Name", "Genre", "Album", "Artist", "Location", "Stars", "Reproducciones"};
+		Object[][] jtMusicData = {};
+		//se crea la tabla
+		JTable jtMusicList = new JTable(jtMusicData, jtMusicColumns);
+
+		//se hace que los datos no sean editables
+		tableModelMusic = new DefaultTableModel(jtMusicData, jtMusicColumns) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				//all cells false
+				return false;
+			}
+		}; 
+		jtMusicList.setModel(tableModelMusic);
+		jtMusicList.setForeground(Color.BLACK);
+		//jtMusicList.setBackground(Color.DARK_GRAY);
+		Color myColor = Color.getHSBColor(0.51F,  0.93F,  0.5F);          
+		jtMusicList.setBackground(myColor);
+	
+		//Li assigno a aquesta area de text que pugui fer scroll
+		//jspMusicList = new JScrollPane(jtListOfSongs);
+		jspMusicList = new JScrollPane(jtMusicList);
+
+		//Asigno un titul al apartat de la llista de cançons
+		jspMusicList.setBorder(BorderFactory.createTitledBorder("List of songs"));
+		
+		//Introdueixo aquest apartat/Panell a la primera fila del panell
+		jpMusic.add(jspMusicList, BorderLayout.CENTER);
+
+		//Creem el subpanell per montar l'estructura del apartat "butons  - ADD i estadistiques - i el reproductor "
+		jpPageEnd = new JPanel();
+		jpPageEnd.setPreferredSize(new Dimension(400,90));			
+
+		//Estructura de panell de 2 files per 1 columna
+		glPageEnd = new GridLayout(2,1);
+		jpPageEnd.setLayout(glPageEnd);
+
+		//Estructura de subsubpanell només de botons
+		jpButtons = new JPanel();
+		glButtons = new GridLayout(1,2);
+		jpButtons.setLayout(glButtons);	
+		
+		
+		//Creo botó de afegir canço "Add"
+		jbAdd = new JButton("Add");
+		jbAdd.setHorizontalAlignment(JButton.CENTER);
+		jpButtons.add(jbAdd);
+
+		//Creo botó per veure les estadistiques de les millors cançons "Top 10 songs"
+		jbStatistics = new JButton("Top 10 songs");
+		jbStatistics.setHorizontalAlignment(JButton.CENTER);
+		jpButtons.add(jbStatistics);
+		
+		jpPageEnd.add(jpButtons);
+
+		/*
+		 * AQUI S'HA DE CREAR EL REPRODUCTOR !!
+		 */
+		//Estructura de subsubpanell només de botons del reproductor
+		jpPlayer = new JPanel();
+		blPlayer = new BorderLayout();
+		jpPlayer.setLayout(blPlayer);
+
+		jbPlay = new JButton();
+
+		jbPrevious = new JButton();
+
+		jpPlayerButtons = new JPanel();
+		glPlayerButtons = new GridLayout(1,3);
+		jpPlayerButtons.setLayout(glPlayerButtons);
+
+		jbNext = new JButton();
+
+		iiPlay1 = new ImageIcon("src/imagenes/playButn1.png");
+		iiPlay2 = new ImageIcon("src/imagenes/playButn2.png");
+		iiPlay3 = new ImageIcon("src/imagenes/playButn3.png");
+
+		iiPrevious1 = new ImageIcon("src/imagenes/rightbutn1.png");
+		iiPrevious2 = new ImageIcon("src/imagenes/rightbutn2.png");
+		iiPrevious3 = new ImageIcon("src/imagenes/rightbutn3.png");
+
+		iiNext1 = new ImageIcon("src/imagenes/leftbutn1.png");
+		iiNext2 = new ImageIcon("src/imagenes/leftbutn2.png");
+		iiNext3 = new ImageIcon("src/imagenes/leftbutn3.png");
+
+		//temporalSong = new ImageIcon("src/imagenes/secuencialSong.png");
+		//jlTemporalSong = new JLabel(temporalSong);
+		//jlTemporalSong.setPreferredSize(new Dimension(700,10));
+
+		jlTime = new JLabel();
+		jlTime.setHorizontalAlignment(JLabel.CENTER);
+		jlTime.setText(" 00:00");
+
+		ConfigurationButton(jbPlay, iiPlay1, iiPlay2, iiPlay3);
+		ConfigurationButton(jbPrevious, iiPrevious1, iiPrevious2, iiPrevious3);
+		ConfigurationButton(jbNext, iiNext1, iiNext2, iiNext3);
+
+		jpPlayerButtons.add(jbPrevious);
+		jpPlayerButtons.add(jbPlay);
+		jpPlayerButtons.add(jbNext);
+		
+		//Creem el la linia temporal de la cançó
+		jSlider = new JSlider();
+		jSlider.setValue(0);
+		jSlider.setPreferredSize(new Dimension(700, 20));
+
+		//Creem etiqueta de la cançó que está sonant y de l'estat d'aquesta
+		jlSongName = new JLabel();
+		jlSongName.setForeground(new Color(0, 0, 0));
+		jlSongName.setText("          Lalalla Song" + "                      --> STOPED <--");
+		
+		jpPlayer.add(jlSongName, BorderLayout.NORTH);
+		jpPlayer.add(jpPlayerButtons, BorderLayout.WEST);
+		//jpPlayer.add(jlTemporalSong, BorderLayout.CENTER);
+		jpPlayer.add(jSlider, BorderLayout.CENTER);
+		jpPlayer.add(jlTime, BorderLayout.EAST);
+
+		jpPageEnd.add(jpPlayer);
+
+		jpMusic.add(jpPageEnd, BorderLayout.PAGE_END);
+
+
+		//TAB USERS
+
+		//table
+		//hardcodeo de columnas y datos 
+		String[] jtUserColumns = {"id","Username", "Register date", "Last login", "Song lists", "Songs", "Followers", "Following"};
+		Object[][] jtUserData = {};
+		//se crea la tabla
+		JTable jtUser = new JTable(jtUserData, jtUserColumns);
+		
+		//se hace que los datos no sean editables
+		tableModelUser = new DefaultTableModel(jtUserData, jtUserColumns) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				//all cells false
+				return false;
+			}
+			
+		}; 
+
+		
+		jtUser.addMouseListener(new MouseAdapter() {
+	        public void mousePressed(MouseEvent e) {
+	            if ( SwingUtilities.isLeftMouseButton(e)) {
+	               
+	            } else {
+	                 if ( SwingUtilities.isRightMouseButton(e)) {
+	                    Point p = e.getPoint();
+	                    int rowNumber = jtUser.rowAtPoint( p );
+	                    ListSelectionModel modelo = jtUser.getSelectionModel();
+	                    modelo.setSelectionInterval( rowNumber, rowNumber );
+	            		 String valor = String.valueOf(jtUser.getValueAt(rowNumber, 0));
+	            		 System.out.println(valor);
+	            		//windowAux.show(e.getComponent(), e.getX(), e.getY()); 
+	            		//esto le dice donde se tiene que mostrar
+	            		windowAux.setLocation(e.getX(), e.getY());
+	            		windowAux.setVisible(true);
+	            		 //ventana emergente 
+	                }
+	            }
+	        }
+	    });
+
+		jtUser.setModel(tableModelUser);
+		jtUser.setFocusable(false);
+	
+		
+		JScrollPane jspUsers = new JScrollPane(jtUser);
+		jpUsers = new JPanel();
+		jpUsers.add(jspUsers, BorderLayout.CENTER);
+
+		//Incloeixo les pestañes a la finestra
+		jtpTabs.addTab("Music", jpMusic);
+		jtpTabs.addTab("Users", jspUsers);
+
+		this.getContentPane().add(jtpTabs, BorderLayout.CENTER);
+		this.setResizable(true);
+		this.setSize(new Dimension(1600,870));
+		this.setTitle("eSpotifai - Server Management");
+		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+	}
+	public void ConfigurationButton(JButton boton,ImageIcon imatge1,ImageIcon imatge2,ImageIcon imatge3){
+
+		//Definim que l'icon tindrá una imatge assignada per defecte
+		boton.setIcon(imatge1);
+
+		//Configurem que el botó no tingui marc 
+		boton.setBorderPainted(false);
+
+		//Per a que no es pinti el botó
+		boton.setContentAreaFilled(false);
+		boton.setFocusable(false);
+		boton.setRolloverEnabled(true);
+
+		//Definim l'icon que es mostrará quan l'usuari estigui sobre el botó 
+		boton.setRolloverIcon(imatge2);
+
+		//Definim l'icon que es mostrará quan l'usuari premi el botó 
+		boton.setPressedIcon(imatge3);
+
+	}
+
+	public void registerController(ButtonsController controller) {
+		jbAdd.addActionListener(controller);
+		jbAdd.setActionCommand("MainWindow.addActionCommand");
+
+		jbStatistics.addActionListener(controller);
+		jbStatistics.setActionCommand("MainWindow.statisticsActionCommand");	
+		
+		
+	}
+	
+	public void refreshUsers(LinkedList <Object[]> list){
+		while (tableModelUser.getRowCount()!= 0){
+			tableModelUser.removeRow(0);
+		}
+		for (int i = 0; i<list.size(); i++){
+			tableModelUser.addRow(list.get(i));
+		}
+	}
+	public void refreshSongs(LinkedList<Object[]> list) {
+		while (tableModelMusic.getRowCount()!= 0){
+			tableModelMusic.removeRow(0);
+		}
+		for (int i = 0; i<list.size(); i++){
+			tableModelMusic.addRow(list.get(i));
+		}
+	}
+}
+=======
+=======
+<<<<<<< HEAD:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/7f/607477ef7c1e00161b43de86fa965ffc
+>>>>>>> fc06ce784d2430f51a70eff376f51b92ce7a3698
+package view;
+
+import java.awt.Color;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.LinkedList;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
+import javax.swing.JSlider;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
+import javax.swing.border.BevelBorder;
+//import javax.swing.JTextArea;
+import javax.swing.table.DefaultTableModel;
+
+import controller.ButtonsController;
+import controller.PopUpController;
+
+public class MainWindow extends JFrame{
+
+	private JTabbedPane jtpTabs;
+	private JPanel jpMusic;
+	private JTable jpUsers;
+	private JPanel jpPageEnd;
+	private JPanel jpButtons;
+	private JPanel jpPlayer;
+	private JPanel jpPlayerButtons;
+
+	private GridLayout glButtons;
+	private GridLayout glPlayerButtons;
+	private GridLayout glPageEnd;
+	private BorderLayout blMusic;
+	private BorderLayout blPlayer;
+
+	//private JTextArea jtListOfSongs;
+	private JScrollPane jspMusicList;
+	private JSlider jSlider;
+	
+	private JButton jbAdd;
+	private JButton jbStatistics;
+	private JButton jbPlay;
+	private JButton jbPrevious;
+	private JButton jbNext;
+
+	private ImageIcon iiNext1;
+	private ImageIcon iiNext2;
+	private ImageIcon iiNext3;
+
+	private ImageIcon iiPlay1;
+	private ImageIcon iiPlay2;
+	private ImageIcon iiPlay3;
+
+	//private JLabel jlTemporalSong;
+	private JLabel jlTime;
+	//private JLabel SongState;
+	private JLabel jlSongName;
+
+	private ImageIcon iiPrevious1;
+	private ImageIcon iiPrevious2;
+	private ImageIcon iiPrevious3;
+	//private ImageIcon temporalSong;
+	
+	DefaultTableModel tableModelUser;
+	DefaultTableModel tableModelMusic;
+	
+	private JMenuItem seguidores;
+	private JMenuItem seguidos;
+	private JMenuItem listas;
+	private JMenuItem eliminar;
+	
+	private int id = 0;
+	
+
+	 public JPopupMenu popup;
+	 public JPopupMenu popup2;
+	
+	public MainWindow() {
+
+		//Creem el conjunt de pestanyes
+		jtpTabs = new JTabbedPane();
+
+		//Creem el panell per montar l'estructura de l'apartat "Music"
+		jpMusic = new JPanel();
+
+		//Estructura de panell de tipus BorderLayout
+		blMusic = new BorderLayout();
+		jpMusic.setLayout(blMusic);
+
+
+		//Creo el panell Scroll de la llista de cançons
+		//table
+		//hardcodeo de columnas y datos 
+		String[] jtMusicColumns = {"Id","Name", "Genre", "Album", "Artist", "Location", "Stars", "Reproducciones"};
+		Object[][] jtMusicData = {};
+		//se crea la tabla
+		JTable jtMusicList = new JTable(jtMusicData, jtMusicColumns);
+
+		//se hace que los datos no sean editables
+		tableModelMusic = new DefaultTableModel(jtMusicData, jtMusicColumns) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				//all cells false
+				return false;
+			}
+		}; 
+		
+		jtMusicList.addMouseListener(new MouseAdapter() {
+	        public void mousePressed(MouseEvent e) {
+	            if ( SwingUtilities.isLeftMouseButton(e)) {
+	            	popup2.setVisible(false);
+	            } else {
+	                 if ( SwingUtilities.isRightMouseButton(e)) {
+	                    Point p = e.getPoint();
+	                    int rowNumber = jtMusicList.rowAtPoint( p );
+	                    ListSelectionModel modelo = jtMusicList.getSelectionModel();
+	                    modelo.setSelectionInterval( rowNumber, rowNumber );
+	            		 id = Integer.parseInt(String.valueOf( jtMusicList.getValueAt(rowNumber, 0)));
+	            		 popup2.show(jtpTabs,  e.getX(), e.getY());
+	            		 
+	                }
+	            }
+	        }
+	    });
+		jtMusicList.setModel(tableModelMusic);
+		jtMusicList.setForeground(Color.BLACK);
+		//jtMusicList.setBackground(Color.DARK_GRAY);
+		Color myColor = Color.getHSBColor(0.51F,  0.93F,  0.5F);          
+		jtMusicList.setBackground(myColor);
+	
+		//Li assigno a aquesta area de text que pugui fer scroll
+		//jspMusicList = new JScrollPane(jtListOfSongs);
+		jspMusicList = new JScrollPane(jtMusicList);
+
+		//Asigno un titul al apartat de la llista de cançons
+		jspMusicList.setBorder(BorderFactory.createTitledBorder("List of songs"));
+		
+		//Introdueixo aquest apartat/Panell a la primera fila del panell
+		jpMusic.add(jspMusicList, BorderLayout.CENTER);
+
+		//Creem el subpanell per montar l'estructura del apartat "butons  - ADD i estadistiques - i el reproductor "
+		jpPageEnd = new JPanel();
+		jpPageEnd.setPreferredSize(new Dimension(400,90));			
+
+		//Estructura de panell de 2 files per 1 columna
+		glPageEnd = new GridLayout(2,1);
+		jpPageEnd.setLayout(glPageEnd);
+
+		//Estructura de subsubpanell només de botons
+		jpButtons = new JPanel();
+		glButtons = new GridLayout(1,2);
+		jpButtons.setLayout(glButtons);	
+		
+		
+		//Creo botó de afegir canço "Add"
+		jbAdd = new JButton("Add");
+		jbAdd.setHorizontalAlignment(JButton.CENTER);
+		jpButtons.add(jbAdd);
+
+		//Creo botó per veure les estadistiques de les millors cançons "Top 10 songs"
+		jbStatistics = new JButton("Top 10 songs");
+		jbStatistics.setHorizontalAlignment(JButton.CENTER);
+		jpButtons.add(jbStatistics);
+		
+		jpPageEnd.add(jpButtons);
+
+		/*
+		 * AQUI S'HA DE CREAR EL REPRODUCTOR !!
+		 */
+		//Estructura de subsubpanell només de botons del reproductor
+		jpPlayer = new JPanel();
+		blPlayer = new BorderLayout();
+		jpPlayer.setLayout(blPlayer);
+
+		jbPlay = new JButton();
+
+		jbPrevious = new JButton();
+
+		jpPlayerButtons = new JPanel();
+		glPlayerButtons = new GridLayout(1,3);
+		jpPlayerButtons.setLayout(glPlayerButtons);
+
+		jbNext = new JButton();
+
+		iiPlay1 = new ImageIcon("src/imagenes/playButn1.png");
+		iiPlay2 = new ImageIcon("src/imagenes/playButn2.png");
+		iiPlay3 = new ImageIcon("src/imagenes/playButn3.png");
+
+		iiPrevious1 = new ImageIcon("src/imagenes/rightbutn1.png");
+		iiPrevious2 = new ImageIcon("src/imagenes/rightbutn2.png");
+		iiPrevious3 = new ImageIcon("src/imagenes/rightbutn3.png");
+
+		iiNext1 = new ImageIcon("src/imagenes/leftbutn1.png");
+		iiNext2 = new ImageIcon("src/imagenes/leftbutn2.png");
+		iiNext3 = new ImageIcon("src/imagenes/leftbutn3.png");
+
+		//temporalSong = new ImageIcon("src/imagenes/secuencialSong.png");
+		//jlTemporalSong = new JLabel(temporalSong);
+		//jlTemporalSong.setPreferredSize(new Dimension(700,10));
+
+		jlTime = new JLabel();
+		jlTime.setHorizontalAlignment(JLabel.CENTER);
+		jlTime.setText(" 00:00");
+
+		ConfigurationButton(jbPlay, iiPlay1, iiPlay2, iiPlay3);
+		ConfigurationButton(jbPrevious, iiPrevious1, iiPrevious2, iiPrevious3);
+		ConfigurationButton(jbNext, iiNext1, iiNext2, iiNext3);
+
+		jpPlayerButtons.add(jbPrevious);
+		jpPlayerButtons.add(jbPlay);
+		jpPlayerButtons.add(jbNext);
+		
+		//Creem el la linia temporal de la cançó
+		jSlider = new JSlider();
+		jSlider.setValue(0);
+		jSlider.setPreferredSize(new Dimension(700, 20));
+
+		//Creem etiqueta de la cançó que está sonant y de l'estat d'aquesta
+		jlSongName = new JLabel();
+		jlSongName.setForeground(new Color(0, 0, 0));
+		jlSongName.setText("          Lalalla Song" + "                      --> STOPED <--");
+		
+		jpPlayer.add(jlSongName, BorderLayout.NORTH);
+		jpPlayer.add(jpPlayerButtons, BorderLayout.WEST);
+		//jpPlayer.add(jlTemporalSong, BorderLayout.CENTER);
+		jpPlayer.add(jSlider, BorderLayout.CENTER);
+		jpPlayer.add(jlTime, BorderLayout.EAST);
+
+		jpPageEnd.add(jpPlayer);
+
+		jpMusic.add(jpPageEnd, BorderLayout.PAGE_END);
+
+
+		//TAB USERS
+
+		//table
+		//hardcodeo de columnas y datos 
+		String[] jtUserColumns = {"id","Username", "Register date", "Last login", "Song lists", "Songs", "Followers", "Following"};
+		Object[][] jtUserData = {};
+		//se crea la tabla
+		JTable jtUser = new JTable(jtUserData, jtUserColumns);
+		
+		//se hace que los datos no sean editables
+		tableModelUser = new DefaultTableModel(jtUserData, jtUserColumns) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				//all cells false
+				return false;
+			}
+			
+		}; 
+		
+		popup = new JPopupMenu();
+		popup.add(seguidores = new JMenuItem("Mostrar seguidores", new ImageIcon("1.gif")));
+		seguidores.setHorizontalTextPosition(JMenuItem.RIGHT);
+		    
+		popup.add(seguidos = new JMenuItem("Mostrar seguidos", new ImageIcon("2.gif")));
+		seguidos.setHorizontalTextPosition(JMenuItem.RIGHT);
+		   
+		popup.add(listas = new JMenuItem("Mostrar listas de reproduccion", new ImageIcon("3.gif")));
+		listas.setHorizontalTextPosition(JMenuItem.RIGHT);
+		    
+		popup.addSeparator();
+		popup.add(eliminar = new JMenuItem("Eliminar "));
+		    
+
+		popup.setLabel("Justification");
+		popup.setBorder(new BevelBorder(BevelBorder.RAISED));
+		    
+		jtUser.addMouseListener(new MouseAdapter() {
+	        public void mousePressed(MouseEvent e) {
+	            if ( SwingUtilities.isLeftMouseButton(e)) {
+	            	popup.setVisible(false);
+	            } else {
+	                 if ( SwingUtilities.isRightMouseButton(e)) {
+	                    Point p = e.getPoint();
+	                    int rowNumber = jtUser.rowAtPoint( p );
+	                    ListSelectionModel modelo = jtUser.getSelectionModel();
+	                    modelo.setSelectionInterval( rowNumber, rowNumber );
+	            		 id = Integer.parseInt(String.valueOf( jtUser.getValueAt(rowNumber, 0)));
+	            		 popup.show(jtpTabs,  e.getX(), e.getY());
+	            		 
+	                }
+	            }
+	        }
+	    });
+		
+		jtUser.setModel(tableModelUser);
+		jtUser.setFocusable(false);
+
+		JScrollPane jspUsers = new JScrollPane(jtUser);
+		jpUsers = new JTable();
+		jpUsers.add(jspUsers, BorderLayout.CENTER);
+	
+		 jspUsers.addMouseListener(new MouseAdapter() {
+		        public void mousePressed(MouseEvent e) {
+		            if ( SwingUtilities.isLeftMouseButton(e)) {
+		            	popup.setVisible(false);
+		            }
+		        }
+		  });
+		 
+		//jpUsers.add(popup = new PopupMenu());
+		//Incloeixo les pestañes a la finestra
+		jtpTabs.addTab("Music", jpMusic);
+		jtpTabs.addTab("Users", jspUsers);
+		jtpTabs.addMouseListener(new MouseAdapter() {
+	        public void mousePressed(MouseEvent e) {
+	            if ( SwingUtilities.isLeftMouseButton(e)) {
+	            	popup.setVisible(false);
+	            }
+	        }
+	    });
+		this.getContentPane().add(jtpTabs, BorderLayout.CENTER);
+	
+		this.setResizable(true);
+		this.setSize(new Dimension(1600,870));
+		this.setTitle("eSpotifai - Server Management");
+		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+	}
+	public void ConfigurationButton(JButton boton,ImageIcon imatge1,ImageIcon imatge2,ImageIcon imatge3){
+
+		//Definim que l'icon tindrá una imatge assignada per defecte
+		boton.setIcon(imatge1);
+
+		//Configurem que el botó no tingui marc 
+		boton.setBorderPainted(false);
+
+		//Per a que no es pinti el botó
+		boton.setContentAreaFilled(false);
+		boton.setFocusable(false);
+		boton.setRolloverEnabled(true);
+
+		//Definim l'icon que es mostrará quan l'usuari estigui sobre el botó 
+		boton.setRolloverIcon(imatge2);
+
+		//Definim l'icon que es mostrará quan l'usuari premi el botó 
+		boton.setPressedIcon(imatge3);
+
+	}
+
+	public void registerController(ButtonsController controller, PopUpController controller2) {
+		jbAdd.addActionListener(controller);
+		jbAdd.setActionCommand("MainWindow.addActionCommand");
+
+		jbStatistics.addActionListener(controller);
+		jbStatistics.setActionCommand("MainWindow.statisticsActionCommand");	
+	
+		seguidores.addActionListener(controller2);
+		seguidores.setActionCommand("MainWindow.seguidoresActionCommand");
+		
+		seguidos.addActionListener(controller2);
+		seguidos.setActionCommand("MainWindow.seguidosActionCommand");
+		
+		listas.addActionListener(controller2);
+		listas.setActionCommand("MainWindow.listasActionCommand");
+		
+		eliminar.addActionListener(controller2);
+		eliminar.setActionCommand("MainWindow.eliminarActionCommand");
+		    
+	}
+	
+	
+	public void refreshUsers(LinkedList <Object[]> list){
+		while (tableModelUser.getRowCount()!= 0){
+			tableModelUser.removeRow(0);
+		}
+		for (int i = 0; i<list.size(); i++){
+			tableModelUser.addRow(list.get(i));
+		}
+	}
+	public void refreshSongs(LinkedList<Object[]> list) {
+		while (tableModelMusic.getRowCount()!= 0){
+			tableModelMusic.removeRow(0);
+		}
+		for (int i = 0; i<list.size(); i++){
+			tableModelMusic.addRow(list.get(i));
+		}
+	}
+	
+	public int getId (){
+		return id;
+	}
+}
+<<<<<<< HEAD
+>>>>>>> 1b323e92e95a47b6f0bdd13f3bcde9c2fa2dbcaa:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/7f/607477ef7c1e00161b43de86fa965ffc
+=======
+=======
+package view;
+
+import java.awt.Color;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.LinkedList;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSlider;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
+//import javax.swing.JTextArea;
+import javax.swing.table.DefaultTableModel;
+
+import model.User;
+import controller.ButtonsController;
+
+public class MainWindow extends JFrame{
+
+	private JTabbedPane jtpTabs;
+	private JPanel jpMusic;
+	private JPanel jpUsers;
+	private JPanel jpPageEnd;
+	private JPanel jpButtons;
+	private JPanel jpPlayer;
+	private JPanel jpPlayerButtons;
+
+	private GridLayout glButtons;
+	private GridLayout glPlayerButtons;
+	private GridLayout glPageEnd;
+	private BorderLayout blMusic;
+	private BorderLayout blPlayer;
+
+	//private JTextArea jtListOfSongs;
+	private JScrollPane jspMusicList;
+	private JSlider jSlider;
+	
+	private JButton jbAdd;
+	private JButton jbStatistics;
+	private JButton jbPlay;
+	private JButton jbPrevious;
+	private JButton jbNext;
+
+	private ImageIcon iiNext1;
+	private ImageIcon iiNext2;
+	private ImageIcon iiNext3;
+
+	private ImageIcon iiPlay1;
+	private ImageIcon iiPlay2;
+	private ImageIcon iiPlay3;
+
+	//private JLabel jlTemporalSong;
+	private JLabel jlTime;
+	//private JLabel SongState;
+	private JLabel jlSongName;
+
+	private ImageIcon iiPrevious1;
+	private ImageIcon iiPrevious2;
+	private ImageIcon iiPrevious3;
+	//private ImageIcon temporalSong;
+	
+	private PopUpMenuEdit windowAux = new PopUpMenuEdit();
+	
+	DefaultTableModel tableModelUser;
+	DefaultTableModel tableModelMusic;
+
+	public MainWindow() {
+
+		//Creem el conjunt de pestanyes
+		jtpTabs = new JTabbedPane();
+
+		//Creem el panell per montar l'estructura de l'apartat "Music"
+		jpMusic = new JPanel();
+
+		//Estructura de panell de tipus BorderLayout
+		blMusic = new BorderLayout();
+		jpMusic.setLayout(blMusic);
+
+
+		//Creo el panell Scroll de la llista de cançons
+		//table
+		//hardcodeo de columnas y datos 
+		String[] jtMusicColumns = {"Id","Name", "Genre", "Album", "Artist", "Location", "Stars", "Reproducciones"};
+		Object[][] jtMusicData = {};
+		//se crea la tabla
+		JTable jtMusicList = new JTable(jtMusicData, jtMusicColumns);
+
+		//se hace que los datos no sean editables
+		tableModelMusic = new DefaultTableModel(jtMusicData, jtMusicColumns) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				//all cells false
+				return false;
+			}
+		}; 
+		jtMusicList.setModel(tableModelMusic);
+		jtMusicList.setForeground(Color.BLACK);
+		//jtMusicList.setBackground(Color.DARK_GRAY);
+		Color myColor = Color.getHSBColor(0.51F,  0.93F,  0.5F);          
+		jtMusicList.setBackground(myColor);
+	
+		//Li assigno a aquesta area de text que pugui fer scroll
+		//jspMusicList = new JScrollPane(jtListOfSongs);
+		jspMusicList = new JScrollPane(jtMusicList);
+
+		//Asigno un titul al apartat de la llista de cançons
+		jspMusicList.setBorder(BorderFactory.createTitledBorder("List of songs"));
+		
+		//Introdueixo aquest apartat/Panell a la primera fila del panell
+		jpMusic.add(jspMusicList, BorderLayout.CENTER);
+
+		//Creem el subpanell per montar l'estructura del apartat "butons  - ADD i estadistiques - i el reproductor "
+		jpPageEnd = new JPanel();
+		jpPageEnd.setPreferredSize(new Dimension(400,90));			
+
+		//Estructura de panell de 2 files per 1 columna
+		glPageEnd = new GridLayout(2,1);
+		jpPageEnd.setLayout(glPageEnd);
+
+		//Estructura de subsubpanell només de botons
+		jpButtons = new JPanel();
+		glButtons = new GridLayout(1,2);
+		jpButtons.setLayout(glButtons);	
+		
+		
+		//Creo botó de afegir canço "Add"
+		jbAdd = new JButton("Add");
+		jbAdd.setHorizontalAlignment(JButton.CENTER);
+		jpButtons.add(jbAdd);
+
+		//Creo botó per veure les estadistiques de les millors cançons "Top 10 songs"
+		jbStatistics = new JButton("Top 10 songs");
+		jbStatistics.setHorizontalAlignment(JButton.CENTER);
+		jpButtons.add(jbStatistics);
+		
+		jpPageEnd.add(jpButtons);
+
+		/*
+		 * AQUI S'HA DE CREAR EL REPRODUCTOR !!
+		 */
+		//Estructura de subsubpanell només de botons del reproductor
+		jpPlayer = new JPanel();
+		blPlayer = new BorderLayout();
+		jpPlayer.setLayout(blPlayer);
+
+		jbPlay = new JButton();
+
+		jbPrevious = new JButton();
+
+		jpPlayerButtons = new JPanel();
+		glPlayerButtons = new GridLayout(1,3);
+		jpPlayerButtons.setLayout(glPlayerButtons);
+
+		jbNext = new JButton();
+
+		iiPlay1 = new ImageIcon("src/imagenes/playButn1.png");
+		iiPlay2 = new ImageIcon("src/imagenes/playButn2.png");
+		iiPlay3 = new ImageIcon("src/imagenes/playButn3.png");
+
+		iiPrevious1 = new ImageIcon("src/imagenes/rightbutn1.png");
+		iiPrevious2 = new ImageIcon("src/imagenes/rightbutn2.png");
+		iiPrevious3 = new ImageIcon("src/imagenes/rightbutn3.png");
+
+		iiNext1 = new ImageIcon("src/imagenes/leftbutn1.png");
+		iiNext2 = new ImageIcon("src/imagenes/leftbutn2.png");
+		iiNext3 = new ImageIcon("src/imagenes/leftbutn3.png");
+
+		//temporalSong = new ImageIcon("src/imagenes/secuencialSong.png");
+		//jlTemporalSong = new JLabel(temporalSong);
+		//jlTemporalSong.setPreferredSize(new Dimension(700,10));
+
+		jlTime = new JLabel();
+		jlTime.setHorizontalAlignment(JLabel.CENTER);
+		jlTime.setText(" 00:00");
+
+		ConfigurationButton(jbPlay, iiPlay1, iiPlay2, iiPlay3);
+		ConfigurationButton(jbPrevious, iiPrevious1, iiPrevious2, iiPrevious3);
+		ConfigurationButton(jbNext, iiNext1, iiNext2, iiNext3);
+
+		jpPlayerButtons.add(jbPrevious);
+		jpPlayerButtons.add(jbPlay);
+		jpPlayerButtons.add(jbNext);
+		
+		//Creem el la linia temporal de la cançó
+		jSlider = new JSlider();
+		jSlider.setValue(0);
+		jSlider.setPreferredSize(new Dimension(700, 20));
+
+		//Creem etiqueta de la cançó que está sonant y de l'estat d'aquesta
+		jlSongName = new JLabel();
+		jlSongName.setForeground(new Color(0, 0, 0));
+		jlSongName.setText("          Lalalla Song" + "                      --> STOPED <--");
+		
+		jpPlayer.add(jlSongName, BorderLayout.NORTH);
+		jpPlayer.add(jpPlayerButtons, BorderLayout.WEST);
+		//jpPlayer.add(jlTemporalSong, BorderLayout.CENTER);
+		jpPlayer.add(jSlider, BorderLayout.CENTER);
+		jpPlayer.add(jlTime, BorderLayout.EAST);
+
+		jpPageEnd.add(jpPlayer);
+
+		jpMusic.add(jpPageEnd, BorderLayout.PAGE_END);
+
+
+		//TAB USERS
+
+		//table
+		//hardcodeo de columnas y datos 
+		String[] jtUserColumns = {"id","Username", "Register date", "Last login", "Song lists", "Songs", "Followers", "Following"};
+		Object[][] jtUserData = {};
+		//se crea la tabla
+		JTable jtUser = new JTable(jtUserData, jtUserColumns);
+		
+		//se hace que los datos no sean editables
+		tableModelUser = new DefaultTableModel(jtUserData, jtUserColumns) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				//all cells false
+				return false;
+			}
+			
+		}; 
+
+		
+		jtUser.addMouseListener(new MouseAdapter() {
+	        public void mousePressed(MouseEvent e) {
+	            if ( SwingUtilities.isLeftMouseButton(e)) {
+	               
+	            } else {
+	                 if ( SwingUtilities.isRightMouseButton(e)) {
+	                    Point p = e.getPoint();
+	                    int rowNumber = jtUser.rowAtPoint( p );
+	                    ListSelectionModel modelo = jtUser.getSelectionModel();
+	                    modelo.setSelectionInterval( rowNumber, rowNumber );
+	            		 String valor = String.valueOf(jtUser.getValueAt(rowNumber, 0));
+	            		 System.out.println(valor);
+	            		//windowAux.show(e.getComponent(), e.getX(), e.getY()); 
+	            		//esto le dice donde se tiene que mostrar
+	            		windowAux.setLocation(e.getX(), e.getY());
+	            		windowAux.setVisible(true);
+	            		 //ventana emergente 
+	                }
+	            }
+	        }
+	    });
+
+		jtUser.setModel(tableModelUser);
+		jtUser.setFocusable(false);
+	
+		
+		JScrollPane jspUsers = new JScrollPane(jtUser);
+		jpUsers = new JPanel();
+		jpUsers.add(jspUsers, BorderLayout.CENTER);
+
+		//Incloeixo les pestañes a la finestra
+		jtpTabs.addTab("Music", jpMusic);
+		jtpTabs.addTab("Users", jspUsers);
+
+		this.getContentPane().add(jtpTabs, BorderLayout.CENTER);
+		this.setResizable(true);
+		this.setSize(new Dimension(1600,870));
+		this.setTitle("eSpotifai - Server Management");
+		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+	}
+	public void ConfigurationButton(JButton boton,ImageIcon imatge1,ImageIcon imatge2,ImageIcon imatge3){
+
+		//Definim que l'icon tindrá una imatge assignada per defecte
+		boton.setIcon(imatge1);
+
+		//Configurem que el botó no tingui marc 
+		boton.setBorderPainted(false);
+
+		//Per a que no es pinti el botó
+		boton.setContentAreaFilled(false);
+		boton.setFocusable(false);
+		boton.setRolloverEnabled(true);
+
+		//Definim l'icon que es mostrará quan l'usuari estigui sobre el botó 
+		boton.setRolloverIcon(imatge2);
+
+		//Definim l'icon que es mostrará quan l'usuari premi el botó 
+		boton.setPressedIcon(imatge3);
+
+	}
+
+	public void registerController(ButtonsController controller) {
+		jbAdd.addActionListener(controller);
+		jbAdd.setActionCommand("MainWindow.addActionCommand");
+
+		jbStatistics.addActionListener(controller);
+		jbStatistics.setActionCommand("MainWindow.statisticsActionCommand");	
+		
+		
+	}
+	
+	public void refreshUsers(LinkedList <Object[]> list){
+		while (tableModelUser.getRowCount()!= 0){
+			tableModelUser.removeRow(0);
+		}
+		for (int i = 0; i<list.size(); i++){
+			tableModelUser.addRow(list.get(i));
+		}
+	}
+	public void refreshSongs(LinkedList<Object[]> list) {
+		while (tableModelMusic.getRowCount()!= 0){
+			tableModelMusic.removeRow(0);
+		}
+		for (int i = 0; i<list.size(); i++){
+			tableModelMusic.addRow(list.get(i));
+		}
+	}
+}
+>>>>>>> cbc1e0d816a6c726ec7db5d9b7bdbb0a77ce6231:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/7d/d00f701edc1d00161a03a4d5b0fb7de0
+>>>>>>> fc06ce784d2430f51a70eff376f51b92ce7a3698
+<<<<<<< HEAD
+>>>>>>> 28042c37a8fd80e9c55b4f37064afc453522540a
+=======
+>>>>>>> 753afecea9090c9fa737a93a8bc4afd6ad533c55
+>>>>>>> 77b144f0a75d9608f2f63498ea4c536327ac2a6d

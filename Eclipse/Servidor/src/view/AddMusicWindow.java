@@ -9,16 +9,18 @@ import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import controller.ButtonsController;
 
-public class AddMusicWindow extends JDialog{
+public class AddMusicWindow extends JFrame{
 	
 	private JPanel jpAddMusic;
 	
@@ -36,6 +38,7 @@ public class AddMusicWindow extends JDialog{
 	private JTextField jtfPath;
 	
 	private JButton jbAccept;
+	private JButton jbFindPath;
 
 	public AddMusicWindow() {
 		
@@ -106,6 +109,10 @@ public class AddMusicWindow extends JDialog{
 		jbAccept.setHorizontalAlignment(JButton.CENTER);
 		jpAddMusic.add(jbAccept);
 		
+		jbFindPath = new JButton("Find path...");
+		jbFindPath.setHorizontalAlignment(JTextField.CENTER);
+		jpAddMusic.add(jbFindPath);
+		
 		//L'inserto en el panell general
 		this.getContentPane().add(jpAddMusic, BorderLayout.CENTER);
 		
@@ -114,12 +121,14 @@ public class AddMusicWindow extends JDialog{
 		
 		this.setSize(new Dimension(400,200));
 		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}	
 	
 	public void registerControllerAdd(ButtonsController controller) {
 		jbAccept.addActionListener(controller);
 		jbAccept.setActionCommand("AddMusicWindow.acceptActionCommand");
+		jbFindPath.addActionListener(controller);
+		jbFindPath.setActionCommand("AddMusicWindow.findPathActionCommand");
 	}
 	
 	public String getTypedSongTitle() {
@@ -140,5 +149,17 @@ public class AddMusicWindow extends JDialog{
 	
 	public String getTypedPath() {
 		return jtfPath.getText();
+	}
+	
+	public void setFoundPath(String path) {
+		jtfPath.setText(path);
+	}
+	
+	public void clearTextFields() {
+		jtfSongTitle.setText("");
+		jtfArtist.setText("");
+		jtfAlbum.setText("");
+		jtfGenre.setText("");
+		jtfPath.setText("");
 	}
 }

@@ -15,11 +15,13 @@ public class RefreshThread extends Thread {
 
 		while (true) {
 			try {
-				Thread.sleep(5000);
+				Thread.sleep(3000);
+				controller.refreshLists2();
+				//controller.trackTime();
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				Thread.currentThread().interrupt();
 			}
-			controller.refreshLists();
+			
 		}
 
 	}

@@ -1,7 +1,10 @@
 package model;
 
+import java.util.LinkedList;
+
 import javax.swing.JOptionPane;
 
+import controller.NetworkController;
 import network.ServerCommunication;
 /**
  * Implementa la lògica d'accés a l'aplicació.
@@ -14,15 +17,24 @@ import network.ServerCommunication;
 public class AccessLogic {
 	
 	
-	/**
+		/**
 	 * Cerca nom d'usuari. En cas de no trobar-lo, mostrarà un missatge d'error.
 	 * @param username Nom d'usuari introduit.
 	 * @return En cas de trobar l'usuari retorna <i style="color:indigo;">TRUE</i>. En cas contrari retorna <i style="color:indigo;">FALSE</i>.
 	 * @see JOptionPane
 	 */
-	public static boolean searchUser(String username){
-		
-		if(username.equalsIgnoreCase("elna")){
+	public static boolean searchUser( String username, NetworkController networkcontroller){
+		LinkedList<User>  userlist = new LinkedList<User>();
+		boolean ok;
+		ok = false;
+		userlist = networkcontroller.getUserList();
+		for(int i = 0; i < userlist.size(); i++){
+			if(username.equals(userlist.get(i).getUsername())){
+				ok = true;
+			}
+		}
+		System.out.println("OK"+ok);
+		if(ok == true){
 			return true;
 		}else{
 			JOptionPane.showMessageDialog(null, "User not found!", " ", JOptionPane.ERROR_MESSAGE);

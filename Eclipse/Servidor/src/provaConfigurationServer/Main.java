@@ -6,7 +6,10 @@ import controller.ButtonsController;
 import controller.NetworkController;
 import model.ManagementConfiguration;
 import network.Server;
+import controller.GeneralController;
+import controller.PopUpController;
 import view.AddMusicWindow;
+import view.FollowersWindow;
 import view.MainWindow;
 import view.StatisticsWindow;
 
@@ -18,17 +21,21 @@ public class Main {
 		mc.runConfiguration();
 		
 		// Creem la VISTA
+		AddMusicWindow addView = new AddMusicWindow();
 		MainWindow mainWindow = new MainWindow();
-		ButtonsController controller = new ButtonsController(mainWindow);
-		mainWindow.registerController(controller);
+		//FollowersWindow followerswindow = new FollowersWindow(null);
+
+
 		mainWindow.setVisible(true);
 		
 		//Creem la vista temporal de adició
-		AddMusicWindow addView = new AddMusicWindow();
+		
 		//addView.setVisible(true);
 		
 		StatisticsWindow statisticsWindow = new StatisticsWindow();
 		//statisticsWindow.setVisible(true);
+		
+		//controller.run();
 		
 		Server server = new Server(new NetworkController(null));
 		server.startServer();

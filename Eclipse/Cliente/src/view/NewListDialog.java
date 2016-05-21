@@ -5,10 +5,12 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 /**
@@ -34,14 +36,19 @@ public class NewListDialog extends JFrame{
 	 * @see JButton
 	 */
 	private JButton jbCancel;
+	private JRadioButton jrbPublic;
+	private JRadioButton jrbPrivate;
+	
+
 	/**
 	 * Constructor de la ventana emergent
 	 * @see JPanel
 	 * @see GridLayout
 	 */
+
 	public NewListDialog(){
 		JPanel jpMain = new JPanel();
-		jpMain.setLayout(new GridLayout(2,2));
+		jpMain.setLayout(new GridLayout(3,2));
 		
 		
 		JLabel jlNewList = new JLabel("Nueva Lista");
@@ -50,6 +57,17 @@ public class NewListDialog extends JFrame{
 		jtfList = new JTextField();
 		jtfList.setBackground(CustomColor.icon);
 		jpMain.add(jtfList);
+		
+		jrbPublic = new JRadioButton("Publica", true);
+		jrbPrivate = new JRadioButton("Privada", false);
+		
+		ButtonGroup buttonGroup = new ButtonGroup();
+		buttonGroup.add(jrbPublic);
+		buttonGroup.add(jrbPrivate);
+		
+		jpMain.add(jrbPublic);
+		jpMain.add(jrbPrivate);
+		
 		jbCreate = new JButton("CREAR");
 		jbCancel = new JButton("CANCELAR");
 		jpMain.add(jbCreate);

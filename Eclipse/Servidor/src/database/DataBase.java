@@ -33,16 +33,16 @@ public class DataBase {
             Class.forName("com.mysql.jdbc.Connection");
             conn = (Connection) DriverManager.getConnection(url, username, password);
             if (conn != null) {
-                System.out.println("Conexió a base de dades "+url+" ... Ok");
+                //System.out.println("Conexió a base de dades "+url+" ... Ok");
             }
         }
         catch(SQLException ex) {
-            System.out.println("Problema al connecta-nos a la BBDD --> "+ url);
-            System.out.println(ex);
+            //System.out.println("Problema al connecta-nos a la BBDD --> "+ url);
+            //System.out.println(ex);
             throw new DatabaseNotLoadedException("Database not loaded.");
         }
         catch(ClassNotFoundException ex2) {
-            System.out.println(ex2);
+            //System.out.println(ex2);
             throw new DatabaseNotLoadedException("Database not loaded.");
         }
         catch (Exception e) {

@@ -43,7 +43,7 @@ public class ServerCommunication {
 	 * Port de conexió al servidor.
 	 * @see Socket
 	 */
-	private final int SOCKET_PORT = 5000;
+	private final int SOCKET_PORT = 50000;
 	/**
 	 * Construeix el comunicador amb el servidor.
 	 * 

@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import javax.swing.JOptionPane;
+
 import controller.NetworkController;
 
 
@@ -23,7 +25,8 @@ public class Server extends Thread {
 			isOn = false;
 			this.controller = controller;
 		} catch (IOException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Aquest port esta ocupat.\nPotser ja estas executant el servidor.", " ", JOptionPane.ERROR_MESSAGE);
+			System.exit(MIN_PRIORITY);
 		}
 	}
 	
