@@ -11,6 +11,7 @@ import main.Main;
 import model.AccessLogic;
 import network.ServerCommunication;
 import threads.RefreshThread;
+import threads.TimeThread;
 import view.LoginWindow;
 import view.MainWindow;
 import view.NewListDialog;
@@ -52,8 +53,13 @@ public class ButtonController implements ActionListener {
 					if (AccessLogic.Login(loginWindow.getTypedUsername(), loginWindow.getTypedPassword())) {
 						mainWindow.setVisible(true);
 						loginWindow.setVisible(false);
-						Main.refreshThread = new RefreshThread(new ThreadController(mainWindow));
+						
+						ThreadController threadController = new ThreadController(mainWindow);
+						Main.refreshThread = new RefreshThread(threadController);
 						Main.refreshThread.start();
+						Main.timeThread = new TimeThread(threadController);
+						Main.timeThread.start();
+						
 						User = loginWindow.getTypedUsername();
 						
 						String d  = "HOLA";
@@ -92,8 +98,11 @@ public class ButtonController implements ActionListener {
 						mainWindow.setVisible(true);
 						registerWindow.setVisible(false);
 						User = registerWindow.getTypedUsername();
-						Main.refreshThread = new RefreshThread(new ThreadController(mainWindow));
+						ThreadController threadController = new ThreadController(mainWindow);
+						Main.refreshThread = new RefreshThread(threadController);
 						Main.refreshThread.start();
+						Main.timeThread = new TimeThread(threadController);
+						Main.timeThread.start();
 					}
 				}
 			}
@@ -122,7 +131,7 @@ public class ButtonController implements ActionListener {
 			mainWindow.setVisible(false);
 			loginWindow.setVisible(true);
 			Main.refreshThread.interrupt();
-			
+			Main.timeThread.interrupt();
 		}
 		
 		//PANTALLA MAIN (CERCAR USUARI)

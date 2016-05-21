@@ -50,7 +50,7 @@ public class Mp3 {
 		//comprueba que el reproductor tenga un archivo
 		if (todo_ok){
 			try {
-				customPlayer.stop();
+				customPlayer.stopPlayer();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -72,7 +72,7 @@ public class Mp3 {
 			
 			if(!run){
 				try {
-					customPlayer.play(b);
+					customPlayer.playPlayer(b);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

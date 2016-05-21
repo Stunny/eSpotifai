@@ -19,5 +19,9 @@ public class ThreadController {
 		LinkedList<Song> songsList = NetworkController.getSongList();
 		mainWindow.refreshSongs(songsList);
 	}
+	
+	public void trackTime() {
+		mainWindow.refreshTime();
+	}
 
 }

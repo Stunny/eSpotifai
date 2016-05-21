@@ -655,10 +655,10 @@ public class MainWindow extends JFrame {
 				//String songLink = "C:/Users/Marc/Downloads/Quentin Tarantino Soundtracks Discography - HTD 2015/Pulp Fiction (Collector's Edition) (2009) - Soundtrack/14. Personality Goes a Long Way.mp3";
 				//String songLink = "C:/Users/Marc/Downloads/grillos05_mp3.mp3";
 				//String songLink = "/Users/elnacabotparedes/Music/iTunes/iTunes Media/Music/Martin Garrix/Unknown Album/01 Poison.mp3";
-				String songLink = "C:/Users/Marta/Music/Mystery Skulls - Money.mp3";
+				String songLink = "C:/Users/Marta/Music/Mystery_Skulls_-Magic.mp3";
 
 				customPlayer.abrirMp3(songLink);
-				state = customPlayer.play(jSlider);
+				state = customPlayer.playPlayer(jSlider);
 
 			}catch (Exception ex) {
 				System.out.println("Error: " + ex.getMessage());

@@ -91,9 +91,8 @@ public class CustomPlayer implements BasicPlayerListener {
 	//public String AbrirMp3(String ruta) throws Exception{
 	public void abrirMp3(String ruta) throws Exception{
 
-		//URL url = new URL("file:/C:/Users/Marc/Downloads/Quentin Tarantino Soundtracks Discography - HTD 2015/Pulp Fiction (Collector's Edition) (2009) - Soundtrack/04. Let's Stay Together.mp3");
-		//try {
-
+		//System.out.println("entrado en método");
+		
 		//si se esta reproduciendo un mp3, se detiene
 		if(todoOk){
 			this.stopPlayer();
@@ -105,7 +104,6 @@ public class CustomPlayer implements BasicPlayerListener {
 		//se coloca a true
 		//se asigna el mp3 al reproductor
 		player.open(new File(ruta));
-		
 		this.nameSong = ruta;
 
 		/*		} catch (FileNotFoundException e) {
@@ -116,7 +114,7 @@ public class CustomPlayer implements BasicPlayerListener {
 		this.todoOk = true;
 		//System.out.println(player.getMixerName());
 		//player.setPan(0.50);
-
+//System.out.println("todo ok");
 
 		//System.out.println("El get pan es : " + player.getPan());
 	}
