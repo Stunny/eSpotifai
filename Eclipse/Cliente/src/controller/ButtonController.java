@@ -131,7 +131,6 @@ public class ButtonController implements ActionListener {
 				selecteduserwindow.refreshUser(mainWindow.getTypedSearch());
 				selecteduserwindow.setVisible(true);
 				
-				
 			}
 		}
 		
