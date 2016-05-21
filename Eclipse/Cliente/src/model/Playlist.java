@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 /**
- * 
+ * Llista de reproducció.
  * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
  * @version 1.0
  * @see Song
@@ -11,27 +11,27 @@ import java.util.ArrayList;
  */
 public class Playlist {
 	/**
-	 * 
+	 * ID de la llista de reproducció.
 	 */
 	private int id;
 	/**
-	 * 
+	 * Nom de la llista de reproducció.
 	 */
 	private String name; 
 	/**
-	 * 
+	 * Nom de l'usuari que ha creat la llista de reproducció.
 	 */
 	private String username;
 	/**
-	 * 
+	 * Conjunt de totes les cançons que inclou la llista de reproducció.
 	 */
 	private ArrayList<Song> songs;
 	/**
-	 * 
-	 * @param id
-	 * @param name
-	 * @param username
-	 * @param songs
+	 * Construeix una nova <i>playlist</i> amb un conjunt de cançons inicials.
+	 * @param id IDentificador de la llista.
+	 * @param name Nom de la llista.
+	 * @param username Usuari que ha creat la llista.
+	 * @param songs Conjunt de cançons que inclou la llista.
 	 */
 	public Playlist(int id, String name, String username, ArrayList<Song> songs) {
 		super();
@@ -41,10 +41,10 @@ public class Playlist {
 		this.songs = songs;
 	}
 	/**
-	 * 
-	 * @param id
-	 * @param name
-	 * @param username
+	 * Construeix una nova <i>playlist</i> buida.
+	 * @param id ID de la llista.
+	 * @param name Nom de la llista.
+	 * @param username Nom de l'usuari que ha creat la llista.
 	 */
 	public Playlist(int id, String name, String username) {
 		super();
@@ -54,64 +54,67 @@ public class Playlist {
 		this.songs = new ArrayList<Song>();
 	}
 	/**
-	 * 
-	 * @return
+	 * Getter de l'IDentificador de la <i>playlist</i>.
+	 * @return IDentificador
 	 */
 	public int getId() {
 		return id;
 	}
 	/**
-	 * 
-	 * @param id
+	 * Setter de l'IDentificador de la <i>playlist</i>.
+	 * @param id IDentificador
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 	/**
-	 * 
-	 * @return
+	 * Getter del nom de la <i>playlist</i>.
+	 * @return Playlist name.
 	 */
 	public String getName() {
 		return name;
 	}
 	/**
-	 * 
-	 * @param name
+	 * Setter del nom de la <i>playlist</i>.
+	 * @param name Playlist name
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 	/**
-	 * 
-	 * @return
+	 * Getter del nom de l'usuari creador de la <i>playlist</i>.
+	 * @return User name
 	 */
 	public String getUsername() {
 		return username;
 	}
 	/**
-	 * 
-	 * @param username
+	 * Setter del nom del creador de la llista.
+	 * @param username User name
 	 */
 	public void setUsername(String username) {
 		this.username = username;
 	}
 	/**
-	 * 
-	 * @return
+	 * Getter del conjunt de cançons que inclou la <i>playlist</i>.
+	 * @return Song array.
+	 * @see Song
 	 */
 	public ArrayList<Song> getSongs() {
 		return songs;
 	}
 	/**
-	 * 
-	 * @param songs
+	 * Setter del conjunt de cançons que inclou la <i>playlist</i>.
+	 * @param songs Song Array
+	 * @see Song
 	 */
 	public void setSongs(ArrayList<Song> songs) {
 		this.songs = songs;
 	} 
 	/**
-	 * 
-	 * @param song
+	 * Afegeix una nova cançó a la <i>playlist</i>.
+	 * @param song Nova cançó a afegir.
+	 * @see Song
 	 */
 	public void addSong(Song song) {
 		this.songs.add(song);
