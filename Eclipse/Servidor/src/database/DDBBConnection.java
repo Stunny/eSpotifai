@@ -217,7 +217,6 @@ public class DDBBConnection {
 	}
 	
 	public LinkedList<Song> getPlaylistSongs (int id){
-		System.out.println("asdasd");
 		ResultSet resultSet = ddbb.selectQuery("SELECT cf_song FROM playlists_songs WHERE cf_playlist="+id);
 		LinkedList<Song> list = new LinkedList<Song> (); 
 		ResultSet resultSet1;
@@ -226,12 +225,10 @@ public class DDBBConnection {
 			while (resultSet.next())
 			{
 				resultSet1 = ddbb.selectQuery("SELECT * FROM songs WHERE id_song="+resultSet.getInt(1));
-				System.out.println("Holaaaa");
 				while (resultSet1.next()){
 					list.add(new Song ((int)resultSet1.getObject("id_Song"), (String)resultSet1.getObject("name"), 
 						(String)resultSet1.getObject("genre"), (String)resultSet1.getObject("album"), (String)resultSet1.getObject("artist"),
 						(String)resultSet1.getObject("location"), (int)resultSet1.getObject("Stars"), (int)resultSet1.getObject("reproducciones")));
-					System.out.println("Cancion: "+(int)resultSet1.getObject("id_Song"));
 				}
 			}	
 			

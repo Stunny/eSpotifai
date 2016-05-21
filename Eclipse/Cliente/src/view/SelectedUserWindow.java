@@ -59,6 +59,7 @@ public class SelectedUserWindow extends JFrame {
 		JLabel jlfollowing = new JLabel("Estado");
 		jlfollowing.setForeground(Color.white);
 		jtafollow = new JTextArea();
+		jtafollow.setEditable(false);
 		jtafollow.setBackground(CustomColor.icon);
 		jbFollow = new JButton("FOLLOW");
 		jbUnfollow = new JButton("UNFOLLOW");
@@ -86,6 +87,7 @@ public class SelectedUserWindow extends JFrame {
 		jpPlaylistTab.setLayout(new BorderLayout());
 		jtaPlaylist= new JTextArea();
 		jtaPlaylist.setEditable(true);
+		jtaPlaylist.setEditable(false);
 		jtaPlaylist.setBackground(CustomColor.icon);
 		JScrollPane jspPlaylists= new JScrollPane(jtaPlaylist);
 		jspPlaylists.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
