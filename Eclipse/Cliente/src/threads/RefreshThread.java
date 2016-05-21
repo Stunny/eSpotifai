@@ -23,7 +23,7 @@ public class RefreshThread extends Thread {
 		while (true) {
 			try {
 				Thread.sleep(3000);
-				System.out.println("Dummy");
+				//System.out.println("Dummy");
 				threadController.refreshSongList();
 				
 			} catch (InterruptedException e) {

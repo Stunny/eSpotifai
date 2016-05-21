@@ -26,16 +26,18 @@ public class ButtonController implements ActionListener {
 	private RegisterWindow registerWindow;
 	private String User; 
 	private NetworkController networkcontroller;
+	private UserWindow userwindow;
 
 
 	
-	public ButtonController(LoginWindow loginWindow, RegisterWindow registerWindow, MainWindow mainWindow, SelectedUserWindow selecteduserwindow, NetworkController networkcontroller){
+	public ButtonController(LoginWindow loginWindow, RegisterWindow registerWindow, MainWindow mainWindow, SelectedUserWindow selecteduserwindow, NetworkController networkcontroller, UserWindow userwindow){
 		
 		this.loginWindow = loginWindow;
 		this.mainWindow = mainWindow;
 		this.registerWindow= registerWindow;
 		this.selecteduserwindow = selecteduserwindow;
 		this.networkcontroller = networkcontroller;
+		this.userwindow = userwindow;
 
 	}
 	
@@ -108,9 +110,8 @@ public class ButtonController implements ActionListener {
 		
 		//PANTALLA INICIO (USUARI)
 		if(event.getActionCommand().equals("MainWindow.profileActionCommand")){
-			UserWindow userWindow = new UserWindow(); 
-			userWindow.refreshUser(User);
-			userWindow.setVisible(true);
+			userwindow.refreshUser(User);
+			userwindow.setVisible(true);
 			
 
 		}
@@ -162,6 +163,7 @@ public class ButtonController implements ActionListener {
 				e.printStackTrace();
 			}
 		}
+		
 		
 		
 		

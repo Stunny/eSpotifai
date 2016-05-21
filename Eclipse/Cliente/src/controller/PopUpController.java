@@ -10,6 +10,7 @@ import view.AddList;
 import view.MainWindow;
 import view.PlaylistSearchUser;
 import view.SelectedUserWindow;
+import view.UserWindow;
 import view.Vots;
 
 
@@ -19,13 +20,15 @@ public class PopUpController implements ActionListener{
 	private Vots vots;
 	private SelectedUserWindow selecteduserwindow;
 	private PlaylistSearchUser playlistsearchuser;
+	private UserWindow userwindow;
 		
-	public PopUpController(MainWindow mainwindow, AddList addlist, Vots vots, SelectedUserWindow selecteduserwindow,PlaylistSearchUser playlistsearchuser ){
+	public PopUpController(MainWindow mainwindow, AddList addlist, Vots vots, SelectedUserWindow selecteduserwindow,PlaylistSearchUser playlistsearchuser, UserWindow userwindow ){
 		this.mainwindow = mainwindow;
 		this.addlist = addlist;
 		this.vots = vots;
 		this.selecteduserwindow = selecteduserwindow;
 		this.playlistsearchuser = playlistsearchuser;
+		this.userwindow = userwindow;
 	}
 
 	public void actionPerformed(ActionEvent event) {
@@ -74,9 +77,15 @@ public class PopUpController implements ActionListener{
 		
 		//-------------------------------------------
 		
-		
+		// VISUALITZEM LES CANÇONS EN EL PANELL GRAN
 		if( event.getActionCommand().equals("SelectedUserWindow.visualitzarActionCommand")){
-			System.out.println("hola");
+			//System.out.println("hola");
+			playlistsearchuser.setVisible(true);
+		}
+		
+		// -----------------------------------------
+		
+		if(event.getActionCommand().equals("UserWindow.visualitzarActionCommand")){
 			playlistsearchuser.setVisible(true);
 		}
 		

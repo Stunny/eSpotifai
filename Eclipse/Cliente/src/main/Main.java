@@ -24,7 +24,7 @@ import view.UserWindow;
 import view.Vots;
 /**
  * 
- * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @author Elna Cabot, Miguel Dï¿½az, Marc Millï¿½n, Alejandro Vogel, Marta Zapatero
  * @version 1.0
  * @see AccesLogic
  * @see MouseActions
@@ -54,18 +54,18 @@ public class Main {
 				LoginWindow loginWindow = new LoginWindow();
 				RegisterWindow registerWindow = new RegisterWindow();
 				MainWindow mainWindow = new MainWindow();
-				//UserWindow userWindow = new UserWindow();
 				AddList addlist  = new AddList();
 				SelectedUserWindow selecteduserwindow = new SelectedUserWindow();
 				NetworkController networkcontroller = new NetworkController();
 				Vots vots = new Vots();
 				PlaylistSearchUser playlistsearchuser = new PlaylistSearchUser();
+				UserWindow userWindow = new UserWindow();
 				//nwc.getUserList();
 				//nwc.getSongList();
 				
 				//Creamos el controlador
-				ButtonController controller = new ButtonController(loginWindow, registerWindow, mainWindow, selecteduserwindow, networkcontroller);
-				PopUpController controller2 = new PopUpController(mainWindow, addlist, vots, selecteduserwindow, playlistsearchuser);
+				ButtonController controller = new ButtonController(loginWindow, registerWindow, mainWindow, selecteduserwindow, networkcontroller, userWindow);
+				PopUpController controller2 = new PopUpController(mainWindow, addlist, vots, selecteduserwindow, playlistsearchuser, userWindow);
 				
 				//Juntamos las pantallas y el controlador
 				loginWindow.registerController(controller);
@@ -75,7 +75,9 @@ public class Main {
 				mainWindow.registerController1(controller2);
 				addlist.registerController1(controller2);
 				vots.registerController(controller2);
+				userWindow.registerController1(controller2);
 				selecteduserwindow.registerController1(controller2);
+				
 				
 				
 				//iniciamos la pantalla de login

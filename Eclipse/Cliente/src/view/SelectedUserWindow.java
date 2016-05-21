@@ -57,7 +57,7 @@ public class SelectedUserWindow extends JFrame {
 	 */
 	private JButton jbFollow; 
 	/**
-	 * Botó que activa l'acció de fer "follow" a l'usuari al que pertany el perfil.
+	 * Botï¿½ que activa l'acciï¿½ de fer "follow" a l'usuari al que pertany el perfil.
 	 * @see JButton
 	 */
 	private JButton jbUnfollow;
@@ -65,6 +65,9 @@ public class SelectedUserWindow extends JFrame {
 	private JMenuItem visualitzar;
 	private ListSelectionModel modelo;
 	private int id = 0; 
+	
+	
+	
 	/**
 	 * Constructor de la ventana de l'usuari seleccionat.
 	 */
@@ -183,6 +186,9 @@ public class SelectedUserWindow extends JFrame {
 		
 		
 		
+		
+		
+		
 		this.getContentPane().setBackground(CustomColor.background);
 
 		
@@ -192,8 +198,8 @@ public class SelectedUserWindow extends JFrame {
 		
 	}
 	/**
-	 * Controlador de la interacció de interacció d'usuari amb la finestra.
-	 * @param controller Captura l'acció que específica l'usuari
+	 * Controlador de la interacciï¿½ de interacciï¿½ d'usuari amb la finestra.
+	 * @param controller Captura l'acciï¿½ que especï¿½fica l'usuari
 	 * @see ActionListener
 	 */
 	public void registerController(ActionListener controller){
@@ -205,10 +211,12 @@ public class SelectedUserWindow extends JFrame {
 	
 	}
 	
-	public void registerController1(PopUpController controller2){
-		visualitzar.addActionListener(controller2);
-		visualitzar.setActionCommand("SelectedUserWindow.visualitzarActionCommand");
+	public void registerController1(PopUpController controller){
+		visualitzar.addActionListener(controller);
+		visualitzar.setActionCommand("SelectedUserWindow.visualitzarActionCommand");;
 	}
+	
+	
 	
 	/**
 	 * Actualitza continuament la llista de usuaris seguits

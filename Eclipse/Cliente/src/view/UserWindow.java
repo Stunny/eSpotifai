@@ -25,6 +25,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+
+import controller.PopUpController;
 /**
  * Finestra de usuari
  * @author Elna Cabot, Miguel Diaz, Marc Millan, Alejandro Vogel, Marta Zapatero
@@ -34,12 +36,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class UserWindow extends JFrame{
 	/**
-	 * Area on es mostrarà el conjunt d'usuaris als que es segueix.
+	 * Area on es mostrarï¿½ el conjunt d'usuaris als que es segueix.
 	 * @see JTextArea 
 	 */
 	private JTextArea jtaFollowing;
 	/**
-	 * Area on es mostrarà el nom d'usuari.
+	 * Area on es mostrarï¿½ el nom d'usuari.
 	 * @see JTextArea
 	 */
 	private JTextArea jtaUsername;
@@ -50,7 +52,7 @@ public class UserWindow extends JFrame{
 	
 	
 	/**
-	 * Construeix la finestra a la cual es mostrarà la informació de l'usuari seleccionat. 
+	 * Construeix la finestra a la cual es mostrarï¿½ la informaciï¿½ de l'usuari seleccionat. 
 	 * @see 
 	 */
 	public UserWindow(){
@@ -79,7 +81,7 @@ public class UserWindow extends JFrame{
 		jpListsFollowing.setBorder(BorderFactory.createTitledBorder("Following"));
 		
 		
-		String[] jtFollowedListsColumns = {"id","Folling List"};
+		String[] jtFollowedListsColumns = {"id","Following List"};
 		Object[][] jtFollowedListsData = {{"1", "ELNA"},{"2","Elna"}};
 		//se crea la tabla
 		JTable jtFollowedLists = new JTable(jtFollowedListsData, jtFollowedListsColumns);
@@ -153,6 +155,11 @@ public class UserWindow extends JFrame{
 	 */
 	public void refreshUser(String string){
 		jtaUsername.setText(string);
+	}
+	
+	public void registerController1(PopUpController controller){
+		visualitzar.addActionListener(controller);
+		visualitzar.setActionCommand("UserWindow.visualitzarActionCommand");;
 	}
 	
 	
