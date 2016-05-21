@@ -15,3 +15,5 @@ addSong:name/genre/artist/album/location/stars
 deleteSong:id
 
 deletePlayList: id
+
+modificatePlaylist : id (playlist) / id (song)
