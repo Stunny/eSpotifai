@@ -48,23 +48,26 @@ public class MainWindow extends JFrame{
 	private JTable jpUsers;
 	private JPanel jpPageEnd;
 	private JPanel jpButtons;
-	private JPanel jpPlayer;
-	private JPanel jpPlayerButtons;
+	private JPanel jpPlayer; 
+	private JPanel jpPlayerButtons; 
 	private JPanel jpSong;
 
 	private GridLayout glButtons;
-	private GridLayout glPlayerButtons;
+	private GridLayout glPlayerButtons; 
 	private GridLayout glPageEnd;
 	private GridLayout glSong;
 	private BorderLayout blMusic;
-	private BorderLayout blPlayer;
+	private BorderLayout blPlayer; 
 
 	//private JTextArea jtListOfSongs;
 	private JScrollPane jspMusicList;
-	private JSlider jSlider;
+	private JSlider jSlider; //
 
 	private JButton jbAdd;
 	private JButton jbStatistics;
+	
+	//=========================
+	
 	private JButton jbPlay;
 	private JButton jbPrevious;
 	private JButton jbNext;
@@ -86,6 +89,8 @@ public class MainWindow extends JFrame{
 	private ImageIcon iiPrevious3;
 	//private ImageIcon temporalSong;
 
+	//=========================
+	
 	DefaultTableModel tableModelUser;
 	DefaultTableModel tableModelMusic;
 
@@ -100,7 +105,7 @@ public class MainWindow extends JFrame{
 
 	public JPopupMenu popup;
 	public JPopupMenu popupSong;
-
+//=============
 	//private JLabel jlTemporalSong;
 	private JLabel jlTime;
 	//private JLabel SongState;
@@ -112,7 +117,7 @@ public class MainWindow extends JFrame{
 	private String state = "";
 	private String statePlayer = "";
 	private int max = 0, value = 0;
-
+//==================
 
 
 
@@ -213,7 +218,7 @@ public class MainWindow extends JFrame{
 		jpButtons.add(jbStatistics);
 
 		jpPageEnd.add(jpButtons);
-
+//========================
 		/*
 		 * AQUI S'HA DE CREAR EL REPRODUCTOR !!
 		 */
@@ -296,6 +301,7 @@ public class MainWindow extends JFrame{
 		jpPlayer.add(jSlider, BorderLayout.CENTER);
 		jpPlayer.add(jlTime, BorderLayout.EAST);
 		
+		//=====================================
 
 		jpPageEnd.add(jpPlayer);
 		jpPageEnd.setPreferredSize(new Dimension(0, 130));
@@ -395,7 +401,7 @@ public class MainWindow extends JFrame{
 	}
 	
 	
-	
+	//==========================
 	public void ConfigurationButton(JButton boton,ImageIcon imatge1,ImageIcon imatge2,ImageIcon imatge3){
 
 		//Definim que l'icon tindr� una imatge assignada per defecte
@@ -508,7 +514,7 @@ public class MainWindow extends JFrame{
 
 	}
 	
-	
+	//===============================
 
 	public void registerController(ButtonsController controller, PopUpController controller2) {
 		jbAdd.addActionListener(controller);
@@ -531,7 +537,7 @@ public class MainWindow extends JFrame{
 		
 		eliminar2.addActionListener(controller2);
 		eliminar2.setActionCommand("MainWindow.eliminar2ActionCommand");
-
+//===============
 		jbPlay.addActionListener(controller);
 		jbPlay.setActionCommand("MainWindow.playActionCommand");
 
@@ -585,7 +591,7 @@ public class MainWindow extends JFrame{
 
 		//jlTime.setText(String.valueOf(player.getMinutes() + ":" + player.getSeconds()));
 	}
-
+///==================
 	
 	
 	public void refreshUsers(LinkedList <Object[]> list){
