@@ -1,0 +1,99 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+package main;
+
+import provaConfigurationServer.ManagementConfiguration;
+import view.AddMusicWindow;
+import view.MainWindow;
+import view.StatisticsWindow;
+import controller.ButtonsController;
+import controller.GeneralController;
+import customExceptions.DatabaseNotLoadedException;
+import model.DDBBConnection;
+
+public class Main {
+
+	public static void main(String[] args) {
+		DDBBConnection ddbbConnection = new DDBBConnection ("root", "", "espotyfai", 3306);
+		try {
+			
+			ddbbConnection.startConnection();
+			ManagementConfiguration mc = new ManagementConfiguration();
+			mc.runConfiguration();
+			
+			// Creem la VISTA
+			MainWindow mainWindow = new MainWindow();
+			ButtonsController buttonscontroller = new ButtonsController(mainWindow);
+			GeneralController controller = new GeneralController (ddbbConnection, mainWindow);
+			mainWindow.registerController(buttonscontroller);
+			controller.refreshLists();
+			mainWindow.setVisible(true);
+			
+			//Creem la vista temporal de adició
+			AddMusicWindow addView = new AddMusicWindow();
+			//addView.setVisible(true);
+			
+			StatisticsWindow statisticsWindow = new StatisticsWindow();
+			//statisticsWindow.setVisible(true);
+			
+			ddbbConnection.stopConnection();
+			
+		} catch (DatabaseNotLoadedException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
+	}
+}
+=======
+=======
+>>>>>>> 77b144f0a75d9608f2f63498ea4c536327ac2a6d
+package main;
+
+import provaConfigurationServer.ManagementConfiguration;
+import view.AddMusicWindow;
+import view.MainWindow;
+import view.StatisticsWindow;
+import controller.ButtonsController;
+import controller.GeneralController;
+import customExceptions.DatabaseNotLoadedException;
+import model.DDBBConnection;
+
+public class Main {
+
+	public static void main(String[] args) {
+		DDBBConnection ddbbConnection = new DDBBConnection ("root", "", "espotyfai", 3306);
+		try {
+			
+			ddbbConnection.startConnection();
+			ManagementConfiguration mc = new ManagementConfiguration();
+			mc.runConfiguration();
+			
+			// Creem la VISTA
+			MainWindow mainWindow = new MainWindow();
+			ButtonsController buttonscontroller = new ButtonsController(mainWindow);
+			GeneralController controller = new GeneralController (ddbbConnection, mainWindow);
+			mainWindow.registerController(buttonscontroller);
+			controller.refreshLists();
+			mainWindow.setVisible(true);
+			
+			//Creem la vista temporal de adició
+			AddMusicWindow addView = new AddMusicWindow();
+			//addView.setVisible(true);
+			
+			StatisticsWindow statisticsWindow = new StatisticsWindow();
+			//statisticsWindow.setVisible(true);
+			
+			ddbbConnection.stopConnection();
+			
+		} catch (DatabaseNotLoadedException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
+	}
+}
+<<<<<<< HEAD
+>>>>>>> 28042c37a8fd80e9c55b4f37064afc453522540a
+=======
+>>>>>>> 77b144f0a75d9608f2f63498ea4c536327ac2a6d

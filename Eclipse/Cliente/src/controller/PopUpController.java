@@ -22,7 +22,6 @@ public class PopUpController implements ActionListener{
 		this.vots = vots;
 	}
 
-
 	public void actionPerformed(ActionEvent event) {
 		
 		if (event.getActionCommand().equals("MainWindow.reproducirActionCommand")) {
