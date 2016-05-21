@@ -22,6 +22,10 @@ import javax.swing.JSlider;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+<<<<<<< HEAD:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/91/10375013e11d00161a03a4d5b0fb7de0
+import javax.swing.Popup;
+=======
+>>>>>>> 77b144f0a75d9608f2f63498ea4c536327ac2a6d:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/5d/50f1f04edd1d00161a03a4d5b0fb7de0~fc06ce784d2430f51a70eff376f51b92ce7a3698~753afecea9090c9fa737a93a8bc4afd6ad533c55
 import javax.swing.SwingUtilities;
 //import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
@@ -73,6 +77,14 @@ public class MainWindow extends JFrame{
 	private ImageIcon iiPrevious3;
 	//private ImageIcon temporalSong;
 	
+<<<<<<< HEAD:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/91/10375013e11d00161a03a4d5b0fb7de0
+	DefaultTableModel tableModelUser;
+	DefaultTableModel tableModelMusic;
+
+    JFrame frame = new JFrame("Popup Menu Example");
+   
+	
+=======
 <<<<<<< HEAD:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/5d/50f1f04edd1d00161a03a4d5b0fb7de0:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/5d/50f1f04edd1d00161a03a4d5b0fb7de0
 	private PopUpMenuEdit windowAux = new PopUpMenuEdit();
 	
@@ -86,6 +98,7 @@ public class MainWindow extends JFrame{
 	private PopupMenu popup;
 	
 >>>>>>> fc06ce784d2430f51a70eff376f51b92ce7a3698:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/4e/609b05fbdf1d00161a03a4d5b0fb7de0:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/4e/609b05fbdf1d00161a03a4d5b0fb7de0
+>>>>>>> 77b144f0a75d9608f2f63498ea4c536327ac2a6d:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/5d/50f1f04edd1d00161a03a4d5b0fb7de0~fc06ce784d2430f51a70eff376f51b92ce7a3698~753afecea9090c9fa737a93a8bc4afd6ad533c55
 	public MainWindow() {
 
 		//Creem el conjunt de pestanyes
@@ -242,11 +255,15 @@ public class MainWindow extends JFrame{
 			}
 			
 		}; 
+<<<<<<< HEAD:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/91/10375013e11d00161a03a4d5b0fb7de0
+		
+=======
 <<<<<<< HEAD:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/5d/50f1f04edd1d00161a03a4d5b0fb7de0:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/5d/50f1f04edd1d00161a03a4d5b0fb7de0
 
 		
 =======
 >>>>>>> fc06ce784d2430f51a70eff376f51b92ce7a3698:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/4e/609b05fbdf1d00161a03a4d5b0fb7de0:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/4e/609b05fbdf1d00161a03a4d5b0fb7de0
+>>>>>>> 77b144f0a75d9608f2f63498ea4c536327ac2a6d:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/5d/50f1f04edd1d00161a03a4d5b0fb7de0~fc06ce784d2430f51a70eff376f51b92ce7a3698~753afecea9090c9fa737a93a8bc4afd6ad533c55
 		jtUser.addMouseListener(new MouseAdapter() {
 	        public void mousePressed(MouseEvent e) {
 	            if ( SwingUtilities.isLeftMouseButton(e)) {
@@ -259,6 +276,8 @@ public class MainWindow extends JFrame{
 	                    modelo.setSelectionInterval( rowNumber, rowNumber );
 	            		 String valor = String.valueOf(jtUser.getValueAt(rowNumber, 0));
 	            		 System.out.println(valor);
+<<<<<<< HEAD:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/91/10375013e11d00161a03a4d5b0fb7de0
+=======
 <<<<<<< HEAD:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/5d/50f1f04edd1d00161a03a4d5b0fb7de0:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/5d/50f1f04edd1d00161a03a4d5b0fb7de0
 	            		//windowAux.show(e.getComponent(), e.getX(), e.getY()); 
 	            		//esto le dice donde se tiene que mostrar
@@ -266,11 +285,17 @@ public class MainWindow extends JFrame{
 	            		windowAux.setVisible(true);
 =======
 >>>>>>> fc06ce784d2430f51a70eff376f51b92ce7a3698:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/4e/609b05fbdf1d00161a03a4d5b0fb7de0:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/4e/609b05fbdf1d00161a03a4d5b0fb7de0
+>>>>>>> 77b144f0a75d9608f2f63498ea4c536327ac2a6d:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/5d/50f1f04edd1d00161a03a4d5b0fb7de0~fc06ce784d2430f51a70eff376f51b92ce7a3698~753afecea9090c9fa737a93a8bc4afd6ad533c55
 	            		 //ventana emergente 
 	                }
 	            }
 	        }
 	    });
+<<<<<<< HEAD:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/91/10375013e11d00161a03a4d5b0fb7de0
+		jtUser.setModel(tableModelUser);
+		jtUser.setFocusable(false);
+	
+=======
 <<<<<<< HEAD:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/5d/50f1f04edd1d00161a03a4d5b0fb7de0:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/5d/50f1f04edd1d00161a03a4d5b0fb7de0
 
 		jtUser.setModel(tableModelUser);
@@ -281,10 +306,18 @@ public class MainWindow extends JFrame{
 		jtUser.setFocusable(false);
 	
 >>>>>>> fc06ce784d2430f51a70eff376f51b92ce7a3698:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/4e/609b05fbdf1d00161a03a4d5b0fb7de0:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/4e/609b05fbdf1d00161a03a4d5b0fb7de0
+>>>>>>> 77b144f0a75d9608f2f63498ea4c536327ac2a6d:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/5d/50f1f04edd1d00161a03a4d5b0fb7de0~fc06ce784d2430f51a70eff376f51b92ce7a3698~753afecea9090c9fa737a93a8bc4afd6ad533c55
 		
 		JScrollPane jspUsers = new JScrollPane(jtUser);
 		jpUsers = new JPanel();
 		jpUsers.add(jspUsers, BorderLayout.CENTER);
+<<<<<<< HEAD:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/91/10375013e11d00161a03a4d5b0fb7de0
+		JFrame frame = new JFrame("Popup Menu Example");
+		    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		    frame.setContentPane(new PopupMenu());
+		    frame.setSize(300, 300);
+		jpUsers.add(frame);
+=======
 <<<<<<< HEAD:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/5d/50f1f04edd1d00161a03a4d5b0fb7de0:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/5d/50f1f04edd1d00161a03a4d5b0fb7de0
 
 		//Incloeixo les pestañes a la finestra
@@ -292,12 +325,16 @@ public class MainWindow extends JFrame{
 		jtpTabs.addTab("Users", jspUsers);
 
 =======
+>>>>>>> 77b144f0a75d9608f2f63498ea4c536327ac2a6d:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/5d/50f1f04edd1d00161a03a4d5b0fb7de0~fc06ce784d2430f51a70eff376f51b92ce7a3698~753afecea9090c9fa737a93a8bc4afd6ad533c55
 		//jpUsers.add(popup = new PopupMenu());
 		//Incloeixo les pestañes a la finestra
 		jtpTabs.addTab("Music", jpMusic);
 		jtpTabs.addTab("Users", jspUsers);
+<<<<<<< HEAD:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/91/10375013e11d00161a03a4d5b0fb7de0
+=======
 		this.setContentPane(popup = new PopupMenu());
 >>>>>>> fc06ce784d2430f51a70eff376f51b92ce7a3698:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/4e/609b05fbdf1d00161a03a4d5b0fb7de0:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/4e/609b05fbdf1d00161a03a4d5b0fb7de0
+>>>>>>> 77b144f0a75d9608f2f63498ea4c536327ac2a6d:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/5d/50f1f04edd1d00161a03a4d5b0fb7de0~fc06ce784d2430f51a70eff376f51b92ce7a3698~753afecea9090c9fa737a93a8bc4afd6ad533c55
 		this.getContentPane().add(jtpTabs, BorderLayout.CENTER);
 		this.setResizable(true);
 		this.setSize(new Dimension(1600,870));

@@ -38,20 +38,49 @@ import model.Song;
  * Clase de la ventana principal de l'aplicaciï¿½ Espotyfai.
  * @author Elna Cabot, Miguel Diaz, Marc Millan, Alejandro Vogel, Marta Zapatero
  * @version 1.0
- * @see <a>JFrame</a>
+ * @see JFrame
+ * 
  */
 public class MainWindow extends JFrame {
+	/**
+	 * Area de text on es mostren les <i>playlists</i> de l'usuari.
+	 * @see JTextArea
+	 */
 	private JTextArea jtaLists; 
+	/**
+	 * Area de text on es mostren les <i>playlists</i> seguides per l'usuari.
+	 * @see JTextArea
+	 */
 	private JTextArea jtaListsfollowing;
-	private JButton jbRemove; 
+	/**
+	 * Botó per a afegir una nova llista.
+	 * @see JButton
+	 */
 	private JButton jbAdd;
+	/**
+	 * Area de text per introduir les paraules de les que es vol fer una cerca.
+	 * @see JTextField
+	 */
 	private JTextField jtfSearch; 
+	/**
+	 * Acciona la cerca del que s'ha introduit a <i style="color:indigo;">jtfSearch</i>.
+	 * @see JButton
+	 */
 	private JButton jbSearch;
+	/**
+	 * Botó que obre la finestra <i style="color:indigo;">UserWindow</i>
+	 * @see JButton
+	 * @see UserWindow
+	 */
 	private JButton jbProfile;
-	private JTextField jtfArtist; 
-	private JTextField jtfAlbum; 
-	private JTextField jtfGenre; 
-	private JTextField jtfSongTitle; 
+	/**
+	 * Taula on es mostra la llista de cançons amb els detalls de cadascuna.
+	 * @see JTable
+	 */
+	/**
+	 * Botó per que l'usuari indiqui que vol tancar la sessió
+	 * @see JButton
+	 */
 	private JButton jbClose;
 	
 	public JPopupMenu popup;
@@ -70,7 +99,7 @@ public class MainWindow extends JFrame {
 	private JMenuItem delate;
 	private JMenuItem visualitzarPlaylist;
 	private JMenuItem delatePlaylist;
-	//private JMenuItem eliminar;
+	private JMenuItem vot;
 	
 	//====
 	private JPanel jpPlayer; 
@@ -102,6 +131,10 @@ public class MainWindow extends JFrame {
 	private ImageIcon iiPrevious1;
 	private ImageIcon iiPrevious2;
 	private ImageIcon iiPrevious3;
+
+	private ListSelectionModel modelo;
+	private ListSelectionModel modelo1;
+	private ListSelectionModel modelo2;
 	//private ImageIcon temporalSong;
 	//=====
 	
@@ -151,7 +184,6 @@ public class MainWindow extends JFrame {
 		jtfSearch.setBackground(CustomColor.icon);
 		jpPageStart.add(jtfSearch, BorderLayout.CENTER);
 		jbSearch = new JButton("BUSCAR"); 
-        
 		jpPageStart.add(jbSearch, BorderLayout.CENTER);
 		jbClose = new JButton("CERRAR SESIÃ“N"); 
 		jpPageStart.add(jbClose, BorderLayout.CENTER);
@@ -165,6 +197,7 @@ public class MainWindow extends JFrame {
 		
 		//START (P2)
 
+		// -----------------------------------------------
 		
 		// START (jpPageWest)
 		JPanel jpPageWest = new JPanel(); 
@@ -172,21 +205,13 @@ public class MainWindow extends JFrame {
 		
 		JPanel jpListsFollowing = new JPanel(new BorderLayout());
 		jpListsFollowing.setBorder(BorderFactory.createTitledBorder("PLAYLIST FOLLOWING"));
-		/*jtaListsfollowing = new JTextArea(); 
-		jtaListsfollowing.setBackground(CustomColor.icon);
-		jtaListsfollowing.setEditable(false);
-		JScrollPane jspListsFollowing = new JScrollPane(jtaListsfollowing);
-		jspListsFollowing.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		jspListsFollowing.setPreferredSize(new Dimension(250,250));
-		*/
+	
 		
-		//-----------------------------------------------------------------
-		
-		String[] jtFollowedListsColumns = {"Followed Lists"};
-		Object[][] jtFollowedListsData = {{"HOLA"}};
+		String[] jtFollowedListsColumns = {"id","Followed Lists", "Creador"};
+		Object[][] jtFollowedListsData = {{"1","HOLA", "ELNA"},{"2","HOLA1","Elna"}};
 		//se crea la tabla
 		JTable jtFollowedLists = new JTable(jtFollowedListsData, jtFollowedListsColumns);
-
+		
 		//se hace que los datos no sean editables
 		DefaultTableModel tableModelFollowedLists = new DefaultTableModel(jtFollowedListsData, jtFollowedListsColumns) {
 			@Override
@@ -200,29 +225,34 @@ public class MainWindow extends JFrame {
 		popupPlaylist = new JPopupMenu();
 		popupPlaylist.add(visualitzar = new JMenuItem("Visualitzar llista"));
 		visualitzar.setHorizontalTextPosition(JMenuItem.RIGHT);
-		popupPlaylist.add(delate  = new JMenuItem("Eliminar Llista"));
-		delate.setHorizontalTextPosition(JMenuItem.RIGHT);
 		popupPlaylist.setLabel("Justificacion");
 		popupPlaylist.setBorder(new BevelBorder(BevelBorder.RAISED));
 		jtFollowedLists.addMouseListener(new MouseAdapter(){
 			  public void mousePressed(MouseEvent e) {
 		            if ( SwingUtilities.isLeftMouseButton(e)) {
 		            	popupPlaylist.setVisible(false);
+		            	System.out.println("hola guarra");
+		            	
 		            } else {
 		                 if ( SwingUtilities.isRightMouseButton(e)) {
 		                    Point p = e.getPoint();
 		                    int rowNumber = jtFollowedLists.rowAtPoint(p);
-		                    ListSelectionModel modelo = jtFollowedLists.getSelectionModel();
+		                    modelo = jtFollowedLists.getSelectionModel();
 		                    modelo.setSelectionInterval( rowNumber, rowNumber );
-		            		// id = Integer.parseInt(String.valueOf( jtMusic.getValueAt(rowNumber, 0)));
-		            		popupPlaylist.show(jtFollowedLists,  e.getX(), e.getY());
+		                   // modelo1.clearSelection();
+		                   // modelo2.clearSelection();
+		            		id = Integer.parseInt(String.valueOf( jtFollowedLists.getValueAt(rowNumber, 0)));
+		            		popupPlaylist.show(jpListsFollowing,  e.getX(), e.getY());
 		            		 
 		                }
 		            }
 		        }
 		    });
 		
+		
+		jtFollowedLists.getTableHeader().setReorderingAllowed(false);
 		jtFollowedLists.setModel(tableModelFollowedLists);
+		jtFollowedLists.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		jtFollowedLists.setFocusable(false);
 
 		JScrollPane jspListsFollowing = new JScrollPane(jtFollowedLists);
@@ -238,8 +268,8 @@ public class MainWindow extends JFrame {
 		JPanel jpLists = new JPanel(new BorderLayout());
 		jpLists.setBorder(BorderFactory.createTitledBorder("PLAYLIST "));
 		
-		String[] jtListsColumns1 = {"Lists"};
-		Object[][] jtListsData1 = {{"HOLA"}};
+		String[] jtListsColumns1 = {"id","Lists"};
+		Object[][] jtListsData1 = {{"1","HOLA"}};
 		//se crea la tabla
 		JTable jtLists = new JTable(jtListsData1, jtListsColumns1);
 
@@ -262,23 +292,29 @@ public class MainWindow extends JFrame {
 		popupPlaylist1.setBorder(new BevelBorder(BevelBorder.RAISED));
 		jtLists.addMouseListener(new MouseAdapter(){
 			  public void mousePressed(MouseEvent e) {
-		            if ( SwingUtilities.isLeftMouseButton(e)) {
+				  if ( SwingUtilities.isLeftMouseButton(e)) {
 		            	popupPlaylist1.setVisible(false);
+
+		            	
 		            } else {
 		                 if ( SwingUtilities.isRightMouseButton(e)) {
 		                    Point p = e.getPoint();
 		                    int rowNumber = jtLists.rowAtPoint(p);
-		                    ListSelectionModel modelo = jtLists.getSelectionModel();
-		                    modelo.setSelectionInterval( rowNumber, rowNumber );
+		                    modelo1 = jtLists.getSelectionModel();
+		                    modelo1.setSelectionInterval( rowNumber, rowNumber );
+		                    //modelo.clearSelection();
+		                    //modelo2.clearSelection();
 		            		// id = Integer.parseInt(String.valueOf( jtMusic.getValueAt(rowNumber, 0)));
-		            		popupPlaylist1.show(jtLists,  e.getX(), e.getY());
+		            		popupPlaylist1.show(jpLists,  e.getX(), e.getY());
 		            		 
 		                }
 		            }
 		        }
 		    });
 		
+		jtLists.getTableHeader().setReorderingAllowed(false);
 		jtLists.setModel(tableModelLists);
+		jtLists.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		jtLists.setFocusable(false);
 
 		JScrollPane jspLists = new JScrollPane(jtLists);
@@ -332,11 +368,10 @@ public class MainWindow extends JFrame {
 		popup = new JPopupMenu();
 		popup.add(reproducir = new JMenuItem("Reproduir CanÃ§o"));
 		reproducir.setHorizontalTextPosition(JMenuItem.RIGHT);
-		
-
 		popup.add(anadir = new JMenuItem("Afeguir a una Playlist"));
-
-		reproducir.setHorizontalTextPosition(JMenuItem.RIGHT);
+		anadir.setHorizontalTextPosition(JMenuItem.RIGHT);
+		popup.add(vot = new JMenuItem("Votar per la canÃ§o"));
+		vot.setHorizontalTextPosition(JMenuItem.RIGHT);
 		
 		//popup.add(reproducir = new JMenuItem("Eliminar CanÃ§o", new ImageIcon("1.gif")));
 		//reproducir.setHorizontalTextPosition(JMenuItem.RIGHT);
@@ -352,17 +387,22 @@ public class MainWindow extends JFrame {
 		                 if ( SwingUtilities.isRightMouseButton(e)) {
 		                    Point p = e.getPoint();
 		                    int rowNumber = jtMusic.rowAtPoint(p);
-		                    ListSelectionModel modelo = jtMusic.getSelectionModel();
-		                    modelo.setSelectionInterval( rowNumber, rowNumber );
+		                    modelo2 = jtMusic.getSelectionModel();
+		                    modelo2.setSelectionInterval( rowNumber, rowNumber );
+		                    //modelo.clearSelection();
+		                    //modelo1.clearSelection();
 		            		// id = Integer.parseInt(String.valueOf( jtMusic.getValueAt(rowNumber, 0)));
-		            		popup.show(jtMusic,  e.getX(), e.getY());
+		            		popup.show(jpMain,  e.getX(), e.getY());
 		            		 
 		                }
 		            }
 		        }
+			  
 		    });
 		
+		jtMusic.getTableHeader().setReorderingAllowed(false);
 		jtMusic.setModel(tableMusic);
+		jtMusic.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		jtMusic.setFocusable(false);
 		
 		JScrollPane jspUsers = new JScrollPane(jtMusic);
@@ -463,7 +503,7 @@ public class MainWindow extends JFrame {
 			jpPlayer.add(jlTime, BorderLayout.EAST);
 			
 		jpMain.add(jpPlayer, BorderLayout.SOUTH) ;
-		jpMain.setPreferredSize(new Dimension(0, 130));
+		//jpMain.setPreferredSize(new Dimension(0, 130));
 		
 		this.getContentPane().add(jpMain, BorderLayout.CENTER);
 		
@@ -477,8 +517,8 @@ public class MainWindow extends JFrame {
 	}
 	
 	/**
-	 * 
-	 * @param controller 
+	 * Controlador de interacció de l'usuari amb MainWindow
+	 * @param controller Listener que captura la acció que l'usuari vol dur a terme
 	 * @see ActionListener
 	 */
 	
@@ -501,54 +541,33 @@ public class MainWindow extends JFrame {
 	
 	public void registerController1(PopUpController controller2){
 		reproducir.addActionListener(controller2);
-
 		anadir.addActionListener(controller2);
 		visualitzar.addActionListener(controller2);
-		delate.addActionListener(controller2);
+		delatePlaylist.addActionListener(controller2);
+		vot.addActionListener(controller2);
+		visualitzarPlaylist.addActionListener(controller2);
+		
 		reproducir.setActionCommand("MainWindow.reproducirActionCommand");
 		anadir.setActionCommand("MainWindow.anadirActionCommand");
 		visualitzar.setActionCommand("MainWindow.visualitzarActionCommand");
-		delate.setActionCommand("MainWindow.delateActionCommand");
-
+		delatePlaylist.setActionCommand("MainWindow.delatePlaylistActionCommand");
+		vot.setActionCommand("MainWindow.votActionCommand");
+		visualitzarPlaylist.setActionCommand("MainWindow.visualitzarPlaylitsActionCommand");
+		
 	}
+	
+
 	
 	
 	/**
-	 * 
+	 * Getter de la String introduida al camp de cerca
 	 * @return
 	 */
 
 	public String getTypedSearch(){
 		return jtfSearch.getText();
 	}
-	/**
-	 * 
-	 * @return
-	 */
-	public String getTypedArtist(){
-		return jtfArtist.getText();
-	}
-	/**
-	 * 
-	 * @return
-	 */
-	public String getTypedAlbum(){
-		return jtfArtist.getText();
-	}
-	/**
-	 * 
-	 * @return
-	 */
-	public String getTypedGenre(){
-		return jtfGenre.getText();
-	}
-	/**
-	 * 
-	 * @return
-	 */
-	public String getTypedSongTitle(){
-		return jtfSongTitle.getText();
-	}
+	
 	
 	public void refreshUsers(LinkedList <Object[]> list){
 		while (tablePlaylist.getRowCount()!= 0){
@@ -569,8 +588,9 @@ public class MainWindow extends JFrame {
 	}
 
 	/**
-	 * 
+	 * Actualitza continuament la llista de playlists mostrada.
 	 * @param string
+	 * @see JTextArea
 	 */
 	public void refreshLists(String string){
 		jtaLists.setText(string);
@@ -637,10 +657,10 @@ public class MainWindow extends JFrame {
 				//String songLink = "C:/Users/Marc/Downloads/Quentin Tarantino Soundtracks Discography - HTD 2015/Pulp Fiction (Collector's Edition) (2009) - Soundtrack/14. Personality Goes a Long Way.mp3";
 				//String songLink = "C:/Users/Marc/Downloads/grillos05_mp3.mp3";
 				//String songLink = "/Users/elnacabotparedes/Music/iTunes/iTunes Media/Music/Martin Garrix/Unknown Album/01 Poison.mp3";
-				String songLink = "C:/Users/Marta/Music/Mystery Skulls - Money.mp3";
+				String songLink = "C:/Users/Marta/Music/Mystery_Skulls_-Magic.mp3";
 
 				customPlayer.abrirMp3(songLink);
-				state = customPlayer.play(jSlider);
+				state = customPlayer.playPlayer(jSlider);
 
 			}catch (Exception ex) {
 				System.out.println("Error: " + ex.getMessage());
@@ -763,10 +783,15 @@ public class MainWindow extends JFrame {
 		
 		
 	}
-	
-	
-	
-	
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
 	
 	
 	

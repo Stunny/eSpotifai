@@ -21,8 +21,20 @@ import javax.swing.JTextField;
  *
  */
 public class NewListDialog extends JFrame{
+	/**
+	 * Introducció del nom de la nova llista de reproducció
+	 * @see JTextField
+	 */
 	private JTextField jtfList;
+	/**
+	 * Acciona la creació de la nova llista
+	 * @see JButton
+	 */
 	private JButton jbCreate; 
+	/**
+	 * Cancela la creació d'una nova llista
+	 * @see JButton
+	 */
 	private JButton jbCancel;
 	private JRadioButton jrbPublic;
 	private JRadioButton jrbPrivate;

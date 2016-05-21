@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.LinkedList;
@@ -16,6 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
@@ -24,14 +27,15 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.Popup;
 import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 //import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
-
 //import view.PopupMenu.PopupPrintListener;
 import model.CustomPlayer;
+import model.User;
 import controller.ButtonsController;
 import controller.PopUpController;
 
@@ -146,6 +150,7 @@ public class MainWindow extends JFrame{
 				return false;
 			}
 		}; 
+		
 		popupSong = new JPopupMenu();
 		eliminar2 = new JMenuItem("Eliminar ");
 		eliminar2.setHorizontalTextPosition(JMenuItem.RIGHT);
@@ -176,9 +181,8 @@ public class MainWindow extends JFrame{
 		jtMusicList.getTableHeader().setReorderingAllowed(false);
 		jtMusicList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		jtMusicList.setModel(tableModelMusic);
-
+		//jtMusicList.setForeground(Color.BLACK);
 		jtMusicList.setFocusable(false);
-
 		//jtMusicList.setForeground(Color.BLACK);
 		//jtMusicList.setBackground(Color.DARK_GRAY);
 		Color myColor = Color.getHSBColor(0.51F,  0.93F,  0.5F);          
@@ -328,7 +332,7 @@ public class MainWindow extends JFrame{
 			}
 
 		}; 
-		
+
 		popup = new JPopupMenu();
 		popup.add(seguidores = new JMenuItem("Mostrar seguidores", null));
 		seguidores.setHorizontalTextPosition(JMenuItem.RIGHT);
@@ -364,10 +368,8 @@ public class MainWindow extends JFrame{
 				}
 			}
 	    });
-
 		jtUser.getTableHeader().setReorderingAllowed(false);
 		jtUser.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
 		jtUser.setModel(tableModelUser);
 		jtUser.setFocusable(false);
 
@@ -461,9 +463,10 @@ public class MainWindow extends JFrame{
 				//String songLink = "C:/Users/Marc/Downloads/Quentin Tarantino Soundtracks Discography - HTD 2015/Pulp Fiction (Collector's Edition) (2009) - Soundtrack/14. Personality Goes a Long Way.mp3";
 				//String songLink = "C:/Users/Marc/Downloads/grillos05_mp3.mp3";
 				//String songLink = "/Users/elnacabotparedes/Music/iTunes/iTunes Media/Music/Martin Garrix/Unknown Album/01 Poison.mp3";
-				String songLink = "C:/Users/Marta/Music/Mystery Skulls - Ghost.mp3";
-
+				String songLink = "C:/Users/Marta/Music/Mystery_Skulls_-Magic.mp3";
+				
 				customPlayer.abrirMp3(songLink);
+
 				state = customPlayer.playPlayer(jSlider);
 
 			}catch (Exception ex) {
@@ -609,7 +612,7 @@ public class MainWindow extends JFrame{
 	}
 	
 	
-	
+
 	public void refreshSongs(LinkedList<Object[]> list) {
 		while (tableModelMusic.getRowCount()!= 0){
 			tableModelMusic.removeRow(0);

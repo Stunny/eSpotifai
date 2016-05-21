@@ -1,4 +1,3 @@
-
 package controller;
 
 import java.util.LinkedList;
@@ -15,10 +14,14 @@ public class ThreadController {
 		this.mainWindow = mainWindow;
 	}
 	
+	
 	public void refreshSongList() {
 		LinkedList<Song> songsList = NetworkController.getSongList();
 		mainWindow.refreshSongs(songsList);
 	}
+	
+	public void trackTime() {
+		mainWindow.refreshTime();
+	}
 
 }
-

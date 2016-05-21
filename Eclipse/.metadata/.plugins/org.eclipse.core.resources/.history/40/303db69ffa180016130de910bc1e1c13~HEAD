@@ -452,4 +452,8 @@ public class DDBBConnection {
 		}
 	}
 }
+<<<<<<< HEAD
+>>>>>>> 28042c37a8fd80e9c55b4f37064afc453522540a:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/40/303db69ffa180016130de910bc1e1c13~HEAD
+=======
 >>>>>>> 753afecea9090c9fa737a93a8bc4afd6ad533c55:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/40/303db69ffa180016130de910bc1e1c13~HEAD
+>>>>>>> 77b144f0a75d9608f2f63498ea4c536327ac2a6d

@@ -91,9 +91,8 @@ public class CustomPlayer implements BasicPlayerListener {
 	//public String AbrirMp3(String ruta) throws Exception{
 	public void abrirMp3(String ruta) throws Exception{
 
-		//URL url = new URL("file:/C:/Users/Marc/Downloads/Quentin Tarantino Soundtracks Discography - HTD 2015/Pulp Fiction (Collector's Edition) (2009) - Soundtrack/04. Let's Stay Together.mp3");
-		//try {
-
+		//System.out.println("entrado en método");
+		
 		//si se esta reproduciendo un mp3, se detiene
 		if(todoOk){
 			this.stopPlayer();
@@ -105,7 +104,6 @@ public class CustomPlayer implements BasicPlayerListener {
 		//se coloca a true
 		//se asigna el mp3 al reproductor
 		player.open(new File(ruta));
-		
 		this.nameSong = ruta;
 
 		/*		} catch (FileNotFoundException e) {
@@ -116,7 +114,7 @@ public class CustomPlayer implements BasicPlayerListener {
 		this.todoOk = true;
 		//System.out.println(player.getMixerName());
 		//player.setPan(0.50);
-
+//System.out.println("todo ok");
 
 		//System.out.println("El get pan es : " + player.getPan());
 	}
@@ -194,7 +192,9 @@ public class CustomPlayer implements BasicPlayerListener {
 
 		}
 		
-
+		//System.out.println("propiedades: " + arg1);
+		//System.out.println("time: " + durationSong);
+		//System.out.println("propiedades: " + arg1);
 		
 	}
 	
@@ -229,11 +229,6 @@ public class CustomPlayer implements BasicPlayerListener {
 		//System.out.println("progressUpdate: " + progressUpdate + "bytesLength: " + bytesLength);
 		this.minutes = (microdecondsSongActual/ 1000000)/60;
 		this.seconds = (microdecondsSongActual/ 1000000)%60;
-		frameSlider = microdecondsSongActual * 100 / durationSong;
-
-		//System.out.println("progressUpdate : "+ progressUpdate);
-		//System.out.println("progressNow : "+ progressNow);
-		//System.out.println(framesSong + "=" + framesSongActual);
 		double actualTime = microdecondsSongActual/100000;
 		double songDuration = durationSong/100000;
 		//frameSlider = microdecondsSongActual * 100 / durationSong;
@@ -269,6 +264,7 @@ public class CustomPlayer implements BasicPlayerListener {
 		// TODO Auto-generated method stub
 
 	}
+	
 
 	@Override
 	public void stateUpdated(BasicPlayerEvent arg0) {

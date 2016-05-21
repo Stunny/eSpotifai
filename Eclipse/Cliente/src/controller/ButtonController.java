@@ -11,6 +11,7 @@ import main.Main;
 import model.AccessLogic;
 import network.ServerCommunication;
 import threads.RefreshThread;
+import threads.TimeThread;
 import view.LoginWindow;
 import view.MainWindow;
 import view.NewListDialog;
@@ -26,16 +27,18 @@ public class ButtonController implements ActionListener {
 	private RegisterWindow registerWindow;
 	private String User; 
 	private NetworkController networkcontroller;
+	private UserWindow userwindow;
 
 
 	
-	public ButtonController(LoginWindow loginWindow, RegisterWindow registerWindow, MainWindow mainWindow, SelectedUserWindow selecteduserwindow, NetworkController networkcontroller){
+	public ButtonController(LoginWindow loginWindow, RegisterWindow registerWindow, MainWindow mainWindow, SelectedUserWindow selecteduserwindow, NetworkController networkcontroller, UserWindow userwindow){
 		
 		this.loginWindow = loginWindow;
 		this.mainWindow = mainWindow;
 		this.registerWindow= registerWindow;
 		this.selecteduserwindow = selecteduserwindow;
 		this.networkcontroller = networkcontroller;
+		this.userwindow = userwindow;
 
 	}
 	
@@ -52,8 +55,13 @@ public class ButtonController implements ActionListener {
 					if (AccessLogic.Login(loginWindow.getTypedUsername(), loginWindow.getTypedPassword())) {
 						mainWindow.setVisible(true);
 						loginWindow.setVisible(false);
-						Main.refreshThread = new RefreshThread(new ThreadController(mainWindow));
+						
+						ThreadController threadController = new ThreadController(mainWindow);
+						Main.refreshThread = new RefreshThread(threadController);
 						Main.refreshThread.start();
+						Main.timeThread = new TimeThread(threadController);
+						Main.timeThread.start();
+						
 						User = loginWindow.getTypedUsername();
 						
 						String d  = "HOLA";
@@ -92,8 +100,11 @@ public class ButtonController implements ActionListener {
 						mainWindow.setVisible(true);
 						registerWindow.setVisible(false);
 						User = registerWindow.getTypedUsername();
-						Main.refreshThread = new RefreshThread(new ThreadController(mainWindow));
+						ThreadController threadController = new ThreadController(mainWindow);
+						Main.refreshThread = new RefreshThread(threadController);
 						Main.refreshThread.start();
+						Main.timeThread = new TimeThread(threadController);
+						Main.timeThread.start();
 					}
 				}
 			}
@@ -108,9 +119,8 @@ public class ButtonController implements ActionListener {
 		
 		//PANTALLA INICIO (USUARI)
 		if(event.getActionCommand().equals("MainWindow.profileActionCommand")){
-			UserWindow userWindow = new UserWindow(); 
-			userWindow.refreshUser(User);
-			userWindow.setVisible(true);
+			userwindow.refreshUser(User);
+			userwindow.setVisible(true);
 			
 
 		}
@@ -122,7 +132,7 @@ public class ButtonController implements ActionListener {
 			mainWindow.setVisible(false);
 			loginWindow.setVisible(true);
 			Main.refreshThread.interrupt();
-			
+			Main.timeThread.interrupt();
 		}
 		
 		//PANTALLA MAIN (CERCAR USUARI)
@@ -130,6 +140,7 @@ public class ButtonController implements ActionListener {
 			if(AccessLogic.searchUser(mainWindow.getTypedSearch(), networkcontroller)){
 				selecteduserwindow.refreshUser(mainWindow.getTypedSearch());
 				selecteduserwindow.setVisible(true);
+				
 				
 			}
 		}
@@ -161,6 +172,7 @@ public class ButtonController implements ActionListener {
 				e.printStackTrace();
 			}
 		}
+		
 		
 		
 		

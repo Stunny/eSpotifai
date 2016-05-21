@@ -18,7 +18,6 @@ import view.AddMusicWindow;
 import view.MainWindow;
 import view.StatisticsWindow;
 
-
 public class ButtonsController implements ActionListener{
 
 	// VISTA
@@ -101,50 +100,12 @@ public class ButtonsController implements ActionListener{
 			jFileChooser.setFileFilter(new FileNameExtensionFilter("MP3 files", "mp3"));
 			if (jFileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 				path = jFileChooser.getSelectedFile().getAbsolutePath();
-
-			}
-			addMusicWindow.setFoundPath(path);
-			
-		} else if (event.getActionCommand().equals("RIGHTSONG")){
-			StatisticsWindow StadisticsView = new StatisticsWindow();
-			StadisticsView.setVisible(true);
-			
-		} else if (event.getActionCommand().equals("LEFTSONG")){
-			
-			StatisticsWindow StadisticsView = new StatisticsWindow();
-			StadisticsView.setVisible(true);
-		}
-		else if (event.getActionCommand().equals("AddMusicWindow.acceptActionCommand")){
-			String title = addMusicWindow.getTypedSongTitle();
-			String genre = addMusicWindow.getTypedGenre();
-			String artist = addMusicWindow.getTypedArtist();
-			String album = addMusicWindow.getTypedAlbum();
-			String path = addMusicWindow.getTypedPath();
-
-			if (title.equals("") || genre.equals("") || artist.equals("") || album.equals("") || path.equals("")) {
-				JOptionPane.showMessageDialog(null, "Rellena todos los campos.", " ", JOptionPane.ERROR_MESSAGE);
-			} else {
-				path = path.replace('\\', '/');
-				ddbbConnection.addSong(title, genre, artist, album, path, 0);
-				System.out.println("Añadida: "+ title);
-
-				addMusicWindow.setVisible(false);
-				addMusicWindow.clearTextFields();
-			}
-		}
-		
-		else if (event.getActionCommand().equals("AddMusicWindow.findPathActionCommand")) {
-
-			JFileChooser jFileChooser = new JFileChooser();
-			String path = "";
-			jFileChooser.setFileFilter(new FileNameExtensionFilter("MP3 files", "mp3"));
-			if (jFileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-				path = jFileChooser.getSelectedFile().getAbsolutePath();
 			}
 			addMusicWindow.setFoundPath(path);
 			
 		}
 	}
+
 
 	public void run(){
 		while (true){

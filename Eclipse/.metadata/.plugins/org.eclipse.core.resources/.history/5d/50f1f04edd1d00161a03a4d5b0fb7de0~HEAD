@@ -656,4 +656,8 @@ public class MainWindow extends JFrame{
 		}
 	}
 }
+<<<<<<< HEAD
+>>>>>>> 28042c37a8fd80e9c55b4f37064afc453522540a:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/5d/50f1f04edd1d00161a03a4d5b0fb7de0~HEAD
+=======
 >>>>>>> 753afecea9090c9fa737a93a8bc4afd6ad533c55:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/5d/50f1f04edd1d00161a03a4d5b0fb7de0~HEAD
+>>>>>>> 77b144f0a75d9608f2f63498ea4c536327ac2a6d
