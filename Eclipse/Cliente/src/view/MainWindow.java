@@ -53,7 +53,7 @@ public class MainWindow extends JFrame {
 	 */
 	private JTextArea jtaListsfollowing;
 	/**
-	 * Botó per a afegir una nova llista.
+	 * Botï¿½ per a afegir una nova llista.
 	 * @see JButton
 	 */
 	private JButton jbAdd;
@@ -68,17 +68,17 @@ public class MainWindow extends JFrame {
 	 */
 	private JButton jbSearch;
 	/**
-	 * Botó que obre la finestra <i style="color:indigo;">UserWindow</i>
+	 * Botï¿½ que obre la finestra <i style="color:indigo;">UserWindow</i>
 	 * @see JButton
 	 * @see UserWindow
 	 */
 	private JButton jbProfile;
 	/**
-	 * Taula on es mostra la llista de cançons amb els detalls de cadascuna.
+	 * Taula on es mostra la llista de canï¿½ons amb els detalls de cadascuna.
 	 * @see JTable
 	 */
 	/**
-	 * Botó per que l'usuari indiqui que vol tancar la sessió
+	 * Botï¿½ per que l'usuari indiqui que vol tancar la sessiï¿½
 	 * @see JButton
 	 */
 	private JButton jbClose;
@@ -135,6 +135,12 @@ public class MainWindow extends JFrame {
 	private ListSelectionModel modelo;
 	private ListSelectionModel modelo1;
 	private ListSelectionModel modelo2;
+	
+	
+	DefaultTableModel tableModelLists;
+	DefaultTableModel tableModelFollowedLists;
+	
+	
 	//private ImageIcon temporalSong;
 	//=====
 	
@@ -213,7 +219,7 @@ public class MainWindow extends JFrame {
 		JTable jtFollowedLists = new JTable(jtFollowedListsData, jtFollowedListsColumns);
 		
 		//se hace que los datos no sean editables
-		DefaultTableModel tableModelFollowedLists = new DefaultTableModel(jtFollowedListsData, jtFollowedListsColumns) {
+		tableModelFollowedLists = new DefaultTableModel(jtFollowedListsData, jtFollowedListsColumns) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				//all cells false
@@ -274,7 +280,7 @@ public class MainWindow extends JFrame {
 		JTable jtLists = new JTable(jtListsData1, jtListsColumns1);
 
 		//se hace que los datos no sean editables
-		DefaultTableModel tableModelLists = new DefaultTableModel(jtListsData1, jtListsColumns1) {
+		tableModelLists = new DefaultTableModel(jtListsData1, jtListsColumns1) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				//all cells false
@@ -517,8 +523,8 @@ public class MainWindow extends JFrame {
 	}
 	
 	/**
-	 * Controlador de interacció de l'usuari amb MainWindow
-	 * @param controller Listener que captura la acció que l'usuari vol dur a terme
+	 * Controlador de interacciï¿½ de l'usuari amb MainWindow
+	 * @param controller Listener que captura la acciï¿½ que l'usuari vol dur a terme
 	 * @see ActionListener
 	 */
 	
@@ -569,7 +575,7 @@ public class MainWindow extends JFrame {
 	}
 	
 	
-	public void refreshUsers(LinkedList <Object[]> list){
+	public void refreshPlaylist(LinkedList <Object[]> list){
 		while (tablePlaylist.getRowCount()!= 0){
 			tablePlaylist.removeRow(0);
 		}
@@ -577,6 +583,8 @@ public class MainWindow extends JFrame {
 			tablePlaylist.addRow(list.get(i));
 		}
 	}
+	
+
 	
 	public void refreshMusic(LinkedList<Object[]> list){
 		while (tableMusic.getRowCount()!= 0){
