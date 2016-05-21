@@ -178,7 +178,7 @@ public class MainWindow extends JFrame {
 	
 		
 		String[] jtFollowedListsColumns = {"Followed Lists", "Creador"};
-		Object[][] jtFollowedListsData = {{"HOLA"}};
+		Object[][] jtFollowedListsData = {{"HOLA", "ELNA"},{"HOLA1","Elna"}};
 		//se crea la tabla
 		JTable jtFollowedLists = new JTable(jtFollowedListsData, jtFollowedListsColumns);
 		
@@ -209,8 +209,8 @@ public class MainWindow extends JFrame {
 		                    int rowNumber = jtFollowedLists.rowAtPoint(p);
 		                    modelo = jtFollowedLists.getSelectionModel();
 		                    modelo.setSelectionInterval( rowNumber, rowNumber );
-		                    modelo1.clearSelection();
-		                    modelo2.clearSelection();
+		                   // modelo1.clearSelection();
+		                   // modelo2.clearSelection();
 		            		// id = Integer.parseInt(String.valueOf( jtMusic.getValueAt(rowNumber, 0)));
 		            		popupPlaylist.show(jpListsFollowing,  e.getX(), e.getY());
 		            		 
@@ -221,6 +221,7 @@ public class MainWindow extends JFrame {
 		
 		
 		jtFollowedLists.setModel(tableModelFollowedLists);
+		jtFollowedLists.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		jtFollowedLists.setFocusable(false);
 
 		JScrollPane jspListsFollowing = new JScrollPane(jtFollowedLists);
@@ -270,8 +271,8 @@ public class MainWindow extends JFrame {
 		                    int rowNumber = jtLists.rowAtPoint(p);
 		                    modelo1 = jtLists.getSelectionModel();
 		                    modelo1.setSelectionInterval( rowNumber, rowNumber );
-		                    modelo.clearSelection();
-		                    modelo2.clearSelection();
+		                    //modelo.clearSelection();
+		                    //modelo2.clearSelection();
 		            		// id = Integer.parseInt(String.valueOf( jtMusic.getValueAt(rowNumber, 0)));
 		            		popupPlaylist1.show(jpLists,  e.getX(), e.getY());
 		            		 
@@ -281,6 +282,7 @@ public class MainWindow extends JFrame {
 		    });
 		
 		jtLists.setModel(tableModelLists);
+		jtLists.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		jtLists.setFocusable(false);
 
 		JScrollPane jspLists = new JScrollPane(jtLists);
@@ -355,8 +357,8 @@ public class MainWindow extends JFrame {
 		                    int rowNumber = jtMusic.rowAtPoint(p);
 		                    modelo2 = jtMusic.getSelectionModel();
 		                    modelo2.setSelectionInterval( rowNumber, rowNumber );
-		                    modelo.clearSelection();
-		                    modelo1.clearSelection();
+		                    //modelo.clearSelection();
+		                    //modelo1.clearSelection();
 		            		// id = Integer.parseInt(String.valueOf( jtMusic.getValueAt(rowNumber, 0)));
 		            		popup.show(jpMain,  e.getX(), e.getY());
 		            		 
@@ -367,6 +369,7 @@ public class MainWindow extends JFrame {
 		    });
 		
 		jtMusic.setModel(tableMusic);
+		jtMusic.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		jtMusic.setFocusable(false);
 		
 		JScrollPane jspUsers = new JScrollPane(jtMusic);
