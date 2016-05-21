@@ -20,6 +20,7 @@ import model.ServerConfiguration;
 import model.Song;
 import network.Server;
 import threads.RefreshThread;
+import threads.TimeThread;
 
 public class Main {
 	
@@ -54,6 +55,7 @@ public class Main {
 					StatisticsWindow statisticsWindow = new StatisticsWindow();
 
 					(new RefreshThread(controller)).start();
+					(new TimeThread(controller)).start();
 					Server server = new Server(new NetworkController(ddbbConnection));
 					server.startServer();
 

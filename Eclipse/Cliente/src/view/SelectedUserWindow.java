@@ -2,6 +2,7 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 
@@ -13,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 /**
  * Ventana de "perfil" de un usuari seleccionat
@@ -24,7 +26,7 @@ import javax.swing.border.TitledBorder;
 public class SelectedUserWindow extends JFrame {
 	
 	private JTextArea jtaPlaylist;
-	private JTextArea jtafollow;
+	private JTextField jtffollow;
 	private JTextArea jtaUsername;
 	private JButton jbFollow; 
 	private JButton jbUnfollow;
@@ -58,13 +60,15 @@ public class SelectedUserWindow extends JFrame {
 		jpSecond.setLayout(new GridLayout(2, 2));
 		JLabel jlfollowing = new JLabel("Estado");
 		jlfollowing.setForeground(Color.white);
-		jtafollow = new JTextArea();
-		jtafollow.setEditable(false);
-		jtafollow.setBackground(CustomColor.icon);
+		jtffollow = new JTextField();
+		jtffollow.setEditable(false);
+		jtffollow.setBackground(CustomColor.icon);
+		jtffollow.setHorizontalAlignment(JTextField.CENTER);
+		jtffollow.setForeground(Color.white);
 		jbFollow = new JButton("FOLLOW");
 		jbUnfollow = new JButton("UNFOLLOW");
 		jpSecond.add(jlfollowing, BorderLayout.CENTER);
-		jpSecond.add(jtafollow, BorderLayout.CENTER);
+		jpSecond.add(jtffollow, BorderLayout.CENTER);
 		jpSecond.add(jbFollow, BorderLayout.CENTER);
 		jpSecond.add(jbUnfollow, BorderLayout.CENTER);
 		jpSecond.setBackground(CustomColor.background);
@@ -124,14 +128,14 @@ public class SelectedUserWindow extends JFrame {
 	 * @param string
 	 */
 	public void refreshFollowing(String string){
-		jtafollow.setText(string);
+		jtffollow.setText(string);
 	}
 	/**
 	 * 
 	 * @param string
 	 */
 	public void refreshFollowing1(String string){
-		jtafollow.setText(string);
+		jtffollow.setText(string);
 	}
 	/**
 	 * 

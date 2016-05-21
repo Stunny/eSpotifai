@@ -215,7 +215,7 @@ public class MainWindow extends JFrame {
 		                    ListSelectionModel modelo = jtFollowedLists.getSelectionModel();
 		                    modelo.setSelectionInterval( rowNumber, rowNumber );
 		            		// id = Integer.parseInt(String.valueOf( jtMusic.getValueAt(rowNumber, 0)));
-		            		popupPlaylist.show(jpPageWest,  e.getX(), e.getY());
+		            		popupPlaylist.show(jtFollowedLists,  e.getX(), e.getY());
 		            		 
 		                }
 		            }
@@ -271,7 +271,7 @@ public class MainWindow extends JFrame {
 		                    ListSelectionModel modelo = jtLists.getSelectionModel();
 		                    modelo.setSelectionInterval( rowNumber, rowNumber );
 		            		// id = Integer.parseInt(String.valueOf( jtMusic.getValueAt(rowNumber, 0)));
-		            		popupPlaylist1.show(jpPageWest,  e.getX(), e.getY());
+		            		popupPlaylist1.show(jtLists,  e.getX(), e.getY());
 		            		 
 		                }
 		            }
@@ -355,7 +355,7 @@ public class MainWindow extends JFrame {
 		                    ListSelectionModel modelo = jtMusic.getSelectionModel();
 		                    modelo.setSelectionInterval( rowNumber, rowNumber );
 		            		// id = Integer.parseInt(String.valueOf( jtMusic.getValueAt(rowNumber, 0)));
-		            		popup.show(jpMain,  e.getX(), e.getY());
+		            		popup.show(jtMusic,  e.getX(), e.getY());
 		            		 
 		                }
 		            }

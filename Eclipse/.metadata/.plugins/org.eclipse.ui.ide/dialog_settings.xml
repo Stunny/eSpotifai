@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="ExternalProjectImportWizard">
@@ -70,3 +71,77 @@
 </section>
 >>>>>>> cbc1e0d816a6c726ec7db5d9b7bdbb0a77ce6231
 >>>>>>> fc06ce784d2430f51a70eff376f51b92ce7a3698
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="ExternalProjectImportWizard">
+		<item value="false" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\Users\MiguelÁngel\workspace\CRS - CarRepairShop -Client-"/>
+			<item value="C:\Users\MiguelÁngel\workspace\CarRepairShop"/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value=""/>
+		</list>
+	</section>
+	<section name="ChooseWorkspaceDialogSettings">
+		<item value="381" key="DIALOG_X_ORIGIN"/>
+		<item value="185" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>
+=======
+=======
+>>>>>>> fc06ce784d2430f51a70eff376f51b92ce7a3698
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="ExternalProjectImportWizard">
+		<item value="false" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\Users\MiguelÁngel\workspace\CRS - CarRepairShop -Client-"/>
+			<item value="C:\Users\MiguelÁngel\workspace\CarRepairShop"/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value=""/>
+		</list>
+	</section>
+	<section name="WORKBENCH_SETTINGS">
+		<list key="ENABLED_TRANSFERS">
+		</list>
+	</section>
+	<section name="ChooseWorkspaceDialogSettings">
+		<item value="381" key="DIALOG_X_ORIGIN"/>
+		<item value="185" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>
+<<<<<<< HEAD
+>>>>>>> 1b323e92e95a47b6f0bdd13f3bcde9c2fa2dbcaa
+=======
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="ExternalProjectImportWizard">
+		<item value="false" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\Users\MiguelÁngel\workspace\CRS - CarRepairShop -Client-"/>
+			<item value="C:\Users\MiguelÁngel\workspace\CarRepairShop"/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value=""/>
+		</list>
+	</section>
+	<section name="ChooseWorkspaceDialogSettings">
+		<item value="381" key="DIALOG_X_ORIGIN"/>
+		<item value="185" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>
+>>>>>>> cbc1e0d816a6c726ec7db5d9b7bdbb0a77ce6231
+>>>>>>> fc06ce784d2430f51a70eff376f51b92ce7a3698
+>>>>>>> 753afecea9090c9fa737a93a8bc4afd6ad533c55
