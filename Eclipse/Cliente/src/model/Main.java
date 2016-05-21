@@ -24,7 +24,7 @@ import view.UserWindow;
  */
 public class Main {
 	/**
-	 * 
+	 * Main del <i style="color:indigo;">Model</i>.
 	 * @param args
 	 */
 	public static void main(String[] args){

@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 import network.ServerCommunication;
 /**
- * 
+ * Implementa la lògica d'accés a l'aplicació.
  * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
  * @version 1.0
  * @see ServerCommunication
@@ -15,9 +15,10 @@ public class AccessLogic {
 	
 	
 	/**
-	 * 
-	 * @param username
-	 * @return
+	 * Cerca nom d'usuari. En cas de no trobar-lo, mostrarà un missatge d'error.
+	 * @param username Nom d'usuari introduit.
+	 * @return En cas de trobar l'usuari retorna <i style="color:indigo;">TRUE</i>. En cas contrari retorna <i style="color:indigo;">FALSE</i>.
+	 * @see JOptionPane
 	 */
 	public static boolean searchUser(String username){
 		
@@ -30,10 +31,13 @@ public class AccessLogic {
 	}
 	
 	/**
+	 * Realitza l'accés d'usuari a l'aplicació. En cas de que no es dugui a terme mostrarà un missatge d'error.
+	 * @param username Nom d'usuari
+	 * @param password Contrassenya d'usuari
+	 * @return En cas de dur a terme el login retornarà <i style="color:indigo;">TRUE</i>. En cas contrari retornarà <i style="color:indigo;">FALSE</i>.
+	 * @see ServerCommunication
+	 * @see JOptionPane
 	 * 
-	 * @param username
-	 * @param password
-	 * @return
 	 */
 	public static boolean Login (String username, String password) {
 		
@@ -59,10 +63,12 @@ public class AccessLogic {
 		}
 	}
 	/**
-	 * 
-	 * @param username
-	 * @param password
-	 * @return
+	 * Realitza el registre d'un nou usuari. Mostrarà missatges d'error en cas de no complir els requeriments a l'hora de introduir les dades per al registre.
+	 * @param username Nom d'usuari.
+	 * @param password Contrassenya d'usuari.
+	 * @return En cas d'un registre satisfactori retornarà <i style="color:indigo;">TRUE</i>. En cas contrari retornarà <i style="color:indigo;">FALSE</i>.
+	 * @see JOptionPane
+	 * @see ServerCommunication
 	 */
 	public static boolean Register (String username, String password) {
 		
