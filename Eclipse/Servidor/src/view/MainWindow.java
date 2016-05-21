@@ -611,7 +611,7 @@ public class MainWindow extends JFrame{
 	}
 	
 	
-	
+
 	public void refreshSongs(LinkedList<Object[]> list) {
 		while (tableModelMusic.getRowCount()!= 0){
 			tableModelMusic.removeRow(0);

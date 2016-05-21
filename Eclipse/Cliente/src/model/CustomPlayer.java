@@ -300,6 +300,7 @@ public class CustomPlayer implements BasicPlayerListener {
 		
 	}
 	
+	
 	//PROCEDIMENTS OBLIGATORIS D'IMPLEMENTAR JA QUE ESTEM UTILITZANT una clase implementada de BasicPlayerListener
 	@Override
 	public void setController(BasicController arg0) {

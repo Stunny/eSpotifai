@@ -49,7 +49,7 @@ public class PopUpController implements ActionListener{
 		if(event.getActionCommand().equals("MainWindow.votActionCommand")){
 			vots.setVisible(true);
 		}
-		
+	
 		//--------- ACCION DE VOTAR ------------------
 		
 		if(event.getActionCommand().equals("Vots.jrb1")){

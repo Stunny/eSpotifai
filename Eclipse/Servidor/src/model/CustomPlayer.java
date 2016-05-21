@@ -266,6 +266,7 @@ public class CustomPlayer implements BasicPlayerListener {
 		// TODO Auto-generated method stub
 
 	}
+	
 
 	@Override
 	public void stateUpdated(BasicPlayerEvent arg0) {
