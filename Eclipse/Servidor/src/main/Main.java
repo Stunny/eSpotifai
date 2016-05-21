@@ -1,5 +1,7 @@
 package main;
 
+import java.util.LinkedList;
+
 import view.AddMusicWindow;
 import view.MainWindow;
 import view.StatisticsWindow;
@@ -15,6 +17,7 @@ import customExceptions.DatabaseNotLoadedException;
 import database.DDBBConnection;
 import model.ManagementConfiguration;
 import model.ServerConfiguration;
+import model.Song;
 import network.Server;
 import threads.RefreshThread;
 
@@ -34,6 +37,7 @@ public class Main {
 
 					DDBBConnection ddbbConnection = new DDBBConnection(sc.getUserBBDD(), sc.getPasswordBBDD(), sc.getNameBBDD(), sc.getPortConexionBBDD());
 					ddbbConnection.startConnection();
+					LinkedList<Song> song = ddbbConnection.getPlaylistSongs(1);
 
 					// Creem la VISTA
 					AddMusicWindow addView = new AddMusicWindow();

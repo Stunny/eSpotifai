@@ -149,6 +149,26 @@ public class DDBBConnection {
 		}
 	}
 	
+	public LinkedList<Object[]> getPlaylistDates(int id){
+		LinkedList<Object[]> list =new LinkedList<Object[]>();
+	
+		try {
+			ResultSet resultSet = ddbb.selectQuery("SELECT (*) FROM playlists WHERE creato_user="+id);
+			while (resultSet.next())
+				{
+						Object[] obj = {resultSet.getObject("id_playlist"), resultSet.getObject("name")};
+						list.add(obj);
+		
+				}
+				
+			return list;
+
+		} catch (SQLException e) {
+					// TODO Auto-generated catch block
+			return list;
+		}
+	}
+	
 	public LinkedList<Object[]> getFollowedsDates(int id){
 		LinkedList<User> userList = getUsers();
 		LinkedList<Object[]> list =new LinkedList<Object[]>();
@@ -191,7 +211,33 @@ public class DDBBConnection {
 			}	
 		} catch (SQLException e) {
 				// TODO Auto-generated catch block
-			System.out.println("Error al reperar las canciones de la base de datos");
+			System.out.println("Error al recuperar las canciones de la base de datos");
+		}
+		return list;
+	}
+	
+	public LinkedList<Song> getPlaylistSongs (int id){
+		System.out.println("asdasd");
+		ResultSet resultSet = ddbb.selectQuery("SELECT cf_song FROM playlists_songs WHERE cf_playlist="+id);
+		LinkedList<Song> list = new LinkedList<Song> (); 
+		ResultSet resultSet1;
+		
+		try{
+			while (resultSet.next())
+			{
+				resultSet1 = ddbb.selectQuery("SELECT * FROM songs WHERE id_song="+resultSet.getInt(1));
+				System.out.println("Holaaaa");
+				while (resultSet1.next()){
+					list.add(new Song ((int)resultSet1.getObject("id_Song"), (String)resultSet1.getObject("name"), 
+						(String)resultSet1.getObject("genre"), (String)resultSet1.getObject("album"), (String)resultSet1.getObject("artist"),
+						(String)resultSet1.getObject("location"), (int)resultSet1.getObject("Stars"), (int)resultSet1.getObject("reproducciones")));
+					System.out.println("Cancion: "+(int)resultSet1.getObject("id_Song"));
+				}
+			}	
+			
+		} catch (SQLException e) {
+				// TODO Auto-generated catch block
+			System.out.println("Error al reperar las canciones de una playlist de la base de datos");
 		}
 		return list;
 	}
