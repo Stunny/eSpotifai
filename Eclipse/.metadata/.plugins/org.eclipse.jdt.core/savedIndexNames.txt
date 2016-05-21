@@ -1,6 +1,9 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 INDEX VERSION 1.127+C:\Users\Miguel¡ngel\Documents\GitHub\eSpotifai\Eclipse\.metadata\.plugins\org.eclipse.jdt.core
 2442888519.index
 48817752.index
@@ -63,3 +66,81 @@ INDEX VERSION 1.127+C:\Users\Miguel¡ngel\Documents\GitHub\eSpotifai\Eclipse\.met
 1677593041.index
 2249422466.index
 3465765727.index
+=======
+=======
+>>>>>>> 77b144f0a75d9608f2f63498ea4c536327ac2a6d
+INDEX VERSION 1.127+C:\Users\Miguel¡ngel\Documents\GitHub\eSpotifai\Eclipse\.metadata\.plugins\org.eclipse.jdt.core
+48817752.index
+1851955243.index
+3227107502.index
+2119290561.index
+3650458415.index
+1416821754.index
+3713076357.index
+3136184611.index
+3232870235.index
+3694948776.index
+2442888519.index
+2979327570.index
+1930320284.index
+2153270132.index
+28296102.index
+1117589309.index
+2592202843.index
+3814180264.index
+3887496914.index
+3724307573.index
+3157295846.index
+2341090319.index
+4078855296.index
+363738115.index
+606802006.index
+107800663.index
+4147631226.index
+2449793579.index
+152244849.index
+1771481839.index
+2334050384.index
+3244704807.index
+152710945.index
+3095061116.index
+484058593.index
+2563912980.index
+132699734.index
+1760935762.index
+1978866665.index
+1157408034.index
+2985374705.index
+1677593041.index
+2249422466.index
+3465765727.index
+<<<<<<< HEAD
+>>>>>>> 28042c37a8fd80e9c55b4f37064afc453522540a
+=======
+>>>>>>> 77b144f0a75d9608f2f63498ea4c536327ac2a6d
+=======
+INDEX VERSION 1.127+C:\Users\avoge\Documents\Development\eSpotifai\Eclipse\.metadata\.plugins\org.eclipse.jdt.core
+3244704807.index
+3724307573.index
+3232870235.index
+3887496914.index
+3157295846.index
+2442888519.index
+2979327570.index
+3465765727.index
+2153270132.index
+2334050384.index
+2563912980.index
+1416821754.index
+48817752.index
+1760935762.index
+4078855296.index
+2249422466.index
+1677593041.index
+152244849.index
+3814180264.index
+2449793579.index
+1851955243.index
+606802006.index
+363738115.index
+>>>>>>> 49797c5406708d6ed129ba9f074b0a0cb61a3541

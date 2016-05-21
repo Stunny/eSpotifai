@@ -7,6 +7,10 @@ import javax.swing.SwingUtilities;
 import controller.ButtonController;
 import controller.NetworkController;
 import controller.PopUpController;
+import model.AccessLogic;
+import controller.MouseActions;
+import model.Playlist;
+import model.Song;
 import model.User;
 import threads.RefreshThread;
 import view.AddList;
@@ -18,10 +22,25 @@ import view.RegisterWindow;
 import view.SelectedUserWindow;
 import view.UserWindow;
 import view.Vots;
-
+/**
+ * 
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see AccesLogic
+ * @see MouseActions
+ * @see Playlist
+ * @see Song
+ * @see User
+ *
+ */
 public class Main {
 	
 	//MAIN DEL CLIENTE
+	
+	/**
+	 * Main del <i style="color:indigo;">Model</i>.
+	 * @param args
+	 */
 	
 	public static RefreshThread refreshThread;
 	
@@ -62,7 +81,6 @@ public class Main {
 				//iniciamos la pantalla de login
 				loginWindow.setVisible(true);
 				mainWindow.setVisible(false);
-				
 				
 
 				} catch (Exception e) {

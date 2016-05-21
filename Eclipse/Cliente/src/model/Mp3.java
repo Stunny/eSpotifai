@@ -152,7 +152,7 @@ public class Mp3 {
 				//mediaPlayer = Manager.createRealizedPlayer( url );
 				customPlayer = (CustomPlayer) Manager.createRealizedPlayer( url );
 				
-				
+			
 				//se coloca a true
 				this.todo_ok = true;          
 			} catch (NoPlayerException ex) {
@@ -167,4 +167,5 @@ public class Mp3 {
 		//}
 		return "Reproductor mp3 - " + this.file;
 	}
+	
 }

@@ -106,6 +106,7 @@ public class ButtonsController implements ActionListener{
 		}
 	}
 
+
 	public void run(){
 		while (true){
 			mainWindow.refreshTime();

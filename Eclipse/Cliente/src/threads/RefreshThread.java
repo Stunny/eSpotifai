@@ -16,6 +16,7 @@ public class RefreshThread extends Thread {
 		this.threadController = threadController;
 	}
 	
+	
 	public void run() {
 		
 		int i=0;

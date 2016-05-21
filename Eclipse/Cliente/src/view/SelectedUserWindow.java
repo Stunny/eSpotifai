@@ -36,17 +36,37 @@ import controller.PopUpController;
  */
 public class SelectedUserWindow extends JFrame {
 	
+	/**
+	 * Area de text on es mostra 
+	 * @see JTextArea
+	 */
 	private JTextArea jtaPlaylist;
+	/**
+	 * Area de text on es mostra
+	 * @see JTextArea
+	 */
 	private JTextArea jtafollow;
+	/**
+	 * Area de text on es mostra
+	 * @see JTextArea
+	 */
 	private JTextArea jtaUsername;
+	/**
+	 * 
+	 * @see JButton
+	 */
 	private JButton jbFollow; 
+	/**
+	 * Botó que activa l'acció de fer "follow" a l'usuari al que pertany el perfil.
+	 * @see JButton
+	 */
 	private JButton jbUnfollow;
 	private JPopupMenu popupPlaylist;
 	private JMenuItem visualitzar;
 	private ListSelectionModel modelo;
 	private int id = 0; 
 	/**
-	 * Constructor de la ventana
+	 * Constructor de la ventana de l'usuari seleccionat.
 	 */
 	public SelectedUserWindow(){
 		
@@ -172,8 +192,8 @@ public class SelectedUserWindow extends JFrame {
 		
 	}
 	/**
-	 * 
-	 * @param controller 
+	 * Controlador de la interacció de interacció d'usuari amb la finestra.
+	 * @param controller Captura l'acció que específica l'usuari
 	 * @see ActionListener
 	 */
 	public void registerController(ActionListener controller){
@@ -191,22 +211,17 @@ public class SelectedUserWindow extends JFrame {
 	}
 	
 	/**
-	 * 
-	 * @param string
+	 * Actualitza continuament la llista de usuaris seguits
+	 * @param string 
+	 * @see JTextArea
 	 */
 	public void refreshFollowing(String string){
 		jtafollow.setText(string);
 	}
 	/**
-	 * 
+	 * Actualitza la pagina d'usuari seleccionat en la seva totalitat.
 	 * @param string
-	 */
-	public void refreshFollowing1(String string){
-		jtafollow.setText(string);
-	}
-	/**
-	 * 
-	 * @param string
+	 * @see JTextArea
 	 */
 	public void refreshUser(String string){
 		jtaUsername.setText(string);

@@ -196,6 +196,7 @@ public class CustomPlayer implements BasicPlayerListener {
 		
 		//System.out.println("propiedades: " + arg1);
 		//System.out.println("time: " + durationSong);
+		//System.out.println("propiedades: " + arg1);
 		
 	}
 	
@@ -265,6 +266,7 @@ public class CustomPlayer implements BasicPlayerListener {
 		// TODO Auto-generated method stub
 
 	}
+	
 
 	@Override
 	public void stateUpdated(BasicPlayerEvent arg0) {

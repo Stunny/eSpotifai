@@ -14,6 +14,7 @@ public class ThreadController {
 		this.mainWindow = mainWindow;
 	}
 	
+	
 	public void refreshSongList() {
 		LinkedList<Song> songsList = NetworkController.getSongList();
 		mainWindow.refreshSongs(songsList);

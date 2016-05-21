@@ -26,15 +26,22 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 /**
- * Ventana de opcions de les que disposa l'usuari
+ * Finestra de usuari
  * @author Elna Cabot, Miguel Diaz, Marc Millan, Alejandro Vogel, Marta Zapatero
  * @version 1.0
  * @see JFrame
  *
  */
 public class UserWindow extends JFrame{
-
-	private JTextArea jtaFollowing; 
+	/**
+	 * Area on es mostrarà el conjunt d'usuaris als que es segueix.
+	 * @see JTextArea 
+	 */
+	private JTextArea jtaFollowing;
+	/**
+	 * Area on es mostrarà el nom d'usuari.
+	 * @see JTextArea
+	 */
 	private JTextArea jtaUsername;
 	private JPopupMenu popupPlaylist;
 	private JMenuItem visualitzar;
@@ -43,7 +50,8 @@ public class UserWindow extends JFrame{
 	
 	
 	/**
-	 * 
+	 * Construeix la finestra a la cual es mostrarà la informació de l'usuari seleccionat. 
+	 * @see 
 	 */
 	public UserWindow(){
 		
@@ -140,7 +148,7 @@ public class UserWindow extends JFrame{
 		
 	}
 	/**
-	 * 
+	 * Recarrega la finestra d'usuari
 	 * @param string
 	 */
 	public void refreshUser(String string){

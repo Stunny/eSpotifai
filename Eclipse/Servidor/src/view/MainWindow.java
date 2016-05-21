@@ -164,6 +164,7 @@ public class MainWindow extends JFrame{
 	        public void mousePressed(MouseEvent e) {
 	            if ( SwingUtilities.isLeftMouseButton(e)) {
 	            	popupSong.setVisible(false);
+	            	jtMusicList.clearSelection();
 	            } else {
 	                 if ( SwingUtilities.isRightMouseButton(e)) {
 	                    Point p = e.getPoint();
@@ -177,7 +178,11 @@ public class MainWindow extends JFrame{
 	            }
 	        }
 	    });
+		jtMusicList.getTableHeader().setReorderingAllowed(false);
+		jtMusicList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		jtMusicList.setModel(tableModelMusic);
+		//jtMusicList.setForeground(Color.BLACK);
+		jtMusicList.setFocusable(false);
 		//jtMusicList.setForeground(Color.BLACK);
 		//jtMusicList.setBackground(Color.DARK_GRAY);
 		Color myColor = Color.getHSBColor(0.51F,  0.93F,  0.5F);          
@@ -348,10 +353,10 @@ public class MainWindow extends JFrame{
 		jtUser.addMouseListener(new MouseAdapter() {
 
 			public void mousePressed(MouseEvent e) {
-				if ( SwingUtilities.isLeftMouseButton(e)) {
+				if ( SwingUtilities.isRightMouseButton(e)) {
 					popup.setVisible(false);
 				} else {
-					if ( SwingUtilities.isRightMouseButton(e)) {
+					if ( SwingUtilities.isLeftMouseButton(e)) {
 						Point p = e.getPoint();
 						int rowNumber = jtUser.rowAtPoint( p );
 						ListSelectionModel modelo = jtUser.getSelectionModel();
@@ -363,7 +368,8 @@ public class MainWindow extends JFrame{
 				}
 			}
 	    });
-		
+		jtUser.getTableHeader().setReorderingAllowed(false);
+		jtUser.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		jtUser.setModel(tableModelUser);
 		jtUser.setFocusable(false);
 
@@ -605,7 +611,7 @@ public class MainWindow extends JFrame{
 	}
 	
 	
-	
+
 	public void refreshSongs(LinkedList<Object[]> list) {
 		while (tableModelMusic.getRowCount()!= 0){
 			tableModelMusic.removeRow(0);

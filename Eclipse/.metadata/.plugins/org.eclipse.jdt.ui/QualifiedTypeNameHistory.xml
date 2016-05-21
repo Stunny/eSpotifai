@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="controller.GeneralController"/>
@@ -25,3 +26,32 @@
 <fullyQualifiedTypeName name="view.DeletedSongWindow"/>
 <fullyQualifiedTypeName name="model.DDBBConnection"/>
 </qualifiedTypeNameHistroy>
+=======
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="controller.GeneralController"/>
+<fullyQualifiedTypeName name="java.io.IOException"/>
+<fullyQualifiedTypeName name="java.util.LinkedList"/>
+<fullyQualifiedTypeName name="model.User"/>
+<fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+<fullyQualifiedTypeName name="java.sql.Date"/>
+<fullyQualifiedTypeName name="java.security.Timestamp"/>
+<fullyQualifiedTypeName name="java.awt.event.ActionEvent"/>
+<fullyQualifiedTypeName name="java.awt.event.MouseAdapter"/>
+<fullyQualifiedTypeName name="java.awt.event.MouseEvent"/>
+<fullyQualifiedTypeName name="javax.swing.ListSelectionModel"/>
+<fullyQualifiedTypeName name="javax.swing.SwingUtilities"/>
+<fullyQualifiedTypeName name="java.awt.Point"/>
+<fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+<fullyQualifiedTypeName name="javax.swing.Popup"/>
+<fullyQualifiedTypeName name="java.awt.event.KeyEvent"/>
+<fullyQualifiedTypeName name="controller.PopUpController"/>
+<fullyQualifiedTypeName name="view.FollowersWindow"/>
+<fullyQualifiedTypeName name="javax.swing.JDialog"/>
+<fullyQualifiedTypeName name="view.FollowedsWindow"/>
+<fullyQualifiedTypeName name="view.DeletedWindow"/>
+<fullyQualifiedTypeName name="view.DeletedSongWindow"/>
+<fullyQualifiedTypeName name="model.DDBBConnection"/>
+<fullyQualifiedTypeName name="model.Song"/>
+</qualifiedTypeNameHistroy>
+>>>>>>> 77b144f0a75d9608f2f63498ea4c536327ac2a6d
