@@ -141,4 +141,12 @@ public class AddMusicWindow extends JFrame{
 	public String getTypedPath() {
 		return jtfPath.getText();
 	}
+	
+	public void clearTextFields() {
+		jtfSongTitle.setText("");
+		jtfArtist.setText("");
+		jtfAlbum.setText("");
+		jtfGenre.setText("");
+		jtfPath.setText("");
+	}
 }

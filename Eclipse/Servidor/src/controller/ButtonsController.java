@@ -73,6 +73,8 @@ public class ButtonsController implements ActionListener{
 			ddbbConnection.addSong(addMusicWindow.getTypedSongTitle(), addMusicWindow.getTypedGenre(), addMusicWindow.getTypedArtist(),
 					addMusicWindow.getTypedAlbum(), addMusicWindow.getTypedPath(), 0);
 			System.out.println("Añadida: "+addMusicWindow.getTypedSongTitle());
+			addMusicWindow.setVisible(false);
+			addMusicWindow.clearTextFields();
 		}
 	}
 	
