@@ -24,6 +24,7 @@ public class ButtonsController implements ActionListener{
 	private MainWindow mainWindow;
 	private CustomPlayer p;
 	private AddMusicWindow addMusicWindow;
+	private int songIndex = 0;
 	
 	// NETWORK
 	//private InformationService infoService;
@@ -53,9 +54,8 @@ public class ButtonsController implements ActionListener{
 			StadisticsView.setVisible(true);
 
 		}else if (event.getActionCommand().equals("MainWindow.playActionCommand")){
-			
 			try {
-				mainWindow.goMP3();
+				mainWindow.goMP3(mainWindow.getSongPath(songIndex));
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -65,15 +65,35 @@ public class ButtonsController implements ActionListener{
 				e.printStackTrace();
 			}
 			
-		} else if (event.getActionCommand().equals("RIGHTSONG")){
-			StatisticsWindow StadisticsView = new StatisticsWindow();
-			StadisticsView.setVisible(true);
+		} else if (event.getActionCommand().equals("MainWindow.nextActionCommand")){
+			if (songIndex < mainWindow.getSongAmount()) songIndex++;
+			try {
+				mainWindow.changeMP3(mainWindow.getSongPath(songIndex));
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
-		} else if (event.getActionCommand().equals("LEFTSONG")){
+		} else if (event.getActionCommand().equals("MainWindow.previousActionCommand")){
 			
-			StatisticsWindow StadisticsView = new StatisticsWindow();
-			StadisticsView.setVisible(true);
+			if (songIndex > 0) songIndex--;
+			try {
+				mainWindow.changeMP3(mainWindow.getSongPath(songIndex));
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
+		
 		else if (event.getActionCommand().equals("AddMusicWindow.acceptActionCommand")){
 			String title = addMusicWindow.getTypedSongTitle();
 			String genre = addMusicWindow.getTypedGenre();

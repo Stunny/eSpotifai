@@ -11,7 +11,6 @@ import main.Main;
 import model.AccessLogic;
 import network.ServerCommunication;
 import threads.RefreshThread;
-import threads.TimeThread;
 import view.LoginWindow;
 import view.MainWindow;
 import view.NewListDialog;
@@ -19,55 +18,39 @@ import view.RegisterWindow;
 import view.SelectedUserWindow;
 import view.UserWindow;
 /**
- * Controlador de botons de la vista
- * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
- * @version 1.0
- * @see ActionListener
- * @see view.loginWindow
- * @see view.RegisterWindow
- * @see view.MainWindow
- * @see view.SelecteduserWindow
- * @see controller.NetworkController
- * @see model.User
  * 
+ * @author avoge
  *
  */
 public class ButtonController implements ActionListener {
 	/**
-	 * Pantalla de login
+	 * 
 	 */
 	private LoginWindow loginWindow;
 	/**
-	 * Pantalla principal
-	 * @see view.LoginWindow
+	 * 
 	 */
 	private MainWindow mainWindow;
 	/**
-	 * Comunicador amb el servidor
-	 * @see view.MainWindow
+	 * 
 	 */
 	private ServerCommunication serverCommunication;
 	/**
-	 * Pantalla d'usuari seleccionat
-	 * @see network.ServerCommunication
+	 * 
 	 */
 	private SelectedUserWindow selecteduserwindow;
 	/**
-	 * Pantalla de registre d'usuari
-	 * @see view.SelectedUserWindow
+	 * 
 	 */
 	private RegisterWindow registerWindow;
 	/**
-	 * Nom d'usuari
-	 * @see model.User
+	 * 
 	 */
 	private String User; 
 	/**
-	 * Controlador de xarxa
-	 * @see controller.NetworkController
+	 * 
 	 */
 	private NetworkController networkcontroller;
-	private UserWindow userwindow;
 
 
 	/**
@@ -85,14 +68,13 @@ public class ButtonController implements ActionListener {
 	 * @see controller.NetworkController
 	 * 
 	 */
-	public ButtonController(LoginWindow loginWindow, RegisterWindow registerWindow, MainWindow mainWindow, SelectedUserWindow selecteduserwindow, NetworkController networkcontroller, UserWindow userwindow){
+	public ButtonController(LoginWindow loginWindow, RegisterWindow registerWindow, MainWindow mainWindow, SelectedUserWindow selecteduserwindow, NetworkController networkcontroller){
 		
 		this.loginWindow = loginWindow;
 		this.mainWindow = mainWindow;
 		this.registerWindow= registerWindow;
 		this.selecteduserwindow = selecteduserwindow;
 		this.networkcontroller = networkcontroller;
-		this.userwindow = userwindow;
 
 	}
 	/**
@@ -111,15 +93,10 @@ public class ButtonController implements ActionListener {
 					if (AccessLogic.Login(loginWindow.getTypedUsername(), loginWindow.getTypedPassword())) {
 						mainWindow.setVisible(true);
 						loginWindow.setVisible(false);
-						
-						ThreadController threadController = new ThreadController(mainWindow);
-						Main.refreshThread = new RefreshThread(threadController);
+						Main.refreshThread = new RefreshThread(new ThreadController(mainWindow));
 						Main.refreshThread.start();
-						Main.timeThread = new TimeThread(threadController);
-						Main.timeThread.start();
-						
 						User = loginWindow.getTypedUsername();
-						mainWindow.setUser(User);
+						
 						String d  = "HOLA";
 						mainWindow.refreshListsFollowing(d);
 						//System.out.println("User:" + User);
@@ -156,11 +133,8 @@ public class ButtonController implements ActionListener {
 						mainWindow.setVisible(true);
 						registerWindow.setVisible(false);
 						User = registerWindow.getTypedUsername();
-						ThreadController threadController = new ThreadController(mainWindow);
-						Main.refreshThread = new RefreshThread(threadController);
+						Main.refreshThread = new RefreshThread(new ThreadController(mainWindow));
 						Main.refreshThread.start();
-						Main.timeThread = new TimeThread(threadController);
-						Main.timeThread.start();
 					}
 				}
 			}
@@ -175,8 +149,9 @@ public class ButtonController implements ActionListener {
 		
 		//PANTALLA INICIO (USUARI)
 		if(event.getActionCommand().equals("MainWindow.profileActionCommand")){
-			userwindow.refreshUser(User);
-			userwindow.setVisible(true);
+			UserWindow userWindow = new UserWindow(); 
+			userWindow.refreshUser(User);
+			userWindow.setVisible(true);
 			
 
 		}
@@ -188,7 +163,7 @@ public class ButtonController implements ActionListener {
 			mainWindow.setVisible(false);
 			loginWindow.setVisible(true);
 			Main.refreshThread.interrupt();
-			Main.timeThread.interrupt();
+			
 		}
 		
 		//PANTALLA MAIN (CERCAR USUARI)
@@ -228,7 +203,6 @@ public class ButtonController implements ActionListener {
 				e.printStackTrace();
 			}
 		}
-		
 		
 		
 		
