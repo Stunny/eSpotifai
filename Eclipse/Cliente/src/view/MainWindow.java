@@ -32,6 +32,7 @@ import javax.swing.table.DefaultTableModel;
 
 import controller.PopUpController;
 import model.CustomPlayer;
+import model.Song;
 
 /**
  * Clase de la ventana principal de l'aplicaci� Espotyfai.
@@ -496,10 +497,12 @@ public class MainWindow extends JFrame {
 		jbProfile.addActionListener(controller);
 		jbClose.addActionListener(controller);
 		jbSearch.addActionListener(controller);
+		jbPlay.addActionListener(controller);
 		jbAdd.setActionCommand("MainWindow.addActionCommand");
 		jbProfile.setActionCommand("MainWindow.profileActionCommand");
 		jbClose.setActionCommand("MainWindow.closeActionCommand");
 		jbSearch.setActionCommand("MainWindow.searchActionCommand");
+		jbPlay.setActionCommand("MainWindow.playActionCommand");
 		
 		
 		
@@ -648,7 +651,7 @@ public class MainWindow extends JFrame {
 				//String songLink = "C:/Users/Marc/Downloads/Quentin Tarantino Soundtracks Discography - HTD 2015/Pulp Fiction (Collector's Edition) (2009) - Soundtrack/14. Personality Goes a Long Way.mp3";
 				//String songLink = "C:/Users/Marc/Downloads/grillos05_mp3.mp3";
 				//String songLink = "/Users/elnacabotparedes/Music/iTunes/iTunes Media/Music/Martin Garrix/Unknown Album/01 Poison.mp3";
-				String songLink = "C:/Users/Marta/Music/DIE IS CAST.mp3";
+				String songLink = "C:/Users/Marta/Music/Mystery Skulls - Money.mp3";
 
 				customPlayer.abrirMp3(songLink);
 				state = customPlayer.play(jSlider);
@@ -755,7 +758,25 @@ public class MainWindow extends JFrame {
 		//jlTime.setText(String.valueOf(player.getMinutes() + ":" + player.getSeconds()));
 	}
 		
+	public void refreshSongs(LinkedList<Song> songsList) {
 		
+		LinkedList<Object[]> list = new LinkedList<Object[]>();
+		for (int i = 0; i < songsList.size(); i++){
+			Object[] objs = {songsList.get(i).getName(), songsList.get(i).getGenre(),
+							songsList.get(i).getAlbum(), songsList.get(i).getArtist(), 
+							songsList.get(i).getStars(), songsList.get(i).getReproductions()};
+			list.add(objs);
+		}
+		
+		while (tableMusic.getRowCount()!= 0){
+			tableMusic.removeRow(0);
+		}
+		for (int i = 0; i<list.size(); i++){
+			tableMusic.addRow(list.get(i));
+		}
+		
+		
+	}
 	
 	
 	

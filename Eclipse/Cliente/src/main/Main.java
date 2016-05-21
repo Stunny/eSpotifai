@@ -20,6 +20,8 @@ import view.Vots;
 
 public class Main {
 	
+	//MAIN DEL CLIENTE
+	
 	public static RefreshThread refreshThread;
 	
 	public static void main(String[] args){
@@ -57,6 +59,7 @@ public class Main {
 				//iniciamos la pantalla de login
 				loginWindow.setVisible(true);
 				mainWindow.setVisible(false);
+				
 				
 
 				} catch (Exception e) {

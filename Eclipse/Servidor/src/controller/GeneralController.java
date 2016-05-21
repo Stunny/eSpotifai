@@ -44,7 +44,7 @@ public class GeneralController {
 	
 
 	public void refreshLists2(){
-		LinkedList<Object[]> list =new LinkedList<Object[]>();
+		LinkedList<Object[]> list = new LinkedList<Object[]>();
 		view.refreshUsers(ddbbConnection.getUsersDates());
 		
 		LinkedList<Song> songList =  ddbbConnection.getSongs();
@@ -56,6 +56,10 @@ public class GeneralController {
 			list.add(objs);
 		}
 		view.refreshSongs(list);
+	}
+	
+	public void trackTime() {
+		view.refreshTime();
 	}
 
 	}

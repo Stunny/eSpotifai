@@ -178,7 +178,7 @@ public class MainWindow extends JFrame{
 	        }
 	    });
 		jtMusicList.setModel(tableModelMusic);
-		jtMusicList.setForeground(Color.BLACK);
+		//jtMusicList.setForeground(Color.BLACK);
 		//jtMusicList.setBackground(Color.DARK_GRAY);
 		Color myColor = Color.getHSBColor(0.51F,  0.93F,  0.5F);          
 		jtMusicList.setBackground(myColor);
@@ -194,12 +194,12 @@ public class MainWindow extends JFrame{
 		jpMusic.add(jspMusicList, BorderLayout.CENTER);
 
 		//Creem el subpanell per montar l'estructura del apartat "butons  - ADD i estadistiques - i el reproductor "
-		jpPageEnd = new JPanel();
+		/*jpPageEnd = new JPanel();
 		jpPageEnd.setPreferredSize(new Dimension(400,90));			
 
 		//Estructura de panell de 2 files per 1 columna
 		glPageEnd = new GridLayout(2,1);
-		jpPageEnd.setLayout(glPageEnd);
+		jpPageEnd.setLayout(glPageEnd);*/
 
 		//Estructura de subsubpanell nom�s de botons
 		jpButtons = new JPanel();
@@ -217,7 +217,7 @@ public class MainWindow extends JFrame{
 		jbStatistics.setHorizontalAlignment(JButton.CENTER);
 		jpButtons.add(jbStatistics);
 
-		jpPageEnd.add(jpButtons);
+		//jpPageEnd.add(jpButtons);
 //========================
 		/*
 		 * AQUI S'HA DE CREAR EL REPRODUCTOR !!
@@ -303,10 +303,10 @@ public class MainWindow extends JFrame{
 		
 		//=====================================
 
-		jpPageEnd.add(jpPlayer);
-		jpPageEnd.setPreferredSize(new Dimension(0, 130));
+		/*jpPageEnd.add(jpPlayer);
+		jpPageEnd.setPreferredSize(new Dimension(0, 130));*/
 
-		jpMusic.add(jpPageEnd, BorderLayout.PAGE_END);
+		jpMusic.add(jpButtons, BorderLayout.PAGE_END);
 
 
 		//TAB USERS
@@ -391,9 +391,10 @@ public class MainWindow extends JFrame{
 			}
 		});
 		this.getContentPane().add(jtpTabs, BorderLayout.CENTER);
-
+		this.getContentPane().add(jpPlayer, BorderLayout.SOUTH);
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setResizable(true);
-		this.setSize(new Dimension(1600,870));
+		this.setSize(new Dimension(1600,860));
 		this.setTitle("eSpotifai - Server Management");
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -456,10 +457,10 @@ public class MainWindow extends JFrame{
 				//String songLink = "C:/Users/Marc/Downloads/Quentin Tarantino Soundtracks Discography - HTD 2015/Pulp Fiction (Collector's Edition) (2009) - Soundtrack/14. Personality Goes a Long Way.mp3";
 				//String songLink = "C:/Users/Marc/Downloads/grillos05_mp3.mp3";
 				//String songLink = "/Users/elnacabotparedes/Music/iTunes/iTunes Media/Music/Martin Garrix/Unknown Album/01 Poison.mp3";
-				String songLink = "C:/Users/Marta/Music/DIE IS CAST.mp3";
+				String songLink = "C:/Users/Marta/Music/Mystery Skulls - Ghost.mp3";
 
 				customPlayer.abrirMp3(songLink);
-				state = customPlayer.play(jSlider);
+				state = customPlayer.playPlayer(jSlider);
 
 			}catch (Exception ex) {
 				System.out.println("Error: " + ex.getMessage());
@@ -582,7 +583,7 @@ public class MainWindow extends JFrame{
 		String finalSting = auxMinutesString + ":" + auxSecondsString;
 
 		jlTime.setText(auxMinutesString + ":" + auxSecondsString);
-
+		
 		jSlider.setValue(customPlayer.getFrameSlider());
 		//changeButtonToPlay();
 		if (customPlayer.getStatus() == 2){
