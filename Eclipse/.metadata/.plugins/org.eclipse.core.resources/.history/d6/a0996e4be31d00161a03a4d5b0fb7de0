@@ -1,0 +1,32 @@
+package controller;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import view.MainWindow;
+import view.PopupMenu;
+
+public class PopupController {
+	private MainWindow view;
+	
+	
+	public void MousePopupListener extends MouseAdapter {
+	    public void mousePressed(MouseEvent e) {
+	      checkPopup(e);
+	    }
+
+	    public void mouseClicked(MouseEvent e) {
+	      checkPopup(e);
+	    }
+
+	    public void mouseReleased(MouseEvent e) {
+	      checkPopup(e);
+	    }
+
+	    private void checkPopup(MouseEvent e) {
+	      if (e.isPopupTrigger()) {
+	        popup.show(PopupMenu.this, e.getX(), e.getY());
+	      }
+	    }
+	  }
+}

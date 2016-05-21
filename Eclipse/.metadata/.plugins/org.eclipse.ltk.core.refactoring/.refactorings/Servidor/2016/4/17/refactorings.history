@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename field &apos;SOCKET_PORT&apos; in &apos;FileServer&apos; to &apos;SOCKET_PORT_DESTI&apos;&#x0D;&#x0A;- Original project: &apos;Servidor&apos;&#x0D;&#x0A;- Original element: &apos;FileServer.SOCKET_PORT&apos;&#x0D;&#x0A;- Renamed element: &apos;FileServer.SOCKET_PORT_DESTI&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" delegate="false" deprecate="false" description="Rename field &apos;SOCKET_PORT&apos;" flags="589826" getter="false" id="org.eclipse.jdt.ui.rename.field" input="/src&lt;{FileServer.java[FileServer^SOCKET_PORT" name="SOCKET_PORT_DESTI" references="true" setter="false" stamp="1461739769646" textual="false" version="1.0"/>
+</session>
