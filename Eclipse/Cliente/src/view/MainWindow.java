@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
@@ -132,6 +133,18 @@ public class MainWindow extends JFrame {
 		JLabel jlLogo = new JLabel("ESPOTIFAI");
 		jlLogo.setFont(new java.awt.Font("Phosphate", 0, 25)); 
 		jlLogo.setForeground(Color.white);
+		
+		jlLogo.addMouseListener(new MouseAdapter()  
+		{  
+		    public void mouseClicked(MouseEvent e)  
+		    {  
+		       // you can open a new frame here as
+		       // i have assumed you have declared "frame" as instance variable
+		      JOptionPane.showMessageDialog(null, "HOLA GUARRA");
+
+		    }  
+		}); 
+		
 		jpPageStart.add(jlLogo, BorderLayout.CENTER);
 		jtfSearch = new JTextField();
 		jtfSearch.setBackground(CustomColor.icon);

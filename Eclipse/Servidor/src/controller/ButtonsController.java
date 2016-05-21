@@ -4,7 +4,13 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.net.MalformedURLException;
+
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import database.DDBBConnection;
 import model.CustomPlayer;
@@ -59,21 +65,50 @@ public class ButtonsController implements ActionListener{
 				e.printStackTrace();
 			}
 			
-		}else if (event.getActionCommand().equals("RIGHTSONG")){
+		} else if (event.getActionCommand().equals("RIGHTSONG")){
 			StatisticsWindow StadisticsView = new StatisticsWindow();
 			StadisticsView.setVisible(true);
 			
-		}else if (event.getActionCommand().equals("LEFTSONG")){
+		} else if (event.getActionCommand().equals("LEFTSONG")){
 			
 			StatisticsWindow StadisticsView = new StatisticsWindow();
 			StadisticsView.setVisible(true);
+		}
+		else if (event.getActionCommand().equals("AddMusicWindow.acceptActionCommand")){
+			String title = addMusicWindow.getTypedSongTitle();
+			String genre = addMusicWindow.getTypedGenre();
+			String artist = addMusicWindow.getTypedArtist();
+			String album = addMusicWindow.getTypedAlbum();
+			String path = addMusicWindow.getTypedPath();
+
+			if (title.equals("") || genre.equals("") || artist.equals("") || album.equals("") || path.equals("")) {
+				JOptionPane.showMessageDialog(null, "Rellena todos los campos.", " ", JOptionPane.ERROR_MESSAGE);
+			} else {
+				path = path.replace('\\', '/');
+				ddbbConnection.addSong(title, genre, artist, album, path, 0);
+				System.out.println("Añadida: "+ title);
+
+				addMusicWindow.setVisible(false);
+				addMusicWindow.clearTextFields();
+			}
 		}
 		
-		if (event.getActionCommand().equals("AddMusicWindow.acceptActionCommand")){
-			ddbbConnection.addSong(addMusicWindow.getTypedSongTitle(), addMusicWindow.getTypedGenre(), addMusicWindow.getTypedArtist(),
-					addMusicWindow.getTypedAlbum(), addMusicWindow.getTypedPath(), 0);
-			System.out.println("Añadida: "+addMusicWindow.getTypedSongTitle());
+		else if (event.getActionCommand().equals("AddMusicWindow.findPathActionCommand")) {
+
+			JFileChooser jFileChooser = new JFileChooser();
+			String path = "";
+			jFileChooser.setFileFilter(new FileNameExtensionFilter("MP3 files", "mp3"));
+			if (jFileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+				path = jFileChooser.getSelectedFile().getAbsolutePath();
+			}
+			addMusicWindow.setFoundPath(path);
+			
 		}
 	}
-	
+
+	public void run(){
+		while (true){
+			mainWindow.refreshTime();
+		}
+	}
 }

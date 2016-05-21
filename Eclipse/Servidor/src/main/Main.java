@@ -44,7 +44,6 @@ public class Main {
 					addView.registerControllerAdd(buttonscontroller);
 					mainWindow.setVisible(true);
 
-					addView.registerControllerAdd(buttonscontroller);
 
 					StatisticsWindow statisticsWindow = new StatisticsWindow();
 
@@ -52,6 +51,7 @@ public class Main {
 					Server server = new Server(new NetworkController(ddbbConnection));
 					server.startServer();
 
+					
 
 
 

@@ -613,8 +613,6 @@ public class MainWindow extends JFrame{
 			tableModelMusic.addRow(list.get(i));
 		}
 	}
-
-	
 	
 	public int getId (){
 		return id;
