@@ -11,8 +11,22 @@ import view.NewListDialog;
 import view.RegisterWindow;
 import view.SelectedUserWindow;
 import view.UserWindow;
-
+/**
+ * 
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see AccesLogic
+ * @see MouseActions
+ * @see Playlist
+ * @see Song
+ * @see User
+ *
+ */
 public class Main {
+	/**
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args){
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override

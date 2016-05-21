@@ -55,7 +55,7 @@ public class ServerCommunication {
 	/**
 	 * Envia les dades al servidor socket especif
 	 * @param s Dades que s'enviaran al servidor en forma de String
-	 * @return LA resposta del servidor o, en cas de que no hi hagi hagut conexió, un missatge de error local.
+	 * @return La resposta del servidor o, en cas de que no hi hagi hagut conexió, un missatge de error local.
 	 * @see DataOutputStream
 	 * @see DataInputStream
 	 * @see Socket

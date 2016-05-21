@@ -3,12 +3,23 @@ package model;
 import javax.swing.JOptionPane;
 
 import network.ServerCommunication;
-
+/**
+ * 
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see ServerCommunication
+ * @see JOptionPane
+ *
+ */
 public class AccessLogic {
 	
 	
-	
-	public static boolean searchUser( String username){
+	/**
+	 * 
+	 * @param username
+	 * @return
+	 */
+	public static boolean searchUser(String username){
 		
 		if(username.equalsIgnoreCase("elna")){
 			return true;
@@ -18,7 +29,12 @@ public class AccessLogic {
 		}
 	}
 	
-	
+	/**
+	 * 
+	 * @param username
+	 * @param password
+	 * @return
+	 */
 	public static boolean Login (String username, String password) {
 		
 		String request = new String("validateLogin:" + username + "/" + password);
@@ -42,7 +58,12 @@ public class AccessLogic {
 			}
 		}
 	}
-	
+	/**
+	 * 
+	 * @param username
+	 * @param password
+	 * @return
+	 */
 	public static boolean Register (String username, String password) {
 		
 		if (password.length() < 6 || !password.matches(".*[A-Z].*") || !password.matches(".*[0-9].*")) {

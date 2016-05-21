@@ -39,8 +39,8 @@ public class SelectedUserWindow extends JFrame {
 	 */
 	private JTextArea jtaUsername;
 	/**
-	 * Area de text que mostra el nom d'usuari
-	 * @see JTextArea
+	 * 
+	 * @see JButton
 	 */
 	private JButton jbFollow; 
 	/**
