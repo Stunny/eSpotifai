@@ -392,9 +392,9 @@ public class MainWindow extends JFrame{
 		});
 		this.getContentPane().add(jtpTabs, BorderLayout.CENTER);
 		this.getContentPane().add(jpPlayer, BorderLayout.SOUTH);
-
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setResizable(true);
-		this.setSize(new Dimension(1600,870));
+		this.setSize(new Dimension(1600,860));
 		this.setTitle("eSpotifai - Server Management");
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -460,7 +460,7 @@ public class MainWindow extends JFrame{
 				String songLink = "C:/Users/Marta/Music/Mystery Skulls - Ghost.mp3";
 
 				customPlayer.abrirMp3(songLink);
-				state = customPlayer.play(jSlider);
+				state = customPlayer.playPlayer(jSlider);
 
 			}catch (Exception ex) {
 				System.out.println("Error: " + ex.getMessage());
@@ -583,7 +583,7 @@ public class MainWindow extends JFrame{
 		String finalSting = auxMinutesString + ":" + auxSecondsString;
 
 		jlTime.setText(auxMinutesString + ":" + auxSecondsString);
-
+		
 		jSlider.setValue(customPlayer.getFrameSlider());
 		//changeButtonToPlay();
 		if (customPlayer.getStatus() == 2){

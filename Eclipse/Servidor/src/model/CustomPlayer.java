@@ -69,7 +69,7 @@ public class CustomPlayer implements BasicPlayerListener {
 		return this.minutes;
 	}
 	
-	public String play(JSlider b)throws Exception{
+	public String playPlayer(JSlider b)throws Exception{
 		t = "No existe ningun archivo...";
 		if (todoOk){
 			//si no se esta reproduciendo
@@ -87,68 +87,6 @@ public class CustomPlayer implements BasicPlayerListener {
 		}
 		return t;
 	}
-/*
-	public void startSeconds(final JSlider b){
-		seconds = 0;
-		minutes = 0;
-		tiempo = new Timer();
-		task = new TimerTask() {
-			public void run() {
-				if(player.getStatus() == 0 && framesSongActual > 1.0){
-					
-					if( seconds >= 59 ){
-						seconds = 0;
-						minutes ++;
-						
-					}else{
-						seconds++;
-					}
-					
-				}
-			}
-			
-		};
-		//se inicia la animacion
-		tiempo.schedule(task,0,1000);
-	}
-	
-	public void startAnimation(final JSlider b) {
-			
-		if (todoOk) {
-			
-			//seconds = 0;
-			//minutes = 0;
-			tiempo = new Timer();
-			task = new TimerTask() {
-				public void run() {
-
-					if(player.getStatus() == 0 && framesSongActual > 1.0){
-
-							
-							//System.out.println("el VALOR DEL FRAME DEL JSLIDER :" + b.getValue());
-						//minutes = (int) Math.round(microsecondsSongActual/0.000000016667);
-						//seconds =  (int) Math.round(microsecondsSongActual % 0.000000016667);	
-						
-
-						//System.out.println("La posició de frame de  framesSongActual: "+framesSongActual );
-							frameSlider =  framesSongActual.intValue()*100/ framesSong.intValue();
-							//System.out.println("La posició que s'envia al JSlider es : "+frameSlider );
-							//System.out.println("RUNABLE framesSongActual :" + framesSongActual + "framesSong : " + framesSong);
-							//frameSlider = frameNow * 100/ (int) Math.round(bytesLength);
-							b.setValue(frameSlider);
-							//System.out.println("La posició del JSlider es : "+b.getValue() );
-						
-					}else if( player.getStatus() == 2){
-
-						b.setValue(0);
-					}
-				}
-			};
-			//se inicia la animacion
-			tiempo.schedule(task,0,speed);
-			//System.out.println("¿SE ACABA LA SOOOOOOOOOOONG?");
-		}
-	}*/
 
 	//public String AbrirMp3(String ruta) throws Exception{
 	public void abrirMp3(String ruta) throws Exception{
@@ -158,7 +96,7 @@ public class CustomPlayer implements BasicPlayerListener {
 
 		//si se esta reproduciendo un mp3, se detiene
 		if(todoOk){
-			this.stop();
+			this.stopPlayer();
 		}
 
 		//se coloca el nombre de la cancion en la variable file
@@ -228,7 +166,7 @@ public class CustomPlayer implements BasicPlayerListener {
 		}
 	}
 	
-	public void stop() throws Exception {
+	public void stopPlayer() throws Exception {
 		player.stop();
 		this.todoOk = false;
 		//this.nameSong = "/ ";
@@ -257,6 +195,7 @@ public class CustomPlayer implements BasicPlayerListener {
 		}
 		
 		//System.out.println("propiedades: " + arg1);
+		//System.out.println("time: " + durationSong);
 		
 	}
 	
@@ -291,11 +230,18 @@ public class CustomPlayer implements BasicPlayerListener {
 		//System.out.println("progressUpdate: " + progressUpdate + "bytesLength: " + bytesLength);
 		this.minutes = (microdecondsSongActual/ 1000000)/60;
 		this.seconds = (microdecondsSongActual/ 1000000)%60;
-		frameSlider = microdecondsSongActual * 100 / durationSong;
+		double actualTime = microdecondsSongActual/100000;
+		double songDuration = durationSong/100000;
+		//frameSlider = microdecondsSongActual * 100 / durationSong;
+		frameSlider = (int) (actualTime * 100 / songDuration);
 
-		//System.out.println("progressUpdate : "+ progressUpdate);
-		//System.out.println("progressNow : "+ progressNow);
-		//System.out.println(framesSong + "=" + framesSongActual);
+		/*System.out.println("microdecondsSongActual : "+ microdecondsSongActual);
+		System.out.println("durationSong : "+ durationSong);
+		
+		System.out.println("minutes : "+ minutes + "seconds" + seconds);
+		System.out.println("frameSlider : "+ frameSlider);
+		System.out.println("progressNow : "+ progressNow);
+		System.out.println(framesSong + "=" + framesSongActual);*/
 		if( progressUpdate == 1.0){
 			
 			try {

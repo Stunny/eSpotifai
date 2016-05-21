@@ -17,6 +17,7 @@ public class RefreshThread extends Thread {
 			try {
 				Thread.sleep(3000);
 				controller.refreshLists2();
+				//controller.trackTime();
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();
 			}

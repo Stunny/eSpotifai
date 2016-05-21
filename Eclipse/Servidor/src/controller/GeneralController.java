@@ -57,5 +57,9 @@ public class GeneralController {
 		}
 		view.refreshSongs(list);
 	}
+	
+	public void trackTime() {
+		view.refreshTime();
+	}
 
 	}
