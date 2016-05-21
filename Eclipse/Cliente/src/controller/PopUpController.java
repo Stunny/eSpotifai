@@ -8,6 +8,9 @@ import javax.swing.JOptionPane;
 
 import view.AddList;
 import view.MainWindow;
+import view.PlaylistSearchUser;
+import view.SelectedUserWindow;
+import view.UserWindow;
 import view.Vots;
 
 
@@ -15,11 +18,17 @@ public class PopUpController implements ActionListener{
 	private MainWindow mainwindow;
 	private AddList addlist;
 	private Vots vots;
+	private SelectedUserWindow selecteduserwindow;
+	private PlaylistSearchUser playlistsearchuser;
+	private UserWindow userwindow;
 		
-	public PopUpController(MainWindow mainwindow, AddList addlist, Vots vots){
+	public PopUpController(MainWindow mainwindow, AddList addlist, Vots vots, SelectedUserWindow selecteduserwindow,PlaylistSearchUser playlistsearchuser, UserWindow userwindow ){
 		this.mainwindow = mainwindow;
 		this.addlist = addlist;
 		this.vots = vots;
+		this.selecteduserwindow = selecteduserwindow;
+		this.playlistsearchuser = playlistsearchuser;
+		this.userwindow = userwindow;
 	}
 
 	public void actionPerformed(ActionEvent event) {
@@ -28,7 +37,6 @@ public class PopUpController implements ActionListener{
 			
 		}
 		if (event.getActionCommand().equals("MainWindow.anadirActionCommand")){
-			AddList addlist = new AddList();
 			addlist.setVisible(true);
 		}
 		if(event.getActionCommand().equals("MainWindow.delatePlaylistActionCommand")){
@@ -67,6 +75,19 @@ public class PopUpController implements ActionListener{
 			JOptionPane.showMessageDialog(null, "puta5");
 		}
 		
+		//-------------------------------------------
+		
+		// VISUALITZEM LES CANÇONS EN EL PANELL GRAN
+		if( event.getActionCommand().equals("SelectedUserWindow.visualitzarActionCommand")){
+			//System.out.println("hola");
+			playlistsearchuser.setVisible(true);
+		}
+		
+		// -----------------------------------------
+		
+		if(event.getActionCommand().equals("UserWindow.visualitzarActionCommand")){
+			playlistsearchuser.setVisible(true);
+		}
 		
 	}
 

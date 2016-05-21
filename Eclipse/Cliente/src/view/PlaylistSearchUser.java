@@ -7,6 +7,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
@@ -18,18 +19,21 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 
+import controller.PopUpController;
+
 public class PlaylistSearchUser extends JFrame{
 	private JPopupMenu popupPlaylist;
 	private JMenuItem visualitzar;
 	private ListSelectionModel modelo;
 	private int id = 0; 
+	private JButton before; 
 	
 	public PlaylistSearchUser(){
 		JPanel jpListsFollowing = new JPanel(new BorderLayout());
-		jpListsFollowing.setBorder(BorderFactory.createTitledBorder("Following"));
+		jpListsFollowing.setBorder(BorderFactory.createTitledBorder("Playlist"));
 		
 		
-		String[] jtFollowedListsColumns = {"id","Folling List"};
+		String[] jtFollowedListsColumns = {"id","Playlist"};
 		Object[][] jtFollowedListsData = {{"1", "ELNA"},{"2","Elna"}};
 		//se crea la tabla
 		JTable jtFollowedLists = new JTable(jtFollowedListsData, jtFollowedListsColumns);
@@ -45,7 +49,7 @@ public class PlaylistSearchUser extends JFrame{
 		}; 
 		
 		popupPlaylist = new JPopupMenu();
-		popupPlaylist.add(visualitzar = new JMenuItem("Visualitzar llista"));
+		popupPlaylist.add(visualitzar = new JMenuItem("Visualitzar cançons"));
 		visualitzar.setHorizontalTextPosition(JMenuItem.RIGHT);
 		popupPlaylist.setLabel("Justificacion");
 		popupPlaylist.setBorder(new BevelBorder(BevelBorder.RAISED));
@@ -90,10 +94,15 @@ public class PlaylistSearchUser extends JFrame{
 		this.getContentPane().add(jpListsFollowing,BorderLayout.CENTER);
 		
 		this.getContentPane().setBackground(CustomColor.background);
+		
+		before = new JButton("Enrere");
+		this.getContentPane().add(before, BorderLayout.SOUTH);
 
 		
 		this.setSize(300, 500);
 		this.setTitle("Playlist Usuario");
 		this.setLocationRelativeTo(null);
 	}
+	
+	
 }

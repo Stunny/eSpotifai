@@ -556,6 +556,8 @@ public class MainWindow extends JFrame {
 		
 	}
 	
+
+	
 	
 	/**
 	 * Getter de la String introduida al camp de cerca
