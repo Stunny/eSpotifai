@@ -16,7 +16,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 /**
- * Finestra de opcions de les que disposa l'usuari
+ * Finestra de usuari
  * @author Elna Cabot, Miguel Diaz, Marc Millan, Alejandro Vogel, Marta Zapatero
  * @version 1.0
  * @see JFrame
