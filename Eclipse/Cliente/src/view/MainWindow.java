@@ -239,8 +239,8 @@ public class MainWindow extends JFrame {
 		JPanel jpLists = new JPanel(new BorderLayout());
 		jpLists.setBorder(BorderFactory.createTitledBorder("PLAYLIST "));
 		
-		String[] jtListsColumns1 = {"Lists"};
-		Object[][] jtListsData1 = {{"HOLA"}};
+		String[] jtListsColumns1 = {"id","Lists"};
+		Object[][] jtListsData1 = {{"1","HOLA"}};
 		//se crea la tabla
 		JTable jtLists = new JTable(jtListsData1, jtListsColumns1);
 

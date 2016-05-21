@@ -32,7 +32,13 @@ public class PopUpController implements ActionListener{
 			AddList addlist = new AddList();
 			addlist.setVisible(true);
 		}
-		if(event.getActionCommand().equals("MainWindow.delateActionCommand")){
+		if(event.getActionCommand().equals("MainWindow.delatePlaylistActionCommand")){
+			int reply = JOptionPane.showConfirmDialog(null, "Seguro que quieres eliminar el usuario?", "", JOptionPane.YES_NO_OPTION);
+			if (reply == JOptionPane.YES_OPTION) {
+				
+			}
+			 
+			
 			
 		}
 		
