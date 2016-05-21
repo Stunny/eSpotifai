@@ -13,15 +13,40 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 import controller.PopUpController;
-
+/**
+ * Pantalla en la que l'usuari pot puntuar una cançó de 1 a 5 punts.
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see JFrame
+ * @see JPanel
+ * @see JRadioButton
+ *
+ */
 public class Vots extends JFrame {
+	/**
+	 * Botó radial 1 punt
+	 */
 	private JRadioButton jrb1;
+	/**
+	 * Botó radial 2 punts
+	 */
 	private JRadioButton jrb2; 
+	/**
+	 * Botó radial 3 punts
+	 */
 	private JRadioButton jrb3; 
+	/**
+	 * Botó radial 4 punts
+	 */
 	private JRadioButton jrb4; 
+	/**
+	 * Botó radial 5 punts
+	 */
 	private JRadioButton jrb5; 
 
-	
+	/**
+	 * Construeix la pantalla de puntuació de cançó
+	 */
 	public Vots(){
 		JPanel jpMain = new JPanel(); 
 		jpMain.setLayout(new GridLayout(5, 1));
@@ -60,7 +85,12 @@ public class Vots extends JFrame {
 		this.setLocationRelativeTo(null);
 	
 	}
-	
+	/**
+	 * Controlador de l'input de la pantalla de puntuació
+	 * @param controller Listener que captura l'entrada a la pantalla de puntuació.
+	 * @see PopUpController
+	 * @see ActionListener
+	 */
 	public void registerController(PopUpController controller){
 		jrb1.addActionListener(controller);
 		jrb2.addActionListener(controller);
