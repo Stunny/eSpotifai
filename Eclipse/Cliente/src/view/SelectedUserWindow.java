@@ -131,7 +131,7 @@ public class SelectedUserWindow extends JFrame {
 				//all cells false
 				return false;
 			}
-
+			
 		}; 
 		
 		popupPlaylist = new JPopupMenu();
