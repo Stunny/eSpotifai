@@ -32,6 +32,7 @@ import javax.swing.table.DefaultTableModel;
 
 import controller.PopUpController;
 import model.CustomPlayer;
+import model.Playlist;
 import model.Song;
 
 /**
@@ -91,6 +92,7 @@ public class MainWindow extends JFrame {
 	private int id = 0;
 	DefaultTableModel tableMusic;
 	DefaultTableModel tablePlaylist;
+	DefaultTableModel tableModelLists;
 	
 	private JMenuItem reproducir;
 	private JMenuItem anadir;
@@ -135,6 +137,8 @@ public class MainWindow extends JFrame {
 	private ListSelectionModel modelo;
 	private ListSelectionModel modelo1;
 	private ListSelectionModel modelo2;
+	
+	private String user;
 	//private ImageIcon temporalSong;
 	//=====
 	
@@ -274,7 +278,7 @@ public class MainWindow extends JFrame {
 		JTable jtLists = new JTable(jtListsData1, jtListsColumns1);
 
 		//se hace que los datos no sean editables
-		DefaultTableModel tableModelLists = new DefaultTableModel(jtListsData1, jtListsColumns1) {
+		tableModelLists = new DefaultTableModel(jtListsData1, jtListsColumns1) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				//all cells false
@@ -783,6 +787,29 @@ public class MainWindow extends JFrame {
 		
 		
 	}
+	
+public void refreshPlaylists(LinkedList<Playlist> playlistList) {
+	LinkedList<Playlist> playlistListUser = new LinkedList<Playlist>();
+	
+	for (int i = 0; i<playlistList.size(); i++){
+		if (playlistList.get(i).getUsername().equals(user)){
+			playlistListUser.add(playlistList.get(i));
+		}
+	}
+		LinkedList<Object[]> list = new LinkedList<Object[]>();
+		for (int i = 0; i < playlistListUser.size(); i++){
+			Object[] objs = {playlistListUser.get(i).getId(), playlistListUser.get(i).getName()};
+			list.add(objs);
+		}
+		
+		while (tableModelLists.getRowCount()!= 0){
+			tableModelLists.removeRow(0);
+		}
+		for (int i = 0; i<list.size(); i++){
+			tableModelLists.addRow(list.get(i));
+		}
+		
+	}
 
 	public int getId() {
 		return id;
@@ -791,6 +818,10 @@ public class MainWindow extends JFrame {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public void setUser (String user){
+		this.user = user;
 	}
 	
 	

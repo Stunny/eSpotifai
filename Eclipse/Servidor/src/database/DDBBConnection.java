@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 
 import customExceptions.DatabaseNotLoadedException;
+import model.Playlist;
 import model.Song;
 import model.User;
 
@@ -167,6 +168,25 @@ public class DDBBConnection {
 					// TODO Auto-generated catch block
 			return list;
 		}
+	}
+	
+	public LinkedList<Playlist> getPlaylists(){
+		LinkedList<Playlist> list = new LinkedList<Playlist>();
+		try {
+			ResultSet resultSet = ddbb.selectQuery("SELECT * FROM playlists");
+			while (resultSet.next())
+				{
+				ResultSet resultSet2 = ddbb.selectQuery("SELECT user_name FROM users WHERE id_user="+(int)resultSet.getObject("creator_user"));
+				resultSet2.next();
+				Playlist playlist = new Playlist((int)resultSet.getObject("id_playlist"), (String)resultSet.getObject("name"), (String)resultSet2.getObject("user_name"));
+				list.add(playlist);
+				}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			return list;
+		}
+			return list;
 	}
 	
 	public LinkedList<Object[]> getFollowedsDates(int id){

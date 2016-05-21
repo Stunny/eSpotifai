@@ -22,7 +22,7 @@ public class ThreadController {
 	}
 	
 	public void refresUserPlaylistList() {
-		LinkedList<Playlist> playlistList = NetworkController.getPlaylists();
+		LinkedList<Playlist> playlistList = NetworkController.getPlaylistsUser();
 		mainWindow.refreshPlaylists(playlistList);
 	}
 	
