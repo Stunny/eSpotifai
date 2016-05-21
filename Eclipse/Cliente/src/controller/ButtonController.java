@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.MalformedURLException;
 import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
@@ -147,6 +148,19 @@ public class ButtonController implements ActionListener {
 		}
 		
 		
+		//PANTALLA MAIN (PLAY SONG)
+		if(event.getActionCommand().equals("MainWindow.playActionCommand")) {
+			try {
+				mainWindow.goMP3();
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		
 		
 		

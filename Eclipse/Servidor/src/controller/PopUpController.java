@@ -16,7 +16,7 @@ import view.PlaylistsWindow;
 import view.StatisticsWindow;
 
 public class PopUpController implements ActionListener{
-	private FollowersWindow view;
+	private FollowersWindow followersWindow;
 	private MainWindow main;
 	private DDBBConnection ddbbConnection; 
 
@@ -28,8 +28,8 @@ public class PopUpController implements ActionListener{
 	public void actionPerformed(ActionEvent event) {
 
 		if (event.getActionCommand().equals("MainWindow.seguidoresActionCommand")) {
-			FollowersWindow view = new FollowersWindow(ddbbConnection.getFollowersDates(main.getId()), ddbbConnection.getName(main.getId()));
-			view.setVisible(true);
+			FollowersWindow followersWindow = new FollowersWindow(ddbbConnection.getFollowersDates(main.getId()), ddbbConnection.getName(main.getId()));
+			followersWindow.setVisible(true);
 		}
 		else if (event.getActionCommand().equals("MainWindow.seguidosActionCommand")){
 

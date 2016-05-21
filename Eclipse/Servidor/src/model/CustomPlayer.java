@@ -293,7 +293,7 @@ public class CustomPlayer implements BasicPlayerListener {
 		this.seconds = (microdecondsSongActual/ 1000000)%60;
 		frameSlider = microdecondsSongActual * 100 / durationSong;
 
-		System.out.println("progressUpdate : "+ progressUpdate);
+		//System.out.println("progressUpdate : "+ progressUpdate);
 		//System.out.println("progressNow : "+ progressNow);
 		//System.out.println(framesSong + "=" + framesSongActual);
 		if( progressUpdate == 1.0){

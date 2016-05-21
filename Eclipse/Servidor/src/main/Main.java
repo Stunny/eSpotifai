@@ -19,6 +19,8 @@ import network.Server;
 import threads.RefreshThread;
 
 public class Main {
+	
+	//MAIN DEL SERVIDOR
 
 	public static void main(String[] args) {
 

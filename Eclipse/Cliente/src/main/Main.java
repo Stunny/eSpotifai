@@ -19,6 +19,8 @@ import view.UserWindow;
 
 public class Main {
 	
+	//MAIN DEL CLIENTE
+	
 	public static RefreshThread refreshThread;
 	
 	public static void main(String[] args){
