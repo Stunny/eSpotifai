@@ -3,12 +3,17 @@ package threads;
 import java.util.LinkedList;
 
 import controller.NetworkController;
+import controller.ThreadController;
 import model.Song;
+import view.MainWindow;
 
 public class RefreshThread extends Thread {
+	
+	private ThreadController threadController;
 
-	public RefreshThread() {
+	public RefreshThread(ThreadController threadController) {
 		super();
+		this.threadController = threadController;
 	}
 	
 	public void run() {
@@ -17,7 +22,8 @@ public class RefreshThread extends Thread {
 		while (true) {
 			try {
 				Thread.sleep(3000);
-				LinkedList<Song> songsList = NetworkController.getSongList();
+				System.out.println("Dummy");
+				threadController.refreshSongList();
 				
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();

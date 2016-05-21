@@ -21,6 +21,11 @@ import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
+import javax.media.CannotRealizeException;
+import javax.media.Manager;
+import javax.media.NoPlayerException;
+
 import javax.swing.JSlider;
 
 public class CustomPlayer implements BasicPlayerListener {
@@ -30,20 +35,22 @@ public class CustomPlayer implements BasicPlayerListener {
 	private boolean run = false;
 	private String t = "";
 
+	private Long duration;
+
 	private Timer tiempo ;
 	private TimerTask task;
 	private Map empty_map = new HashMap();
-	private Double bytesLength;
+	private int bytesLength;
 	private int frameSlider;
 	private int seconds = 0;
 	private int minutes = 0;
 	private String nameSong = "";
-	private Double framesSong = 1.0;
-	private Double framesSongActual = 1.0;
-	private Double microsecondsSongActual;
-	private Double durationSong;
-	private Double microdecondsSongActual;
-	
+	private int framesSong = 1;
+	private int framesSongActual = 1;
+	//private Double microsecondsSongActual;
+	private int durationSong = 0;
+	private int microdecondsSongActual;
+
 	//velocidad del runable dels frames
 	private int speed = 1000;
 
@@ -162,8 +169,6 @@ public class CustomPlayer implements BasicPlayerListener {
 		player.open(new File(ruta));
 		
 		this.nameSong = ruta;
-		
-		opened(new File(ruta), empty_map);
 
 		/*		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -178,7 +183,7 @@ public class CustomPlayer implements BasicPlayerListener {
 		//System.out.println("El get pan es : " + player.getPan());
 	}
 	public String getName(){
-		
+
 		String[] itemsSong = nameSong.split("/");
 		String finalName = "";
 		for(int i = 0; i < itemsSong.length ; i++){
@@ -215,7 +220,7 @@ public class CustomPlayer implements BasicPlayerListener {
 	}
 
 	public boolean isEnded(){
-		
+
 		if (player.getStatus() == 2){
 			return true;
 		}else{
@@ -236,16 +241,22 @@ public class CustomPlayer implements BasicPlayerListener {
 	 * carga un fichero. En este caso, obtiene el tamaño en bytes del fichero. */
 	public void opened(Object arg0, Map arg1) {
 		if (arg1.containsKey("audio.length.bytes")) {
-			bytesLength = Double.parseDouble(arg1.get("audio.length.bytes").toString());
+			String bytesLengthString = arg1.get("audio.length.bytes").toString();
+			bytesLength = Integer.valueOf(bytesLengthString);
 		}
 		if (arg1.containsKey("audio.length.frames")) {
-			framesSong = Double.parseDouble(arg1.get("audio.length.frames").toString());
-		}
+			String framesSongString = arg1.get("audio.length.frames").toString();
+			framesSong = Integer.valueOf(framesSongString);
+		}	
 		if (arg1.containsKey("duration")) {
-			durationSong = Double.parseDouble(arg1.get("duration").toString());
+
+			String durationString = arg1.get("duration").toString();
+			durationSong = Integer.valueOf(durationString);
+
+
 		}
 		
-		System.out.println("propiedades: " + arg1);
+		//System.out.println("propiedades: " + arg1);
 		
 	}
 	
@@ -258,31 +269,33 @@ public class CustomPlayer implements BasicPlayerListener {
 	 * este método es llamado varias veces por segundo para informar del
 	 * progreso en la reproducción. */
 	public void progress(int bytesread, long microseconds, byte[] pcmdata,  Map properties) {
-		float progressUpdate = (float) (bytesread * 1.0f / bytesLength * 1.0f);
-		int progressNow = (int) (bytesLength * progressUpdate);
+		float progressUpdate = (float)((bytesread* 1.0f)/ (bytesLength* 1.0f));
+		int progressNow = (int) (bytesLength*1.0f * progressUpdate);
+
 		// Descomentando la siguiente línea se mosrtaría el progreso
-		frameNow = (int)(bytesLength * progressUpdate);
-		
-		
+		frameNow = (int)(bytesLength* 1.0f * progressUpdate);
+
+
 		if (properties.containsKey("mp3.frame")) {
-			framesSongActual = Double.parseDouble(properties.get("mp3.frame").toString());
+			String framesSongActualString = properties.get("mp3.frame").toString();
+			framesSongActual = Integer.valueOf(framesSongActualString);
+
 		}
 		if (properties.containsKey("mp3.position.microseconds")) {
-			microdecondsSongActual = Double.parseDouble(properties.get("mp3.position.microseconds").toString());
-		}
-		
-		minutes = (int)(float)(microdecondsSongActual*1.0f / 1000000*1.0f)/60;
-		seconds = (int)(float)(microdecondsSongActual*1.0f / 1000000*1.0f)%60;
-		
-		frameSlider = (int)(float)(microdecondsSongActual * 100 / durationSong);
-		//if (properties.containsKey("mp3.position.microseconds")) {
-		//	microsecondsSongActual = (Double.parseDouble(properties.get("mp3.position.microseconds").toString()));
-		//}
-		//System.out.println("propiedades: " + properties);
-		//System.out.println("PROGRESS framesSongActual: " + framesSongActual );
-		//System.out.println(" -&gt; " + progressNow);
 
-		System.out.println("progressUpdate: " + progressUpdate + "bytesLength: " + bytesLength);
+			String microdecondsSongActualString = properties.get("mp3.position.microseconds").toString();
+			microdecondsSongActual = Integer.valueOf(microdecondsSongActualString);
+
+		}
+
+		//System.out.println("progressUpdate: " + progressUpdate + "bytesLength: " + bytesLength);
+		this.minutes = (microdecondsSongActual/ 1000000)/60;
+		this.seconds = (microdecondsSongActual/ 1000000)%60;
+		frameSlider = microdecondsSongActual * 100 / durationSong;
+
+		//System.out.println("progressUpdate : "+ progressUpdate);
+		//System.out.println("progressNow : "+ progressNow);
+		//System.out.println(framesSong + "=" + framesSongActual);
 		if( progressUpdate == 1.0){
 			
 			try {

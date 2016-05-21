@@ -110,9 +110,7 @@ public class DDBBConnection {
 		}
 		return list;
 	}
-	/*
-<<<<<<< HEAD:Eclipse/Servidor/src/model/DDBBConnection.java
-*/
+
 	public String getName(int id){
 		LinkedList<User> userList = getUsers();
 		for (int i = 0; i<userList.size(); i++){
@@ -122,11 +120,7 @@ public class DDBBConnection {
 		}
 		return "Desconocido";
 	}
-/*
-=======
-	
->>>>>>> cbc1e0d816a6c726ec7db5d9b7bdbb0a77ce6231:Eclipse/Servidor/src/database/DDBBConnection.java
-	*/
+
 	public LinkedList<Object[]> getFollowersDates(int id){
 		LinkedList<User> userList = getUsers();
 		LinkedList<Object[]> list =new LinkedList<Object[]>();

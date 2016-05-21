@@ -19,8 +19,11 @@ import network.Server;
 import threads.RefreshThread;
 
 public class Main {
+	
+	//MAIN DEL SERVIDOR
 
 	public static void main(String[] args) {
+
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -33,13 +36,8 @@ public class Main {
 					ddbbConnection.startConnection();
 
 					// Creem la VISTA
-
-					//Creem la vista temporal de adici�
 					AddMusicWindow addView = new AddMusicWindow();
-					//addView.setVisible(true); g
-					
 					MainWindow mainWindow = new MainWindow();
-					//ButtonsController buttonscontroller = new ButtonsController(mainWindow);
 					ButtonsController buttonscontroller = new ButtonsController(mainWindow, ddbbConnection, addView);
 					PopUpController popupcontroller = new PopUpController (mainWindow, ddbbConnection);
 					GeneralController controller = new GeneralController (ddbbConnection, mainWindow);
@@ -49,13 +47,13 @@ public class Main {
 					mainWindow.setVisible(true);
 
 
-
 					StatisticsWindow statisticsWindow = new StatisticsWindow();
 
 					(new RefreshThread(controller)).start();
 					Server server = new Server(new NetworkController(ddbbConnection));
 					server.startServer();
 
+					
 
 
 

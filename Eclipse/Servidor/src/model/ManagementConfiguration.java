@@ -25,8 +25,6 @@ public class ManagementConfiguration {
 		}
 	}
 	
-	
-	
 	public ServerConfiguration getServerConfiguration() {
 		return serverConfiguration;
 	}
