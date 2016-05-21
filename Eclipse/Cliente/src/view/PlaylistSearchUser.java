@@ -104,5 +104,10 @@ public class PlaylistSearchUser extends JFrame{
 		this.setLocationRelativeTo(null);
 	}
 	
+	public void registerController(PopUpController controller){
+		before.addActionListener(controller);
+		before.setActionCommand("PlaylistSearchUser.beforeActionCommand");
+	}
+	
 	
 }
