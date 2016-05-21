@@ -178,8 +178,8 @@ public class MainWindow extends JFrame {
 		jpListsFollowing.setBorder(BorderFactory.createTitledBorder("PLAYLIST FOLLOWING"));
 	
 		
-		String[] jtFollowedListsColumns = {"Followed Lists", "Creador"};
-		Object[][] jtFollowedListsData = {{"HOLA", "ELNA"},{"HOLA1","Elna"}};
+		String[] jtFollowedListsColumns = {"id","Followed Lists", "Creador"};
+		Object[][] jtFollowedListsData = {{"1","HOLA", "ELNA"},{"2","HOLA1","Elna"}};
 		//se crea la tabla
 		JTable jtFollowedLists = new JTable(jtFollowedListsData, jtFollowedListsColumns);
 		
@@ -202,7 +202,7 @@ public class MainWindow extends JFrame {
 			  public void mousePressed(MouseEvent e) {
 		            if ( SwingUtilities.isLeftMouseButton(e)) {
 		            	popupPlaylist.setVisible(false);
-		            	
+		            	System.out.println("hola guarra");
 		            	
 		            } else {
 		                 if ( SwingUtilities.isRightMouseButton(e)) {
@@ -212,13 +212,14 @@ public class MainWindow extends JFrame {
 		                    modelo.setSelectionInterval( rowNumber, rowNumber );
 		                   // modelo1.clearSelection();
 		                   // modelo2.clearSelection();
-		            		// id = Integer.parseInt(String.valueOf( jtMusic.getValueAt(rowNumber, 0)));
+		            		id = Integer.parseInt(String.valueOf( jtFollowedLists.getValueAt(rowNumber, 0)));
 		            		popupPlaylist.show(jpListsFollowing,  e.getX(), e.getY());
 		            		 
 		                }
 		            }
 		        }
 		    });
+		
 		
 		jtFollowedLists.getTableHeader().setReorderingAllowed(false);
 		jtFollowedLists.setModel(tableModelFollowedLists);
@@ -777,6 +778,16 @@ public class MainWindow extends JFrame {
 		
 		
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	
 	
 	
 	

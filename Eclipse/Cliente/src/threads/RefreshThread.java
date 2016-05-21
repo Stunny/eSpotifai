@@ -20,14 +20,14 @@ public class RefreshThread extends Thread {
 		
 		int i=0;
 		while (true) {
-			//try {
-				//Thread.sleep(1000);
+			try {
+				Thread.sleep(3000);
 				System.out.println("Dummy");
 				threadController.refreshSongList();
 				
-			/*} catch (InterruptedException e) {
+			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();
-			}*/
+			}
 			
 		}
 
