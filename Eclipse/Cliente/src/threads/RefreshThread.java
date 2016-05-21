@@ -17,6 +17,7 @@ public class RefreshThread extends Thread {
 		while (true) {
 			try {
 				Thread.sleep(3000);
+				System.out.println("Dummy");
 				LinkedList<Song> songsList = NetworkController.getSongList();
 				
 			} catch (InterruptedException e) {

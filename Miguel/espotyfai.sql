@@ -88,7 +88,7 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id_user` int(100) NOT NULL,
   `user_name` varchar(30) NOT NULL,
-  `date_reg` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `date_reg` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_last_acces` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `password` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
