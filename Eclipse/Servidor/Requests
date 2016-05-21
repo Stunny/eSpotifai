@@ -13,3 +13,5 @@ deleteUser:username
 addSong:name/genre/artist/album/location/stars
 
 deleteSong:id
+
+deletePlayList: id

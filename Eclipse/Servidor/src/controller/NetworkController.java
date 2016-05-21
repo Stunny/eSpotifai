@@ -60,6 +60,10 @@ public class NetworkController {
 		case "deleteSong":
 			response = ddbbconnection.deleteSong(Integer.parseInt(s[1]));
 			break;
+		/*case "deletePlay"
+			response  = ddbbconnection.deletePlaylist(Integer.parseInt(s[1]));
+			break;
+		*/
 		default: 
 			response = "Invalid request";
 		
