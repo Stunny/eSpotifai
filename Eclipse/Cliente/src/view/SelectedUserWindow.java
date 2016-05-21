@@ -27,7 +27,7 @@ public class SelectedUserWindow extends JFrame {
 	
 	private JTextArea jtaPlaylist;
 	private JTextField jtffollow;
-	private JTextArea jtaUsername;
+	private  JTextField jtfUsername; 
 	private JButton jbFollow; 
 	private JButton jbUnfollow;
 	/**
@@ -43,11 +43,13 @@ public class SelectedUserWindow extends JFrame {
 		jpHead.setLayout(new GridLayout(1, 2));
 		JLabel jlUsername = new JLabel("Nickname:");
 		jlUsername.setForeground(Color.white);
-		jtaUsername = new JTextArea(); 
-		jtaUsername.setEditable(false);
-		jtaUsername.setBackground(CustomColor.icon);
+		jtfUsername = new JTextField(); 
+		jtfUsername.setEditable(false);
+		jtfUsername.setBackground(CustomColor.icon);
+		jtfUsername.setHorizontalAlignment(JTextField.CENTER);
+		jtfUsername.setForeground(Color.white);
 		jpHead.add(jlUsername, BorderLayout.CENTER);
-		jpHead.add(jtaUsername, BorderLayout.CENTER);
+		jpHead.add(jtfUsername, BorderLayout.CENTER);
 		TitledBorder titledBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Usuario", javax.swing.border.
 			      TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.
 			      TitledBorder.DEFAULT_POSITION, null, java.awt.Color.white);
@@ -142,7 +144,7 @@ public class SelectedUserWindow extends JFrame {
 	 * @param string
 	 */
 	public void refreshUser(String string){
-		jtaUsername.setText(string);
+		jtfUsername.setText(string);
 	}
 	
 }
