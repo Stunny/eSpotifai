@@ -227,12 +227,6 @@ public class MainWindow extends JFrame {
 		jpLists.setPreferredSize(new Dimension(250, 0));
 		jpPageWest.add(jpLists, BorderLayout.CENTER);
 		
-		
-		
-	
-		
-		
-		
 		/*
 		JPanel jpLists = new JPanel();
 		jpLists.setBorder(BorderFactory.createTitledBorder("PLAYLIST"));
