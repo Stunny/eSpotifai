@@ -69,7 +69,7 @@ public class MainWindow extends JFrame {
 	private JMenuItem delate;
 	private JMenuItem visualitzarPlaylist;
 	private JMenuItem delatePlaylist;
-	//private JMenuItem eliminar;
+	private JMenuItem vot;
 	
 	//====
 	private JPanel jpPlayer; 
@@ -101,6 +101,10 @@ public class MainWindow extends JFrame {
 	private ImageIcon iiPrevious1;
 	private ImageIcon iiPrevious2;
 	private ImageIcon iiPrevious3;
+
+	private ListSelectionModel modelo;
+	private ListSelectionModel modelo1;
+	private ListSelectionModel modelo2;
 	//private ImageIcon temporalSong;
 	//=====
 	
@@ -150,7 +154,6 @@ public class MainWindow extends JFrame {
 		jtfSearch.setBackground(CustomColor.icon);
 		jpPageStart.add(jtfSearch, BorderLayout.CENTER);
 		jbSearch = new JButton("BUSCAR"); 
-        
 		jpPageStart.add(jbSearch, BorderLayout.CENTER);
 		jbClose = new JButton("CERRAR SESIÓN"); 
 		jpPageStart.add(jbClose, BorderLayout.CENTER);
@@ -164,6 +167,7 @@ public class MainWindow extends JFrame {
 		
 		//START (P2)
 
+		// -----------------------------------------------
 		
 		// START (jpPageWest)
 		JPanel jpPageWest = new JPanel(); 
@@ -171,17 +175,9 @@ public class MainWindow extends JFrame {
 		
 		JPanel jpListsFollowing = new JPanel(new BorderLayout());
 		jpListsFollowing.setBorder(BorderFactory.createTitledBorder("PLAYLIST FOLLOWING"));
-		/*jtaListsfollowing = new JTextArea(); 
-		jtaListsfollowing.setBackground(CustomColor.icon);
-		jtaListsfollowing.setEditable(false);
-		JScrollPane jspListsFollowing = new JScrollPane(jtaListsfollowing);
-		jspListsFollowing.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		jspListsFollowing.setPreferredSize(new Dimension(250,250));
-		*/
+	
 		
-		//-----------------------------------------------------------------
-		
-		String[] jtFollowedListsColumns = {"Followed Lists"};
+		String[] jtFollowedListsColumns = {"Followed Lists", "Creador"};
 		Object[][] jtFollowedListsData = {{"HOLA"}};
 		//se crea la tabla
 		JTable jtFollowedLists = new JTable(jtFollowedListsData, jtFollowedListsColumns);
@@ -199,8 +195,6 @@ public class MainWindow extends JFrame {
 		popupPlaylist = new JPopupMenu();
 		popupPlaylist.add(visualitzar = new JMenuItem("Visualitzar llista"));
 		visualitzar.setHorizontalTextPosition(JMenuItem.RIGHT);
-		popupPlaylist.add(delate  = new JMenuItem("Eliminar Llista"));
-		delate.setHorizontalTextPosition(JMenuItem.RIGHT);
 		popupPlaylist.setLabel("Justificacion");
 		popupPlaylist.setBorder(new BevelBorder(BevelBorder.RAISED));
 		jtFollowedLists.addMouseListener(new MouseAdapter(){
@@ -211,10 +205,11 @@ public class MainWindow extends JFrame {
 		                 if ( SwingUtilities.isRightMouseButton(e)) {
 		                    Point p = e.getPoint();
 		                    int rowNumber = jtFollowedLists.rowAtPoint(p);
-		                    ListSelectionModel modelo = jtFollowedLists.getSelectionModel();
+		                    modelo = jtFollowedLists.getSelectionModel();
 		                    modelo.setSelectionInterval( rowNumber, rowNumber );
+		                    
 		            		// id = Integer.parseInt(String.valueOf( jtMusic.getValueAt(rowNumber, 0)));
-		            		popupPlaylist.show(jpPageWest,  e.getX(), e.getY());
+		            		popupPlaylist.show(jpListsFollowing,  e.getX(), e.getY());
 		            		 
 		                }
 		            }
@@ -267,10 +262,10 @@ public class MainWindow extends JFrame {
 		                 if ( SwingUtilities.isRightMouseButton(e)) {
 		                    Point p = e.getPoint();
 		                    int rowNumber = jtLists.rowAtPoint(p);
-		                    ListSelectionModel modelo = jtLists.getSelectionModel();
-		                    modelo.setSelectionInterval( rowNumber, rowNumber );
+		                    modelo1 = jtLists.getSelectionModel();
+		                    modelo1.setSelectionInterval( rowNumber, rowNumber );
 		            		// id = Integer.parseInt(String.valueOf( jtMusic.getValueAt(rowNumber, 0)));
-		            		popupPlaylist1.show(jpPageWest,  e.getX(), e.getY());
+		            		popupPlaylist1.show(jpLists,  e.getX(), e.getY());
 		            		 
 		                }
 		            }
@@ -331,11 +326,10 @@ public class MainWindow extends JFrame {
 		popup = new JPopupMenu();
 		popup.add(reproducir = new JMenuItem("Reproduir Canço"));
 		reproducir.setHorizontalTextPosition(JMenuItem.RIGHT);
-		
-
 		popup.add(anadir = new JMenuItem("Afeguir a una Playlist"));
-
-		reproducir.setHorizontalTextPosition(JMenuItem.RIGHT);
+		anadir.setHorizontalTextPosition(JMenuItem.RIGHT);
+		popup.add(vot = new JMenuItem("Votar per la canço"));
+		vot.setHorizontalTextPosition(JMenuItem.RIGHT);
 		
 		//popup.add(reproducir = new JMenuItem("Eliminar Canço", new ImageIcon("1.gif")));
 		//reproducir.setHorizontalTextPosition(JMenuItem.RIGHT);
@@ -351,14 +345,15 @@ public class MainWindow extends JFrame {
 		                 if ( SwingUtilities.isRightMouseButton(e)) {
 		                    Point p = e.getPoint();
 		                    int rowNumber = jtMusic.rowAtPoint(p);
-		                    ListSelectionModel modelo = jtMusic.getSelectionModel();
-		                    modelo.setSelectionInterval( rowNumber, rowNumber );
+		                    modelo2 = jtMusic.getSelectionModel();
+		                    modelo2.setSelectionInterval( rowNumber, rowNumber );
 		            		// id = Integer.parseInt(String.valueOf( jtMusic.getValueAt(rowNumber, 0)));
 		            		popup.show(jpMain,  e.getX(), e.getY());
 		            		 
 		                }
 		            }
 		        }
+			  
 		    });
 		
 		jtMusic.setModel(tableMusic);
@@ -462,7 +457,7 @@ public class MainWindow extends JFrame {
 			jpPlayer.add(jlTime, BorderLayout.EAST);
 			
 		jpMain.add(jpPlayer, BorderLayout.SOUTH) ;
-		jpMain.setPreferredSize(new Dimension(0, 130));
+		//jpMain.setPreferredSize(new Dimension(0, 130));
 		
 		this.getContentPane().add(jpMain, BorderLayout.CENTER);
 		
@@ -498,15 +493,19 @@ public class MainWindow extends JFrame {
 	
 	public void registerController1(PopUpController controller2){
 		reproducir.addActionListener(controller2);
-
 		anadir.addActionListener(controller2);
 		visualitzar.addActionListener(controller2);
-		delate.addActionListener(controller2);
+		delatePlaylist.addActionListener(controller2);
+		vot.addActionListener(controller2);
+		visualitzarPlaylist.addActionListener(controller2);
+		
 		reproducir.setActionCommand("MainWindow.reproducirActionCommand");
 		anadir.setActionCommand("MainWindow.anadirActionCommand");
 		visualitzar.setActionCommand("MainWindow.visualitzarActionCommand");
-		delate.setActionCommand("MainWindow.delateActionCommand");
-
+		delatePlaylist.setActionCommand("MainWindow.delatePlaylistActionCommand");
+		vot.setActionCommand("MainWindow.votActionCommand");
+		visualitzarPlaylist.setActionCommand("MainWindow.visualitzarPlaylitsActionCommand");
+		
 	}
 	
 	
