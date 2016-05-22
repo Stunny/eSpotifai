@@ -74,7 +74,7 @@ public class ServerCommunication {
 			sServer.close();
 			return resposta;
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Problema connectant-se amb el servidor", " ", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "There has been a problem while connecting to the server", " ", JOptionPane.ERROR_MESSAGE);
 			return new String("ERROR");
 		}
 	}

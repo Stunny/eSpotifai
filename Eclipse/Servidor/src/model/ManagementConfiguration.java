@@ -82,13 +82,13 @@ public class ManagementConfiguration {
 			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-			System.out.println("Fitxer de dades del servidor no existeix");
+			System.out.println("Server data file doesn't exist.");
 			error = true;
 		
 		} catch (IOException e) {
 			e.printStackTrace();
 			error = true;
-			System.out.println("Fitxer de dades del servidor amb error/s sintactics");
+			System.out.println("Server data file has syntax errors.");
 		}
 		
 		//Si el fitxer no està creat o hi ha algún error en la seva estructura,

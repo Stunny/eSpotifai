@@ -71,32 +71,32 @@ public class PopUpController implements ActionListener{
 		}
 		else if (event.getActionCommand().equals("MainWindow.eliminarActionCommand")){
 
-			int reply = JOptionPane.showConfirmDialog(null, "Seguro que quieres eliminar el usuario?", "", JOptionPane.YES_NO_OPTION);
+			int reply = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this user?", "", JOptionPane.YES_NO_OPTION);
 			if (reply == JOptionPane.YES_OPTION) {
 				if(ddbbConnection.deleteUser(ddbbConnection.getName(main.getId())).equals("Deleted")){
 					/*DeletedWindow deletedwindow = new DeletedWindow();
 					deletedwindow.setVisible(true);*/
-					JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente.");
+					JOptionPane.showMessageDialog(null, "User deleted succesfully.");
 				} else {
-					JOptionPane.showMessageDialog(null, "No se ha podido eliminar el usuario.");
+					JOptionPane.showMessageDialog(null, "User couldn't be deleted.");
 				}
 			} else {
-				JOptionPane.showMessageDialog(null, "No se ha eliminado el usuario.");
+				JOptionPane.showMessageDialog(null, "User not deleted.");
 			}
 		}
 		else if (event.getActionCommand().equals("MainWindow.eliminar2ActionCommand")){
 			
-			int reply = JOptionPane.showConfirmDialog(null, "Seguro que quieres eliminar la cancion?", "", JOptionPane.YES_NO_OPTION);
+			int reply = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this song?", "", JOptionPane.YES_NO_OPTION);
 			if (reply == JOptionPane.YES_OPTION) {
 			if(ddbbConnection.deleteSong(main.getIdSong()).equals("Deleted")){
 				/*DeletedSongWindow deletedsongwindow = new DeletedSongWindow();
 				deletedsongwindow.setVisible(true);*/
-				JOptionPane.showMessageDialog(null, "Cancion eliminada correctamente.");
+				JOptionPane.showMessageDialog(null, "Soong deleted succesfully.");
 			} else {
-				JOptionPane.showMessageDialog(null, "No se ha podido eliminar la cancion.");
+				JOptionPane.showMessageDialog(null, "Song couldn't be deleted.");
 			}
 			} else {
-				JOptionPane.showMessageDialog(null, "No se ha eliminado la cancion.");
+				JOptionPane.showMessageDialog(null, "Song not deleted.");
 			}
 		}
 

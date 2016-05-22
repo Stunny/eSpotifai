@@ -1,4 +1,11 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 48362a3de678ee2f1cfa1da9f0fc5acfdc0a6b86
+<<<<<<< HEAD
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="controller.GeneralController"/>
@@ -26,6 +33,10 @@
 <fullyQualifiedTypeName name="view.DeletedSongWindow"/>
 <fullyQualifiedTypeName name="model.DDBBConnection"/>
 </qualifiedTypeNameHistroy>
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 76a8b9328ee26bc89e5f0dcd1258ef79380af8d0
 =======
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
@@ -55,3 +66,25 @@
 <fullyQualifiedTypeName name="model.Song"/>
 </qualifiedTypeNameHistroy>
 >>>>>>> 77b144f0a75d9608f2f63498ea4c536327ac2a6d
+=======
+>>>>>>> 144f2d0aead8c5be9d5450cc61440d5da920830d
+>>>>>>> 48362a3de678ee2f1cfa1da9f0fc5acfdc0a6b86
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="model.AccessLogic"/>
+<fullyQualifiedTypeName name="controller.ButtonController"/>
+</qualifiedTypeNameHistroy>
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 2f2507b5bfcdf94f4ef0a492ef41db6c3eaff283
+=======
+>>>>>>> 76a8b9328ee26bc89e5f0dcd1258ef79380af8d0
+=======
+=======
+>>>>>>> 2f2507b5bfcdf94f4ef0a492ef41db6c3eaff283
+>>>>>>> 144f2d0aead8c5be9d5450cc61440d5da920830d
+>>>>>>> 48362a3de678ee2f1cfa1da9f0fc5acfdc0a6b86
+=======
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy/>
+>>>>>>> 7d37d4a9889346d14fbf1a41c32bd668eacb1626

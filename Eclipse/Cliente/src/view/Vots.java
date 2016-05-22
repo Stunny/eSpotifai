@@ -53,11 +53,11 @@ public class Vots extends JFrame {
 		ButtonGroup buttonGroup = new ButtonGroup();
 		
 		
-		jrb1 = new JRadioButton("1 Estrella", false);
-		jrb2 = new JRadioButton("2 Estrellas",false);
-		jrb3 = new JRadioButton("3 Estrellas",false);
-		jrb4 = new JRadioButton("4 Estrellas",false);
-		jrb5 = new JRadioButton("5 Estrellas",false);
+		jrb1 = new JRadioButton("1 Star", false);
+		jrb2 = new JRadioButton("2 Stars",false);
+		jrb3 = new JRadioButton("3 Stars",false);
+		jrb4 = new JRadioButton("4 Stars",false);
+		jrb5 = new JRadioButton("5 Stars",false);
 		
 		jrb1.setForeground(Color.white);
 		jrb2.setForeground(Color.white);
@@ -81,7 +81,7 @@ public class Vots extends JFrame {
 		
 		this.getContentPane().add(jpMain, BorderLayout.CENTER);
 		this.setSize(150, 300);
-		this.setTitle("Votar una canço");
+		this.setTitle("Rate song");
 		this.setLocationRelativeTo(null);
 	
 	}

@@ -62,7 +62,7 @@ public class Server extends Thread {
 			isOn = false;
 			this.controller = controller;
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "Aquest port esta ocupat.\nPotser ja estas executant el servidor.", " ", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Busy port.\nMaybe you are already running the server.", " ", JOptionPane.ERROR_MESSAGE);
 			System.exit(MIN_PRIORITY);
 		}
 	}

@@ -51,15 +51,15 @@ public class NewListDialog extends JFrame{
 		jpMain.setLayout(new GridLayout(3,2));
 		
 		
-		JLabel jlNewList = new JLabel("Nueva Lista");
+		JLabel jlNewList = new JLabel("New Playlist");
 		jlNewList.setForeground(Color.white);
 		jpMain.add(jlNewList);
 		jtfList = new JTextField();
 		jtfList.setBackground(CustomColor.icon);
 		jpMain.add(jtfList);
 		
-		jrbPublic = new JRadioButton("Publica", true);
-		jrbPrivate = new JRadioButton("Privada", false);
+		jrbPublic = new JRadioButton("Public", true);
+		jrbPrivate = new JRadioButton("Private", false);
 		
 		ButtonGroup buttonGroup = new ButtonGroup();
 		buttonGroup.add(jrbPublic);
@@ -68,8 +68,8 @@ public class NewListDialog extends JFrame{
 		jpMain.add(jrbPublic);
 		jpMain.add(jrbPrivate);
 		
-		jbCreate = new JButton("CREAR");
-		jbCancel = new JButton("CANCELAR");
+		jbCreate = new JButton("CREATE");
+		jbCancel = new JButton("CANCEL");
 		jpMain.add(jbCreate);
 		jpMain.add(jbCancel);
 		jpMain.setBackground(CustomColor.background);
@@ -78,7 +78,7 @@ public class NewListDialog extends JFrame{
 		
 		
 		this.setSize(350, 120);
-		this.setTitle("Crear nueva lista");
+		this.setTitle("Create new Playlist");
 		this.setLocationRelativeTo(null);
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

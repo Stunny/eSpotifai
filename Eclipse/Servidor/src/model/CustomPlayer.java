@@ -156,14 +156,14 @@ public class CustomPlayer implements BasicPlayerListener {
 	 * @throws Exception
 	 */
 	public String playPlayer(JSlider b)throws Exception{
-		t = "No existe ningun archivo...";
+		t = "File does not exist...";
 		if (todoOk){
 			//si no se esta reproduciendo
 
 			if(!run){
 				player.play();
 				this.run = true;
-				t = "Reproduciendo";
+				t = "Playing";
 			//this.startAnimation(b);
 			//this.startSeconds(b);
 			}else{

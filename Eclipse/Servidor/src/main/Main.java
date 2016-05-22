@@ -73,9 +73,9 @@ public class Main {
 
 
 				} catch (DatabaseNotLoadedException e) {
-					JOptionPane.showMessageDialog(null, "No s'ha pogut accedir a la base de dades.", " ", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Couldn't reach database.", " ", JOptionPane.ERROR_MESSAGE);
 				} catch (Exception e) {
-					JOptionPane.showMessageDialog(null, "Hi ha hagut un error.", " ", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "There's been an error.", " ", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

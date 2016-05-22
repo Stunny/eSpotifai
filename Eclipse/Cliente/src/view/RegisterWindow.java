@@ -75,7 +75,7 @@ public class RegisterWindow extends JFrame{
 		
 		JPanel jpPassword = new JPanel(); 
 		jpPassword.setLayout(new GridLayout(1,2));
-		JLabel password = new JLabel("Contrasenya");
+		JLabel password = new JLabel("Password");
 		password.setForeground(Color.white); 
 		jpPassword.add(password);
 		jpPassword.setBackground(CustomColor.background);
@@ -85,8 +85,8 @@ public class RegisterWindow extends JFrame{
 		jpPassword.setBackground(CustomColor.background);
 		
 		JPanel jpRegisterButton = new JPanel(new GridLayout(1, 2)); 
-		jbAtras = new JButton("ENRERE");
-		jbRegister = new JButton("REGISTRA'T");
+		jbAtras = new JButton("BACK");
+		jbRegister = new JButton("REGISTER");
 		jpRegisterButton.add(jbAtras,BorderLayout.CENTER);
 		jpRegisterButton.add(jbRegister, BorderLayout.CENTER);
 		jpRegisterButton.setBackground(CustomColor.background);
@@ -105,7 +105,7 @@ public class RegisterWindow extends JFrame{
 		this.getContentPane().add(jpRegister, BorderLayout.CENTER);
 		
 		this.setSize(300, 300);
-		this.setTitle("Registrar-se a Espotifai");
+		this.setTitle("Register to Espotyfai");
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}

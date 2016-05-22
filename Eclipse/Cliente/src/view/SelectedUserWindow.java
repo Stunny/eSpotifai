@@ -74,7 +74,7 @@ public class SelectedUserWindow extends JFrame {
 		
 		JPanel jpHead = new JPanel(); 
 		jpHead.setLayout(new GridLayout(1, 2));
-		JLabel jlUsername = new JLabel("Nickname:");
+		JLabel jlUsername = new JLabel("Username:");
 		jlUsername.setForeground(Color.white);
 		jtaUsername = new JTextArea(); 
 		jtaUsername.setEditable(false);
@@ -91,7 +91,7 @@ public class SelectedUserWindow extends JFrame {
 		
 		JPanel jpSecond = new JPanel(); 
 		jpSecond.setLayout(new GridLayout(2, 2));
-		JLabel jlfollowing = new JLabel("Estado");
+		JLabel jlfollowing = new JLabel("Status");
 		jlfollowing.setForeground(Color.white);
 		jtafollow = new JTextArea();
 		jtafollow.setBackground(CustomColor.icon);
@@ -135,7 +135,7 @@ public class SelectedUserWindow extends JFrame {
 		}; 
 		
 		popupPlaylist = new JPopupMenu();
-		popupPlaylist.add(visualitzar = new JMenuItem("Visualitzar cançons"));
+		popupPlaylist.add(visualitzar = new JMenuItem("View songs"));
 		visualitzar.setHorizontalTextPosition(JMenuItem.RIGHT);
 		popupPlaylist.setLabel("Justificacion");
 		popupPlaylist.setBorder(new BevelBorder(BevelBorder.RAISED));
@@ -185,7 +185,7 @@ public class SelectedUserWindow extends JFrame {
 
 		
 		this.setSize(300, 500);
-		this.setTitle("Perfil Usuario");
+		this.setTitle("User profile");
 		this.setLocationRelativeTo(null);
 		
 	}

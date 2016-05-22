@@ -124,7 +124,7 @@ public class DDBBConnection {
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Error al recuperar los usuarios de la base de datos");
+			System.out.println("Error in data fetch to the database");
 		}
 		return list;
 	}
@@ -272,7 +272,7 @@ public class DDBBConnection {
 			}	
 		} catch (SQLException e) {
 				// TODO Auto-generated catch block
-			System.out.println("Error al recuperar las canciones de la base de datos");
+			System.out.println("Error in songs fetch in the database");
 		}
 		return list;
 	}
@@ -301,7 +301,7 @@ public class DDBBConnection {
 			
 		} catch (SQLException e) {
 				// TODO Auto-generated catch block
-			System.out.println("Error al reperar las canciones de una playlist de la base de datos");
+			System.out.println("Error in playlist songs fetch in the database");
 		}
 		return list;
 	}
@@ -373,7 +373,7 @@ public class DDBBConnection {
 			resultSet.next();
 			int dontExist = resultSet.getInt(1);
 			//Eliminar
-			System.out.println("Eliminar->dontExit: "+dontExist);
+			System.out.println("Delete->dontExit: "+dontExist);
 			
 			if (dontExist == 0){
 				return ("Fail");
@@ -384,7 +384,7 @@ public class DDBBConnection {
 				consulta2.next();
 				int id = consulta2.getInt(1);
 				//Eliminar
-				System.out.println("Eliminar->id: "+id);
+				System.out.println("Delete->id: "+id);
 				ddbb.deleteQuery("DELETE FROM users WHERE user_name='"+username+"'");
 				ddbb.deleteQuery("DELETE FROM followers WHERE user_follower="+id);
 				ddbb.deleteQuery("DELETE FROM followers WHERE user_followed="+id);
@@ -476,7 +476,7 @@ public class DDBBConnection {
 			return  resultSet.getInt(1);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Problemas al obtener el numero de seguidores");
+			System.out.println("Issues during number of followers fetch");
 			return 0;
 		}
 	}
@@ -494,7 +494,7 @@ public class DDBBConnection {
 			return  resultSet.getInt(1);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Problemas al obtener el numero de usuarios seguidos");
+			System.out.println("Issues during fetch of number of followed users");
 			return 0;
 		}
 	}
@@ -512,7 +512,7 @@ public class DDBBConnection {
 			return  resultSet.getInt(1);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Problemas al obtener el numero de playlists");
+			System.out.println("Issues during fetch of number of playlists.");
 			return 0;
 		}
 	}
@@ -530,7 +530,7 @@ public class DDBBConnection {
 			return  resultSet.getInt(1);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Problemas al obtener el numero de canciones");
+			System.out.println("Issues during fetch of numbre of songs");
 			return 0;
 		}
 	}
@@ -598,7 +598,7 @@ public class DDBBConnection {
 			return songs;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Problemas al obtener el numero de usuarios seguidos");
+			System.out.println("Issues during fetch of number of followed users");
 			return 0;
 		} catch (NullPointerException e){
 			return 0;

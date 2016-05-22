@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package customExceptions;
 
 public class ServerNotFoundException extends Exception {
@@ -7,3 +8,14 @@ public class ServerNotFoundException extends Exception {
 	}
 
 }
+=======
+package customExceptions;
+
+public class ServerNotFoundException extends Exception {
+	
+	public ServerNotFoundException() {
+		super("La connexio amb el servidor ha fallat.");
+	}
+
+}
+>>>>>>> b4d63ff7a106498a4bfe5299eba34d0898475d23

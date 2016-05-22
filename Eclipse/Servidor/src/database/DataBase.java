@@ -144,7 +144,7 @@ public class DataBase {
              rs = s.executeQuery (query);
              
          } catch (SQLException ex) {
-             System.out.println("Problema al Recuperar les dades --> " + ex.getSQLState());
+             System.out.println("Problem when fetching data --> " + ex.getSQLState());
          }
 		return rs;
     }
@@ -155,7 +155,7 @@ public class DataBase {
     	try {
 			conn.close();
 		} catch (SQLException e) {
-			System.out.println("Problema al tancar la connexió --> " + e.getSQLState());
+			System.out.println("Issue when logging out --> " + e.getSQLState());
 		}
     }
 }

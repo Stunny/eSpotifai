@@ -284,9 +284,9 @@ public class MainWindow extends JFrame {
 		}; 
 		
 		popupPlaylist1 = new JPopupMenu();
-		popupPlaylist1.add(visualitzarPlaylist = new JMenuItem("Visualitzar llista"));
+		popupPlaylist1.add(visualitzarPlaylist = new JMenuItem("View Playlist"));
 		visualitzarPlaylist.setHorizontalTextPosition(JMenuItem.RIGHT);
-		popupPlaylist1.add(delatePlaylist  = new JMenuItem("Eliminar Llista"));
+		popupPlaylist1.add(delatePlaylist  = new JMenuItem("Delete Playlist"));
 		delatePlaylist.setHorizontalTextPosition(JMenuItem.RIGHT);
 		popupPlaylist1.setLabel("Justificacion");
 		popupPlaylist1.setBorder(new BevelBorder(BevelBorder.RAISED));
@@ -366,11 +366,11 @@ public class MainWindow extends JFrame {
 		};
 		
 		popup = new JPopupMenu();
-		popup.add(reproducir = new JMenuItem("Reproduir Canço"));
+		popup.add(reproducir = new JMenuItem("Play Song"));
 		reproducir.setHorizontalTextPosition(JMenuItem.RIGHT);
-		popup.add(anadir = new JMenuItem("Afeguir a una Playlist"));
+		popup.add(anadir = new JMenuItem("Add to a Playlist"));
 		anadir.setHorizontalTextPosition(JMenuItem.RIGHT);
-		popup.add(vot = new JMenuItem("Votar per la canço"));
+		popup.add(vot = new JMenuItem("Rate song"));
 		vot.setHorizontalTextPosition(JMenuItem.RIGHT);
 		
 		//popup.add(reproducir = new JMenuItem("Eliminar Canço", new ImageIcon("1.gif")));
