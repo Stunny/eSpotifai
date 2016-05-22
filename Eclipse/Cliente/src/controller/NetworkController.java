@@ -5,15 +5,29 @@ import java.util.LinkedList;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import model.Playlist;
 import model.Song;
 import model.User;
 import network.ServerCommunication;
-
+/**
+ * Controlador de comunicaci� amb el servidor. 
+ * @author Elna Cabot, Miguel D�az, Marc Mill�n, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see ServerCommunication
+ * @see GsonBuilder
+ * @see Gson
+ * @see User
+ * @see Song
+ *
+ */
+ 
 public class NetworkController {
 	 
-	
+	/**
+	 * Du a terme una <i>request</i> de <strong>getUserList</strong> al servidor
+	 * @return Server response: List of users
+	 * @see User
+	 */
 	public static LinkedList<User> getUserList() {
 		
 		String request = "getUsers:";
@@ -35,7 +49,11 @@ public class NetworkController {
 		return userlist;
 
 	}
-	
+	/**
+	 * Du a terme una <i>request</i> de <strong>getSongs</strong> al servidor
+	 * @return Server response: List of songs
+	 * @see Song
+	 */
 	public static LinkedList<Song> getSongList() {
 		
 		String request = "getSongs:";
@@ -57,8 +75,7 @@ public class NetworkController {
 		return songlist;
 	}
 	
-
-
+	
 	public static LinkedList<Playlist> getPlaylists() {
 		String request = "getPlaylists:";
 		
@@ -77,6 +94,26 @@ public class NetworkController {
 		}*/
 			
 		return playlistlist;
+	}
+
+
+		
+	public static LinkedList<Playlist> getPublicPlaylists(int id) {
+		String request = "getPublicPlaylists:"+id;
+		
+		ServerCommunication servercommunication = new ServerCommunication();
+		String resposta = servercommunication.sendData(request);
+
+		GsonBuilder gsonBuilder = new GsonBuilder();
+	    Gson gson = gsonBuilder.create();
+		Playlist[] p = gson.fromJson(resposta, Playlist[].class);
+		
+		LinkedList<Playlist> playlistlist = new LinkedList<Playlist>(Arrays.asList(p));
+		/*for(int  i = 0; i < songlist.size(); i++){
+			System.out.println(songlist.get(i).getName());
+		}*/
+				
+			return playlistlist;
 	}
 	
 	public static String deletePlaylist(int i){
@@ -98,6 +135,32 @@ public class NetworkController {
 
 		return resposta;
 		
+
 	}
 
+
+
+	public static int[] getSongsPlaylistList(int id) {
+	String request = "Songs From:"+id;
+	
+	ServerCommunication servercommunication = new ServerCommunication();
+	String resposta = servercommunication.sendData(request);
+	
+	
+	GsonBuilder gsonBuilder = new GsonBuilder();
+    Gson gson = gsonBuilder.create();
+	return gson.fromJson(resposta, int[].class);
+	}
+	
+	public static String addPlaylist(String name, int id, int publica){
+			String request = "Add Playlist:"+name+"/"+id+"/"+publica;
+			System.out.printf(request);
+			System.out.printf("\n");
+			ServerCommunication servercommunication = new ServerCommunication();
+			String resposta = servercommunication.sendData(request);		
+			GsonBuilder gsonBuilder = new GsonBuilder();
+		    Gson gson = gsonBuilder.create();
+			//return gson.fromJson(resposta, String.class);
+		    return "add";
+	}
 }

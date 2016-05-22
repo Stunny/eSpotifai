@@ -42,6 +42,16 @@ public class AccessLogic {
 		}
 	}
 	
+	public static int getId( String username, NetworkController networkcontroller){
+		LinkedList<User>  userlist = new LinkedList<User>();
+		userlist = networkcontroller.getUserList();
+		for(int i = 0; i < userlist.size(); i++){
+			if(username.equals(userlist.get(i).getUsername())){
+				return userlist.get(i).getId();			}
+		}
+		return 0;
+	}
+	
 	/**
 	 * Realitza l'accés d'usuari a l'aplicació. En cas de que no es dugui a terme mostrarà un missatge d'error.
 	 * @param username Nom d'usuari
@@ -74,6 +84,18 @@ public class AccessLogic {
 			}
 		}
 	}
+	
+	public static LinkedList<Playlist> getPlaylists (String username,  LinkedList<Playlist> playlistList) {
+		LinkedList<Playlist> playlistListUser = new LinkedList<Playlist>();
+		for (int i = 0; i<playlistList.size(); i++){
+			if (playlistList.get(i).getUsername().equals(username)){
+				playlistListUser.add(playlistList.get(i));
+			}
+		}
+		
+		return playlistListUser ;
+	}
+	
 	/**
 	 * Realitza el registre d'un nou usuari. Mostrarà missatges d'error en cas de no complir els requeriments a l'hora de introduir les dades per al registre.
 	 * @param username Nom d'usuari.
@@ -108,8 +130,20 @@ public class AccessLogic {
 		}
 	
 	}
-	
-	
 
+	public static LinkedList<Song> getSongsFromPlaylist(LinkedList<Song> songsList, int[] array) {
+		LinkedList<Song> songs = new LinkedList<Song>();
+		for (int i = 0; i<array.length; i++){
+			for (int e = 0; i<songsList.size(); e++){
+				if (songsList.get(e).getId()== array[i]){
+					songs.add(songsList.get(e));
+					break;
+				}
+			}
+		}
+		
+		
+		return songs;
+	}
 }
 

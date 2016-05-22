@@ -20,7 +20,7 @@ import view.SelectedUserWindow;
 import view.UserWindow;
 /**
  * Controlador de botons de la vista
- * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @author Elna Cabot, Miguel Dï¿½az, Marc Millï¿½n, Alejandro Vogel, Marta Zapatero
  * @version 1.0
  * @see ActionListener
  * @see view.loginWindow
@@ -68,10 +68,14 @@ public class ButtonController implements ActionListener {
 	 */
 	private NetworkController networkcontroller;
 	private UserWindow userwindow;
-
+	
+	private int songIndex = 0;
+	
+	private NewListDialog NewListDialogDialog;
 
 	/**
 	 * Construeix un controlador de botons.
+	 * @param newListDialogDialog2 
 	 * @param loginWindow
 	 * @param registerWindow
 	 * @param mainWindow
@@ -85,8 +89,8 @@ public class ButtonController implements ActionListener {
 	 * @see controller.NetworkController
 	 * 
 	 */
-	public ButtonController(LoginWindow loginWindow, RegisterWindow registerWindow, MainWindow mainWindow, SelectedUserWindow selecteduserwindow, NetworkController networkcontroller, UserWindow userwindow){
-		
+	public ButtonController(NewListDialog newListDialogDialog2, LoginWindow loginWindow, RegisterWindow registerWindow, MainWindow mainWindow, SelectedUserWindow selecteduserwindow, NetworkController networkcontroller, UserWindow userwindow){
+		this.NewListDialogDialog = NewListDialogDialog;
 		this.loginWindow = loginWindow;
 		this.mainWindow = mainWindow;
 		this.registerWindow= registerWindow;
@@ -119,6 +123,7 @@ public class ButtonController implements ActionListener {
 						Main.timeThread.start();
 						
 						User = loginWindow.getTypedUsername();
+						mainWindow.setUserId(AccessLogic.getId(User, networkcontroller));
 						mainWindow.setUser(User);
 						String d  = "HOLA";
 						mainWindow.refreshListsFollowing(d);
@@ -141,6 +146,17 @@ public class ButtonController implements ActionListener {
 		}
 		
 		
+		//New
+		if(event.getActionCommand().equals("NewListDialog.createActionCommand")){
+			System.out.println("Creando");
+			if(networkcontroller.addPlaylist(NewListDialogDialog.getTypedName(), mainWindow.getUserId(), NewListDialogDialog.getPublic()).equals("Add")){
+				
+			}
+		}
+		if(event.getActionCommand().equals("NewListDialog.cancelActionCommand")){
+			NewListDialogDialog.setVisible(false);
+			System.out.println("Creando");
+		}
 		
 		
 		//PANTALLA registerWindow
@@ -168,8 +184,6 @@ public class ButtonController implements ActionListener {
 		
 		// MAINWINDOW ( NEW PLAYLIST)
 		if(event.getActionCommand().equals("MainWindow.addActionCommand")){
-
-			NewListDialog NewListDialogDialog = new NewListDialog(); 
 			NewListDialogDialog.setVisible(true);
 		} 
 		
@@ -195,9 +209,8 @@ public class ButtonController implements ActionListener {
 		if(event.getActionCommand().equals("MainWindow.searchActionCommand")){
 			if(AccessLogic.searchUser(mainWindow.getTypedSearch(), networkcontroller)){
 				selecteduserwindow.refreshUser(mainWindow.getTypedSearch());
+				selecteduserwindow.refreshPlaylists(AccessLogic.getPlaylists(mainWindow.getTypedSearch(), networkcontroller.getPlaylists()));
 				selecteduserwindow.setVisible(true);
-				
-				
 			}
 		}
 		
@@ -205,6 +218,7 @@ public class ButtonController implements ActionListener {
 		if(event.getActionCommand().equals("FOLLOW")){
 			String p = "Following";
 			selecteduserwindow.refreshFollowing(p);
+			
 		}
 		
 		//PANTALLA SEARCH USUARI
@@ -217,17 +231,50 @@ public class ButtonController implements ActionListener {
 		
 		//PANTALLA MAIN (PLAY SONG)
 		if(event.getActionCommand().equals("MainWindow.playActionCommand")) {
-			try {
-				mainWindow.goMP3();
-			} catch (MalformedURLException e) {
+			//try {
+				//int songId = mainWindow.getSongAtIndex(songIndex);
+				//mainWindow.goMP3();
+			/*} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}*/
 		}
+		
+		//PANTALLA MAIN (NEXT SONG)
+		if(event.getActionCommand().equals("MainWindow.nextActionCommand")) {
+			//try {
+			if (songIndex < mainWindow.getSongAmount()) songIndex++;
+			//int songId = mainWindow.getSongAtIndex(songIndex);
+				//mainWindow.goMP3();
+			/*} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}*/
+		}
+		
+		//PANTALLA MAIN (PREVIOUS SONG)
+		if(event.getActionCommand().equals("MainWindow.previousActionCommand")) {
+			//try {
+			if (songIndex > 0) songIndex--;
+			//int songId = mainWindow.getSongAtIndex(songIndex);
+				//mainWindow.goMP3();
+			/*} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}*/
+		}	
 		
 		
 		

@@ -18,16 +18,49 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
-
+/**
+ * 
+ * A partir d'un usuari retorna una <i>playlist</i>.
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * 
+ * @version 1.0
+ * @see JPanel
+ * @see JTable
+ * @see DefaultTableModel
+ * @see JScrollPane
+ * @see JFrame
+ * @see JMenuItem
+ * @see JPopupMenu
+ * @see ListSelectionModel
+ *
+ */
 import controller.PopUpController;
 
 public class PlaylistSearchUser extends JFrame{
+	/**
+	 * Menu emergent
+	 * @see JPopupMenu
+	 */
 	private JPopupMenu popupPlaylist;
+	/**
+	 * Opcio dins del menu emergent
+	 * @see JMenuItem
+	 * @see JPopupMenu
+	 */
 	private JMenuItem visualitzar;
+	/**
+	 * Llista de selecció
+	 * @see ListSelectionModel
+	 */
 	private ListSelectionModel modelo;
+	/**
+	 * IDentificador de la <i>Playlist</i>
+	 */
 	private int id = 0; 
 	private JButton before; 
-	
+	/**
+	 * Retorna una llista de cançons a partir d'un usuari seleccionat.
+	 */
 	public PlaylistSearchUser(){
 		JPanel jpListsFollowing = new JPanel(new BorderLayout());
 		jpListsFollowing.setBorder(BorderFactory.createTitledBorder("Playlist"));

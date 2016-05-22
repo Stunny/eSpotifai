@@ -69,19 +69,28 @@ public class NetworkController {
 		case "deletePlaylist": 
 			response  = ddbbconnection.deletePlaylist(Integer.parseInt(s[1]));
 			break;
-		case "updatePlaylist":
-			args = s[1].split("/");
-			System.out.println("HOLA puti");
-			System.out.println(args[0]);
-			System.out.println(args[1]);
-			response = ddbbconnection.updatePlaylist(args[0], Integer.parseInt(args[1]));
-			break;
 		
+
+		case "getPublicPlaylists":
+			response  = gson.toJson(ddbbconnection.getPublicPlaylists(Integer.parseInt(s[1])));
+			break;
+		case "Songs From":
+			response  = gson.toJson(ddbbconnection.getSongsList(Integer.parseInt(s[1])));
+		break;
+		case "Add Playlist":
+			args = s[1].split("/");
+			System.out.println(args[0]+ Integer.parseInt(args[1])+Integer.parseInt(args[2]));
+			System.out.println("String: "+ddbbconnection.addPlaylist(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2])));
+			System.out.println("String: "+ddbbconnection.addPlaylist(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2])));
+			System.out.println("String: "+ddbbconnection.addPlaylist(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2])));
+			response  = gson.toJson(ddbbconnection.addPlaylist(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2])));
+			break;
 		
 		default: 
 			response = "Invalid request";
 		
 		}
+		
 	    } catch (Exception e) {
 	    	response = "Invalid request";
 	    	System.out.println(e);

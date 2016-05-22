@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import controller.ButtonController;
+
 /**
  * Classe que obre una ventana emergent per a la creació d'una nova llista de reproduccio.
  * @author Elna Cabot, Miguel Diaz, Marc Millan, Marta Zapatero, Alejandro Vogel
@@ -64,10 +66,8 @@ public class NewListDialog extends JFrame{
 		ButtonGroup buttonGroup = new ButtonGroup();
 		buttonGroup.add(jrbPublic);
 		buttonGroup.add(jrbPrivate);
-		
 		jpMain.add(jrbPublic);
 		jpMain.add(jrbPrivate);
-		
 		jbCreate = new JButton("CREAR");
 		jbCancel = new JButton("CANCELAR");
 		jpMain.add(jbCreate);
@@ -90,10 +90,21 @@ public class NewListDialog extends JFrame{
 	 * @param controller Listener utilitzat per controlar la selecció de l'usuari
 	 * @see ActionListener
 	 */
-	public void registerController(ActionListener controller){
+	public void registerController(ButtonController controller){
 		jbCreate.addActionListener(controller);
-		jbCancel.addActionListener(controller);
 		jbCreate.setActionCommand("NewListDialog.createActionCommand");
+		jbCancel.addActionListener(controller);
 		jbCancel.setActionCommand("NewListDialog.cancelActionCommand");
+	}
+	
+	public String getTypedName() {
+		return jtfList.getText();
+	}
+	
+	public int getPublic(){
+		if(jrbPublic.isSelected()){
+			return 1;
+		}
+		return 0;
 	}
 }

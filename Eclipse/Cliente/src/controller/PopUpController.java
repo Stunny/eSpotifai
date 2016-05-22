@@ -14,18 +14,50 @@ import view.SelectedUserWindow;
 import view.UserWindow;
 import view.Vots;
 
-
+/**
+ * Controlador de menu emergent
+ * @author Elna Cabot, Miguel D�az, Marc Mill�n, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see ActionListener
+ * @see ActionEvent
+ * @see MainWindow
+ * @see AddList
+ * @see Vots
+ * @see JOptionPane
+ *
+ */
 public class PopUpController implements ActionListener{
+	/**
+	 * Pantalla principal de l'aplicaci�
+	 */
 	private MainWindow mainwindow;
+	/**
+	 * Menu emergent d'afegir llista
+	 */
 	private AddList addlist;
+	/**
+	 * Menu emergent per puntuar una can��
+	 */
 	private Vots vots;
 	private SelectedUserWindow selecteduserwindow;
 	private PlaylistSearchUser playlistsearchuser;
 	private UserWindow userwindow;
+
 	private NetworkController networkcontroller;
 	private ModifyNameList modifynamelist;
 		
 	public PopUpController(MainWindow mainwindow, AddList addlist, Vots vots, SelectedUserWindow selecteduserwindow,PlaylistSearchUser playlistsearchuser, UserWindow userwindow, NetworkController networkcontroller, ModifyNameList modifynamelist ){
+
+	/**
+	 * 	Construeix un nou controlador de menu emergent
+	 * @param mainwindow Pantalla principal de l'aplicaci�
+	 * @param addlist Menu emergent d'afegir llista
+	 * @param vots Menu emergent per puntuar una can��
+	 * @see MainWindow
+	 * @see AddList
+	 * @see Vots
+	 */
+	
 		this.mainwindow = mainwindow;
 		this.addlist = addlist;
 		this.vots = vots;
@@ -35,7 +67,9 @@ public class PopUpController implements ActionListener{
 		this.networkcontroller = networkcontroller;
 		this.modifynamelist = modifynamelist;
 	}
-
+	/**
+	 * 
+	 */
 	public void actionPerformed(ActionEvent event) {
 		
 		if (event.getActionCommand().equals("MainWindow.reproducirActionCommand")) {
@@ -58,23 +92,18 @@ public class PopUpController implements ActionListener{
 		}
 		
 		if(event.getActionCommand().equals("MainWindow.visualitzarActionCommand")){
-			
+			mainwindow.setMode(mainwindow.getId());
+		}
+		
+		if(event.getActionCommand().equals("MainWindow.visualitzarPlaylitsActionCommand")){
+			mainwindow.setMode(mainwindow.getId());
 		}
 		
 		if(event.getActionCommand().equals("MainWindow.votActionCommand")){
 			vots.setVisible(true);
 		}
 		
-		if(event.getActionCommand().equals("MainWindow.modificarActionCommand")){
-			modifynamelist.setVisible(true);
-			
-			//JOptionPane.showConfirmDialog(null, networkcontroller.updatePlaylist(mainwindow.getName(), mainwindow.getId2()));
 		
-		}
-		
-		if(event.getActionCommand().equals("ModifyNameList.createActionCommand")){
-			JOptionPane.showConfirmDialog(null, networkcontroller.updatePlaylist(modifynamelist.getTypedName(), mainwindow.getId2()));
-		}
 		
 	
 		//--------- ACCION DE VOTAR ------------------

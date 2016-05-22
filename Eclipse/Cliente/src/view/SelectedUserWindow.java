@@ -8,6 +8,7 @@ import java.awt.Point;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -27,6 +28,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
+import model.Playlist;
 import controller.PopUpController;
 /**
  * Ventana de "perfil" de un usuari seleccionat
@@ -66,6 +68,7 @@ public class SelectedUserWindow extends JFrame {
 	private JMenuItem visualitzar;
 	private ListSelectionModel modelo;
 	private int id = 0; 
+	DefaultTableModel tableModelFollowedLists;
 	
 	
 	
@@ -137,7 +140,7 @@ public class SelectedUserWindow extends JFrame {
 		JTable jtFollowedLists = new JTable(jtFollowedListsData, jtFollowedListsColumns);
 		
 		//se hace que los datos no sean editables
-		DefaultTableModel tableModelFollowedLists = new DefaultTableModel(jtFollowedListsData, jtFollowedListsColumns) {
+		tableModelFollowedLists = new DefaultTableModel(jtFollowedListsData, jtFollowedListsColumns) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				//all cells false
@@ -223,6 +226,20 @@ public class SelectedUserWindow extends JFrame {
 		visualitzar.setActionCommand("SelectedUserWindow.visualitzarActionCommand");;
 	}
 	
+	public void refreshPlaylists(LinkedList<Playlist> playlistList) {
+		LinkedList<Object[]> list = new LinkedList<Object[]>();
+		for (int i = 0; i < playlistList.size(); i++){
+			Object[] objs = {playlistList.get(i).getId(), playlistList.get(i).getName(), playlistList.get(i).getUsername()};
+			list.add(objs);
+		}
+		while (tableModelFollowedLists.getRowCount()!= 0){
+			tableModelFollowedLists.removeRow(0);
+		}
+		for (int i = 0; i<list.size(); i++){
+			tableModelFollowedLists.addRow(list.get(i));
+		}
+		
+	}
 	
 	
 	/**

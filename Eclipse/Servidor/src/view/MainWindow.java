@@ -120,6 +120,9 @@ public class MainWindow extends JFrame{
 	//==================
 
 
+	private JTable jtMusicList;
+	private JTable jtUser;
+	
 
 	public MainWindow() {
 
@@ -140,7 +143,7 @@ public class MainWindow extends JFrame{
 		String[] jtMusicColumns = {"Id","Name", "Genre", "Album", "Artist", "Location", "Stars", "Reproducciones"};
 		Object[][] jtMusicData = {};
 		//se crea la tabla
-		JTable jtMusicList = new JTable(jtMusicData, jtMusicColumns);
+		jtMusicList = new JTable(jtMusicData, jtMusicColumns);
 
 		//se hace que los datos no sean editables
 		tableModelMusic = new DefaultTableModel(jtMusicData, jtMusicColumns) {
@@ -173,7 +176,6 @@ public class MainWindow extends JFrame{
 						modelo.setSelectionInterval( rowNumber, rowNumber );
 						idSong = Integer.parseInt(String.valueOf( jtMusicList.getValueAt(rowNumber, 0)));
 						popupSong.show(jtMusicList,  e.getX(), e.getY());
-
 					}
 				}
 			}
@@ -321,7 +323,7 @@ public class MainWindow extends JFrame{
 		String[] jtUserColumns = {"id","Username", "Register date", "Last login", "Song lists", "Songs", "Followers", "Following"};
 		Object[][] jtUserData = {};
 		//se crea la tabla
-		JTable jtUser = new JTable(jtUserData, jtUserColumns);
+		jtUser = new JTable(jtUserData, jtUserColumns);
 
 		//se hace que los datos no sean editables
 		tableModelUser = new DefaultTableModel(jtUserData, jtUserColumns) {
@@ -354,6 +356,7 @@ public class MainWindow extends JFrame{
 
 			public void mousePressed(MouseEvent e) {
 				if ( SwingUtilities.isRightMouseButton(e)) {
+					JOptionPane.showMessageDialog(null, "Yoink!");
 					popup.setVisible(false);
 				} else {
 					if ( SwingUtilities.isLeftMouseButton(e)) {
@@ -566,6 +569,7 @@ public class MainWindow extends JFrame{
 		
 		jbPrevious.addActionListener(controller);
 		jbPrevious.setActionCommand("MainWindow.previousActionCommand");
+		//============================
 
 	}
 
@@ -640,6 +644,14 @@ public class MainWindow extends JFrame{
 		}
 	}
 	
+	public int getId (){
+		return id;
+	}
+	
+	public int getIdSong(){
+		return idSong;
+	}
+	
 	public String getSongPath(int index) {
 		return (String)tableModelMusic.getValueAt(index, 5);
 	}
@@ -647,12 +659,6 @@ public class MainWindow extends JFrame{
 	public int getSongAmount() {
 		return tableModelMusic.getRowCount();
 	}
+	
 
-	public int getId (){
-		return id;
-	}
-
-	public int getIdSong(){
-		return idSong;
-	}
 }

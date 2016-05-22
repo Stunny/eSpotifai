@@ -45,6 +45,7 @@ public class Main {
 					MainWindow mainWindow = new MainWindow();
 					ButtonsController buttonscontroller = new ButtonsController(mainWindow, ddbbConnection, addView);
 					PopUpController popupcontroller = new PopUpController (mainWindow, ddbbConnection);
+					//MouseController mouseController = new MouseController(mainWindow, ddbbConnection);
 					GeneralController controller = new GeneralController (ddbbConnection, mainWindow);
 					
 					mainWindow.registerController(buttonscontroller, popupcontroller);
@@ -52,7 +53,7 @@ public class Main {
 					mainWindow.setVisible(true);
 
 
-					StatisticsWindow statisticsWindow = new StatisticsWindow();
+					//StatisticsWindow statisticsWindow = new StatisticsWindow();
 
 					(new RefreshThread(controller)).start();
 					(new TimeThread(controller)).start();
