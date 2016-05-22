@@ -892,7 +892,7 @@ public class MainWindow extends JFrame {
 	}
 
 	public int getSongAtIndex(int index) {
-		return (int) tableMusic.getValueAt(index, 0);
+		return (int)tableMusic.getValueAt(index, 0);
 	}
 
 	public int getSongAmount() {

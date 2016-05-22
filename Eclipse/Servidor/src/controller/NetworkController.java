@@ -1,9 +1,13 @@
 package controller;
 
+import java.util.LinkedList;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import database.DDBBConnection;
+import main.Main;
+import model.Song;
 
 public class NetworkController {
 	
@@ -65,6 +69,16 @@ public class NetworkController {
 			break;
 		case "getPublicPlaylists":
 			response  = gson.toJson(ddbbconnection.getPublicPlaylists(Integer.parseInt(s[1])));
+			break;
+		case "getSongFile":
+			LinkedList<Song> list = ddbbconnection.getSongs();
+			for (Song song : list) {
+				if (song.getId() == Integer.parseInt(s[1])) {
+					response = "ok";
+					Main.setFilePath(song.getLocation());
+				}
+			}
+			
 			break;
 		
 		

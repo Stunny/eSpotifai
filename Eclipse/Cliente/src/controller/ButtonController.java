@@ -221,7 +221,9 @@ public class ButtonController implements ActionListener {
 		if(event.getActionCommand().equals("MainWindow.playActionCommand")) {
 			//try {
 				int songId = mainWindow.getSongAtIndex(songIndex);
-				System.out.println(songId);
+				System.out.println(songId + " .... okay vamos a ello");
+				String response = NetworkController.getSongFile(songId);
+				System.out.println("Resultat:" + response);
 				//mainWindow.goMP3();
 			/*} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block

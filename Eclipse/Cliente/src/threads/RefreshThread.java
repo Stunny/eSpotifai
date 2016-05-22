@@ -37,10 +37,10 @@ public class RefreshThread extends Thread {
 		int i=0;
 		while (true) {
 			try {
-				Thread.sleep(3000);
+				Thread.sleep(5000);
 				threadController.refreshSongList();
-				threadController.refresUserPlaylistList();
-				threadController.refresPublicPlaylistList();
+				//threadController.refresUserPlaylistList();
+				//threadController.refresPublicPlaylistList();
 				
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();
