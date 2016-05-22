@@ -124,6 +124,7 @@ public class ButtonController implements ActionListener {
 						Main.refreshThread.start();
 						Main.timeThread = new TimeThread(threadController);
 						Main.timeThread.start();
+						Main.wantToLeave = false;
 
 						User = loginWindow.getTypedUsername();
 						mainWindow.setUserId(AccessLogic.getId(User, networkcontroller));
@@ -184,6 +185,7 @@ public class ButtonController implements ActionListener {
 						Main.refreshThread.start();
 						Main.timeThread = new TimeThread(threadController);
 						Main.timeThread.start();
+						Main.wantToLeave = false;
 					}
 				}
 			}
@@ -213,6 +215,7 @@ public class ButtonController implements ActionListener {
 			Main.refreshThread.interrupt();
 			Main.timeThread.interrupt();
 			try {
+				Main.wantToLeave = true;
 				mainWindow.stopPlayer();
 				Files.deleteIfExists(Paths.get("Resources/song.mp3"));
 			} catch (Exception e) {

@@ -46,6 +46,7 @@ public class Main {
 	
 	public static RefreshThread refreshThread;
 	public static TimeThread timeThread;
+	public static boolean wantToLeave = false;
 	
 	public static void main(String[] args){
 		SwingUtilities.invokeLater(new Runnable() {

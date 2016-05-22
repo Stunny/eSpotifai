@@ -38,6 +38,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controller.PopUpController;
+import main.Main;
 import model.CustomPlayer;
 import model.Playlist;
 import model.Song;
@@ -555,6 +556,7 @@ public class MainWindow extends JFrame {
 			@Override
 			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
 				try {
+					Main.wantToLeave = true;
 					customPlayer.stopPlayer();
 					Files.deleteIfExists(Paths.get("Resources/song.mp3"));
 				} catch (Exception e) {
@@ -636,6 +638,10 @@ public class MainWindow extends JFrame {
 
 	public void stopPlayer() throws Exception {
 		customPlayer.stopPlayer();
+	}
+	
+	public void pausePlayer() throws Exception {
+		customPlayer.pause();
 	}
 
 	
@@ -801,7 +807,7 @@ public class MainWindow extends JFrame {
 			ConfigurationButton(jbPlay, iiPlay1, iiPlay2, iiPlay3);
 		}
 		
-		if (customPlayer.isEnded() && jrbRepeatOne.isSelected()) {
+		if (customPlayer.isEnded() && jrbRepeatOne.isSelected() && !Main.wantToLeave) {
 			try {
 				changeMP3();
 			} catch (Exception e) {
@@ -809,7 +815,7 @@ public class MainWindow extends JFrame {
 				//e.printStackTrace();
 			}
 		}
-		if (customPlayer.isEnded() && jrbRepeatList.isSelected()) {
+		if (customPlayer.isEnded() && jrbRepeatList.isSelected() && !Main.wantToLeave) {
 			jbNext.doClick();
 		}
 
