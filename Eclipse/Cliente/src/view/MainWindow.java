@@ -204,7 +204,7 @@ public class MainWindow extends JFrame {
 			{  
 				// you can open a new frame here as
 				// i have assumed you have declared "frame" as instance variable
-				JOptionPane.showMessageDialog(null, "HOLA GUARRA");
+				mode = "all";
 
 			}  
 		}); 
@@ -865,6 +865,33 @@ public class MainWindow extends JFrame {
 
 	}
 
+
+	public int getId1() {
+		return id1;
+	}
+
+
+	public void setId(int id) {
+		this.id1 = id;
+	}
+	
+	public int getId2() {
+		return id2;
+	}
+
+
+	public void setId2(int id) {
+		this.id2 = id;
+	}
+	public int getId3() {
+		return id3;
+	}
+
+
+	public void setId3(int id) {
+		this.id3 = id;
+	}
+
 	public void refreshPublicPlaylists(LinkedList<Playlist> playlistList) {
 		LinkedList<Object[]> list = new LinkedList<Object[]>();
 		for (int i = 0; i < playlistList.size(); i++){
@@ -918,9 +945,6 @@ public class MainWindow extends JFrame {
 		return id;
 	}
 
-	public int getId2() {
-		return id2;
-	}
 
 	public void  setId(String id) {
 		this.id = id;
@@ -928,6 +952,10 @@ public class MainWindow extends JFrame {
 
 	public void setUser (String user){
 		this.user = user;
+	}
+	
+	public String getUser () {
+		return user;
 	}
 
 	public int getSongAtIndex(int index) {

@@ -557,6 +557,46 @@ public class DDBBConnection {
 			return 0;
 		}
 	}
+
+	public String follow(int idUser, int idFollowed) {
+		try {
+			ResultSet resultSet = ddbb.selectQuery("SELECT count(*) FROM followers WHERE user_follower = "+ idUser +" AND user_followed= "+idFollowed);
+			resultSet.next();
+			int dontExist = resultSet.getInt(1);
+			
+			if (dontExist == 0){
+				ddbb.insertQuery("INSERT INTO followers (user_follower,user_followed) VALUES ('"+idUser+"','"+idFollowed+"')");
+				return ("Follow");
+			}
+			
+			else {
+				return ("Exist");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			return "Problems";
+		}
+	}
+
+	public String unFollow(int idUser, int idFollowed) {
+		try {
+			ResultSet resultSet = ddbb.selectQuery("SELECT count(*) FROM followers WHERE user_follower = "+ idUser +" AND user_followed= "+idFollowed);
+			resultSet.next();
+			int dontExist = resultSet.getInt(1);
+			
+			if (dontExist != 0){
+				ddbb.deleteQuery("DELETE FROM followers WHERE user_follower =" +idUser+" AND user_followed="+idFollowed);
+				return ("UnFollow");
+			}
+			
+			else {
+				return ("Dont");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			return "Problems";
+		}
+	}
 	
 	public int getIdUser(String name ) throws SQLException{
 		ResultSet resultSet = ddbb.selectQuery("SElECT id FROM users where user_name = " +name);

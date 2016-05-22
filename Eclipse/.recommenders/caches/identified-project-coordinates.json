@@ -6,6 +6,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 [[{"location":"C:\\Program Files\\Java\\jre1.8.0_77","type":"JRE","hints":{"EXECUTION_ENVIRONMENT":"JavaSE-1.8"}},"jre:jre:1.8.0"],[{"location":"C:\\Users\\MiguelÁngel\\Documents\\GitHub\\eSpotifai\\Eclipse\\Servidor","type":"PROJECT","hints":{"PROJECT_NAME":"Servidor"}},"ABSENT"]]
 =======
 {}
@@ -80,3 +81,6 @@
 >>>>>>> 2f2507b5bfcdf94f4ef0a492ef41db6c3eaff283
 >>>>>>> 144f2d0aead8c5be9d5450cc61440d5da920830d
 >>>>>>> 48362a3de678ee2f1cfa1da9f0fc5acfdc0a6b86
+=======
+[[{"location":"C:\\Program Files\\Java\\jre1.8.0_77","type":"JRE","hints":{"EXECUTION_ENVIRONMENT":"JavaSE-1.8"}},"jre:jre:1.8.0"]]
+>>>>>>> 9c5285aa4f0e9fcc0378cd7603f02fb3455b3e74

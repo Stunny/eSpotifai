@@ -55,7 +55,7 @@ INDEX VERSION 1.127+C:\Users\Miguel햚gel\Documents\GitHub\eSpotifai\Eclipse\.met
 >>>>>>> 76a8b9328ee26bc89e5f0dcd1258ef79380af8d0
 =======
 INDEX VERSION 1.127+C:\Users\Miguel햚gel\Documents\GitHub\eSpotifai\Eclipse\.metadata\.plugins\org.eclipse.jdt.core
-3465765727.index
+48817752.index
 1851955243.index
 3227107502.index
 2119290561.index
@@ -68,8 +68,8 @@ INDEX VERSION 1.127+C:\Users\Miguel햚gel\Documents\GitHub\eSpotifai\Eclipse\.met
 2442888519.index
 2979327570.index
 1930320284.index
-28296102.index
 2153270132.index
+28296102.index
 1117589309.index
 3724307573.index
 3814180264.index
@@ -86,7 +86,6 @@ INDEX VERSION 1.127+C:\Users\Miguel햚gel\Documents\GitHub\eSpotifai\Eclipse\.met
 2816592363.index
 1771481839.index
 2334050384.index
-3244704807.index
 152710945.index
 3095061116.index
 484058593.index
@@ -99,8 +98,12 @@ INDEX VERSION 1.127+C:\Users\Miguel햚gel\Documents\GitHub\eSpotifai\Eclipse\.met
 1677593041.index
 2249422466.index
 <<<<<<< HEAD
+<<<<<<< HEAD
 3465765727.index
 >>>>>>> 48362a3de678ee2f1cfa1da9f0fc5acfdc0a6b86
 =======
 48817752.index
 >>>>>>> 7d37d4a9889346d14fbf1a41c32bd668eacb1626
+=======
+3465765727.index
+>>>>>>> 9c5285aa4f0e9fcc0378cd7603f02fb3455b3e74

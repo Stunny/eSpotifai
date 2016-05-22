@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 
 import customExceptions.DatabaseNotLoadedException;
+import model.Playlist;
 import model.Song;
 import model.User;
 
@@ -15,14 +16,14 @@ public class DDBBConnection {
 	DataBase ddbb;
 	
 	/*
-	 * Contructor que crea la clase DataBase que permite la conexión y modificación con la base de datos.
+	 * Contructor que crea la clase DataBase que permite la conexiï¿½n y modificaciï¿½n con la base de datos.
 	 */
 	public DDBBConnection (String username, String password, String ddbbName, int port){
 		ddbb = new DataBase(username, password, ddbbName, port);
 	}
 	
 	/*
-	 * Conexión con el servidor 
+	 * Conexiï¿½n con el servidor 
 	 */
 	public void startConnection() throws DatabaseNotLoadedException {
 		ddbb.connect();
@@ -36,11 +37,11 @@ public class DDBBConnection {
 	}
 	
 	/*
-	 * Busca si el usuario existe en la base de datos y comprueba si la contraseña es correcta.
+	 * Busca si el usuario existe en la base de datos y comprueba si la contraseï¿½a es correcta.
 	 * Posibilidades: 
 	 * 		"Incorrect username" -> Usuario no encontrado 
-	 * 		"Welcome" -> Usuario enncontrado y la contraseña coincide
-	 * 		"Incorrect password" -> Usuario encontrado pero la contraseá no coincide
+	 * 		"Welcome" -> Usuario enncontrado y la contraseï¿½a coincide
+	 * 		"Incorrect password" -> Usuario encontrado pero la contraseï¿½ no coincide
 	 */
 	public String userConnection(String username, String password){
 		try {
@@ -71,17 +72,17 @@ public class DDBBConnection {
 	
 	/*
 	 * Devuelve un String que todos los usuarios con sus respectivos datos
-	 * Formato: Name/Fecha de registro/Fecha de la última conexión/contraseña
+	 * Formato: Name/Fecha de registro/Fecha de la ï¿½ltima conexiï¿½n/contraseï¿½a
 	 */
 	public LinkedList<User> getUsers(){
 		ResultSet resultSet = ddbb.selectQuery("SELECT * FROM users");
 		LinkedList<User> list = new LinkedList<User> ();
 		
 		try {
-			//Recorrem el ResultSet que ens retorna el selectQuery i agafem els paràmetres desitjats
+			//Recorrem el ResultSet que ens retorna el selectQuery i agafem els parï¿½metres desitjats
 			while (resultSet.next())
 			{
-			    //Per recuperar el valor utilitzem la funció .getObject() amb el nom del camp a recuperar
+			    //Per recuperar el valor utilitzem la funciï¿½ .getObject() amb el nom del camp a recuperar
 				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 				java.sql.Timestamp aux = (java.sql.Timestamp) resultSet.getObject("date_reg");
 				String string  = dateFormat.format(aux);
@@ -169,6 +170,72 @@ public class DDBBConnection {
 		}
 	}
 	
+	public int[] getSongsList(int id){
+		LinkedList<Integer> list = new LinkedList<Integer>();
+		int[] array = new int[]{};
+		//int a[] = new int[a1.length+a2.length];
+
+		try {
+			ResultSet resultSet = ddbb.selectQuery("SELECT * FROM playlists_songs WHERE cf_playlist="+id);
+			while (resultSet.next())
+				{
+					list.add((int)resultSet.getObject("cf_song"));
+				}
+	
+			array = new int[list.size()];
+			for (int i = 0; i<list.size(); i++){
+				array[i] = list.get(i);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			return array;
+		}
+		return array;
+		
+	}
+	
+	public LinkedList<Playlist> getPlaylists(){
+		LinkedList<Playlist> list = new LinkedList<Playlist>();
+		try {
+			ResultSet resultSet = ddbb.selectQuery("SELECT * FROM playlists");
+			while (resultSet.next())
+				{
+				ResultSet resultSet2 = ddbb.selectQuery("SELECT user_name FROM users WHERE id_user="+(int)resultSet.getObject("creator_user"));
+				resultSet2.next();
+				Playlist playlist = new Playlist((int)resultSet.getObject("id_playlist"), (String)resultSet.getObject("name"), (String)resultSet2.getObject("user_name"));
+				list.add(playlist);
+				}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			return list;
+		}
+			return list;
+	}
+	
+	public LinkedList<Playlist> getPublicPlaylists(int id){
+		LinkedList<Playlist> list = new LinkedList<Playlist>();
+		try {
+			ResultSet resultSet = ddbb.selectQuery("SELECT * FROM followers WHERE user_follower="+id);
+			while (resultSet.next())
+				{
+				ResultSet resultSet2 = ddbb.selectQuery("SELECT id_playlist, name, creator_user  FROM playlists WHERE publica = 1 AND creator_user="+(int)resultSet.getObject("user_followed"));
+
+				while(resultSet2.next()){
+					ResultSet resultSet3  = ddbb.selectQuery("SELECT user_name FROM users WHERE id_user="+(int)resultSet2.getObject("creator_user"));
+					resultSet3.next();
+					Playlist playlist = new Playlist((int)resultSet2.getObject("id_playlist"), (String)resultSet2.getObject("name"), (String)resultSet3.getObject("user_name"));
+					list.add(playlist);
+				}
+			}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			return list;
+		}
+			return list;
+	}
+	
 	public LinkedList<Object[]> getFollowedsDates(int id){
 		LinkedList<User> userList = getUsers();
 		LinkedList<Object[]> list =new LinkedList<Object[]>();
@@ -217,21 +284,18 @@ public class DDBBConnection {
 	}
 	
 	public LinkedList<Song> getPlaylistSongs (int id){
-		System.out.println("asdasd");
 		ResultSet resultSet = ddbb.selectQuery("SELECT cf_song FROM playlists_songs WHERE cf_playlist="+id);
 		LinkedList<Song> list = new LinkedList<Song> (); 
+		ResultSet resultSet1;
 		
 		try{
 			while (resultSet.next())
 			{
-				System.out.println(resultSet.getInt(1));
-				ResultSet resultSet1 = ddbb.selectQuery("SELECT (*) FROM songs WHERE id_song="+resultSet.getInt(1));
-				System.out.println("Holaaaa");
+				resultSet1 = ddbb.selectQuery("SELECT * FROM songs WHERE id_song="+resultSet.getInt(1));
 				while (resultSet1.next()){
 					list.add(new Song ((int)resultSet1.getObject("id_Song"), (String)resultSet1.getObject("name"), 
 						(String)resultSet1.getObject("genre"), (String)resultSet1.getObject("album"), (String)resultSet1.getObject("artist"),
 						(String)resultSet1.getObject("location"), (int)resultSet1.getObject("Stars"), (int)resultSet1.getObject("reproducciones")));
-					System.out.println("Cancion: "+(int)resultSet1.getObject("id_Song"));
 				}
 			}	
 			
@@ -254,6 +318,23 @@ public class DDBBConnection {
 					return text;
 		} catch (SQLException e) {
 					// TODO Auto-generated catch block
+			return "Problems";
+		}
+	}
+	
+	public String addPlaylist (String name, int id, int publica){
+		try {
+			ResultSet resultSet = ddbb.selectQuery("SELECT count(name) FROM playlists WHERE creator_user= "+id+" and name = '"+name+"'");
+			resultSet.next();
+			int dontExist = resultSet.getInt(1);
+			if (dontExist == 0){
+				ddbb.insertQuery("INSERT INTO playlists (creator_user, name, publica) VALUES ("+id+", '"+name+"', "+publica+")");
+				return "Add";
+			}
+		
+			return "Exit";
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
 			return "Problems";
 		}
 	}
@@ -282,6 +363,10 @@ public class DDBBConnection {
 			return "Problems";
 		}
 	}
+	
+	
+	
+	
 	
 	public String deleteUser (String username){
 		try {
@@ -362,6 +447,15 @@ public class DDBBConnection {
 			return "Problems";
 		}
 	}
+	
+	public String deletePlaylist( int idDeletePlaylist){
+		//resultSet.next();
+		ddbb.deleteQuery("DELETE FROM playlists_songs WHERE cf_playlist =" +idDeletePlaylist);
+		ddbb.deleteQuery("DELETE FROM playlists WHERE id_playlist = " +idDeletePlaylist);
+		return ("Deleted");
+	}
+	
+	
 
 	
 	public int nFollowers(int id){
@@ -414,14 +508,14 @@ public class DDBBConnection {
 	
 	public LinkedList<Object[]> getPlaylistsDates(int id){
 		LinkedList<Object[]> list =new LinkedList<Object[]>();
-	
+		String publica; 
 		try {
 			ResultSet resultSet = ddbb.selectQuery("SELECT * FROM playlists WHERE creator_user="+id);
 			while (resultSet.next())
 				{
-					String publica ="Publica";
-					if ((int)resultSet.getObject("id_playlist") != 1){
-						publica ="Privada";
+					publica ="Privada";
+					if ((boolean)resultSet.getObject("publica") == true){
+						publica ="Publica";
 					}
 					Object[] obj = {(int)resultSet.getObject("id_playlist"),(String)resultSet.getObject("name"), nSongs((int)resultSet.getObject("id_playlist")), publica};
 					list.add(obj);
@@ -463,4 +557,26 @@ public class DDBBConnection {
 			return 0;
 		}
 	}
+
+	public String follow(int idUser, int idFollowed) {
+		try {
+			ResultSet resultSet = ddbb.selectQuery("SELECT count(id_follower) FROM followers WHERE user_follower = '"+ idUser +" and user_followed= '"+idFollowed);
+			resultSet.next();
+			int dontExist = resultSet.getInt(1);
+			
+			if (dontExist == 0){
+				ddbb.insertQuery("INSERT INTO followers (user_follower,user_followed) VALUES ('"+idUser+"','"+idFollowed+"')");
+				return ("Follow");
+			}
+			
+			else {
+				return ("Exist");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			return "Problems";
+		}
+	}
+	
+	
 }
