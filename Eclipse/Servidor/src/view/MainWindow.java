@@ -345,7 +345,7 @@ public class MainWindow extends JFrame{
 		}; 
 		
 		popupSong = new JPopupMenu();
-		eliminar2 = new JMenuItem("Eliminar ");
+		eliminar2 = new JMenuItem("Delete");
 		eliminar2.setHorizontalTextPosition(JMenuItem.RIGHT);
 		popupSong.add(eliminar2);
 		    
@@ -527,17 +527,17 @@ public class MainWindow extends JFrame{
 		}; 
 
 		popup = new JPopupMenu();
-		popup.add(seguidores = new JMenuItem("Mostrar seguidores", null));
+		popup.add(seguidores = new JMenuItem("Show followers", null));
 		seguidores.setHorizontalTextPosition(JMenuItem.RIGHT);
 
-		popup.add(seguidos = new JMenuItem("Mostrar seguidos", null));
+		popup.add(seguidos = new JMenuItem("Show followed", null));
 		seguidos.setHorizontalTextPosition(JMenuItem.RIGHT);
 
-		popup.add(listas = new JMenuItem("Mostrar listas de reproduccion", null));
+		popup.add(listas = new JMenuItem("Show playlists", null));
 		listas.setHorizontalTextPosition(JMenuItem.RIGHT);
 
 		popup.addSeparator();
-		popup.add(eliminar = new JMenuItem("Eliminar "));
+		popup.add(eliminar = new JMenuItem("Delete"));
 
 
 		popup.setLabel("Justification");
