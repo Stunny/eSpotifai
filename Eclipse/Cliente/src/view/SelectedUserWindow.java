@@ -93,7 +93,7 @@ public class SelectedUserWindow extends JFrame {
 		jtfUsername.setEditable(false);
 		jpHead.add(jlUsername, BorderLayout.CENTER);
 		jpHead.add(jtfUsername, BorderLayout.CENTER);
-		TitledBorder titledBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Usuario", javax.swing.border.
+		TitledBorder titledBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Username", javax.swing.border.
 				TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.
 				TitledBorder.DEFAULT_POSITION, null, java.awt.Color.white);
 
@@ -131,11 +131,11 @@ public class SelectedUserWindow extends JFrame {
 
 
 		JPanel jpListsFollowing = new JPanel(new BorderLayout());
-		jpListsFollowing.setBorder(BorderFactory.createTitledBorder("Playlist"));
+		jpListsFollowing.setBorder(BorderFactory.createTitledBorder("Playlists"));
 
 
 		String[] jtFollowedListsColumns = {"id","Playlist"};
-		Object[][] jtFollowedListsData = {{"1", "playlist"},{"2","playlist"}};
+		Object[][] jtFollowedListsData = {};
 		//se crea la tabla
 		JTable jtFollowedLists = new JTable(jtFollowedListsData, jtFollowedListsColumns);
 

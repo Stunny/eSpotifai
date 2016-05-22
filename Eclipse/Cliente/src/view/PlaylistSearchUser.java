@@ -67,8 +67,8 @@ public class PlaylistSearchUser extends JFrame{
 		jpListsFollowing.setBorder(BorderFactory.createTitledBorder("Following"));
 		
 		
-		String[] jtFollowedListsColumns = {"id","Followed Ones List"};
-		Object[][] jtFollowedListsData = {{"1", "ELNA"},{"2","Elna"}};
+		String[] jtFollowedListsColumns = {"id","Followed Lists"};
+		Object[][] jtFollowedListsData = {};
 		//se crea la tabla
 		JTable jtFollowedLists = new JTable(jtFollowedListsData, jtFollowedListsColumns);
 
@@ -129,7 +129,7 @@ public class PlaylistSearchUser extends JFrame{
 
 		this.getContentPane().setBackground(CustomColor.background);
 
-		before = new JButton("Enrere");
+		before = new JButton("Back");
 		this.getContentPane().add(before, BorderLayout.SOUTH);
 
 
