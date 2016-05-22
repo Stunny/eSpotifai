@@ -84,6 +84,18 @@ public class AccessLogic {
 			}
 		}
 	}
+	
+	public static LinkedList<Playlist> getPlaylists (String username,  LinkedList<Playlist> playlistList) {
+		LinkedList<Playlist> playlistListUser = new LinkedList<Playlist>();
+		for (int i = 0; i<playlistList.size(); i++){
+			if (playlistList.get(i).getUsername().equals(username)){
+				playlistListUser.add(playlistList.get(i));
+			}
+		}
+		
+		return playlistListUser ;
+	}
+	
 	/**
 	 * Realitza el registre d'un nou usuari. Mostrarà missatges d'error en cas de no complir els requeriments a l'hora de introduir les dades per al registre.
 	 * @param username Nom d'usuari.
