@@ -8,7 +8,7 @@ import java.io.IOException;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 /**
- * 
+ * Gestiona la configuració del servidor
  * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
  * @version 1.0
  * @see ServerConfiguration
@@ -19,17 +19,20 @@ import com.google.gson.JsonObject;
  */
 public class ManagementConfiguration {
 	/**
-	 * 
+	 * Configuració de servidor
+	 * @see ServerConfiguration
 	 */
 	private ServerConfiguration serverConfiguration;
 	/**
-	 * 
+	 * Construeix un gestor de configuració de servidor buida
 	 */
 	public ManagementConfiguration(){
 		serverConfiguration = new ServerConfiguration();
 	}
 	/**
-	 * 
+	 * Executa la configuracio del servidor
+	 * @see ServerConfiguration
+	 * @see model.ResultSetToJSON
 	 */
 	public void runConfiguration(){
 		boolean error = false;
@@ -40,22 +43,22 @@ public class ManagementConfiguration {
 		}
 	}
 	/**
-	 * 
-	 * @return
+	 * Getter de la configuracio del servidor
+	 * @return Server Configuration
 	 */
 	public ServerConfiguration getServerConfiguration() {
 		return serverConfiguration;
 	}
 	/**
-	 * 
-	 * @param serverConfiguration
+	 * Setter de la configuració de servidor
+	 * @param serverConfiguration Server Configuration
 	 */
 	public void setServerConfiguration(ServerConfiguration serverConfiguration) {
 		this.serverConfiguration = serverConfiguration;
 	}
 	/**
-	 * 
-	 * @return
+	 * Llegeix la configuració predeterminada al fitxer <i style="color:indigo">config.json</i>.
+	 * @return <i style="color:indigo">TRUE</i> en cas de que es llegeixi correctament el fitxer. En cas contrari es retorna <i style="color:indigo">FALSE</i>.
 	 */
 	public boolean readJSON(){
 		boolean error = false;

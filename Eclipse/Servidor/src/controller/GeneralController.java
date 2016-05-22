@@ -52,7 +52,7 @@ public class GeneralController {
 		for (int i = 0; i < songList.size(); i++){
 			Object[] objs = {songList.get(i).getId(), songList.get(i).getName(), songList.get(i).getGenre(),
 							songList.get(i).getAlbum(), songList.get(i).getArtist(), songList.get(i).getLocation(), 
-							songList.get(i).getStars(), songList.get(i).getReproducciones()};
+							songList.get(i).getStars(), songList.get(i).getReproductions()};
 			list.add(objs);
 		}
 		view.refreshSongs(list);
