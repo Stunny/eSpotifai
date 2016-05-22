@@ -7,10 +7,24 @@ import javax.swing.JLabel;
 
 //Ventana para informar al usuario de que se ha eliminado correctamente el coche
 @SuppressWarnings("serial")
+/**
+ * Informa de la correcta eliminació d'una cançó
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see JLabel
+ * @see JFrame
+ * 
+ *
+ */
 public class DeletedSongWindow extends JFrame {
 	//Atributo que contiene el mensaje 
+	/**
+	 * Etiqueta del missatge
+	 */
 	private JLabel jlEtiqueta;
-	
+	/**
+	 * Construeix la finestra que infoirma de la correcta eliminació de la cançó
+	 */
 	public DeletedSongWindow() {
 		//Creamos una etiqueta que ponga el mensaje 
 		jlEtiqueta = new JLabel("La cancion ha sido eliminado correctamente");
