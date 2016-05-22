@@ -54,7 +54,7 @@ public class MainWindow extends JFrame {
 	 */
 	private JTextArea jtaListsfollowing;
 	/**
-	 * Botó per a afegir una nova llista.
+	 * Botï¿½ per a afegir una nova llista.
 	 * @see JButton
 	 */
 	private JButton jbAdd;
@@ -69,17 +69,17 @@ public class MainWindow extends JFrame {
 	 */
 	private JButton jbSearch;
 	/**
-	 * Botó que obre la finestra <i style="color:indigo;">UserWindow</i>
+	 * Botï¿½ que obre la finestra <i style="color:indigo;">UserWindow</i>
 	 * @see JButton
 	 * @see UserWindow
 	 */
 	private JButton jbProfile;
 	/**
-	 * Taula on es mostra la llista de cançons amb els detalls de cadascuna.
+	 * Taula on es mostra la llista de canï¿½ons amb els detalls de cadascuna.
 	 * @see JTable
 	 */
 	/**
-	 * Botó per que l'usuari indiqui que vol tancar la sessió
+	 * Botï¿½ per que l'usuari indiqui que vol tancar la sessiï¿½
 	 * @see JButton
 	 */
 	private JButton jbClose;
@@ -104,6 +104,7 @@ public class MainWindow extends JFrame {
 	private JMenuItem visualitzarPlaylist;
 	private JMenuItem delatePlaylist;
 	private JMenuItem vot;
+	private JMenuItem modificar;
 	
 	//====
 	private JPanel jpPlayer; 
@@ -140,7 +141,15 @@ public class MainWindow extends JFrame {
 	private ListSelectionModel modelo1;
 	private ListSelectionModel modelo2;
 	
+	private int visualizarid = 0;
+	private String mode= "all";
+
+	
+	//DefaultTableModel tableModelLists;
+	
+	
 	private String user;
+
 	//private ImageIcon temporalSong;
 	//=====
 	
@@ -247,9 +256,9 @@ public class MainWindow extends JFrame {
 		                    modelo.setSelectionInterval( rowNumber, rowNumber );
 		                   // modelo1.clearSelection();
 		                   // modelo2.clearSelection();
-		            		id = Integer.parseInt(String.valueOf( jtFollowedLists.getValueAt(rowNumber, 0)));
+		                    mode = String.valueOf( jtFollowedLists.getValueAt(rowNumber, 0));
 		            		popupPlaylist.show(jpListsFollowing,  e.getX(), e.getY());
-		            		 
+		            	
 		                }
 		            }
 		        }
@@ -294,6 +303,8 @@ public class MainWindow extends JFrame {
 		visualitzarPlaylist.setHorizontalTextPosition(JMenuItem.RIGHT);
 		popupPlaylist1.add(delatePlaylist  = new JMenuItem("Eliminar Llista"));
 		delatePlaylist.setHorizontalTextPosition(JMenuItem.RIGHT);
+		popupPlaylist1.add(modificar = new JMenuItem("Modificar Llista"));
+		modificar.setHorizontalTextPosition(JMenuItem.RIGHT);
 		popupPlaylist1.setLabel("Justificacion");
 		popupPlaylist1.setBorder(new BevelBorder(BevelBorder.RAISED));
 		jtLists.addMouseListener(new MouseAdapter(){
@@ -523,8 +534,8 @@ public class MainWindow extends JFrame {
 	}
 	
 	/**
-	 * Controlador de interacció de l'usuari amb MainWindow
-	 * @param controller Listener que captura la acció que l'usuari vol dur a terme
+	 * Controlador de interacciï¿½ de l'usuari amb MainWindow
+	 * @param controller Listener que captura la acciï¿½ que l'usuari vol dur a terme
 	 * @see ActionListener
 	 */
 	
@@ -534,12 +545,15 @@ public class MainWindow extends JFrame {
 		jbClose.addActionListener(controller);
 		jbSearch.addActionListener(controller);
 		jbPlay.addActionListener(controller);
+		jbNext.addActionListener(controller);
+		jbPrevious.addActionListener(controller);
 		jbAdd.setActionCommand("MainWindow.addActionCommand");
 		jbProfile.setActionCommand("MainWindow.profileActionCommand");
 		jbClose.setActionCommand("MainWindow.closeActionCommand");
 		jbSearch.setActionCommand("MainWindow.searchActionCommand");
 		jbPlay.setActionCommand("MainWindow.playActionCommand");
-		
+		jbNext.setActionCommand("MainWindow.nextActionCommand");
+		jbPrevious.setActionCommand("MainWindow.previousActionCommand");
 		
 		
 		
@@ -552,6 +566,7 @@ public class MainWindow extends JFrame {
 		delatePlaylist.addActionListener(controller2);
 		vot.addActionListener(controller2);
 		visualitzarPlaylist.addActionListener(controller2);
+		modificar.addActionListener(controller2);
 		
 		reproducir.setActionCommand("MainWindow.reproducirActionCommand");
 		anadir.setActionCommand("MainWindow.anadirActionCommand");
@@ -559,7 +574,7 @@ public class MainWindow extends JFrame {
 		delatePlaylist.setActionCommand("MainWindow.delatePlaylistActionCommand");
 		vot.setActionCommand("MainWindow.votActionCommand");
 		visualitzarPlaylist.setActionCommand("MainWindow.visualitzarPlaylitsActionCommand");
-		
+		modificar.setActionCommand("MainWindow.modificarActionCommand");
 	}
 	
 
@@ -575,7 +590,7 @@ public class MainWindow extends JFrame {
 	}
 	
 	
-	public void refreshUsers(LinkedList <Object[]> list){
+	public void refreshPlaylist(LinkedList <Object[]> list){
 		while (tablePlaylist.getRowCount()!= 0){
 			tablePlaylist.removeRow(0);
 		}
@@ -583,6 +598,8 @@ public class MainWindow extends JFrame {
 			tablePlaylist.addRow(list.get(i));
 		}
 	}
+	
+
 	
 	public void refreshMusic(LinkedList<Object[]> list){
 		while (tableMusic.getRowCount()!= 0){
@@ -843,6 +860,13 @@ public void refreshPlaylists(LinkedList<Playlist> playlistList) {
 		this.user = user;
 	}
 	
+	public int getSongAtIndex(int index) {
+		return Integer.parseInt((String) tableMusic.getValueAt(index, 0));
+	}
+	
+	public int getSongAmount() {
+		return tableMusic.getRowCount();
+	}
 	public int getUserId(){
 		return idUser;
 	}
@@ -850,5 +874,12 @@ public void refreshPlaylists(LinkedList<Playlist> playlistList) {
 	public void setUserId (int id){
 		this.idUser = id;
 	}
+	
+	public void setMode (String modo){
+		this.mode = modo;
+	}
+	
+	public String getMode (){
+		return mode;	}
 	
 }

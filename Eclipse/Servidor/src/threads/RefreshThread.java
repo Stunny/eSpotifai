@@ -21,9 +21,6 @@ public class RefreshThread extends Thread {
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();
 			}
-			
 		}
-
 	}
-
 }

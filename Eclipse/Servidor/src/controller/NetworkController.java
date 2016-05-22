@@ -66,12 +66,14 @@ public class NetworkController {
 		case "getPublicPlaylists":
 			response  = gson.toJson(ddbbconnection.getPublicPlaylists(Integer.parseInt(s[1])));
 			break;
-		
-		
+		case "Songs From":
+			response  = gson.toJson(ddbbconnection.getSongsList(Integer.parseInt(s[1])));
+		break;
 		default: 
 			response = "Invalid request";
 		
 		}
+		
 	    } catch (Exception e) {
 	    	response = "Invalid request";
 	    	System.out.println(e);

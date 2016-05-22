@@ -1,5 +1,7 @@
 package database;
 
+import java.security.Timestamp;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -166,6 +168,30 @@ public class DDBBConnection {
 					// TODO Auto-generated catch block
 			return list;
 		}
+	}
+	
+	public int[] getSongsList(int id){
+		LinkedList<Integer> list = new LinkedList<Integer>();
+		int[] array = new int[]{};
+		//int a[] = new int[a1.length+a2.length];
+
+		try {
+			ResultSet resultSet = ddbb.selectQuery("SELECT * FROM playlists_songs WHERE cf_playlist="+id);
+			while (resultSet.next())
+				{
+					list.add((int)resultSet.getObject("cf_song"));
+				}
+	
+			array = new int[list.size()];
+			for (int i = 0; i<list.size(); i++){
+				array[i] = list.get(i);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			return array;
+		}
+		return array;
+		
 	}
 	
 	public LinkedList<Playlist> getPlaylists(){

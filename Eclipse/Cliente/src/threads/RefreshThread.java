@@ -6,11 +6,21 @@ import controller.NetworkController;
 import controller.ThreadController;
 import model.Song;
 import view.MainWindow;
-
+/**
+ * Thread que actualitza la informació mostrada cada 3 segons
+ * @author Elna Cabot, Miguel Diaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ *
+ */
 public class RefreshThread extends Thread {
-	
+	/**
+	 * Controlador de Thread
+	 * @see ThreadController
+	 */
 	private ThreadController threadController;
-
+	/**
+	 * Construeix el thread
+	 * @param threadController Controlador de thread
+	 */
 	public RefreshThread(ThreadController threadController) {
 		super();
 		this.threadController = threadController;
@@ -18,13 +28,27 @@ public class RefreshThread extends Thread {
 
 
 	
+
+	/**
+	 * 
+	 */
 	public void run() {
-		
-		int i=0;
 		while (true) {
 			try {
 				Thread.sleep(3000);
-				threadController.refreshSongList();
+				System.out.println(threadController.getmainWindow().getMode());
+				switch(threadController.getmainWindow().getMode()){
+				case "all":
+					threadController.refreshSongList();
+				break;
+				
+				case "user lists":
+					
+				break;
+				default:
+					threadController.refreshSongListPlaylist();
+				break;
+			}
 				threadController.refresUserPlaylistList();
 				threadController.refresPublicPlaylistList();
 				

@@ -13,15 +13,43 @@ import view.SelectedUserWindow;
 import view.UserWindow;
 import view.Vots;
 
-
+/**
+ * Controlador de menu emergent
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see ActionListener
+ * @see ActionEvent
+ * @see MainWindow
+ * @see AddList
+ * @see Vots
+ * @see JOptionPane
+ *
+ */
 public class PopUpController implements ActionListener{
+	/**
+	 * Pantalla principal de l'aplicació
+	 */
 	private MainWindow mainwindow;
+	/**
+	 * Menu emergent d'afegir llista
+	 */
 	private AddList addlist;
+	/**
+	 * Menu emergent per puntuar una cançó
+	 */
 	private Vots vots;
 	private SelectedUserWindow selecteduserwindow;
 	private PlaylistSearchUser playlistsearchuser;
 	private UserWindow userwindow;
-		
+	/**
+	 * 	Construeix un nou controlador de menu emergent
+	 * @param mainwindow Pantalla principal de l'aplicació
+	 * @param addlist Menu emergent d'afegir llista
+	 * @param vots Menu emergent per puntuar una cançó
+	 * @see MainWindow
+	 * @see AddList
+	 * @see Vots
+	 */
 	public PopUpController(MainWindow mainwindow, AddList addlist, Vots vots, SelectedUserWindow selecteduserwindow,PlaylistSearchUser playlistsearchuser, UserWindow userwindow ){
 		this.mainwindow = mainwindow;
 		this.addlist = addlist;
@@ -30,7 +58,9 @@ public class PopUpController implements ActionListener{
 		this.playlistsearchuser = playlistsearchuser;
 		this.userwindow = userwindow;
 	}
-
+	/**
+	 * 
+	 */
 	public void actionPerformed(ActionEvent event) {
 		
 		if (event.getActionCommand().equals("MainWindow.reproducirActionCommand")) {
@@ -55,6 +85,11 @@ public class PopUpController implements ActionListener{
 		
 		if(event.getActionCommand().equals("MainWindow.votActionCommand")){
 			vots.setVisible(true);
+		}
+		
+		if(event.getActionCommand().equals("MainWindow.modificarActionCommand")){
+			
+		
 		}
 	
 		//--------- ACCION DE VOTAR ------------------
