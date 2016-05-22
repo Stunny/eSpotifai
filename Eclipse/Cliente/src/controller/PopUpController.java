@@ -80,7 +80,11 @@ public class PopUpController implements ActionListener{
 		}
 		
 		if(event.getActionCommand().equals("MainWindow.visualitzarActionCommand")){
-			
+			mainwindow.setMode(mainwindow.getId());
+		}
+		
+		if(event.getActionCommand().equals("MainWindow.visualitzarPlaylitsActionCommand")){
+			mainwindow.setMode(mainwindow.getId());
 		}
 		
 		if(event.getActionCommand().equals("MainWindow.votActionCommand")){

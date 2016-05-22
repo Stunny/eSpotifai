@@ -49,11 +49,6 @@ public class MainWindow extends JFrame {
 	 */
 	private JTextArea jtaLists; 
 	/**
-	 * Area de text on es mostren les <i>playlists</i> seguides per l'usuari.
-	 * @see JTextArea
-	 */
-	private JTextArea jtaListsfollowing;
-	/**
 	 * Bot� per a afegir una nova llista.
 	 * @see JButton
 	 */
@@ -88,8 +83,7 @@ public class MainWindow extends JFrame {
 	public JPopupMenu popupPlaylist;
 	public JPopupMenu popupPlaylist1;
 	
-	private JTable jpUsers;
-	private int id = 0;
+	private String id = "";
 	DefaultTableModel tableMusic;
 	DefaultTableModel tablePlaylist;
 	DefaultTableModel tableModelLists;
@@ -98,9 +92,7 @@ public class MainWindow extends JFrame {
 	
 	private JMenuItem reproducir;
 	private JMenuItem anadir;
-	private JMenuItem eliminar;
 	private JMenuItem visualitzar;
-	private JMenuItem delate;
 	private JMenuItem visualitzarPlaylist;
 	private JMenuItem delatePlaylist;
 	private JMenuItem vot;
@@ -137,11 +129,9 @@ public class MainWindow extends JFrame {
 	private ImageIcon iiPrevious2;
 	private ImageIcon iiPrevious3;
 
-	private ListSelectionModel modelo;
 	private ListSelectionModel modelo1;
 	private ListSelectionModel modelo2;
 	
-	private int visualizarid = 0;
 	private String mode= "all";
 
 	
@@ -160,14 +150,7 @@ public class MainWindow extends JFrame {
 		private JLabel jlSongName;
 		private JLabel jlSongState;
 
-		//private ImageIcon temporalSong;
-		private boolean stateSong = false;
-		private String state = "";
-		private String statePlayer = "";
-		private int max = 0, value = 0;
-	//==================
-	
-	/**
+		/**
 	 * Constructor de la pantalla principal.
 	 */
 	
@@ -223,7 +206,7 @@ public class MainWindow extends JFrame {
 	
 		
 		String[] jtFollowedListsColumns = {"id","Followed Lists", "Creador"};
-		Object[][] jtFollowedListsData = {{"1","HOLA", "ELNA"},{"2","HOLA1","Elna"}};
+		Object[][] jtFollowedListsData = {};
 		//se crea la tabla
 		JTable jtFollowedLists = new JTable(jtFollowedListsData, jtFollowedListsColumns);
 		
@@ -256,7 +239,7 @@ public class MainWindow extends JFrame {
 		                    modelo.setSelectionInterval( rowNumber, rowNumber );
 		                   // modelo1.clearSelection();
 		                   // modelo2.clearSelection();
-		                    mode = String.valueOf( jtFollowedLists.getValueAt(rowNumber, 0));
+		                    id =   String.valueOf( jtFollowedLists.getValueAt(rowNumber, 0));
 		            		popupPlaylist.show(jpListsFollowing,  e.getX(), e.getY());
 		            	
 		                }
@@ -318,10 +301,7 @@ public class MainWindow extends JFrame {
 		                    Point p = e.getPoint();
 		                    int rowNumber = jtLists.rowAtPoint(p);
 		                    modelo1 = jtLists.getSelectionModel();
-		                    modelo1.setSelectionInterval( rowNumber, rowNumber );
-		                    //modelo.clearSelection();
-		                    //modelo2.clearSelection();
-		            		// id = Integer.parseInt(String.valueOf( jtMusic.getValueAt(rowNumber, 0)));
+		                    id =  String.valueOf( jtLists.getValueAt(rowNumber, 0));
 		            		popupPlaylist1.show(jpLists,  e.getX(), e.getY());
 		            		 
 		                }
@@ -341,22 +321,6 @@ public class MainWindow extends JFrame {
 		jpLists.setBackground(CustomColor.secondary);
 		jpLists.setPreferredSize(new Dimension(250, 0));
 		jpPageWest.add(jpLists, BorderLayout.CENTER);
-		
-		/*
-		JPanel jpLists = new JPanel();
-		jpLists.setBorder(BorderFactory.createTitledBorder("PLAYLIST"));
-		jtaLists = new JTextArea(); 
-		jtaLists.setBackground(CustomColor.icon);
-		jtaLists.setEditable(false);
-		JScrollPane jspLists = new JScrollPane(jtaLists);
-		jspLists.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		jspLists.setPreferredSize(new Dimension(250,250));
-		jpLists.add(jspLists, BorderLayout.CENTER);
-		jpLists.setBackground(CustomColor.secondary);
-		jpPageWest.add(jpLists, BorderLayout.CENTER); //INSERIM PANELL 1 LLISTAT DE MUSICA
-		*/
-		
-		
 		
 		// ----------------------------------------------------------------
 	
@@ -390,8 +354,6 @@ public class MainWindow extends JFrame {
 		popup.add(vot = new JMenuItem("Votar per la canço"));
 		vot.setHorizontalTextPosition(JMenuItem.RIGHT);
 		
-		//popup.add(reproducir = new JMenuItem("Eliminar Canço", new ImageIcon("1.gif")));
-		//reproducir.setHorizontalTextPosition(JMenuItem.RIGHT);
 		
 		popup.setLabel("Justificacion");
 		popup.setBorder(new BevelBorder(BevelBorder.RAISED));
@@ -657,7 +619,6 @@ public class MainWindow extends JFrame {
 
 			customPlayer.resume();
 			ConfigurationButton(jbPlay, iiPause1, iiPause2, iiPause3);
-			stateSong = true;
 
 			//Si la can�o s'est� reproduint pula pausa PLAY
 		}else if (customPlayer.getStatus() == 0){
@@ -666,7 +627,6 @@ public class MainWindow extends JFrame {
 
 			customPlayer.pause();
 			ConfigurationButton(jbPlay, iiPlay1, iiPlay2, iiPlay3);
-			stateSong = false;
 		}else {//if (player.getStatus() == 2 || (player.getStatus() != 0 && player.getStatus() != 1)){
 			//Si no ha arrancat encara la can�o obre el fitxer mp3
 			//}else{
@@ -675,7 +635,6 @@ public class MainWindow extends JFrame {
 				//Creo un reproductor
 				//player = new Player();
 
-				state = "";
 				//String songLink = "C:/Users/Marc/Downloads/Quentin Tarantino Soundtracks Discography - HTD 2015/Pulp Fiction (Collector's Edition) (2009) - Soundtrack/04. Let's Stay Together.mp3";
 				//String songLink = "C:/Users/Marc/Downloads/Quentin Tarantino Soundtracks Discography - HTD 2015/Pulp Fiction (Collector's Edition) (2009) - Soundtrack/14. Personality Goes a Long Way.mp3";
 				//String songLink = "C:/Users/Marc/Downloads/grillos05_mp3.mp3";
@@ -683,12 +642,11 @@ public class MainWindow extends JFrame {
 				String songLink = "C:/Users/Marta/Music/Mystery_Skulls_-Magic.mp3";
 
 				customPlayer.abrirMp3(songLink);
-				state = customPlayer.playPlayer(jSlider);
+				customPlayer.playPlayer(jSlider);
 
 			}catch (Exception ex) {
 				System.out.println("Error: " + ex.getMessage());
 			}
-			stateSong = true;
 			ConfigurationButton(jbPlay, iiPause1, iiPause2, iiPause3);
 			jlSongName.setText(customPlayer.getName());
 
@@ -774,8 +732,6 @@ public class MainWindow extends JFrame {
 			auxSecondsString = "0" + String.valueOf(auxSeconds);
 		}
 
-		String finalSting = auxMinutesString + ":" + auxSecondsString;
-
 		jlTime.setText(auxMinutesString + ":" + auxSecondsString);
 
 		jSlider.setValue(customPlayer.getFrameSlider());
@@ -847,12 +803,12 @@ public void refreshPlaylists(LinkedList<Playlist> playlistList) {
 
 
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
 
-	public void setId(int id) {
+	public void  setId(String id) {
 		this.id = id;
 	}
 	
