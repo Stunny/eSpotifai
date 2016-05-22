@@ -10,18 +10,9 @@ import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-
-
-
-
-
-
 import model.Song;
-import controller.ButtonsController;
-
 public class StatisticsWindow extends JDialog{
 
 

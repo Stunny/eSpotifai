@@ -15,6 +15,7 @@ import java.util.LinkedList;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
@@ -32,6 +33,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 //import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
+
 
 //import view.PopupMenu.PopupPrintListener;
 import model.CustomPlayer;
@@ -51,6 +53,9 @@ public class MainWindow extends JFrame{
 	private JPanel jpPlayer; 
 	private JPanel jpPlayerButtons; 
 	private JPanel jpSong;
+	private JPanel jpDelete;
+	private JDialog jdDelete;
+	private JPanel jpDeleteOption;
 
 	private GridLayout glButtons;
 	private GridLayout glPlayerButtons; 
@@ -65,12 +70,15 @@ public class MainWindow extends JFrame{
 
 	private JButton jbAdd;
 	private JButton jbStatistics;
-
+	
 	//=========================
-
+	
 	private JButton jbPlay;
 	private JButton jbPrevious;
 	private JButton jbNext;
+	private JButton eliminar;
+	private JButton jbCancelDelete;
+	
 
 	private ImageIcon iiNext1;
 	private ImageIcon iiNext2;
@@ -90,14 +98,14 @@ public class MainWindow extends JFrame{
 	//private ImageIcon temporalSong;
 
 	//=========================
-
+	
 	DefaultTableModel tableModelUser;
 	DefaultTableModel tableModelMusic;
 
 	private JMenuItem seguidores;
 	private JMenuItem seguidos;
 	private JMenuItem listas;
-	private JMenuItem eliminar;
+	//private JMenuItem eliminar;
 	private JMenuItem eliminar2;
 
 	private int id = 0;
@@ -105,7 +113,7 @@ public class MainWindow extends JFrame{
 
 	public JPopupMenu popup;
 	public JPopupMenu popupSong;
-	//=============
+//=============
 	//private JLabel jlTemporalSong;
 	private JLabel jlTime;
 	//private JLabel SongState;
@@ -117,7 +125,7 @@ public class MainWindow extends JFrame{
 	private String state = "";
 	private String statePlayer = "";
 	private int max = 0, value = 0;
-	//==================
+//==================
 
 
 
@@ -150,33 +158,33 @@ public class MainWindow extends JFrame{
 				return false;
 			}
 		}; 
-
+		
 		popupSong = new JPopupMenu();
 		eliminar2 = new JMenuItem("Eliminar ");
 		eliminar2.setHorizontalTextPosition(JMenuItem.RIGHT);
 		popupSong.add(eliminar2);
-
+		    
 
 		popupSong.setLabel("Justification");
 		popupSong.setBorder(new BevelBorder(BevelBorder.RAISED));
-
+		    
 		jtMusicList.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-				if ( SwingUtilities.isLeftMouseButton(e)) {
-					popupSong.setVisible(false);
-				} else {
-					if ( SwingUtilities.isRightMouseButton(e)) {
-						Point p = e.getPoint();
-						int rowNumber = jtMusicList.rowAtPoint( p );
-						ListSelectionModel modelo = jtMusicList.getSelectionModel();
-						modelo.setSelectionInterval( rowNumber, rowNumber );
-						idSong = Integer.parseInt(String.valueOf( jtMusicList.getValueAt(rowNumber, 0)));
-						popupSong.show(jtMusicList,  e.getX(), e.getY());
-
-					}
-				}
-			}
-		});
+	        public void mousePressed(MouseEvent e) {
+	            if ( SwingUtilities.isLeftMouseButton(e)) {
+	            	popupSong.setVisible(false);
+	            } else {
+	                 if ( SwingUtilities.isRightMouseButton(e)) {
+	                    Point p = e.getPoint();
+	                    int rowNumber = jtMusicList.rowAtPoint( p );
+	                    ListSelectionModel modelo = jtMusicList.getSelectionModel();
+	                    modelo.setSelectionInterval( rowNumber, rowNumber );
+	            		 idSong = Integer.parseInt(String.valueOf( jtMusicList.getValueAt(rowNumber, 0)));
+	            		 popupSong.show(jtMusicList,  e.getX(), e.getY());
+	            		 
+	                }
+	            }
+	        }
+	    });
 		jtMusicList.setModel(tableModelMusic);
 		//jtMusicList.setForeground(Color.BLACK);
 		//jtMusicList.setBackground(Color.DARK_GRAY);
@@ -234,7 +242,7 @@ public class MainWindow extends JFrame{
 		glPlayerButtons = new GridLayout(1,3);
 		jpPlayerButtons.setLayout(glPlayerButtons);
 
-
+		
 		iiPlay1 = new ImageIcon("src/imagenes/playButn1.png");
 		iiPlay2 = new ImageIcon("src/imagenes/playButn2.png");
 		iiPlay3 = new ImageIcon("src/imagenes/playButn3.png");
@@ -294,7 +302,7 @@ public class MainWindow extends JFrame{
 		//jpPlayer.add(jlTemporalSong, BorderLayout.CENTER);
 		jpPlayer.add(jSlider, BorderLayout.CENTER);
 		jpPlayer.add(jlTime, BorderLayout.EAST);
-
+		
 		jpMusic.add(jpButtons, BorderLayout.PAGE_END);
 
 
@@ -318,8 +326,6 @@ public class MainWindow extends JFrame{
 		}; 
 
 		popup = new JPopupMenu();
-		JPopupMenu popupdelete = new JPopupMenu();
-
 		popup.add(seguidores = new JMenuItem("Mostrar seguidores", null));
 		seguidores.setHorizontalTextPosition(JMenuItem.RIGHT);
 
@@ -329,42 +335,51 @@ public class MainWindow extends JFrame{
 		popup.add(listas = new JMenuItem("Mostrar listas de reproduccion", null));
 		listas.setHorizontalTextPosition(JMenuItem.RIGHT);
 
-		//popup.addSeparator();
-		//popup.add(eliminar = new JMenuItem("Eliminar "));
-		popupdelete.add(eliminar = new JMenuItem("Eliminar "));
-		eliminar.setHorizontalTextPosition(JMenuItem.RIGHT);
+		jdDelete= new JDialog();
+		jpDelete = new JPanel();
+		BorderLayout blDelete = new BorderLayout();
+		jpDelete.setLayout(blDelete);
 		
-		popupdelete.setLabel("Justification");
-		popupdelete.setBorder(new BevelBorder(BevelBorder.RAISED));
+		JLabel jlDelete = new JLabel("Seguro que quieres borrar este usuario");
+		jpDelete.add(jlDelete, BorderLayout.CENTER);
+		
+		jpDeleteOption = new JPanel();
+		GridLayout glOptions = new GridLayout(1,2);
+		jpDeleteOption.setLayout(glOptions);
+		eliminar = new JButton("Aceptar");
+		eliminar.setHorizontalAlignment(JButton.CENTER);
+		jpDeleteOption.add(eliminar);
+		
+		jbCancelDelete = new JButton("Cancelar");
+		jbCancelDelete.setHorizontalAlignment(JButton.CENTER);
+		jpDeleteOption.add(jbCancelDelete);
 
-	//		popup.setLabel("Justification");
-		//		popup.setBorder(new BevelBorder(BevelBorder.RAISED));
+		jpDelete.add(jpDeleteOption, BorderLayout.SOUTH);
+		
+		jdDelete.add(jpDelete);
+		
+		/*
+		popup.addSeparator();
+		popup.add(eliminar = new JMenuItem("Eliminar "));
 
+		popup.setLabel("Justification");
+		popup.setBorder(new BevelBorder(BevelBorder.RAISED));
+		*/
 		jtUser.addMouseListener(new MouseAdapter() {
+
 			public void mousePressed(MouseEvent e) {
 				if ( SwingUtilities.isLeftMouseButton(e)) {
-					if ( SwingUtilities.isRightMouseButton(e)) {
-						Point p = e.getPoint();
-						int rowNumber = jtUser.rowAtPoint( p );
-						ListSelectionModel modelo = jtUser.getSelectionModel();
-						modelo.setSelectionInterval( rowNumber, rowNumber );
-						id = Integer.parseInt(String.valueOf( jtUser.getValueAt(rowNumber, 0)));
-						popupdelete.show(jtpTabs,  e.getX(), e.getY());
-					}
 					
-				} else {
-					popupdelete.setVisible(false);
-				}
-			}
-		});
-		jtUser.setModel(tableModelUser);
-		jtUser.setFocusable(false);
-		
-		jtUser.addMouseListener(new MouseAdapter() {
+					jdDelete.setTitle(" Verificación eliminar usuario ");
 
-			public void mousePressed(MouseEvent e) {
-				if ( SwingUtilities.isLeftMouseButton(e)) {
+					jdDelete.setSize(new Dimension(240,100));
+					jdDelete.setResizable(false);
+					jdDelete.setLocationRelativeTo(null);
+					jdDelete.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					jdDelete.setVisible(true);
+					
 					popup.setVisible(false);
+				
 				} else {
 					if ( SwingUtilities.isRightMouseButton(e)) {
 						Point p = e.getPoint();
@@ -376,8 +391,8 @@ public class MainWindow extends JFrame{
 					}
 				}
 			}
-		});
-
+	    });
+		
 		jtUser.setModel(tableModelUser);
 		jtUser.setFocusable(false);
 
@@ -404,6 +419,7 @@ public class MainWindow extends JFrame{
 				}
 			}
 		});
+		
 		this.getContentPane().add(jtpTabs, BorderLayout.CENTER);
 		this.getContentPane().add(jpPlayer, BorderLayout.SOUTH);
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -414,9 +430,7 @@ public class MainWindow extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
-
-
-	//==========================
+	
 	public void ConfigurationButton(JButton boton,ImageIcon imatge1,ImageIcon imatge2,ImageIcon imatge3){
 
 		//Definim que l'icon tindrï¿½ una imatge assignada per defecte
@@ -437,9 +451,7 @@ public class MainWindow extends JFrame{
 		boton.setPressedIcon(imatge3);
 
 	}
-
-
-
+	
 	public void goMP3() throws Exception{
 
 		//Si la canï¿½o s'ha reproduit un cop i esta en pause, continua reproduint PAUSE
@@ -457,7 +469,7 @@ public class MainWindow extends JFrame{
 			ConfigurationButton(jbPlay, iiPlay1, iiPlay2, iiPlay3);
 			stateSong = false;
 		}else {
-
+			
 			try{
 
 				state = "";
@@ -497,9 +509,7 @@ public class MainWindow extends JFrame{
 		}
 
 		jlSongName.setText(customPlayer.getName());
-
 	}
-
 
 	public void registerController(ButtonsController controller, PopUpController controller2) {
 		jbAdd.addActionListener(controller);
@@ -517,9 +527,12 @@ public class MainWindow extends JFrame{
 		listas.addActionListener(controller2);
 		listas.setActionCommand("MainWindow.listasActionCommand");
 
+		jbCancelDelete.addActionListener(controller2);
+		jbCancelDelete.setActionCommand("MainWindow.cancelEliminarActionCommand");
+		
 		eliminar.addActionListener(controller2);
 		eliminar.setActionCommand("MainWindow.eliminarActionCommand");
-
+		
 		eliminar2.addActionListener(controller2);
 		eliminar2.setActionCommand("MainWindow.eliminar2ActionCommand");
 
@@ -536,7 +549,10 @@ public class MainWindow extends JFrame{
 			jlSongState.setText("           --> CLICK PLAY TO LISTEN THE SONG <--");
 		}
 	}
-
+	public void closeDialog(){
+		jdDelete.dispose();
+	}
+	
 	public void refreshTime() {
 
 		int auxMinutes = 0;
@@ -563,14 +579,14 @@ public class MainWindow extends JFrame{
 		String finalSting = auxMinutesString + ":" + auxSecondsString;
 
 		jlTime.setText(auxMinutesString + ":" + auxSecondsString);
-
+		
 		jSlider.setValue(customPlayer.getFrameSlider());
 		//changeButtonToPlay();
 		if (customPlayer.getStatus() == 2){
 			ConfigurationButton(jbPlay, iiPlay1, iiPlay2, iiPlay3);
 		}
 	}
-
+	
 	public void refreshUsers(LinkedList <Object[]> list){
 		while (tableModelUser.getRowCount()!= 0){
 			tableModelUser.removeRow(0);
@@ -579,7 +595,7 @@ public class MainWindow extends JFrame{
 			tableModelUser.addRow(list.get(i));
 		}
 	}
-
+	
 	public void refreshSongs(LinkedList<Object[]> list) {
 		while (tableModelMusic.getRowCount()!= 0){
 			tableModelMusic.removeRow(0);
@@ -588,11 +604,11 @@ public class MainWindow extends JFrame{
 			tableModelMusic.addRow(list.get(i));
 		}
 	}
-
+	
 	public int getId (){
 		return id;
 	}
-
+	
 	public int getIdSong(){
 		return idSong;
 	}

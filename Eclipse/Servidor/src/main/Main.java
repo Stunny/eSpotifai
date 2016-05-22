@@ -62,6 +62,8 @@ public class Main {
 				} catch (DatabaseNotLoadedException e) {
 					JOptionPane.showMessageDialog(null, "No s'ha pogut accedir a la base de dades.", " ", JOptionPane.ERROR_MESSAGE);
 				} catch (Exception e) {
+					e.printStackTrace();
+					System.out.println("QUE PASA:" + e.getMessage());
 					JOptionPane.showMessageDialog(null, "Hi ha hagut un error.", " ", JOptionPane.ERROR_MESSAGE);
 				}
 			}
