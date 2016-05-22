@@ -58,7 +58,7 @@ public class PlaylistSearchUser extends JFrame{
 	/**
 	 * IDentificador de la <i>Playlist</i>
 	 */
-	private int id = 0; 
+	private String id = ""; 
 	private JButton before; 
 	DefaultTableModel tableModelFollowedLists;
 	
@@ -104,7 +104,7 @@ public class PlaylistSearchUser extends JFrame{
 		                    modelo.setSelectionInterval( rowNumber, rowNumber );
 		                   // modelo1.clearSelection();
 		                   // modelo2.clearSelection();
-		            		id = Integer.parseInt(String.valueOf( jtFollowedLists.getValueAt(rowNumber, 0)));
+		            		id = String.valueOf( jtFollowedLists.getValueAt(rowNumber, 0));
 		            		popupPlaylist.show(jpListsFollowing,  e.getX(), e.getY());
 		            		 
 		                }
@@ -144,7 +144,12 @@ public class PlaylistSearchUser extends JFrame{
 	public void registerController(PopUpController controller){
 		before.addActionListener(controller);
 		before.setActionCommand("PlaylistSearchUser.beforeActionCommand");
+		visualitzar.addActionListener(controller);
+		visualitzar.setActionCommand("PlaylistSearchUser.visualitzarActionCommand");
+		
 	}
+	
+	
 	
 	public void refreshPlaylists(LinkedList<Playlist> playlistList) {
 		LinkedList<Object[]> list = new LinkedList<Object[]>();
@@ -159,6 +164,10 @@ public class PlaylistSearchUser extends JFrame{
 			tableModelFollowedLists.addRow(list.get(i));
 		}
 		
+	}
+	
+	public String getId(){
+		return id;
 	}
 	
 	

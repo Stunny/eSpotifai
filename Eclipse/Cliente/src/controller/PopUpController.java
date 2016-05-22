@@ -46,6 +46,7 @@ public class PopUpController implements ActionListener{
 
 	private NetworkController networkcontroller;
 	private ModifyNameList modifynamelist;
+	
 		
 	public PopUpController(MainWindow mainwindow, AddList addlist, Vots vots, SelectedUserWindow selecteduserwindow,PlaylistSearchUser playlistsearchuser, UserWindow userwindow, NetworkController networkcontroller, ModifyNameList modifynamelist ){
 
@@ -106,6 +107,13 @@ public class PopUpController implements ActionListener{
 			vots.setVisible(true);
 		}
 		
+		if(event.getActionCommand().equals("PlaylistSearchUser.visualitzarActionCommand")){
+			mainwindow.setMode(playlistsearchuser.getId());
+		}
+		
+		if(event.getActionCommand().equals("SelectedUserWindow.visualitzarActionCommand")){
+			mainwindow.setMode(selecteduserwindow.getId());
+		}
 		
 		
 	
@@ -128,6 +136,8 @@ public class PopUpController implements ActionListener{
 		}
 		
 		//-------------------------------------------
+		
+		
 		
 		
 		if(event.getActionCommand().equals("UserWindow.visualitzarActionCommand")){
