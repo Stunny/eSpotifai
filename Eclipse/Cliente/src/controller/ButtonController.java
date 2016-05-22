@@ -265,6 +265,7 @@ public class ButtonController implements ActionListener {
 			//try {
 			System.out.println("next");
 			if (songIndex < mainWindow.getSongAmount() -1) songIndex++;
+			else songIndex = 0;
 			System.out.println(songIndex);
 			String response = NetworkController.getSongFile(mainWindow.getSongAtIndex(songIndex));
 			if (response.equals("ok")) {

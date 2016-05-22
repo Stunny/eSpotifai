@@ -800,6 +800,18 @@ public class MainWindow extends JFrame {
 		if (customPlayer.getStatus() == 2){
 			ConfigurationButton(jbPlay, iiPlay1, iiPlay2, iiPlay3);
 		}
+		
+		if (customPlayer.isEnded() && jrbRepeatOne.isSelected()) {
+			try {
+				changeMP3();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
+		}
+		if (customPlayer.isEnded() && jrbRepeatList.isSelected()) {
+			jbNext.doClick();
+		}
 
 		//jlTime.setText(String.valueOf(player.getMinutes() + ":" + player.getSeconds()));
 	}

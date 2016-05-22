@@ -66,7 +66,8 @@ public class ButtonsController implements ActionListener{
 			}
 			
 		} else if (event.getActionCommand().equals("MainWindow.nextActionCommand")){
-			if (songIndex < mainWindow.getSongAmount()) songIndex++;
+			if (songIndex < mainWindow.getSongAmount()-1) songIndex++;
+			else songIndex = 0;
 			try {
 				mainWindow.changeMP3(mainWindow.getSongPath(songIndex));
 			} catch (MalformedURLException e) {

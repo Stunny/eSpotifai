@@ -3,6 +3,7 @@ package view;
 import java.awt.Color;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Event;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Point;
@@ -631,6 +632,18 @@ public class MainWindow extends JFrame{
 		//changeButtonToPlay();
 		if (customPlayer.getStatus() == 2){
 			ConfigurationButton(jbPlay, iiPlay1, iiPlay2, iiPlay3);
+		}
+		
+		if (customPlayer.isEnded() && jrbRepeatOne.isSelected()) {
+			try {
+				changeMP3(customPlayer.getSongPath());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
+		}
+		if (customPlayer.isEnded() && jrbRepeatList.isSelected()) {
+			jbNext.doClick();
 		}
 
 		//jlTime.setText(String.valueOf(player.getMinutes() + ":" + player.getSeconds()));

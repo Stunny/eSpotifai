@@ -35,6 +35,7 @@ public class CustomPlayer implements BasicPlayerListener {
 	private boolean run = false;
 	private String t = "";
 
+
 	private Long duration;
 
 	private Timer tiempo ;
@@ -69,6 +70,10 @@ public class CustomPlayer implements BasicPlayerListener {
 		return this.minutes;
 	}
 
+	public String getSongPath() {
+		return nameSong;
+	}
+	
 	public String playPlayer(JSlider b) throws Exception{
 		t = "No existe ningun archivo...";
 
@@ -89,7 +94,6 @@ public class CustomPlayer implements BasicPlayerListener {
 
 
 	public void abrirMp3(String ruta) throws Exception{
-
 
 		//si se esta reproduciendo un mp3, se detiene
 		if(todoOk){

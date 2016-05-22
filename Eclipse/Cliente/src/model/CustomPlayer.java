@@ -205,7 +205,6 @@ public class CustomPlayer implements BasicPlayerListener {
 		// Descomentando la siguiente línea se mosrtaría el progreso
 		frameNow = (int)(bytesLength* 1.0f * progressUpdate);
 
-
 		if (properties.containsKey("mp3.frame")) {
 			String framesSongActualString = properties.get("mp3.frame").toString();
 			framesSongActual = Integer.valueOf(framesSongActualString);
@@ -230,6 +229,7 @@ public class CustomPlayer implements BasicPlayerListener {
 		if( progressUpdate == 1.0){
 
 			try {
+				
 				player.stop();
 				seconds = 0;
 				seconds = 0;
@@ -256,4 +256,6 @@ public class CustomPlayer implements BasicPlayerListener {
 	public void stateUpdated(BasicPlayerEvent arg0) {
 		// TODO Auto-generated method stub
 	}
+
+
 }
