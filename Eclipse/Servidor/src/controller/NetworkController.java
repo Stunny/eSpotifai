@@ -69,6 +69,13 @@ public class NetworkController {
 		case "deletePlaylist": 
 			response  = ddbbconnection.deletePlaylist(Integer.parseInt(s[1]));
 			break;
+		case "updatePlaylist":
+			args = s[1].split("/");
+			System.out.println("HOLA puti");
+			System.out.println(args[0]);
+			System.out.println(args[1]);
+			response = ddbbconnection.updatePlaylist(args[0], Integer.parseInt(args[1]));
+			break;
 		
 		
 		default: 

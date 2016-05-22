@@ -92,6 +92,7 @@ public class MainWindow extends JFrame {
 	private int id1 = 0;
 	private int id2 = 0;
 	private int id3 = 0;
+	private String name = "";
 	DefaultTableModel tableMusic;
 	DefaultTableModel tablePlaylist;
 	DefaultTableModel tableModelLists;
@@ -313,7 +314,9 @@ public class MainWindow extends JFrame {
 		                    modelo1.setSelectionInterval( rowNumber, rowNumber );
 		                    //modelo.clearSelection();
 		                    //modelo2.clearSelection();
+		                    
 		            		id2 = Integer.parseInt(String.valueOf( jtLists.getValueAt(rowNumber, 0)));
+		            		name = String.valueOf( jtLists.getValueAt(rowNumber, 1));
 		            		popupPlaylist1.show(jpLists,  e.getX(), e.getY());
 		            		 
 		                }
@@ -845,6 +848,10 @@ public void refreshPlaylists(LinkedList<Playlist> playlistList) {
 	
 	public void setUser (String user){
 		this.user = user;
+	}
+	
+	public String getName(){
+		return name;
 	}
 	
 	

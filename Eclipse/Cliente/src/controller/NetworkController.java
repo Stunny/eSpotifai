@@ -89,5 +89,15 @@ public class NetworkController {
 		return resposta;
 		
 	}
+	
+	public static String updatePlaylist(String name, int id){
+		String request = "updatePlaylist:" + name+ "/" +id;
+		
+		ServerCommunication servercommunication = new ServerCommunication();
+		String resposta = servercommunication.sendData(request);
+
+		return resposta;
+		
+	}
 
 }

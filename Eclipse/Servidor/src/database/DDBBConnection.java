@@ -300,6 +300,14 @@ public class DDBBConnection {
 		}
 	}
 	
+	public String updatePlaylist(String name, int id){
+		System.out.println("Modificat name=" +name+ "id" +id );
+		ddbb.updateQuery("update playlists set name =" +name + "where id_playlist=" +id );
+		return ("Actualizada");
+	}
+	
+	
+	
 	public String deleteUser (String username){
 		try {
 			ResultSet resultSet = ddbb.selectQuery("SELECT count(user_name) FROM users WHERE user_name like '"+ username +"'");
@@ -387,6 +395,8 @@ public class DDBBConnection {
 		ddbb.deleteQuery("DELETE FROM playlists WHERE id_playlist = " +idDeletePlaylist);
 		return ("Deleted");
 	}
+	
+	
 
 	
 	public int nFollowers(int id){
