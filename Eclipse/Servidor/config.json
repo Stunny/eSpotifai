@@ -4,7 +4,7 @@
 		IPBBDD: "localhost",
 		nameBBDD: "espotyfai",
 		userBBDD: "root",
-		passwordBBDD: "",
+		passwordBBDD: "root",
 		portClientComunication: 3307
 	}
 }

@@ -198,9 +198,8 @@ public class ButtonController implements ActionListener {
 		if(event.getActionCommand().equals("MainWindow.searchActionCommand")){
 			if(AccessLogic.searchUser(mainWindow.getTypedSearch(), networkcontroller)){
 				selecteduserwindow.refreshUser(mainWindow.getTypedSearch());
+				selecteduserwindow.refreshPlaylists(AccessLogic.getPlaylists(mainWindow.getTypedSearch(), networkcontroller.getPlaylists()));
 				selecteduserwindow.setVisible(true);
-				
-				
 			}
 		}
 		

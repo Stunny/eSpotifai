@@ -3,6 +3,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 [[{"location":"C:\\Program Files\\Java\\jre1.8.0_77","type":"JRE","hints":{"EXECUTION_ENVIRONMENT":"JavaSE-1.8"}},"jre:jre:1.8.0"],[{"location":"C:\\Users\\MiguelÁngel\\Documents\\GitHub\\eSpotifai\\Eclipse\\Servidor","type":"PROJECT","hints":{"PROJECT_NAME":"Servidor"}},"ABSENT"]]
 =======
 {}
@@ -30,3 +31,6 @@
 =======
 [[{"location":"C:\\Program Files\\Java\\jre1.8.0_77","type":"JRE","hints":{"EXECUTION_ENVIRONMENT":"JavaSE-1.8"}},"jre:jre:1.8.0"]]
 >>>>>>> 77b144f0a75d9608f2f63498ea4c536327ac2a6d
+=======
+[[{"location":"C:\\Users\\MiguelÁngel\\Documents\\GitHub\\eSpotifai\\Eclipse\\Servidor","type":"PROJECT","hints":{"PROJECT_NAME":"Servidor"}},"ABSENT"],[{"location":"C:\\Users\\MiguelÁngel\\Documents\\GitHub\\eSpotifai\\Eclipse\\Cliente","type":"PROJECT","hints":{"PROJECT_NAME":"Cliente"}},"ABSENT"],[{"location":"C:\\Program Files\\Java\\jre1.8.0_77","type":"JRE","hints":{"EXECUTION_ENVIRONMENT":"JavaSE-1.8"}},"jre:jre:1.8.0"]]
+>>>>>>> 2f2507b5bfcdf94f4ef0a492ef41db6c3eaff283
