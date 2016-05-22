@@ -276,7 +276,7 @@ public class DDBBConnection {
 			{
 				list.add(new Song ((int)resultSet.getObject("id_Song"), (String)resultSet.getObject("name"), 
 						(String)resultSet.getObject("genre"), (String)resultSet.getObject("album"), (String)resultSet.getObject("artist"),
-						(String)resultSet.getObject("location"), (int)resultSet.getObject("Stars"), (int)resultSet.getObject("reproducciones")));
+						(String)resultSet.getObject("location"), (int)resultSet.getObject("stars"), (int)resultSet.getObject("reproducciones")));
 			}	
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -629,7 +629,7 @@ public class DDBBConnection {
 	}
 
 	public String reproducciones(int id) {
-		ddbb.updateQuery("UPDATE songs SET reproducciones = reproducciones + 1 WHERE id_song");
+		ddbb.updateQuery("UPDATE songs SET reproducciones = reproducciones + 1 WHERE id_song="+id);
 		return null;
 	}
 

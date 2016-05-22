@@ -161,7 +161,6 @@ public class MainWindow extends JFrame {
 	private ListSelectionModel modelo2;
 	private String mode= "all";
 
-	private int idSong; 
 	//DefaultTableModel tableModelLists;
 
 
@@ -387,7 +386,7 @@ public class MainWindow extends JFrame {
 		//START jpPageCenter
 
 		String[] columns = {"ID","NOMBRE", "GÉNERO", "ALBUM", "ARTISTA", "ESTRELLAS", "REPRODUCCIONES"};
-		Object[][] information = {{"0", "Idiota", "Rock", "Ninguno", "Elna", "5", "1000000"}};
+		Object[][] information = {};
 		JTable jtMusic = new JTable(information, columns);
 		tableMusic = new DefaultTableModel(information, columns){
 			@Override
@@ -963,7 +962,6 @@ public class MainWindow extends JFrame {
 	public int getSongAtIndex(int index) {
 		inReproduccion = 1;
 		jlSongName.setText((String)tableMusic.getValueAt(index, 4) + " - " + (String)tableMusic.getValueAt(index, 1));
-		idSong = (int)tableMusic.getValueAt(index, 0);
 		return (int)tableMusic.getValueAt(index, 0);
 	}
 
@@ -989,19 +987,7 @@ public class MainWindow extends JFrame {
 		return idMusic;
 	}
 	
-	public int getIdSong(){
-		return idSong;
-	}
-	
 	public void setIdMusic(int idMusic) {
 		this.idMusic = idMusic;
-	}
-	
-	public int getInReproduccion(){
-		return inReproduccion;
-	}
-
-	public void setInReproduccion(int i) {
-		inReproduccion = i;
 	}
 }

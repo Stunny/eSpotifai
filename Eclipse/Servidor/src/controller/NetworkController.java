@@ -101,12 +101,10 @@ public class NetworkController {
 			for (Song song : list) {
 				if (song.getId() == Integer.parseInt(s[1])) {
 					response = "ok";
+					String mensaje  = ddbbconnection.reproducciones(Integer.parseInt(s[1]));
 					Main.setFilePath(song.getLocation());
 				}
 			}
-		case "Reproduccion":
-			response  = ddbbconnection.reproducciones(Integer.parseInt(s[1]));
-		break;
 		default: 
 			response = "Invalid request";
 		break;

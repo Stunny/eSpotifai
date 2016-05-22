@@ -69,9 +69,6 @@ public class NetworkController {
 
 
 		LinkedList<Song> songlist = new LinkedList<Song>(Arrays.asList(s));
-		/*for(int  i = 0; i < songlist.size(); i++){
-			System.out.println(songlist.get(i).getName());
-		}*/
 
 		return songlist;
 	}
@@ -111,10 +108,6 @@ public class NetworkController {
 
 
 		LinkedList<Playlist> playlistlist = new LinkedList<Playlist>(Arrays.asList(p));
-		/*for(int  i = 0; i < songlist.size(); i++){
-		System.out.println(songlist.get(i).getName());
-	}*/
-
 		return playlistlist;
 	}
 
@@ -209,7 +202,7 @@ public class NetworkController {
 	    return gson.fromJson(resposta, String.class);
 		
 	}
-	
+	/*
 	public static String SongReproduction(int id) {
 		String request = "Reproduccion:"+id;
 		ServerCommunication servercommunication = new ServerCommunication();
@@ -219,5 +212,6 @@ public class NetworkController {
 	    return gson.fromJson(resposta, String.class);
 		
 	}
+	*/
 }
 

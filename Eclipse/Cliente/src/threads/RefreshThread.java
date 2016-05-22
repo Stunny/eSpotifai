@@ -51,13 +51,6 @@ public class RefreshThread extends Thread {
 				}
 				threadController.refresUserPlaylistList();
 				threadController.refresPublicPlaylistList();
-				/*
-				if (threadController.getmainWindow().getInReproduccion() == 1){
-					
-					threadController.getmainWindow().setInReproduccion(0); 	
-					networkcontroller.SongReproduction(threadController.getmainWindow().getIdSong());
-				}
-				*/
 				
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();

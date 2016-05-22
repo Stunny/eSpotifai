@@ -42,9 +42,6 @@ public class ThreadController {
 
 	public void refreshSongListPlaylist(){
 		LinkedList<Song> songsList = NetworkController.getSongList();
-		//System.out.println("Mode: ");
-		//System.out.println(mainWindow.getMode());
-		//System.out.println(Integer.valueOf(mainWindow.getMode()));
 		int[] array = NetworkController.getSongsPlaylistList(Integer.valueOf(mainWindow.getMode()));
 		mainWindow.refreshSongs(AccessLogic.getSongsFromPlaylist(songsList, array));
 	}
