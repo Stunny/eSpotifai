@@ -91,7 +91,7 @@ public class UserWindow extends JFrame{
 		JTable jtFollowedLists = new JTable(jtFollowedListsData, jtFollowedListsColumns);
 
 		//se hace que los datos no sean editables
-		DefaultTableModel tableModelFollowedLists = new DefaultTableModel(jtFollowedListsData, jtFollowedListsColumns) {
+		tableModelFollowedLists = new DefaultTableModel(jtFollowedListsData, jtFollowedListsColumns) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				//all cells false

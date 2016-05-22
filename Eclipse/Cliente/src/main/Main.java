@@ -87,6 +87,7 @@ public class Main {
 					selecteduserwindow.registerController1(controller2);
 					playlistsearchuser.registerController(controller2);
 					modifynamelist.registerController(controller2);
+					NewListDialogDialog.registerController(controller);
 
 					
 

@@ -157,11 +157,11 @@ public class ButtonController implements ActionListener {
 		if(event.getActionCommand().equals("NewListDialog.createActionCommand")){
 			if(networkcontroller.addPlaylist(NewListDialogDialog.getTypedName(), mainWindow.getUserId(), NewListDialogDialog.getPublic()).equals("Add")){
 				NewListDialogDialog.setTypedName("");
-				JOptionPane.showMessageDialog(null, "Lista creada correctamente", " ", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "List created successfully.", " ", JOptionPane.INFORMATION_MESSAGE);
 				NewListDialogDialog.setVisible(false);
 			}
 			else{
-				JOptionPane.showMessageDialog(null, "Ya existe dicha lista", " ", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "This list already exists.", " ", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		if(event.getActionCommand().equals("NewListDialog.cancelActionCommand")){
@@ -228,12 +228,6 @@ public class ButtonController implements ActionListener {
 			
 			userwindow.refreshFollowing(userlist);
 			
-			
-			
-			
-			
-			
-			
 
 
 		}
@@ -262,7 +256,7 @@ public class ButtonController implements ActionListener {
 		if(event.getActionCommand().equals("MainWindow.searchActionCommand")){
 			if(AccessLogic.searchUser(mainWindow.getTypedSearch(), networkcontroller)){
 				selecteduserwindow.refreshUser(mainWindow.getTypedSearch());
-				selecteduserwindow.refreshPlaylists(AccessLogic.getPlaylists(mainWindow.getTypedSearch(), networkcontroller.getPlaylists()));
+				selecteduserwindow.refreshPlaylists(AccessLogic.getPlaylists(mainWindow.getTypedSearch(), networkcontroller.getPlaylists(mainWindow.getId())));
 				selecteduserwindow.setVisible(true);
 			}
 		}

@@ -46,8 +46,8 @@ public class RefreshThread extends Thread {
 					threadController.refreshSongListPlaylist();
 					break;
 				}
-				threadController.refresUserPlaylistList();
-				threadController.refresPublicPlaylistList();
+				threadController.refreshUserPlaylistList();
+				threadController.refreshPublicPlaylistList();
 
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();

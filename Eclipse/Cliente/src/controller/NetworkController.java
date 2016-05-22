@@ -92,8 +92,8 @@ public class NetworkController {
 	}
 
 
-	public static LinkedList<Playlist> getPlaylists() {
-		String request = "getPlaylists:";
+	public static LinkedList<Playlist> getPlaylists(String id) {
+		String request = "getPlaylists:" + id;
 
 		ServerCommunication servercommunication = new ServerCommunication();
 		String resposta = servercommunication.sendData(request);
@@ -105,9 +105,9 @@ public class NetworkController {
 
 
 		LinkedList<Playlist> playlistlist = new LinkedList<Playlist>(Arrays.asList(p));
-		/*for(int  i = 0; i < songlist.size(); i++){
-			System.out.println(songlist.get(i).getName());
-		}*/
+		for(int  i = 0; i < playlistlist.size(); i++){
+			System.out.println(playlistlist.get(i).getName());
+		}
 
 		return playlistlist;
 	}
@@ -177,8 +177,8 @@ public class NetworkController {
 		String resposta = servercommunication.sendData(request);		
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		Gson gson = gsonBuilder.create();
-		//return gson.fromJson(resposta, String.class);
-		return "add";
+		return gson.fromJson(resposta, String.class);
+		//return "add";
 	}
 
 	public static String follow(int idU, int idF){

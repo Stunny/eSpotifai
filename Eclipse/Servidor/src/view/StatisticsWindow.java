@@ -37,13 +37,13 @@ public class StatisticsWindow extends JDialog{
 
 	public StatisticsWindow(LinkedList<Song> s) {
 
-		System.out.println("AQUI ANTES declaraciones ");
+		//System.out.println("AQUI ANTES declaraciones ");
 		jpStatistics = new JPanel();
 		blStatistics = new BorderLayout();
 		setContentPane(jpStatistics);
 		jpStatistics.setLayout(null);
 
-		System.out.println("AQUI DESPUES declaraciones ");
+		//System.out.println("AQUI DESPUES declaraciones ");
 
 		songs = new LinkedList<Song>();
 		this.songs = s;
@@ -51,9 +51,9 @@ public class StatisticsWindow extends JDialog{
 
 		listSortSongs = sortSongs(songs);
 
-		System.out.println("AQUI ANTES repaint ");
+		//System.out.println("AQUI ANTES repaint ");
 		repaint();
-		System.out.println("AQUI DESPUES  repaint");
+		//System.out.println("AQUI DESPUES  repaint");
 
 		jpStatistics.setBorder(BorderFactory.createTitledBorder("Stadistics Top 10 songs of eSpotifai"));
 
@@ -81,23 +81,23 @@ public class StatisticsWindow extends JDialog{
 		g.drawString("nº " + '\n' + "reproductions", 100,70);
 		maxNum = 0;
 
-		System.out.println("AQUI ANTES ");
+		//System.out.println("AQUI ANTES ");
 		while ( j < listSortSongs.size() && j < 10){
 
-			System.out.println("TAMANYO : " + listSortSongs.size());
+			//System.out.println("TAMANYO : " + listSortSongs.size());
 
 			int v1 = listSortSongs.get(j).getReproducciones();
-			System.out.println("listSortsongs top ordenats " + 0 + "  name " + listSortSongs.get(j).getName());
+			//System.out.println("listSortsongs top ordenats " + 0 + "  name " + listSortSongs.get(j).getName());
 
-			System.out.println("listSortsongs top ordenats " + 0 + "  name " + listSortSongs.get(j).getReproducciones());
+			//System.out.println("listSortsongs top ordenats " + 0 + "  name " + listSortSongs.get(j).getReproducciones());
 
 			if( maxNum <= v1){
 				maxNum = v1;
 			}
-			System.out.println("j : " + j);
+			//System.out.println("j : " + j);
 			j++;
 		}
-		System.out.println("AQUI DESPUES");
+		//System.out.println("AQUI DESPUES");
 
 		int xRect = 120;
 		int xRectName = 120;
@@ -112,7 +112,7 @@ public class StatisticsWindow extends JDialog{
 		j = 0;
 		while( j < listSortSongs.size() && j < 10){
 
-			System.out.println("NAME : " + listSortSongs.get(j).getName() + "views : " + listSortSongs.get(j).getReproducciones());
+			//System.out.println("NAME : " + listSortSongs.get(j).getName() + "views : " + listSortSongs.get(j).getReproducciones());
 
 			int s1 = listSortSongs.get(j).getReproducciones();
 
@@ -122,7 +122,7 @@ public class StatisticsWindow extends JDialog{
 				large = large +5;
 			}
 
-			System.out.println("NAME : " + listSortSongs.get(j).getName() + "large barra estadisticas " + large);
+			//System.out.println("NAME : " + listSortSongs.get(j).getName() + "large barra estadisticas " + large);
 
 			//1r camp x
 			//2o camp y, comença a printar-se la barra
@@ -135,17 +135,18 @@ public class StatisticsWindow extends JDialog{
 			g.drawString(s1+"", 40, 600-large-2);
 
 			xRect = xRect +100;
-			xRectName = xRectName +100;
-			if(j%2 == 1){
-				colorGreen = colorGreen +100;
-			}else if (j%2 == 0){
-				colorBlue = colorBlue + 100;
 
-			}else{
-				colorRed = colorRed + 100;
-			}
+			colorGreen = randomice(0,255);
+			colorBlue = randomice(0,255);
+			colorRed = randomice(0,255);
+			xRectName = xRectName +100;
+
+
 			j++;
 		}
+	}
+	public static int randomice(int max,int min){
+		return (int)(Math.random()*(max-min))+min;  
 	}
 
 	public LinkedList<Song> sortSongs(LinkedList<Song> songs){
@@ -157,23 +158,23 @@ public class StatisticsWindow extends JDialog{
 			for(j = 0; j < (songs.size()-i-1); j++){
 				if(songs.get(j+1).getReproducciones() < songs.get(j).getReproducciones()){
 
-					//	System.out.println("songs top desordenats" + j + "name " + songs.get(j).getName());
+					// //System.out.println("songs top desordenats" + j + "name " + songs.get(j).getName());
 					auxSong = songs.get(j+1);
 					songs.set(j+1, songs.get(j));
 					songs.set(j, auxSong);
 				}
 			}
-			
+
 		}
 		int s = 0;
 		while (s < songs.size() && s < 10){
-			//System.out.println("songs top ordenats" + s + "name " + songs.get(s).getName());
+			////System.out.println("songs top ordenats" + s + "name " + songs.get(s).getName());
 			auxTop10.add(songs.get(s));
 			s++;
 		}
-		//System.out.println("songs top ordenats" + 0 + "name " + songs.get(0).getName());
+		////System.out.println("songs top ordenats" + 0 + "name " + songs.get(0).getName());
 
-		//System.out.println("songs top ordenats" + 0 + "name " + songs.get(1).getName());
+		////System.out.println("songs top ordenats" + 0 + "name " + songs.get(1).getName());
 		return auxTop10;
 	}
 }

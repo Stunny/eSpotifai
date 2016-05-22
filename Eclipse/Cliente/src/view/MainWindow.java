@@ -373,7 +373,7 @@ public class MainWindow extends JFrame {
 
 		// ----------------------------------------------------------------
 
-		jbAdd = new JButton(" + Nueva Lista");
+		jbAdd = new JButton(" + New List");
 
 
 		jpPageWest.add(jbAdd, BorderLayout.SOUTH);

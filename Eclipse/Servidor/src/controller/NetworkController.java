@@ -66,7 +66,7 @@ public class NetworkController {
 				response = ddbbconnection.deleteSong(Integer.parseInt(s[1]));
 				break;
 			case "getPlaylists":
-				response  = gson.toJson(ddbbconnection.getPlaylists());
+				response  = gson.toJson(ddbbconnection.getPlaylistsDates(Integer.parseInt(s[1])));
 				break;
 			case "getFollowing":
 				response = gson.toJson(ddbbconnection.getFollowing(Integer.parseInt(s[1])));

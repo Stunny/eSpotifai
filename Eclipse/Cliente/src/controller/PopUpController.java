@@ -159,7 +159,7 @@ public class PopUpController implements ActionListener{
 			 * */
 			
 			
-			playlistsearchuser.refreshPlaylists(AccessLogic.getPlaylists(userwindow.getNombre(), networkcontroller.getPlaylists()));
+			playlistsearchuser.refreshPlaylists(AccessLogic.getPlaylists(userwindow.getNombre(), networkcontroller.getPlaylists(mainwindow.getId())));
 			playlistsearchuser.setVisible(true);
 			userwindow.setVisible(false);
 		}

@@ -49,14 +49,14 @@ public class ThreadController {
 		mainWindow.refreshSongs(AccessLogic.getSongsFromPlaylist(songsList, array));
 	}
 
-	public void refresUserPlaylistList() {
-		LinkedList<Playlist> playlistList = NetworkController.getPlaylists();
+	public void refreshUserPlaylistList() {
+		LinkedList<Playlist> playlistList = NetworkController.getPlaylists(mainWindow.getId());
 		mainWindow.refreshPlaylists(playlistList);
 	}
 
-	public void refresPublicPlaylistList() {
-		LinkedList<Playlist> playlistList = NetworkController.getPublicPlaylists(mainWindow.getUserId());
-		mainWindow.refreshPublicPlaylists(playlistList);
+	public void refreshPublicPlaylistList() {
+		LinkedList<Playlist> playlistList2 = NetworkController.getPublicPlaylists(mainWindow.getUserId());
+		mainWindow.refreshPublicPlaylists(playlistList2);
 	}
 
 	public void trackTime() {

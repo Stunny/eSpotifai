@@ -268,6 +268,7 @@ public class DDBBConnection {
 	public LinkedList<Playlist> getPlaylists(){
 		LinkedList<Playlist> list = new LinkedList<Playlist>();
 		try {
+			System.out.println("hai");
 			ResultSet resultSet = ddbb.selectQuery("SELECT * FROM playlists");
 			while (resultSet.next())
 			{
