@@ -221,7 +221,8 @@ public class ButtonController implements ActionListener {
 		//PANTALLA MAIN (PLAY SONG)
 		if(event.getActionCommand().equals("MainWindow.playActionCommand")) {
 			//try {
-				//int songId = mainWindow.getSongAtIndex(songIndex);
+				int songId = mainWindow.getSongAtIndex(songIndex);
+				System.out.println(songId);
 				//mainWindow.goMP3();
 			/*} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
@@ -236,8 +237,9 @@ public class ButtonController implements ActionListener {
 		//PANTALLA MAIN (NEXT SONG)
 				if(event.getActionCommand().equals("MainWindow.nextActionCommand")) {
 					//try {
-					if (songIndex < mainWindow.getSongAmount()) songIndex++;
-					//int songId = mainWindow.getSongAtIndex(songIndex);
+					if (songIndex < mainWindow.getSongAmount() -1) songIndex++;
+					int songId = mainWindow.getSongAtIndex(songIndex);
+					System.out.println(songId);
 						//mainWindow.goMP3();
 					/*} catch (MalformedURLException e) {
 						// TODO Auto-generated catch block
@@ -253,7 +255,8 @@ public class ButtonController implements ActionListener {
 				if(event.getActionCommand().equals("MainWindow.previousActionCommand")) {
 					//try {
 					if (songIndex > 0) songIndex--;
-					//int songId = mainWindow.getSongAtIndex(songIndex);
+					int songId = mainWindow.getSongAtIndex(songIndex);
+					System.out.println(songId);
 						//mainWindow.goMP3();
 					/*} catch (MalformedURLException e) {
 						// TODO Auto-generated catch block
