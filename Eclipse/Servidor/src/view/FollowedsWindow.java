@@ -11,7 +11,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 /**
- * Pantalla on es mostren tots els seguidors d'un usuari determinat
+ * Pantalla on es mostren tots els usuaris als que segueix un de determinat
  * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
  * @version 1.0
  * @see JFrame
