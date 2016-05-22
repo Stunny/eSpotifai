@@ -82,7 +82,7 @@ public class PopUpController implements ActionListener{
 			int reply = JOptionPane.showConfirmDialog(null, "Seguro que quieres eliminar la playlist?", "", JOptionPane.YES_NO_OPTION);
 			if (reply == JOptionPane.YES_OPTION) {
 				//String resposta = networkcontroller.deletePlaylist(mainwindow.getId2());
-				JOptionPane.showConfirmDialog(null, networkcontroller.deletePlaylist(mainwindow.getId2()));
+				JOptionPane.showConfirmDialog(null, networkcontroller.deletePlaylist(Integer.valueOf(mainwindow.getId())));
 			}else{
 				JOptionPane.showMessageDialog(null, "No se ha podido eliminar la canción.");
 			}
@@ -126,13 +126,6 @@ public class PopUpController implements ActionListener{
 		
 		//-------------------------------------------
 		
-		// VISUALITZEM LES CANÇONS EN EL PANELL GRAN
-		if( event.getActionCommand().equals("SelectedUserWindow.visualitzarActionCommand")){
-			//System.out.println("hola");
-			//playlistsearchuser.setVisible(true);
-		}
-		
-		// -----------------------------------------
 		
 		if(event.getActionCommand().equals("UserWindow.visualitzarActionCommand")){
 			playlistsearchuser.setVisible(true);

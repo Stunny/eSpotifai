@@ -110,8 +110,6 @@ public class MainWindow extends JFrame {
 	private JMenuItem visualitzarPlaylist;
 	private JMenuItem delatePlaylist;
 	private JMenuItem vot;
-	private JMenuItem modificar;
-
 	//====
 	private JPanel jpPlayer; 
 	private JPanel jpPlayerButtons; 
@@ -320,8 +318,6 @@ public class MainWindow extends JFrame {
 		visualitzarPlaylist.setHorizontalTextPosition(JMenuItem.RIGHT);
 		popupPlaylist1.add(delatePlaylist  = new JMenuItem("Eliminar Llista"));
 		delatePlaylist.setHorizontalTextPosition(JMenuItem.RIGHT);
-		popupPlaylist1.add(modificar = new JMenuItem("Modificar Llista"));
-		modificar.setHorizontalTextPosition(JMenuItem.RIGHT);
 		popupPlaylist1.setLabel("Justificacion");
 		popupPlaylist1.setBorder(new BevelBorder(BevelBorder.RAISED));
 		jtLists.addMouseListener(new MouseAdapter(){
@@ -602,7 +598,6 @@ public class MainWindow extends JFrame {
 		delatePlaylist.addActionListener(controller2);
 		vot.addActionListener(controller2);
 		visualitzarPlaylist.addActionListener(controller2);
-		modificar.addActionListener(controller2);
 
 		reproducir.setActionCommand("MainWindow.reproducirActionCommand");
 		anadir.setActionCommand("MainWindow.anadirActionCommand");
@@ -610,7 +605,6 @@ public class MainWindow extends JFrame {
 		delatePlaylist.setActionCommand("MainWindow.delatePlaylistActionCommand");
 		vot.setActionCommand("MainWindow.votActionCommand");
 		visualitzarPlaylist.setActionCommand("MainWindow.visualitzarPlaylitsActionCommand");
-		modificar.setActionCommand("MainWindow.modificarActionCommand");
 	}
 
 

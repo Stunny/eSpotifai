@@ -450,8 +450,7 @@ public class DDBBConnection {
 	
 	public String deletePlaylist( int idDeletePlaylist){
 		//resultSet.next();
-		System.out.println("Eliminar -> id:" + idDeletePlaylist);
-		ddbb.deleteQuery("DELETE FROM playlist_songs WHERE cf_playlist =" +idDeletePlaylist);
+		ddbb.deleteQuery("DELETE FROM playlists_songs WHERE cf_playlist =" +idDeletePlaylist);
 		ddbb.deleteQuery("DELETE FROM playlists WHERE id_playlist = " +idDeletePlaylist);
 		return ("Deleted");
 	}
