@@ -92,9 +92,12 @@ public class ButtonController implements ActionListener {
 	 * @see controller.NetworkController
 	 * 
 	 */
+<<<<<<< HEAD
 	
 	public ButtonController(NewListDialog NewListDialogDialog, LoginWindow loginWindow, RegisterWindow registerWindow, MainWindow mainWindow, SelectedUserWindow selecteduserwindow, NetworkController networkcontroller, UserWindow userwindow){
-
+=======
+	public ButtonController(NewListDialog newListDialogDialog2, LoginWindow loginWindow, RegisterWindow registerWindow, MainWindow mainWindow, SelectedUserWindow selecteduserwindow, NetworkController networkcontroller, UserWindow userwindow){
+>>>>>>> 599ed3a5a5de5f9c00c928d9a6eedc97d63a9fb1
 		this.NewListDialogDialog = NewListDialogDialog;
 		this.loginWindow = loginWindow;
 		this.mainWindow = mainWindow;
@@ -263,6 +266,7 @@ public class ButtonController implements ActionListener {
 		//PANTALLA MAIN (NEXT SONG)
 		if(event.getActionCommand().equals("MainWindow.nextActionCommand")) {
 			//try {
+<<<<<<< HEAD
 			System.out.println("next");
 			if (songIndex < mainWindow.getSongAmount() -1) songIndex++;
 			System.out.println(songIndex);
@@ -278,10 +282,26 @@ public class ButtonController implements ActionListener {
 
 		}
 
+=======
+			if (songIndex < mainWindow.getSongAmount()) songIndex++;
+			//int songId = mainWindow.getSongAtIndex(songIndex);
+				//mainWindow.goMP3();
+			/*} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}*/
+		}
+		
+>>>>>>> 599ed3a5a5de5f9c00c928d9a6eedc97d63a9fb1
 		//PANTALLA MAIN (PREVIOUS SONG)
 		if(event.getActionCommand().equals("MainWindow.previousActionCommand")) {
 			//try {
 			if (songIndex > 0) songIndex--;
+<<<<<<< HEAD
 			System.out.println(songIndex);
 			String response = NetworkController.getSongFile(mainWindow.getSongAtIndex(songIndex));
 			if (response.equals("ok")) {
@@ -293,6 +313,29 @@ public class ButtonController implements ActionListener {
 				}
 			}
 		}	
+
+
+
+
+
+=======
+			//int songId = mainWindow.getSongAtIndex(songIndex);
+				//mainWindow.goMP3();
+			/*} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}*/
+		}	
+		
+		
+		
+		
+		
+>>>>>>> 599ed3a5a5de5f9c00c928d9a6eedc97d63a9fb1
 	}
 
 }

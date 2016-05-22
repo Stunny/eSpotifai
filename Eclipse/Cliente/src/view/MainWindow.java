@@ -88,10 +88,16 @@ public class MainWindow extends JFrame {
 	public JPopupMenu popupPlaylist;
 	public JPopupMenu popupPlaylist1;
 	
-	private String id = "";
 
 	private JTable jpUsers;
+	private int id1 = 0;
+	private int id2 = 0;
+	private int id3 = 0;
+	private String name = "";
+
+	private String id = "";
 	
+
 	DefaultTableModel tableMusic;
 	DefaultTableModel tablePlaylist;
 	DefaultTableModel tableModelLists;
@@ -266,7 +272,9 @@ public class MainWindow extends JFrame {
 		                    modelo.setSelectionInterval( rowNumber, rowNumber );
 		                   // modelo1.clearSelection();
 		                   // modelo2.clearSelection();
-		                    id =   String.valueOf( jtFollowedLists.getValueAt(rowNumber, 0));
+
+		            		id = String.valueOf( jtFollowedLists.getValueAt(rowNumber, 0));
+
 		            		popupPlaylist.show(jpListsFollowing,  e.getX(), e.getY());
 		            	
 		                }
@@ -327,7 +335,16 @@ public class MainWindow extends JFrame {
 		                    Point p = e.getPoint();
 		                    int rowNumber = jtLists.rowAtPoint(p);
 		                    modelo1 = jtLists.getSelectionModel();
-		                    id =  String.valueOf( jtLists.getValueAt(rowNumber, 0));
+
+		                    modelo1.setSelectionInterval( rowNumber, rowNumber );
+		                    //modelo.clearSelection();
+		                    //modelo2.clearSelection();
+		                    
+		            		id = String.valueOf( jtLists.getValueAt(rowNumber, 0));
+		            		name = String.valueOf( jtLists.getValueAt(rowNumber, 1));
+
+		                    
+
 		            		popupPlaylist1.show(jpLists,  e.getX(), e.getY());
 		            		 
 		                }
@@ -825,6 +842,33 @@ public class MainWindow extends JFrame {
 
 	}
 
+
+	public int getId1() {
+		return id1;
+	}
+
+
+	public void setId(int id) {
+		this.id1 = id;
+	}
+	
+	public int getId2() {
+		return id2;
+	}
+
+
+	public void setId2(int id) {
+		this.id2 = id;
+	}
+	public int getId3() {
+		return id3;
+	}
+
+
+	public void setId3(int id) {
+		this.id3 = id;
+	}
+
 	public void refreshPublicPlaylists(LinkedList<Playlist> playlistList) {
 		LinkedList<Object[]> list = new LinkedList<Object[]>();
 		for (int i = 0; i < playlistList.size(); i++){
@@ -881,12 +925,17 @@ public class MainWindow extends JFrame {
 
 	public void  setId(String id) {
 		this.id = id;
+
 	}
 
 	public void setUser (String user){
 		this.user = user;
 	}
-
+	
+	public String getName(){
+		return name;
+	}
+	
 	public int getSongAtIndex(int index) {
 		return (int)tableMusic.getValueAt(index, 0);
 	}
@@ -905,6 +954,7 @@ public class MainWindow extends JFrame {
 	public void setMode (String modo){
 		this.mode = modo;
 	}
+
 	
 	public String getMode (){
 		return mode;	}

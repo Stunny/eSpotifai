@@ -7,8 +7,8 @@ import model.Playlist;
 import model.Song;
 import view.MainWindow;
 /**
- * Controlador de threads de l'aplicació
- * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * Controlador de threads de l'aplicaciï¿½
+ * @author Elna Cabot, Miguel Dï¿½az, Marc Millï¿½n, Alejandro Vogel, Marta Zapatero
  * @version 1.0
  * @see MainWindow
  * @see NetworkController
@@ -19,13 +19,13 @@ import view.MainWindow;
  */
 public class ThreadController {
 	/**
-	 * Pantalla principal de l'aplicació
+	 * Pantalla principal de l'aplicaciï¿½
 	 * 
 	 */
 	private MainWindow mainWindow;
 	/**
 	 * Construeix un nou controlador de threads
-	 * @param mainWindow Pantalla principal de l'aplicació
+	 * @param mainWindow Pantalla principal de l'aplicaciï¿½
 	 */
 	public ThreadController(MainWindow mainWindow) {
 		super();
@@ -33,7 +33,7 @@ public class ThreadController {
 	}
 	
 	/**
-	 * Actualitza la llista de cançons segons el contingut del servidor
+	 * Actualitza la llista de canï¿½ons segons el contingut del servidor
 	 */
 	public void refreshSongList() {
 		LinkedList<Song> songsList = NetworkController.getSongList();
@@ -42,6 +42,9 @@ public class ThreadController {
 	
 	public void refreshSongListPlaylist(){
 		LinkedList<Song> songsList = NetworkController.getSongList();
+		System.out.println("Mode: ");
+		System.out.println(mainWindow.getMode());
+		System.out.println(Integer.valueOf(mainWindow.getMode()));
 		int[] array = NetworkController.getSongsPlaylistList(Integer.valueOf(mainWindow.getMode()));
 		mainWindow.refreshSongs(AccessLogic.getSongsFromPlaylist(songsList, array));
 	}
@@ -60,8 +63,10 @@ public class ThreadController {
 		mainWindow.refreshTime();
 	}
 	
+
 	public MainWindow getmainWindow(){
 		return mainWindow;
 	}
+
 
 }

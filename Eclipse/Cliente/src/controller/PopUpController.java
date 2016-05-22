@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 
 import view.AddList;
 import view.MainWindow;
+import view.ModifyNameList;
 import view.PlaylistSearchUser;
 import view.SelectedUserWindow;
 import view.UserWindow;
@@ -15,7 +16,7 @@ import view.Vots;
 
 /**
  * Controlador de menu emergent
- * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @author Elna Cabot, Miguel Dï¿½az, Marc Millï¿½n, Alejandro Vogel, Marta Zapatero
  * @version 1.0
  * @see ActionListener
  * @see ActionEvent
@@ -27,7 +28,7 @@ import view.Vots;
  */
 public class PopUpController implements ActionListener{
 	/**
-	 * Pantalla principal de l'aplicació
+	 * Pantalla principal de l'aplicaciï¿½
 	 */
 	private MainWindow mainwindow;
 	/**
@@ -35,28 +36,36 @@ public class PopUpController implements ActionListener{
 	 */
 	private AddList addlist;
 	/**
-	 * Menu emergent per puntuar una cançó
+	 * Menu emergent per puntuar una canï¿½ï¿½
 	 */
 	private Vots vots;
 	private SelectedUserWindow selecteduserwindow;
 	private PlaylistSearchUser playlistsearchuser;
 	private UserWindow userwindow;
+
+	private NetworkController networkcontroller;
+	private ModifyNameList modifynamelist;
+		
+	public PopUpController(MainWindow mainwindow, AddList addlist, Vots vots, SelectedUserWindow selecteduserwindow,PlaylistSearchUser playlistsearchuser, UserWindow userwindow, NetworkController networkcontroller, ModifyNameList modifynamelist ){
+
 	/**
 	 * 	Construeix un nou controlador de menu emergent
-	 * @param mainwindow Pantalla principal de l'aplicació
+	 * @param mainwindow Pantalla principal de l'aplicaciï¿½
 	 * @param addlist Menu emergent d'afegir llista
-	 * @param vots Menu emergent per puntuar una cançó
+	 * @param vots Menu emergent per puntuar una canï¿½ï¿½
 	 * @see MainWindow
 	 * @see AddList
 	 * @see Vots
 	 */
-	public PopUpController(MainWindow mainwindow, AddList addlist, Vots vots, SelectedUserWindow selecteduserwindow,PlaylistSearchUser playlistsearchuser, UserWindow userwindow ){
+	
 		this.mainwindow = mainwindow;
 		this.addlist = addlist;
 		this.vots = vots;
 		this.selecteduserwindow = selecteduserwindow;
 		this.playlistsearchuser = playlistsearchuser;
 		this.userwindow = userwindow;
+		this.networkcontroller = networkcontroller;
+		this.modifynamelist = modifynamelist;
 	}
 	/**
 	 * 
@@ -70,10 +79,15 @@ public class PopUpController implements ActionListener{
 			addlist.setVisible(true);
 		}
 		if(event.getActionCommand().equals("MainWindow.delatePlaylistActionCommand")){
-			int reply = JOptionPane.showConfirmDialog(null, "Seguro que quieres eliminar el usuario?", "", JOptionPane.YES_NO_OPTION);
+			int reply = JOptionPane.showConfirmDialog(null, "Seguro que quieres eliminar la playlist?", "", JOptionPane.YES_NO_OPTION);
 			if (reply == JOptionPane.YES_OPTION) {
-				
-			} 
+				//String resposta = networkcontroller.deletePlaylist(mainwindow.getId2());
+				JOptionPane.showConfirmDialog(null, networkcontroller.deletePlaylist(mainwindow.getId2()));
+			}else{
+				JOptionPane.showMessageDialog(null, "No se ha podido eliminar la canciÃ³n.");
+			}
+			 
+			
 			
 		}
 		
@@ -89,10 +103,8 @@ public class PopUpController implements ActionListener{
 			vots.setVisible(true);
 		}
 		
-		if(event.getActionCommand().equals("MainWindow.modificarActionCommand")){
-			
 		
-		}
+		
 	
 		//--------- ACCION DE VOTAR ------------------
 		

@@ -11,8 +11,8 @@ import model.User;
 import network.FileServerCommunication;
 import network.ServerCommunication;
 /**
- * Controlador de comunicació amb el servidor. 
- * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * Controlador de comunicaciï¿½ amb el servidor. 
+ * @author Elna Cabot, Miguel Dï¿½az, Marc Millï¿½n, Alejandro Vogel, Marta Zapatero
  * @version 1.0
  * @see ServerCommunication
  * @see GsonBuilder
@@ -136,6 +136,29 @@ public class NetworkController {
 		} else {System.out.println("Dice que no");return "ko";}
 	}
 	
+	
+	public static String deletePlaylist(int i){
+		String request = "deletePlaylist:" +i;
+		
+		
+		ServerCommunication servercommunication = new ServerCommunication();
+		String resposta = servercommunication.sendData(request);
+
+		return resposta;
+		
+	}
+	
+	public static String updatePlaylist(String name, int id){
+		String request = "updatePlaylist:" + name+ "/" +id;
+		
+		ServerCommunication servercommunication = new ServerCommunication();
+		String resposta = servercommunication.sendData(request);
+
+		return resposta;
+		
+
+	}
+
 	public static int[] getSongsPlaylistList(int id) {
 	String request = "Songs From:"+id;
 	
@@ -156,4 +179,5 @@ public class NetworkController {
 		    Gson gson = gsonBuilder.create();
 		    return gson.fromJson(resposta, String.class);
 	}
+
 }

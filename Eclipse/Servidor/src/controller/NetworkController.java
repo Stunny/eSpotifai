@@ -67,6 +67,14 @@ public class NetworkController {
 		case "getPlaylists":
 			response  = gson.toJson(ddbbconnection.getPlaylists());
 			break;
+		case "getFollowings":
+			break;
+			
+		case "deletePlaylist": 
+			response  = ddbbconnection.deletePlaylist(Integer.parseInt(s[1]));
+			break;
+		
+
 		case "getPublicPlaylists":
 			response  = gson.toJson(ddbbconnection.getPublicPlaylists(Integer.parseInt(s[1])));
 			break;
@@ -87,7 +95,6 @@ public class NetworkController {
 			}
 			
 			break;
-		
 		default: 
 			response = "Invalid request";
 		break;
