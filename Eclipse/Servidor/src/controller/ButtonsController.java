@@ -25,7 +25,7 @@ public class ButtonsController implements ActionListener{
 	private CustomPlayer p;
 	private AddMusicWindow addMusicWindow;
 	private int songIndex = 0;
-	
+
 	// NETWORK
 	//private InformationService infoService;
 	private DDBBConnection ddbbConnection;
@@ -41,12 +41,12 @@ public class ButtonsController implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent event) {
-		
+
 		if (event.getActionCommand().equals("MainWindow.addActionCommand")) {
 			// Recuperem la informació que sha escrit a la vista
 			// i l'enviem al servidor
 			addMusicWindow.setVisible(true);
-			
+
 			// Actualitzem la vista
 			//vista.addText(vista.getTypedMessage());
 		}else if (event.getActionCommand().equals("MainWindow.statisticsActionCommand")){
@@ -59,42 +59,43 @@ public class ButtonsController implements ActionListener{
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				
+
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 		} else if (event.getActionCommand().equals("MainWindow.nextActionCommand")){
-			if (songIndex < mainWindow.getSongAmount()) songIndex++;
+			if (songIndex < mainWindow.getSongAmount()-1) songIndex++;
+			else songIndex = 0;
 			try {
 				mainWindow.changeMP3(mainWindow.getSongPath(songIndex));
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				
+
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 		} else if (event.getActionCommand().equals("MainWindow.previousActionCommand")){
-			
+
 			if (songIndex > 0) songIndex--;
 			try {
 				mainWindow.changeMP3(mainWindow.getSongPath(songIndex));
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				
+
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 		}
-		
-		
+
+
 		else if (event.getActionCommand().equals("AddMusicWindow.acceptActionCommand")){
 			String title = addMusicWindow.getTypedSongTitle();
 			String genre = addMusicWindow.getTypedGenre();
@@ -107,13 +108,13 @@ public class ButtonsController implements ActionListener{
 			} else {
 				path = path.replace('\\', '/');
 				ddbbConnection.addSong(title, genre, artist, album, path, 0);
-				System.out.println("Añadida: "+ title);
+				//System.out.println("Añadida: "+ title);
 
 				addMusicWindow.setVisible(false);
 				addMusicWindow.clearTextFields();
 			}
 		}
-		
+
 		else if (event.getActionCommand().equals("AddMusicWindow.findPathActionCommand")) {
 
 			JFileChooser jFileChooser = new JFileChooser();
@@ -124,7 +125,7 @@ public class ButtonsController implements ActionListener{
 				path = jFileChooser.getSelectedFile().getAbsolutePath();
 			}
 			addMusicWindow.setFoundPath(path);
-			
+
 		}
 	}
 

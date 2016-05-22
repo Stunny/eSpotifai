@@ -20,24 +20,24 @@ public class Image extends javax.swing.JPanel {
 	public Image() {
 		this.setSize(300, 400); //se selecciona el tamaño del panel
 	}
- 
+
 	/**
 	 * Selecciona y dibuixa a un panell una imatge continguda al paquet del programa
 	 * @param grafico 
 	 * @see Graphics
 	 */
- 
+
 	public void paint(Graphics grafico) {
 		Dimension height = getSize();
- 
+
 		//Se selecciona la imagen que tenemos en el paquete de la //ruta del programa
- 
+
 		ImageIcon Img = new ImageIcon(getClass().getResource("/Images/Diagrama.png")); 
- 
+
 		//se dibuja la imagen que tenemos en el paquete Images //dentro de un panel
- 
+
 		grafico.drawImage(Img.getImage(), 0, 0, height.width, height.height, null);
- 
+
 		setOpaque(false);
 		super.paintComponent(grafico);
 	}

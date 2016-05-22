@@ -10,13 +10,13 @@ import java.net.Socket;
 import javax.swing.JOptionPane;
 
 public class FileServerCommunication {
-	
+
 	/**
 	 * Socket de conexió amb el servidor
 	 * @see Socket
 	 */
 	private Socket sServer;
-	
+
 	/**
 	 * Direcció IP del servidor.
 	 * @see Socket
@@ -31,15 +31,15 @@ public class FileServerCommunication {
 	 * Construeix el comunicador amb el servidor.
 	 * 
 	 */
-	
+
 	private InputStream is;
-	
+
 	private FileOutputStream fos;
-	
+
 	private BufferedOutputStream bos;
-	
-	
-	
+
+
+
 	public FileServerCommunication() {
 		super();
 	}
@@ -57,35 +57,35 @@ public class FileServerCommunication {
 		try {
 			//connexió cap al server
 			sServer = new Socket(SOCKET_IP, SOCKET_PORT);
-			
+
 			//eines
 			is = sServer.getInputStream();
 			fos = new FileOutputStream("Resources/song.mp3");
 			bos = new BufferedOutputStream(fos);
-			
+
 			//preparem buffer
 			byte[] buffer = new byte[8192];
-		    
+
 			//ho rep
-		    
+
 			int bytesRead = is.read(buffer, 0, buffer.length);	
 			while (bytesRead > -1) {
-		    //ho "transforma" en arxiu
+				//ho "transforma" en arxiu
 				bos.write(buffer, 0, bytesRead);
 				bytesRead = is.read(buffer, 0, buffer.length);
 			}
-		    //tanca la conexio
-		    bos.close();
-		    sServer.close();
-		   
-		    return true;
+			//tanca la conexio
+			bos.close();
+			sServer.close();
+
+			return true;
 		} catch (Exception e) {
-			System.out.println(e);
+			//System.out.println(e);
 			JOptionPane.showMessageDialog(null, "Problema descarregant el fitxer", " ", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 	}
 
-	
+
 
 }

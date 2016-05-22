@@ -118,18 +118,18 @@ public class CustomPlayer implements BasicPlayerListener {
 		return finalName;
 
 	}
-	
-	
-	
+
+
+
 	public int getStatus(){
 		return player.getStatus();
 	}
-	
-	
-	
+
+
+
 
 	public void stopAnimation() {
-		
+
 		//System.out.println("INDICO al temps que es cancela");
 		tiempo.cancel();
 
@@ -137,7 +137,7 @@ public class CustomPlayer implements BasicPlayerListener {
 		task.cancel();            
 	}
 
-	
+
 	public void pause() throws Exception {
 		//this.nameSong = "/PAUSE";
 		player.pause();
@@ -186,25 +186,24 @@ public class CustomPlayer implements BasicPlayerListener {
 		}
 	}
 
-	
+
 	public int getFrameSlider(){
 		return frameSlider;
 	}
 	//Imaginad que queréis usarlo en un jSlider, solamente habría que fijar el máximo del
 	//slider en bytesLength y el valor actual en lo que diga progress
 
-	
+
 	/** * Necesario por implementar BasicPlayerListener. Según la documentación,
 	 * este método es llamado varias veces por segundo para informar del
 	 * progreso en la reproducción. */
-	
+
 	public void progress(int bytesread, long microseconds, byte[] pcmdata,  Map properties) {
 		float progressUpdate = (float)((bytesread* 1.0f)/ (bytesLength* 1.0f));
 		int progressNow = (int) (bytesLength*1.0f * progressUpdate);
 
 		// Descomentando la siguiente línea se mosrtaría el progreso
 		frameNow = (int)(bytesLength* 1.0f * progressUpdate);
-
 
 		if (properties.containsKey("mp3.frame")) {
 			String framesSongActualString = properties.get("mp3.frame").toString();
@@ -226,10 +225,11 @@ public class CustomPlayer implements BasicPlayerListener {
 		//frameSlider = microdecondsSongActual * 100 / durationSong;
 		frameSlider = (int) (actualTime * 100 / songDuration);
 
-		
+
 		if( progressUpdate == 1.0){
 
 			try {
+
 				player.stop();
 				seconds = 0;
 				seconds = 0;
@@ -256,4 +256,6 @@ public class CustomPlayer implements BasicPlayerListener {
 	public void stateUpdated(BasicPlayerEvent arg0) {
 		// TODO Auto-generated method stub
 	}
+
+
 }

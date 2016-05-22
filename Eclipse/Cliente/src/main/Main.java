@@ -36,72 +36,73 @@ import view.Vots;
  *
  */
 public class Main {
-	
+
 	//MAIN DEL CLIENTE
-	
+
 	/**
 	 * Main del <i style="color:indigo;">Model</i>.
 	 * @param args
 	 */
-	
+
 	public static RefreshThread refreshThread;
 	public static TimeThread timeThread;
-	
+	public static boolean wantToLeave = false;
+
 	public static void main(String[] args){
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				
+
 				try {
-				//Creamos las pantallas
-				LoginWindow loginWindow = new LoginWindow();
-				RegisterWindow registerWindow = new RegisterWindow();
-				MainWindow mainWindow = new MainWindow();
-				AddList addlist  = new AddList();
-				SelectedUserWindow selecteduserwindow = new SelectedUserWindow();
-				NetworkController networkcontroller = new NetworkController();
-				Vots vots = new Vots();
-				PlaylistSearchUser playlistsearchuser = new PlaylistSearchUser();
-				UserWindow userWindow = new UserWindow();
+					//Creamos las pantallas
+					LoginWindow loginWindow = new LoginWindow();
+					RegisterWindow registerWindow = new RegisterWindow();
+					MainWindow mainWindow = new MainWindow();
+					AddList addlist  = new AddList();
+					SelectedUserWindow selecteduserwindow = new SelectedUserWindow();
+					NetworkController networkcontroller = new NetworkController();
+					Vots vots = new Vots();
+					PlaylistSearchUser playlistsearchuser = new PlaylistSearchUser();
+					UserWindow userWindow = new UserWindow();
 
-				ModifyNameList modifynamelist = new ModifyNameList();
+					ModifyNameList modifynamelist = new ModifyNameList();
 
-				NewListDialog NewListDialogDialog = new NewListDialog();
+					NewListDialog NewListDialogDialog = new NewListDialog();
 
-				ButtonController controller = new ButtonController(NewListDialogDialog, loginWindow, registerWindow, mainWindow, selecteduserwindow, networkcontroller, userWindow);
-				PopUpController controller2 = new PopUpController(mainWindow, addlist, vots, selecteduserwindow, playlistsearchuser, userWindow, networkcontroller, modifynamelist);
+					ButtonController controller = new ButtonController(NewListDialogDialog, loginWindow, registerWindow, mainWindow, selecteduserwindow, networkcontroller, userWindow);
+					PopUpController controller2 = new PopUpController(mainWindow, addlist, vots, selecteduserwindow, playlistsearchuser, userWindow, networkcontroller, modifynamelist);
 
-				
 
-				
-				//Juntamos las pantallas y el controlador
-				loginWindow.registerController(controller);
-				registerWindow.registerController(controller);
-				mainWindow.registerController(controller);
-				selecteduserwindow.registerController(controller);
-				mainWindow.registerController1(controller2);
-				addlist.registerController1(controller2);
-				vots.registerController(controller2);
-				userWindow.registerController1(controller2);
-				selecteduserwindow.registerController1(controller2);
-				playlistsearchuser.registerController(controller2);
-				modifynamelist.registerController(controller2);
 
-				NewListDialogDialog.registerController(controller);
 
-				
-				
-				
-				//iniciamos la pantalla de login
-				loginWindow.setVisible(true);
-				mainWindow.setVisible(false);
-				
+					//Juntamos las pantallas y el controlador
+					loginWindow.registerController(controller);
+					registerWindow.registerController(controller);
+					mainWindow.registerController(controller);
+					selecteduserwindow.registerController(controller);
+					mainWindow.registerController1(controller2);
+					addlist.registerController1(controller2);
+					vots.registerController(controller2);
+					userWindow.registerController1(controller2);
+					selecteduserwindow.registerController1(controller2);
+					playlistsearchuser.registerController(controller2);
+					modifynamelist.registerController(controller2);
+
+					NewListDialogDialog.registerController(controller);
+
+
+
+
+					//iniciamos la pantalla de login
+					loginWindow.setVisible(true);
+					mainWindow.setVisible(false);
+
 
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(null, "Hi ha hagut un problema.", " ", JOptionPane.ERROR_MESSAGE);
 				}
-				
-			
+
+
 			}
 		});
 	}

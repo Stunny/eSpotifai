@@ -24,9 +24,9 @@ import threads.RefreshThread;
 import threads.TimeThread;
 
 public class Main {
-	
-	 //MAIN DEL SERVIDOR
-	
+
+	//MAIN DEL SERVIDOR
+
 	private static FileServer fileServer;
 
 	public static void main(String[] args) {
@@ -50,10 +50,11 @@ public class Main {
 					PopUpController popupcontroller = new PopUpController (mainWindow, ddbbConnection);
 					//MouseController mouseController = new MouseController(mainWindow, ddbbConnection);
 					GeneralController controller = new GeneralController (ddbbConnection, mainWindow);
-					
+
 					mainWindow.registerController(buttonscontroller, popupcontroller);
 					addView.registerControllerAdd(buttonscontroller);
 					mainWindow.setVisible(true);
+
 
 
 					//StatisticsWindow statisticsWindow = new StatisticsWindow();
@@ -64,7 +65,7 @@ public class Main {
 					server.startServer();
 					fileServer = new FileServer();
 					fileServer.startServer();
-					
+
 
 
 
@@ -76,9 +77,9 @@ public class Main {
 			}
 		});
 	}
-	
+
 	public static void setFilePath(String path) {
-		System.out.println(path);
+		//System.out.println(path);
 		fileServer.setFilePath(path);
 	}
 }

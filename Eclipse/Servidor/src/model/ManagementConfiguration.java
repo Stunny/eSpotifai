@@ -11,7 +11,7 @@ import com.google.gson.JsonObject;
 public class ManagementConfiguration {
 
 	private ServerConfiguration serverConfiguration;
-	
+
 	public ManagementConfiguration(){
 		serverConfiguration = new ServerConfiguration();
 	}
@@ -19,12 +19,12 @@ public class ManagementConfiguration {
 	public void runConfiguration(){
 		boolean error = false;
 		error = readJSON();
-		
+
 		if (error != false){
-			
+
 		}
 	}
-	
+
 	public ServerConfiguration getServerConfiguration() {
 		return serverConfiguration;
 	}
@@ -42,28 +42,28 @@ public class ManagementConfiguration {
 		BufferedReader bffr;
 
 		try {
-			
+
 			//Obrim el fitxer JSON on es troben les dades necesaries per al servidor
 			bffr = new BufferedReader(new FileReader("config.json"));
-			
+
 			//Carreguem tot el fitxer a la variable filesTotals
 			while( (file = bffr.readLine()) != null){
 				totalFiles = totalFiles + file;	
 			}
 			//Tanquem el fitxer JSON
 			bffr.close();
-			
+
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-			System.out.println("Fitxer de dades del servidor no existeix");
+			//System.out.println("Fitxer de dades del servidor no existeix");
 			error = true;
-		
+
 		} catch (IOException e) {
 			e.printStackTrace();
 			error = true;
-			System.out.println("Fitxer de dades del servidor amb error/s sintactics");
+			//System.out.println("Fitxer de dades del servidor amb error/s sintactics");
 		}
-		
+
 		//Si el fitxer no està creat o hi ha algún error en la seva estructura,
 		//no petará, pero si que executarem aquest control d'error
 		if (error != true){

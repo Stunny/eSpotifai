@@ -15,9 +15,9 @@ import network.ServerCommunication;
  *
  */
 public class AccessLogic {
-	
-	
-		/**
+
+
+	/**
 	 * Cerca nom d'usuari. En cas de no trobar-lo, mostrarà un missatge d'error.
 	 * @param username Nom d'usuari introduit.
 	 * @return En cas de trobar l'usuari retorna <i style="color:indigo;">TRUE</i>. En cas contrari retorna <i style="color:indigo;">FALSE</i>.
@@ -33,7 +33,7 @@ public class AccessLogic {
 				ok = true;
 			}
 		}
-		System.out.println("OK"+ok);
+		//System.out.println("OK"+ok);
 		if(ok == true){
 			return true;
 		}else{
@@ -41,7 +41,7 @@ public class AccessLogic {
 			return false;
 		}
 	}
-	
+
 	public static int getId( String username, NetworkController networkcontroller){
 		LinkedList<User>  userlist = new LinkedList<User>();
 		userlist = networkcontroller.getUserList();
@@ -51,7 +51,7 @@ public class AccessLogic {
 		}
 		return 0;
 	}
-	
+
 	/**
 	 * Realitza l'accés d'usuari a l'aplicació. En cas de que no es dugui a terme mostrarà un missatge d'error.
 	 * @param username Nom d'usuari
@@ -62,14 +62,14 @@ public class AccessLogic {
 	 * 
 	 */
 	public static boolean Login (String username, String password) {
-		
+
 		String request = new String("validateLogin:" + username + "/" + password);
-		
+
 		ServerCommunication servercommunication = new ServerCommunication();
 		String resposta = servercommunication.sendData(request);
-		
+
 		if (resposta.equals("Welcome")) {
-			JOptionPane.showMessageDialog(null, "Welcome to eSpotyfai, " + username + "!", " ", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Welcome to eSpotyfai, " + username + "!", " ",JOptionPane.PLAIN_MESSAGE);
 			return true;
 		} else {
 			if (resposta.equals("Incorrect username")) {
@@ -84,7 +84,7 @@ public class AccessLogic {
 			}
 		}
 	}
-	
+
 	public static LinkedList<Playlist> getPlaylists (String username,  LinkedList<Playlist> playlistList) {
 		LinkedList<Playlist> playlistListUser = new LinkedList<Playlist>();
 		for (int i = 0; i<playlistList.size(); i++){
@@ -92,10 +92,10 @@ public class AccessLogic {
 				playlistListUser.add(playlistList.get(i));
 			}
 		}
-		
+
 		return playlistListUser ;
 	}
-	
+
 	/**
 	 * Realitza el registre d'un nou usuari. Mostrarà missatges d'error en cas de no complir els requeriments a l'hora de introduir les dades per al registre.
 	 * @param username Nom d'usuari.
@@ -105,17 +105,17 @@ public class AccessLogic {
 	 * @see ServerCommunication
 	 */
 	public static boolean Register (String username, String password) {
-		
+
 		if (password.length() < 6 || !password.matches(".*[A-Z].*") || !password.matches(".*[0-9].*")) {
 			JOptionPane.showMessageDialog(null, "Invalid password!", " ", JOptionPane.PLAIN_MESSAGE);
 			return false;
 		} else {
-			
+
 			String request = new String("addUser:" + username + "/" + password);
-			
+
 			ServerCommunication servercommunication = new ServerCommunication();
 			String resposta = servercommunication.sendData(request);
-			
+
 			if (resposta.equals("Added")) {
 				JOptionPane.showMessageDialog(null, "Welcome to eSpotyfai, " + username + "!", " ", JOptionPane.PLAIN_MESSAGE);
 				return true;
@@ -126,9 +126,9 @@ public class AccessLogic {
 				JOptionPane.showMessageDialog(null, resposta + ".", " ", JOptionPane.ERROR_MESSAGE);
 				return false;
 			}
-			
+
 		}
-	
+
 	}
 
 	public static LinkedList<Song> getSongsFromPlaylist(LinkedList<Song> songsList, int[] array) {
@@ -141,8 +141,8 @@ public class AccessLogic {
 				}
 			}
 		}
-		
-		
+
+
 		return songs;
 	}
 }

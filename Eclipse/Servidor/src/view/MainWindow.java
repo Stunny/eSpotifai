@@ -3,6 +3,7 @@ package view;
 import java.awt.Color;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Event;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Point;
@@ -13,6 +14,7 @@ import java.awt.event.MouseEvent;
 import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,6 +23,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.JTabbedPane;
@@ -38,84 +41,289 @@ import model.CustomPlayer;
 import model.User;
 import controller.ButtonsController;
 import controller.PopUpController;
-
+/**
+ * Pantalla principal de la versió de servidor de l'aplicació
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see CustomPlayer
+ * @see JTabbedPane
+ * @see JScrollPane
+ * @see JPanel
+ * @see JLabel
+ * @see JTable
+ * @see JSlider
+ * @see JButton
+ * @see JPopupMenu
+ * @see JMenuItem
+ * @see GridLayout
+ * @see BorderLayout
+ * @see ImageIcon
+ * @see DefaultTableModel
+ * @see ButtonsController
+ * @see PopUpController
+ * @see ActionListener
+ */
 public class MainWindow extends JFrame{
-
+	/**
+	 * Reproductor
+	 * @see CustomPlayer
+	 */
 	private CustomPlayer customPlayer;
-
+	/**
+	 * Conjunt de pestanyes de la pantalla
+	 */
 	private JTabbedPane jtpTabs;
+	/**
+	 * Panell on es col·locarà la informació de cançons
+	 * @see Song
+	 * @see JPanel
+	 */
 	private JPanel jpMusic;
 	private JTable jpUsers;
+
+	/**
+	 * Subpanell
+	 */
 	private JPanel jpPageEnd;
+
+	/**
+	 * Subpanell de botons
+	 */
 	private JPanel jpButtons;
+
+	/**
+	 * Panell on va col·locat el reproductor
+	 */
 	private JPanel jpPlayer; 
 	private JPanel jpPlayerButtons; 
+
+	/**
+	 * Panell de cançons
+	 */
 	private JPanel jpSong;
 
+	/**
+	 * Grid Layoput del subpanell de butons
+	 */
 	private GridLayout glButtons;
+
+	/**
+	 * Grid Layout dels botons del reproductor
+	 */
 	private GridLayout glPlayerButtons; 
+
+	/**
+	 * Indicará dins un border layout l'etiqueta d'una cançó i l'estat de la mateixa
+	 */
 	private GridLayout glPageEnd;
+
+	/**
+	 * Grid Layout
+	 */
 	private GridLayout glSong;
+
+	/**
+	 * Estructura Border Layout com a finestra de cintingut de musica
+	 */
 	private BorderLayout blMusic;
+
+	/**
+	 * Estructura Border Layout per contenir el reproductor
+	 */
 	private BorderLayout blPlayer; 
 
 	//private JTextArea jtListOfSongs;
+
+	/**
+	 * Area de representació on es podrà fer scroll
+	 */
 	private JScrollPane jspMusicList;
+
+	/**
+	 * Mostra gráficament el moment en el que es troba la cançó.
+	 * @see JSlider
+	 */
 	private JSlider jSlider; //
 
+	/**
+	 * Botó per a afegir camps
+	 */
 	private JButton jbAdd;
+
+	/**
+	 * Mostrarà les estadístiques de la aplicació
+	 */
 	private JButton jbStatistics;
 
 	//=========================
-
+	/**
+	 * Botó <i style="color:indigo">PLAY</i> del reproductor.
+	 * @see JButton
+	 */
 	private JButton jbPlay;
+	/**	
+	 * Botó <i style="color:indigo">PREVIOUS</i> del reproductor.
+	 * @see JButton
+	 */
 	private JButton jbPrevious;
+	/**
+	 * Botó <i style="color:indigo">NEXT</i> del reproductor.
+	 * @see JButton
+	 */
 	private JButton jbNext;
-
+	/**
+	 * Botó <i style="color:indigo">SINGLE REPEAT</i> del reproductor.
+	 * @see JRadioButton
+	 */
+	private JRadioButton jrbRepeatOne;
+	/**
+	 * Botó <i style="color:indigo">GLOBAL REPEAT</i> del reproductor.
+	 * @see JRadioButton
+	 */
+	private JRadioButton jrbRepeatList;
+	/**
+	 * Icon de Next #1
+	 */
 	private ImageIcon iiNext1;
+	/**
+	 * Icon de Next #2
+	 */
 	private ImageIcon iiNext2;
+	/**
+	 * Icon de next #3
+	 */
 	private ImageIcon iiNext3;
-
+	/**
+	 * Icon de play #1
+	 */
 	private ImageIcon iiPlay1;
+	/**
+	 * Icon de play #2
+	 */
 	private ImageIcon iiPlay2;
+	/**
+	 * Icon de play #3
+	 */
 	private ImageIcon iiPlay3;
-
+	/**
+	 * Icon de pausa #1
+	 */
 	private ImageIcon iiPause1;
+	/**
+	 * Icon de pausa #2
+	 */
 	private ImageIcon iiPause2;
+	/**
+	 * Icon de pausa #3
+	 */
 	private ImageIcon iiPause3;
-
+	/**
+	 * Icon de anterior #1
+	 */
 	private ImageIcon iiPrevious1;
+
+	/**
+	 * 
+	 * Icon de anterior #2	 
+	 */
 	private ImageIcon iiPrevious2;
+	/**
+	 * Iconde anterior #3
+	 */
 	private ImageIcon iiPrevious3;
 	//private ImageIcon temporalSong;
 
 	//=========================
 
+	/**
+	 * Taula de contingut de la part d'usuari
+	 */
 	DefaultTableModel tableModelUser;
+
+	/**
+	 * Taula de contigut de la part de música
+	 */
 	DefaultTableModel tableModelMusic;
 
+	/**
+	 * Porta a la pantalla de seguidors
+	 */
 	private JMenuItem seguidores;
+
+	/**
+	 * Porta a la pantalla de seguits
+	 */
 	private JMenuItem seguidos;
+
+	/**
+	 * Porta a la pantalla de <i>playlists</i>
+	 */
 	private JMenuItem listas;
+
+	/**
+	 * Obre el diàleg per confirmar l'eliminació
+	 */
 	private JMenuItem eliminar;
+
+	/**
+	 * Obre el diàleg per confirmar l'eliminació
+	 */
 	private JMenuItem eliminar2;
 
+	/**
+	 * ID d'usuari
+	 */
 	private int id = 0;
+
+	/**
+	 * ID de cançó
+	 */
 	private int idSong = 0;
 
+	/**
+	 * Menú emergent a l'usuari
+	 */
 	public JPopupMenu popup;
+
+	/**
+	 * Menu emergent d'una cançó
+	 */
 	public JPopupMenu popupSong;
 	//=============
 	//private JLabel jlTemporalSong;
+
+	/**
+	 * Etiqueta on es representa la mesura del temps del reproductor
+	 */
 	private JLabel jlTime;
 	//private JLabel SongState;
+
+	/**
+	 * Etiqueta on es representa elnom de lacançó que està sent reproduida
+	 */
 	private JLabel jlSongName;
+
+	/**
+	 * Estat de la reproducció dela cançó(aturat,pausat,en reproducció...)
+	 */
 	private JLabel jlSongState;
 
 	//private ImageIcon temporalSong;
+	/**
+	 * 
+	 */
 	private boolean stateSong = false;
+	/**
+	 * 
+	 */
 	private String state = "";
+	/**
+	 * 
+	 */
 	private String statePlayer = "";
+	/**
+	 * 
+	 */
 	private int max = 0, value = 0;
 	//==================
 
@@ -124,6 +332,23 @@ public class MainWindow extends JFrame{
 	private JTable jtUser;
 
 
+	/**
+	 * Construeix la pantalla principal del servidor de l'aplicació
+	 * @see CustomPlayer
+	 * @see JTabbedPane
+	 * @see JScrollPane
+	 * @see JPanel
+	 * @see JLabel
+	 * @see JTable
+	 * @see JSlider
+	 * @see JButton
+	 * @see JPopupMenu
+	 * @see JMenuItem
+	 * @see GridLayout
+	 * @see BorderLayout
+	 * @see ImageIcon
+	 * @see DefaultTableModel
+	 */
 	public MainWindow() {
 
 		//Creem el conjunt de pestanyes
@@ -140,7 +365,7 @@ public class MainWindow extends JFrame{
 		//Creo el panell Scroll de la llista de canï¿½ons
 		//table
 		//hardcodeo de columnas y datos 
-		String[] jtMusicColumns = {"Id","Name", "Genre", "Album", "Artist", "Location", "Stars", "Reproducciones"};
+		String[] jtMusicColumns = {"Id","Name", "Genre", "Album", "Artist", "Location", "Stars", "Reproductions"};
 		Object[][] jtMusicData = {};
 		//se crea la tabla
 		jtMusicList = new JTable(jtMusicData, jtMusicColumns);
@@ -155,7 +380,7 @@ public class MainWindow extends JFrame{
 		}; 
 
 		popupSong = new JPopupMenu();
-		eliminar2 = new JMenuItem("Eliminar ");
+		eliminar2 = new JMenuItem("Delete");
 		eliminar2.setHorizontalTextPosition(JMenuItem.RIGHT);
 		popupSong.add(eliminar2);
 
@@ -284,7 +509,7 @@ public class MainWindow extends JFrame{
 
 		//Creem el panell que anirï¿½ al BorderLayout de NORTH, que contindrï¿½ dos JLabels amb l'etiqueta de la canï¿½o i l'estat d'aquesta
 		jpSong = new JPanel();
-		glSong = new GridLayout(1,2);
+		glSong = new GridLayout(1,3);
 		jpSong.setLayout(glSong);
 
 		//Creem etiqueta de la canï¿½ï¿½ que estï¿½ sonant y de l'estat d'aquesta
@@ -301,6 +526,16 @@ public class MainWindow extends JFrame{
 		jlSongState.setText(" ");
 		jlSongState.setHorizontalAlignment(JTextField.LEFT);
 		jpSong.add(jlSongState);
+
+		JPanel jpRadioButtons = new JPanel();
+		jrbRepeatList = new JRadioButton("Global repeat", true);
+		jrbRepeatOne = new JRadioButton("Single repeat", false);
+		ButtonGroup buttonGroup = new ButtonGroup();
+		buttonGroup.add(jrbRepeatList);
+		buttonGroup.add(jrbRepeatOne);
+		jpRadioButtons.add(jrbRepeatList);
+		jpRadioButtons.add(jrbRepeatOne);
+		jpSong.add(jpRadioButtons);
 
 		jpPlayer.add(jpSong, BorderLayout.NORTH);
 		jpPlayer.add(jpPlayerButtons, BorderLayout.WEST);
@@ -336,17 +571,17 @@ public class MainWindow extends JFrame{
 		}; 
 
 		popup = new JPopupMenu();
-		popup.add(seguidores = new JMenuItem("Mostrar seguidores", null));
+		popup.add(seguidores = new JMenuItem("Show followers", null));
 		seguidores.setHorizontalTextPosition(JMenuItem.RIGHT);
 
-		popup.add(seguidos = new JMenuItem("Mostrar seguidos", null));
+		popup.add(seguidos = new JMenuItem("Show followed", null));
 		seguidos.setHorizontalTextPosition(JMenuItem.RIGHT);
 
-		popup.add(listas = new JMenuItem("Mostrar listas de reproduccion", null));
+		popup.add(listas = new JMenuItem("Show playlists", null));
 		listas.setHorizontalTextPosition(JMenuItem.RIGHT);
 
 		popup.addSeparator();
-		popup.add(eliminar = new JMenuItem("Eliminar "));
+		popup.add(eliminar = new JMenuItem("Delete"));
 
 
 		popup.setLabel("Justification");
@@ -356,7 +591,7 @@ public class MainWindow extends JFrame{
 
 			public void mousePressed(MouseEvent e) {
 				if ( SwingUtilities.isRightMouseButton(e)) {
-					JOptionPane.showMessageDialog(null, "Yoink!");
+					//JOptionPane.showMessageDialog(null, "Yoink!");
 					popup.setVisible(false);
 				} else {
 					if ( SwingUtilities.isLeftMouseButton(e)) {
@@ -412,6 +647,13 @@ public class MainWindow extends JFrame{
 
 
 	//==========================
+	/**
+	 * Configura l'aspecte dels botons
+	 * @param boton Botó
+	 * @param imatge1 Primera imatge: Icon
+	 * @param imatge2 Segona imatge: Rollover Icon
+	 * @param imatge3 Tercera imatge: Pressed Icon
+	 */
 	public void ConfigurationButton(JButton boton,ImageIcon imatge1,ImageIcon imatge2,ImageIcon imatge3){
 
 		//Definim que l'icon tindrï¿½ una imatge assignada per defecte
@@ -434,6 +676,11 @@ public class MainWindow extends JFrame{
 	}
 
 
+	/**
+	 * Controla l'estat del reproductor de la pantalla principal
+	 * @throws Exception
+	 * @see CustomPlayer
+	 */
 
 	public void goMP3(String songLink) throws Exception{
 
@@ -473,11 +720,11 @@ public class MainWindow extends JFrame{
 				state = customPlayer.playPlayer(jSlider);
 
 			}catch (Exception ex) {
-				System.out.println("Error: " + ex.getMessage());
+				//System.out.println("Error: " + ex.getMessage());
 			}
 			stateSong = true;
 			ConfigurationButton(jbPlay, iiPause1, iiPause2, iiPause3);
-			jlSongName.setText(customPlayer.getName());
+			//jlSongName.setText(customPlayer.getName());
 
 		}
 
@@ -499,7 +746,7 @@ public class MainWindow extends JFrame{
 			jlSongState.setText("           --> CLICK PLAY TO LISTEN THE SONG <--");
 		}
 
-		jlSongName.setText(customPlayer.getName());
+		//jlSongName.setText(customPlayer.getName());
 
 	}
 
@@ -513,11 +760,11 @@ public class MainWindow extends JFrame{
 			state = customPlayer.playPlayer(jSlider);
 
 		}catch (Exception ex) {
-			System.out.println("Error: " + ex.getMessage());
+			//System.out.println("Error: " + ex.getMessage());
 		}
 		stateSong = true;
 		ConfigurationButton(jbPlay, iiPause1, iiPause2, iiPause3);
-		jlSongName.setText(customPlayer.getName());
+		//jlSongName.setText(customPlayer.getName());
 
 		if(customPlayer.getStatus() == 0){
 
@@ -538,6 +785,14 @@ public class MainWindow extends JFrame{
 
 
 	//===============================
+	/**
+	 * Controlador d'input de la pantalla principal de l'aplicació
+	 * @param controller Primer listener d'input de la pantalla principal
+	 * @param controller2 Segon listener de la pantalla principal
+	 * @see ActionListener
+	 * @see ButtonsController
+	 * @see PopUpController
+	 */
 
 	public void registerController(ButtonsController controller, PopUpController controller2) {
 		jbAdd.addActionListener(controller);
@@ -572,7 +827,9 @@ public class MainWindow extends JFrame{
 		//============================
 
 	}
-
+	/**
+	 * Avisa a l'usuari de que pot fer click a <i style="color:indigo">PLAY</i> per reproduir la cançó.
+	 */
 	public void changeButtonToPlay(){
 
 		if( getState() == 2){
@@ -584,7 +841,10 @@ public class MainWindow extends JFrame{
 		}
 	}
 
-
+	/**
+	 * Actualitza els valors de temps de reproducció del reproductor
+	 * @see CustomPlayer
+	 */
 
 	public void refreshTime() {
 
@@ -619,11 +879,27 @@ public class MainWindow extends JFrame{
 			ConfigurationButton(jbPlay, iiPlay1, iiPlay2, iiPlay3);
 		}
 
+		if (customPlayer.isEnded() && jrbRepeatOne.isSelected()) {
+			try {
+				changeMP3(customPlayer.getSongPath());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
+		}
+		if (customPlayer.isEnded() && jrbRepeatList.isSelected()) {
+			jbNext.doClick();
+		}
+
 		//jlTime.setText(String.valueOf(player.getMinutes() + ":" + player.getSeconds()));
 	}
 	///==================
 
-
+	/**
+	 * Actualitza la llista d'usuaris
+	 * @param list
+	 * @see User
+	 */
 	public void refreshUsers(LinkedList <Object[]> list){
 		while (tableModelUser.getRowCount()!= 0){
 			tableModelUser.removeRow(0);
@@ -634,7 +910,11 @@ public class MainWindow extends JFrame{
 	}
 
 
-
+	/**
+	 * Actualitza la llista de cançons
+	 * @param list
+	 * @see Song
+	 */
 	public void refreshSongs(LinkedList<Object[]> list) {
 		while (tableModelMusic.getRowCount()!= 0){
 			tableModelMusic.removeRow(0);
@@ -643,16 +923,25 @@ public class MainWindow extends JFrame{
 			tableModelMusic.addRow(list.get(i));
 		}
 	}
-
+	/**
+	 * Retorna l'ID d'un usuari
+	 * @return
+	 * @see User
+	 */
 	public int getId (){
 		return id;
 	}
-
+	/**
+	 * Retorna l'ID d'una cançó
+	 * @return
+	 * @see Song
+	 */
 	public int getIdSong(){
 		return idSong;
 	}
 
 	public String getSongPath(int index) {
+		jlSongName.setText((String)tableModelMusic.getValueAt(index, 4) +" - "+ (String)tableModelMusic.getValueAt(index, 1));
 		return (String)tableModelMusic.getValueAt(index, 5);
 	}
 

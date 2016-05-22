@@ -18,7 +18,7 @@ public class Server extends Thread {
 	private DataInputStream dataIn;
 	private DataOutputStream dataOut;
 	private NetworkController controller;
-	
+
 	public Server(NetworkController controller) {
 		try {
 			sServer = new ServerSocket(50000);
@@ -29,16 +29,16 @@ public class Server extends Thread {
 			System.exit(MIN_PRIORITY);
 		}
 	}
-	
+
 	public void startServer() {
 		isOn = true;
 		super.start();
 	}
-	
+
 	public void stopServer() {
 		isOn = false;
 	}
-	
+
 	public void run() {
 		String s;
 		while (isOn) {

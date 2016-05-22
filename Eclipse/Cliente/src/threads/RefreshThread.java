@@ -17,40 +17,52 @@ public class RefreshThread extends Thread {
 	 * @see ThreadController
 	 */
 	private ThreadController threadController;
+	
+	private NetworkController networkcontroller;
 	/**
 	 * Construeix el thread
 	 * @param threadController Controlador de thread
 	 */
-	public RefreshThread(ThreadController threadController) {
+	public RefreshThread(ThreadController threadController, NetworkController networkcontroller) {
 		super();
 		this.threadController = threadController;
+		this.networkcontroller = networkcontroller;
 	}
 
 
-	
+
 
 	/**
 	 * 
 	 */
 	public void run() {
+
+		int i=0;
 		while (true) {
 			try {
-				Thread.sleep(3000);
+				Thread.sleep(1000);
 				switch(threadController.getmainWindow().getMode()){
 				case "all":
 					threadController.refreshSongList();
-				break;
+					break;
 				default:
 					threadController.refreshSongListPlaylist();
-				break;
+					break;
 				}
 				threadController.refresUserPlaylistList();
 				threadController.refresPublicPlaylistList();
+				/*
+				if (threadController.getmainWindow().getInReproduccion() == 1){
+					
+					threadController.getmainWindow().setInReproduccion(0); 	
+					networkcontroller.SongReproduction(threadController.getmainWindow().getIdSong());
+				}
+				*/
 				
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();
 			}
-			
+
 		}
 
 	}

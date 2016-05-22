@@ -10,7 +10,7 @@ public class User {
 	private String password;
 	private LinkedList<Playlist> playlist; 
 	private LinkedList<User> following;
-	
+
 	public User(int id, String username, String registre, String lastAccess, String password, LinkedList<Playlist> playlist, LinkedList<User> following){
 		this.id = id;
 		this.username = username; 
@@ -20,8 +20,8 @@ public class User {
 		this.playlist = playlist;
 		this.following = following;
 	}
-	
-	
+
+
 
 	public User(int id, String username) {
 		super();
@@ -30,7 +30,7 @@ public class User {
 		this.playlist = new LinkedList<Playlist>();
 		this.following = new LinkedList<User>();
 	}
-	
+
 	public User(int id, String username, String registre, String lastAccess, String password) {
 		super();
 		this.id = id;
@@ -75,11 +75,11 @@ public class User {
 	public void setFollowing(LinkedList<User> following) {
 		this.following = following;
 	}
-	
+
 	public void addPlaylist(Playlist playlist) {
 		this.playlist.add(playlist);
 	}
-	
+
 	public void addFollowing(User following) {
 		this.following.add(following);
 	}
@@ -119,8 +119,8 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
-	
+
+
+
 }
 

@@ -20,7 +20,7 @@ import controller.NetworkController;
  *
  */
 public class FileServer extends Thread {
-	
+
 	private boolean isOn;
 	private ServerSocket sServer;
 	private Socket sClient;
@@ -28,7 +28,7 @@ public class FileServer extends Thread {
 	private BufferedInputStream bis;
 	private OutputStream os;
 	private String filePath;
-	
+
 	public FileServer() {
 		try {
 			sServer = new ServerSocket(50001);
@@ -38,36 +38,36 @@ public class FileServer extends Thread {
 			System.exit(MIN_PRIORITY);
 		}
 	}
-	
+
 	public void startServer() {
 		isOn = true;
 		super.start();
 	}
-	
+
 	public void stopServer() {
 		isOn = false;
 	}
-	
+
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
 	}
-	
-	
+
+
 	public void run() {
 
 		while (isOn) {
 			try {
 				//connexió entrant
 				sClient = sServer.accept();
-				
+
 				//eines
 				os = sClient.getOutputStream();
 				fis = new FileInputStream(new File(filePath));
 				bis = new BufferedInputStream(fis);
-				
+
 				//preparem buffer
 				byte[] buffer = new byte[8192];
-				
+
 				//ho "transforma" a bytes
 				int bytesRead = bis.read(buffer,0,buffer.length);
 				while (bytesRead > -1) {
@@ -75,30 +75,30 @@ public class FileServer extends Thread {
 					os.write(buffer, 0, bytesRead);
 					bytesRead = bis.read(buffer,0,buffer.length);
 				}
-				
+
 				//buida al final
 				os.flush();
-				
+
 
 			} catch (IOException e) {
 				e.printStackTrace();
 			}finally{
-					try {
-						//bis.close();
-						//os.close();
-						sClient.close();
-						//sServer.close();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+				try {
+					//bis.close();
+					//os.close();
+					sClient.close();
+					//sServer.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 			}
 		}	
 	}
-	
-	
-	
+
+
+
 	/*public void listen() throws IOException{
 		FileInputStream fis = null;
 		BufferedInputStream bis = null;
@@ -113,8 +113,8 @@ public class FileServer extends Thread {
 			if(ss != null) ss.close();
 		}
 	}*/
-	
-	
+
+
 	public void send()throws IOException{
 		FileInputStream fis = null;
 		BufferedInputStream bis = null;
@@ -126,9 +126,9 @@ public class FileServer extends Thread {
 			while(true){
 				//Waiting...
 				try{
-					System.out.println("Hemos entrado en SEND");
+					//System.out.println("Hemos entrado en SEND");
 					s = ss.accept();
-					System.out.println("Cliente aceptado... enviando");
+					//System.out.println("Cliente aceptado... enviando");
 					//Accepted connection
 					//Send file
 					File fileToSend = new File(filePath);
@@ -140,7 +140,7 @@ public class FileServer extends Thread {
 					//Enviando...
 					os.write(buffer, 0, buffer.length);
 					os.flush();
-					System.out.println("Enviado!");
+					//System.out.println("Enviado!");
 					//Enviado
 				}
 				finally{

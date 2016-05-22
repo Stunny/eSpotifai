@@ -10,11 +10,11 @@ import main.Main;
 import model.Song;
 
 public class NetworkController {
-	
+
 	private DDBBConnection ddbbconnection;
-	
-	
-	
+
+
+
 	public NetworkController(DDBBConnection ddbbconnection) {
 		super();
 		this.ddbbconnection = ddbbconnection;
@@ -23,26 +23,26 @@ public class NetworkController {
 
 
 	public String manageInput (String request) {
-		
+
 		GsonBuilder gsonBuilder = new GsonBuilder();
-	    Gson gson = gsonBuilder.create();
-	    String args[] = null;
-		
-	    String s[] = request.split(":");
-	    
-	    String response = "Invalid request";
-	    
-	    try {
-		switch (s[0]) {
-		
-		case "validateLogin" :
-			args = s[1].split("/");
-			response = ddbbconnection.userConnection(args[0], args[1]);
-			break;
-		case "addUser":
-			args = s[1].split("/");
-			response = ddbbconnection.addUser(args[0], args[1]);
-			/*if (args[0].equals("username")) response = "Username already exists";
+		Gson gson = gsonBuilder.create();
+		String args[] = null;
+
+		String s[] = request.split(":");
+
+		String response = "Invalid request";
+
+		try {
+			switch (s[0]) {
+
+			case "validateLogin" :
+				args = s[1].split("/");
+				response = ddbbconnection.userConnection(args[0], args[1]);
+				break;
+			case "addUser":
+				args = s[1].split("/");
+				response = ddbbconnection.addUser(args[0], args[1]);
+				/*if (args[0].equals("username")) response = "Username already exists";
 			else {
 				response = "Added";
 			}*/
@@ -104,22 +104,22 @@ public class NetworkController {
 					Main.setFilePath(song.getLocation());
 				}
 			}
-			
-			break;
+		case "Reproduccion":
+			response  = ddbbconnection.reproducciones(Integer.parseInt(s[1]));
+		break;
 		default: 
 			response = "Invalid request";
 		break;
-		
+
 		}
-		
-	    } catch (Exception e) {
-	    	response = "Invalid request";
-	    	System.out.println(e);
-	    }
-		
-		return response;
+
+	} catch (Exception e) {
+		response = "Invalid request";
+		//System.out.println(e);
 	}
-	
-	
+
+	return response;
+	}
+
 
 }

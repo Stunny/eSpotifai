@@ -7,8 +7,6 @@ import javax.swing.JOptionPane;
 
 import database.DDBBConnection;
 import view.AddMusicWindow;
-import view.DeletedSongWindow;
-import view.DeletedWindow;
 import view.FollowedsWindow;
 import view.FollowersWindow;
 import view.MainWindow;
@@ -57,22 +55,22 @@ public class PopUpController implements ActionListener{
 			}
 		}
 		else if (event.getActionCommand().equals("MainWindow.eliminar2ActionCommand")){
-			
+
 			int reply = JOptionPane.showConfirmDialog(null, "Seguro que quieres eliminar la cancion?", "", JOptionPane.YES_NO_OPTION);
 			if (reply == JOptionPane.YES_OPTION) {
-			if(ddbbConnection.deleteSong(main.getIdSong()).equals("Deleted")){
-				/*DeletedSongWindow deletedsongwindow = new DeletedSongWindow();
+				if(ddbbConnection.deleteSong(main.getIdSong()).equals("Deleted")){
+					/*DeletedSongWindow deletedsongwindow = new DeletedSongWindow();
 				deletedsongwindow.setVisible(true);*/
-				JOptionPane.showMessageDialog(null, "Cancion eliminada correctamente.");
-			} else {
-				JOptionPane.showMessageDialog(null, "No se ha podido eliminar la cancion.");
-			}
+					JOptionPane.showMessageDialog(null, "Cancion eliminada correctamente.");
+				} else {
+					JOptionPane.showMessageDialog(null, "No se ha podido eliminar la cancion.");
+				}
 			} else {
 				JOptionPane.showMessageDialog(null, "No se ha eliminado la cancion.");
 			}
 		}
-		
-		
+
+
 
 	}
 }

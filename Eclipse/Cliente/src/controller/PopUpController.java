@@ -46,19 +46,19 @@ public class PopUpController implements ActionListener{
 
 	private NetworkController networkcontroller;
 	private ModifyNameList modifynamelist;
-		
+
 	public PopUpController(MainWindow mainwindow, AddList addlist, Vots vots, SelectedUserWindow selecteduserwindow,PlaylistSearchUser playlistsearchuser, UserWindow userwindow, NetworkController networkcontroller, ModifyNameList modifynamelist ){
 
-	/**
-	 * 	Construeix un nou controlador de menu emergent
-	 * @param mainwindow Pantalla principal de l'aplicaci�
-	 * @param addlist Menu emergent d'afegir llista
-	 * @param vots Menu emergent per puntuar una can��
-	 * @see MainWindow
-	 * @see AddList
-	 * @see Vots
-	 */
-	
+		/**
+		 * 	Construeix un nou controlador de menu emergent
+		 * @param mainwindow Pantalla principal de l'aplicaci�
+		 * @param addlist Menu emergent d'afegir llista
+		 * @param vots Menu emergent per puntuar una can��
+		 * @see MainWindow
+		 * @see AddList
+		 * @see Vots
+		 */
+
 		this.mainwindow = mainwindow;
 		this.addlist = addlist;
 		this.vots = vots;
@@ -72,9 +72,9 @@ public class PopUpController implements ActionListener{
 	 * 
 	 */
 	public void actionPerformed(ActionEvent event) {
-		
+
 		if (event.getActionCommand().equals("MainWindow.reproducirActionCommand")) {
-			
+
 		}
 		if (event.getActionCommand().equals("MainWindow.anadirActionCommand")){
 			addlist.refreshPlaylits(AccessLogic.getPlaylists(mainwindow.getUser(), networkcontroller.getPlaylists()));
@@ -90,28 +90,28 @@ public class PopUpController implements ActionListener{
 			}else{
 				JOptionPane.showMessageDialog(null, "No se ha podido eliminar la canción.");
 			}
-			 
-			
-			
+
+
+
 		}
-		
+
 		if(event.getActionCommand().equals("MainWindow.visualitzarActionCommand")){
 			mainwindow.setMode(mainwindow.getId());
 		}
-		
+
 		if(event.getActionCommand().equals("MainWindow.visualitzarPlaylitsActionCommand")){
 			mainwindow.setMode(mainwindow.getId());
 		}
-		
+
 		if(event.getActionCommand().equals("MainWindow.votActionCommand")){
 			vots.setVisible(true);
 		}
-		
-		
-		
-	
+
+
+
+
 		//--------- ACCION DE VOTAR ------------------
-		
+
 		if(event.getActionCommand().equals("Vots.jrb1")){
 			JOptionPane.showMessageDialog(null, "puta");
 		}
@@ -127,7 +127,7 @@ public class PopUpController implements ActionListener{
 		if(event.getActionCommand().equals("Vots.jrb5")){
 			JOptionPane.showMessageDialog(null, "puta5");
 		}
-		
+
 		//-------------------------------------------
 		if(event.getActionCommand().equals("AddList.insertActionCommand")){
 			String respuesta = networkcontroller.AddSong(mainwindow.getIdMusic(),addlist.getIdPlaylist());
@@ -145,12 +145,12 @@ public class PopUpController implements ActionListener{
 			playlistsearchuser.setVisible(true);
 			userwindow.setVisible(false);
 		}
-		
+
 		if(event.getActionCommand().equals("PlaylistSearchUser.beforeActionCommand")){
 			userwindow.setVisible(true);
 			playlistsearchuser.setVisible(false);
 		}
-		
+
 	}
 
 }

@@ -7,7 +7,7 @@ public class Playlist {
 	private String name; 
 	private String username;
 	private ArrayList<Song> songs;
-	
+
 	public Playlist(int id, String name, String username, ArrayList<Song> songs) {
 		super();
 		this.id = id;
@@ -55,11 +55,11 @@ public class Playlist {
 	public void setSongs(ArrayList<Song> songs) {
 		this.songs = songs;
 	} 
-	
+
 	public void addSong(Song song) {
 		this.songs.add(song);
 	}
-	
-	
-	
+
+
+
 }

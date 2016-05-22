@@ -17,6 +17,7 @@ import java.nio.file.Paths;
 import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -25,6 +26,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.JTable;
@@ -36,6 +38,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controller.PopUpController;
+import main.Main;
 import model.CustomPlayer;
 import model.Playlist;
 import model.Song;
@@ -53,6 +56,11 @@ public class MainWindow extends JFrame {
 	 * @see JTextArea
 	 */
 	private JTextArea jtaLists; 
+	/**
+	 * Area de text on es mostren les <i>playlists</i> seguides per l'usuari.
+	 * @see JTextArea
+	 */
+	private JTextArea jtaListsfollowing;
 	/**
 	 * Bot� per a afegir una nova llista.
 	 * @see JButton
@@ -89,6 +97,9 @@ public class MainWindow extends JFrame {
 	public JPopupMenu popupPlaylist1;
 	
 	private int idMusic;
+	
+	private int inReproduccion = 0;
+
 	private JTable jpUsers;
 	private int id1 = 0;
 	private int id2 = 0;
@@ -96,7 +107,7 @@ public class MainWindow extends JFrame {
 	private String name = "";
 
 	private String id = "";
-	
+
 
 	DefaultTableModel tableMusic;
 	DefaultTableModel tablePlaylist;
@@ -106,7 +117,9 @@ public class MainWindow extends JFrame {
 
 	private JMenuItem reproducir;
 	private JMenuItem anadir;
+	private JMenuItem eliminar;
 	private JMenuItem visualitzar;
+	private JMenuItem delate;
 	private JMenuItem visualitzarPlaylist;
 	private JMenuItem delatePlaylist;
 	private JMenuItem vot;
@@ -119,6 +132,8 @@ public class MainWindow extends JFrame {
 	private JPanel jpSong;
 	private JSlider jSlider;
 	private GridLayout glSong;
+	private JRadioButton jrbRepeatOne;
+	private JRadioButton jrbRepeatList;
 
 
 	private JButton jbPlay;
@@ -141,14 +156,12 @@ public class MainWindow extends JFrame {
 	private ImageIcon iiPrevious2;
 	private ImageIcon iiPrevious3;
 
+	private ListSelectionModel modelo;
 	private ListSelectionModel modelo1;
 	private ListSelectionModel modelo2;
-
-	
 	private String mode= "all";
 
-
-
+	private int idSong; 
 	//DefaultTableModel tableModelLists;
 
 
@@ -158,16 +171,6 @@ public class MainWindow extends JFrame {
 	//=====
 
 	//=============
-		//private JLabel jlTemporalSong;
-		private JLabel jlTime;
-		//private JLabel SongState;
-		private JLabel jlSongName;
-		private JLabel jlSongState;
-		private String state;
-		private boolean stateSong;
-
-		/**
-=======
 	//private JLabel jlTemporalSong;
 	private JLabel jlTime;
 	//private JLabel SongState;
@@ -320,32 +323,27 @@ public class MainWindow extends JFrame {
 		popupPlaylist1.setLabel("Justificacion");
 		popupPlaylist1.setBorder(new BevelBorder(BevelBorder.RAISED));
 		jtLists.addMouseListener(new MouseAdapter(){
-			  public void mousePressed(MouseEvent e) {
-				  if ( SwingUtilities.isLeftMouseButton(e)) {
-		            	popupPlaylist1.setVisible(false);
+			public void mousePressed(MouseEvent e) {
+				if ( SwingUtilities.isLeftMouseButton(e)) {
+					popupPlaylist1.setVisible(false);
 
-		            	
-		            } else {
-		                 if ( SwingUtilities.isRightMouseButton(e)) {
-		                    Point p = e.getPoint();
-		                    int rowNumber = jtLists.rowAtPoint(p);
-		                    modelo1 = jtLists.getSelectionModel();
 
-		                    modelo1.setSelectionInterval( rowNumber, rowNumber );
-		                    //modelo.clearSelection();
-		                    //modelo2.clearSelection();
-		                    
-		            		id = String.valueOf( jtLists.getValueAt(rowNumber, 0));
-		            		name = String.valueOf( jtLists.getValueAt(rowNumber, 1));
+				} else {
+					if ( SwingUtilities.isRightMouseButton(e)) {
+						Point p = e.getPoint();
+						int rowNumber = jtLists.rowAtPoint(p);
+						modelo1 = jtLists.getSelectionModel();
+						modelo1.setSelectionInterval( rowNumber, rowNumber );
+						//modelo.clearSelection();
+						//modelo2.clearSelection();
+						id = String.valueOf( jtLists.getValueAt(rowNumber, 0));
+						popupPlaylist1.show(jpLists,  e.getX(), e.getY());
 
-		                    
+					}
+				}
+			}
+		});
 
-		            		popupPlaylist1.show(jpLists,  e.getX(), e.getY());
-		            		 
-		                }
-		            }
-		        }
-		    });
 		jtLists.getTableHeader().setReorderingAllowed(false);
 		jtLists.setModel(tableModelLists);
 		jtLists.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -406,7 +404,6 @@ public class MainWindow extends JFrame {
 		anadir.setHorizontalTextPosition(JMenuItem.RIGHT);
 		popup.add(vot = new JMenuItem("Votar per la canço"));
 		vot.setHorizontalTextPosition(JMenuItem.RIGHT);
-
 
 		//popup.add(reproducir = new JMenuItem("Eliminar Canço", new ImageIcon("1.gif")));
 		//reproducir.setHorizontalTextPosition(JMenuItem.RIGHT);
@@ -513,7 +510,7 @@ public class MainWindow extends JFrame {
 
 		//Creem el panell que anir� al BorderLayout de NORTH, que contindr� dos JLabels amb l'etiqueta de la can�o i l'estat d'aquesta
 		jpSong = new JPanel();
-		glSong = new GridLayout(1,2);
+		glSong = new GridLayout(1,3);
 		jpSong.setLayout(glSong);
 
 		//Creem etiqueta de la can�� que est� sonant y de l'estat d'aquesta
@@ -530,6 +527,16 @@ public class MainWindow extends JFrame {
 		jlSongState.setText(" ");
 		jlSongState.setHorizontalAlignment(JTextField.LEFT);
 		jpSong.add(jlSongState);
+
+		JPanel jpRadioButtons = new JPanel();
+		jrbRepeatList = new JRadioButton("Global repeat", true);
+		jrbRepeatOne = new JRadioButton("Single repeat", false);
+		ButtonGroup buttonGroup = new ButtonGroup();
+		buttonGroup.add(jrbRepeatList);
+		buttonGroup.add(jrbRepeatOne);
+		jpRadioButtons.add(jrbRepeatList);
+		jpRadioButtons.add(jrbRepeatOne);
+		jpSong.add(jpRadioButtons);
 
 		jpPlayer.add(jpSong, BorderLayout.NORTH);
 		jpPlayer.add(jpPlayerButtons, BorderLayout.WEST);
@@ -551,11 +558,13 @@ public class MainWindow extends JFrame {
 			@Override
 			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
 				try {
+					Main.wantToLeave = true;
+					customPlayer.stopPlayer();
 					Files.deleteIfExists(Paths.get("Resources/song.mp3"));
-				} catch (IOException e) {
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					System.out.println(e);
-					System.out.println("yoink");
+					//System.out.println(e);
+					//System.out.println("yoink");
 				}
 				System.exit(0);
 			}
@@ -629,6 +638,14 @@ public class MainWindow extends JFrame {
 	}
 
 
+	public void stopPlayer() throws Exception {
+		customPlayer.stopPlayer();
+	}
+
+	public void pausePlayer() throws Exception {
+		customPlayer.pause();
+	}
+
 
 	public void refreshMusic(LinkedList<Object[]> list){
 		while (tableMusic.getRowCount()!= 0){
@@ -686,6 +703,7 @@ public class MainWindow extends JFrame {
 
 			customPlayer.resume();
 			ConfigurationButton(jbPlay, iiPause1, iiPause2, iiPause3);
+			stateSong = true;
 
 			//Si la can�o s'est� reproduint pula pausa PLAY
 		}else if (customPlayer.getStatus() == 0){
@@ -694,6 +712,7 @@ public class MainWindow extends JFrame {
 
 			customPlayer.pause();
 			ConfigurationButton(jbPlay, iiPlay1, iiPlay2, iiPlay3);
+			stateSong = false;
 		}else {//if (player.getStatus() == 2 || (player.getStatus() != 0 && player.getStatus() != 1)){
 			//Si no ha arrancat encara la can�o obre el fitxer mp3
 			//}else{
@@ -702,6 +721,7 @@ public class MainWindow extends JFrame {
 				//Creo un reproductor
 				//player = new Player();
 
+				state = "";
 				//String songLink = "C:/Users/Marc/Downloads/Quentin Tarantino Soundtracks Discography - HTD 2015/Pulp Fiction (Collector's Edition) (2009) - Soundtrack/04. Let's Stay Together.mp3";
 				//String songLink = "C:/Users/Marc/Downloads/Quentin Tarantino Soundtracks Discography - HTD 2015/Pulp Fiction (Collector's Edition) (2009) - Soundtrack/14. Personality Goes a Long Way.mp3";
 				//String songLink = "C:/Users/Marc/Downloads/grillos05_mp3.mp3";
@@ -710,16 +730,14 @@ public class MainWindow extends JFrame {
 
 				customPlayer.abrirMp3("Resources/song.mp3");
 
-				//customPlayer.abrirMp3(songLink);
-				customPlayer.playPlayer(jSlider);
 				state = customPlayer.playPlayer(jSlider);
 
-
 			}catch (Exception ex) {
-				System.out.println("Error: " + ex.getMessage());
+				//System.out.println("Error: " + ex.getMessage());
 			}
+			stateSong = true;
 			ConfigurationButton(jbPlay, iiPause1, iiPause2, iiPause3);
-			jlSongName.setText(customPlayer.getName());
+			//jlSongName.setText(customPlayer.getName());
 
 		}
 
@@ -741,7 +759,7 @@ public class MainWindow extends JFrame {
 			jlSongState.setText("           --> CLICK PLAY TO LISTEN THE SONG <--");
 		}
 
-		jlSongName.setText(customPlayer.getName());
+		//jlSongName.setText(customPlayer.getName());
 	}
 
 
@@ -781,12 +799,26 @@ public class MainWindow extends JFrame {
 			auxSecondsString = "0" + String.valueOf(auxSeconds);
 		}
 
+		String finalSting = auxMinutesString + ":" + auxSecondsString;
+
 		jlTime.setText(auxMinutesString + ":" + auxSecondsString);
 
 		jSlider.setValue(customPlayer.getFrameSlider());
 		//changeButtonToPlay();
 		if (customPlayer.getStatus() == 2){
 			ConfigurationButton(jbPlay, iiPlay1, iiPlay2, iiPlay3);
+		}
+
+		if (customPlayer.isEnded() && jrbRepeatOne.isSelected() && !Main.wantToLeave) {
+			try {
+				changeMP3();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
+		}
+		if (customPlayer.isEnded() && jrbRepeatList.isSelected() && !Main.wantToLeave) {
+			jbNext.doClick();
 		}
 
 		//jlTime.setText(String.valueOf(player.getMinutes() + ":" + player.getSeconds()));
@@ -844,7 +876,7 @@ public class MainWindow extends JFrame {
 	public void setId(int id) {
 		this.id1 = id;
 	}
-	
+
 	public int getId2() {
 		return id2;
 	}
@@ -887,11 +919,11 @@ public class MainWindow extends JFrame {
 			state = customPlayer.playPlayer(jSlider);
 
 		}catch (Exception ex) {
-			System.out.println("Error: " + ex.getMessage());
+			//System.out.println("Error: " + ex.getMessage());
 		}
 		stateSong = true;
 		ConfigurationButton(jbPlay, iiPause1, iiPause2, iiPause3);
-		jlSongName.setText(customPlayer.getName());
+		//jlSongName.setText(customPlayer.getName());
 
 		if(customPlayer.getStatus() == 0){
 
@@ -918,18 +950,20 @@ public class MainWindow extends JFrame {
 
 	public void  setId(String id) {
 		this.id = id;
-
 	}
 
 	public void setUser (String user){
 		this.user = user;
 	}
-	
-	public String getUser(){
+
+	public String getUser () {
 		return user;
 	}
-	
+
 	public int getSongAtIndex(int index) {
+		inReproduccion = 1;
+		jlSongName.setText((String)tableMusic.getValueAt(index, 4) + " - " + (String)tableMusic.getValueAt(index, 1));
+		idSong = (int)tableMusic.getValueAt(index, 0);
 		return (int)tableMusic.getValueAt(index, 0);
 	}
 
@@ -943,21 +977,31 @@ public class MainWindow extends JFrame {
 	public void setUserId (int id){
 		this.idUser = id;
 	}
-	
+
 	public void setMode (String modo){
 		this.mode = modo;
 	}
 
-	
 	public String getMode (){
 		return mode;	}
 
 	public int getIdMusic() {
 		return idMusic;
 	}
-
+	
+	public int getIdSong(){
+		return idSong;
+	}
+	
 	public void setIdMusic(int idMusic) {
 		this.idMusic = idMusic;
 	}
 	
+	public int getInReproduccion(){
+		return inReproduccion;
+	}
+
+	public void setInReproduccion(int i) {
+		inReproduccion = i;
+	}
 }

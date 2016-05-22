@@ -35,6 +35,7 @@ public class CustomPlayer implements BasicPlayerListener {
 	private boolean run = false;
 	private String t = "";
 
+
 	private Long duration;
 
 	private Timer tiempo ;
@@ -69,6 +70,10 @@ public class CustomPlayer implements BasicPlayerListener {
 		return this.minutes;
 	}
 
+	public String getSongPath() {
+		return nameSong;
+	}
+
 	public String playPlayer(JSlider b) throws Exception{
 		t = "No existe ningun archivo...";
 
@@ -89,7 +94,6 @@ public class CustomPlayer implements BasicPlayerListener {
 
 
 	public void abrirMp3(String ruta) throws Exception{
-
 
 		//si se esta reproduciendo un mp3, se detiene
 		if(todoOk){
@@ -118,18 +122,18 @@ public class CustomPlayer implements BasicPlayerListener {
 		return finalName;
 
 	}
-	
-	
-	
+
+
+
 	public int getStatus(){
 		return player.getStatus();
 	}
-	
-	
-	
+
+
+
 
 	public void stopAnimation() {
-		
+
 		//System.out.println("INDICO al temps que es cancela");
 		tiempo.cancel();
 
@@ -137,7 +141,7 @@ public class CustomPlayer implements BasicPlayerListener {
 		task.cancel();            
 	}
 
-	
+
 	public void pause() throws Exception {
 		//this.nameSong = "/PAUSE";
 		player.pause();
@@ -186,18 +190,18 @@ public class CustomPlayer implements BasicPlayerListener {
 		}
 	}
 
-	
+
 	public int getFrameSlider(){
 		return frameSlider;
 	}
 	//Imaginad que queréis usarlo en un jSlider, solamente habría que fijar el máximo del
 	//slider en bytesLength y el valor actual en lo que diga progress
 
-	
+
 	/** * Necesario por implementar BasicPlayerListener. Según la documentación,
 	 * este método es llamado varias veces por segundo para informar del
 	 * progreso en la reproducción. */
-	
+
 	public void progress(int bytesread, long microseconds, byte[] pcmdata,  Map properties) {
 		float progressUpdate = (float)((bytesread* 1.0f)/ (bytesLength* 1.0f));
 		int progressNow = (int) (bytesLength*1.0f * progressUpdate);
@@ -226,7 +230,7 @@ public class CustomPlayer implements BasicPlayerListener {
 		//frameSlider = microdecondsSongActual * 100 / durationSong;
 		frameSlider = (int) (actualTime * 100 / songDuration);
 
-		
+
 		if( progressUpdate == 1.0){
 
 			try {

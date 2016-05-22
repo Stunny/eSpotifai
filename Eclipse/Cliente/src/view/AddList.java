@@ -63,7 +63,7 @@ public class AddList extends JFrame{
 	public AddList(){
 		/*JTabbedPane jtbTabs = new JTabbedPane();
 		JPanel panellists = new JPanel(); 
-		
+
 		lists = new JTextArea();
 		lists.setBackground(CustomColor.icon);
 		lists.setEditable(false);
@@ -72,9 +72,9 @@ public class AddList extends JFrame{
 		jspLists.setPreferredSize(new Dimension(250,250));
 		panellists.add(jspLists, BorderLayout.CENTER);
 		panellists.setBackground(CustomColor.secondary);
-		
+
 		jtbTabs.addTab("PlayList", panellists);*/
-		
+
 		JPanel jp = new JPanel();
 		jp.setLayout(new BorderLayout());
 		String[] columns = {"ID","Playlists"};
@@ -87,15 +87,14 @@ public class AddList extends JFrame{
 				return false;
 			}
 		};
-		
+
 		popup = new JPopupMenu();
 		popup.add(insert = new JMenuItem("AfeguirCanço"));
 		insert.setHorizontalTextPosition(JMenuItem.RIGHT);
 		popup.setLabel("Justificacion");
 		popup.setBorder(new BevelBorder(BevelBorder.RAISED));
-		
-		jtMusic.addMouseListener(new MouseAdapter(){
 
+		jtMusic.addMouseListener(new MouseAdapter(){
 			public void mousePressed(MouseEvent e) {
 		            if ( SwingUtilities.isLeftMouseButton(e)) {
 		            	popup.setVisible(false);
@@ -118,30 +117,30 @@ public class AddList extends JFrame{
 		jtMusic.getTableHeader().setReorderingAllowed(false);
 		
 		JScrollPane jspUsers = new JScrollPane(jtMusic);
-		
-	
-		 jp.addMouseListener(new MouseAdapter() {
-		        public void mousePressed(MouseEvent e) {
-		            if ( SwingUtilities.isLeftMouseButton(e)) {
-		            	popup.setVisible(false);
-		            }
-		        }
-		  });
-		 
-		  jp.add(jspUsers, BorderLayout.CENTER);
-		  
-		
-		
-		
+
+
+		jp.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if ( SwingUtilities.isLeftMouseButton(e)) {
+					popup.setVisible(false);
+				}
+			}
+		});
+
+		jp.add(jspUsers, BorderLayout.CENTER);
+
+
+
+
 		this.getContentPane().add(jp, BorderLayout.CENTER);
 		this.getContentPane().setBackground(CustomColor.background);
-		
+
 		this.setResizable(true);
 		this.setSize(300, 300);
 		this.setTitle("Añadir Canción en Playlist");
 		this.setLocationRelativeTo(null);
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 	}
 	/**
 	 * Controlador d'input a la pantalla d'afegir lista
@@ -152,7 +151,7 @@ public class AddList extends JFrame{
 	public void registerController1(PopUpController controller2){
 		insert.addActionListener(controller2);
 		insert.setActionCommand("AddList.insertActionCommand");
-		
+
 	}
 	
 	public void refreshPlaylits(LinkedList<Playlist> playlistList) {

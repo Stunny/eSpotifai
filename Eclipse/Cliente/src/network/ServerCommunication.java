@@ -33,7 +33,7 @@ public class ServerCommunication {
 	 * @see DataInputStream
 	 */
 	private DataInputStream dataIn;
-	
+
 	/**
 	 * Direcció IP del servidor.
 	 * @see Socket

@@ -38,7 +38,7 @@ import controller.PopUpController;
  *
  */
 public class SelectedUserWindow extends JFrame {
-	
+
 	/**
 	 * Area de text on es mostra 
 	 * @see JTextArea
@@ -69,18 +69,18 @@ public class SelectedUserWindow extends JFrame {
 	private ListSelectionModel modelo;
 	private int id = 0; 
 	DefaultTableModel tableModelFollowedLists;
-	
-	
-	
+
+
+
 	/**
 	 * Constructor de la ventana de l'usuari seleccionat.
 	 */
 	public SelectedUserWindow(){
-		
+
 		JPanel superior = new JPanel();
 		superior.setLayout(new GridLayout(2, 1));
-		
-		
+
+
 		JPanel jpHead = new JPanel(); 
 		jpHead.setLayout(new GridLayout(1, 2));
 		JLabel jlUsername = new JLabel("Nickname:");
@@ -94,13 +94,13 @@ public class SelectedUserWindow extends JFrame {
 		jpHead.add(jlUsername, BorderLayout.CENTER);
 		jpHead.add(jtfUsername, BorderLayout.CENTER);
 		TitledBorder titledBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Usuario", javax.swing.border.
-			      TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.
-			      TitledBorder.DEFAULT_POSITION, null, java.awt.Color.white);
-		
+				TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.
+				TitledBorder.DEFAULT_POSITION, null, java.awt.Color.white);
+
 		jpHead.setBorder(titledBorder);
 		jpHead.setBackground(CustomColor.background);
 		superior.add(jpHead);
-		
+
 		JPanel jpSecond = new JPanel(); 
 		jpSecond.setLayout(new GridLayout(2, 2));
 		JLabel jlfollowing = new JLabel("Estado");
@@ -118,27 +118,27 @@ public class SelectedUserWindow extends JFrame {
 		jpSecond.add(jbUnfollow, BorderLayout.CENTER);
 		jpSecond.setBackground(CustomColor.background);
 		TitledBorder titledBorder1 = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE),"Datos del Usuario", javax.swing.border.
-			      TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.
-			      TitledBorder.DEFAULT_POSITION, null, java.awt.Color.white);
-		
+				TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.
+				TitledBorder.DEFAULT_POSITION, null, java.awt.Color.white);
+
 		jpSecond.setBorder(titledBorder1);
 		//jpSecond.setBorder(BorderFactory.createTitledBorder("Datos del Usuario"));
-		
+
 		superior.add(jpSecond);
-		
-		
+
+
 		this.getContentPane().add(superior, BorderLayout.PAGE_START);
-		
+
 
 		JPanel jpListsFollowing = new JPanel(new BorderLayout());
 		jpListsFollowing.setBorder(BorderFactory.createTitledBorder("Playlist"));
-		
-		
+
+
 		String[] jtFollowedListsColumns = {"id","Playlist"};
 		Object[][] jtFollowedListsData = {{"1", "playlist"},{"2","playlist"}};
 		//se crea la tabla
 		JTable jtFollowedLists = new JTable(jtFollowedListsData, jtFollowedListsColumns);
-		
+
 		//se hace que los datos no sean editables
 		tableModelFollowedLists = new DefaultTableModel(jtFollowedListsData, jtFollowedListsColumns) {
 			@Override
@@ -146,37 +146,37 @@ public class SelectedUserWindow extends JFrame {
 				//all cells false
 				return false;
 			}
-			
+
 		}; 
-		
+
 		popupPlaylist = new JPopupMenu();
 		popupPlaylist.add(visualitzar = new JMenuItem("Visualitzar cançons"));
 		visualitzar.setHorizontalTextPosition(JMenuItem.RIGHT);
 		popupPlaylist.setLabel("Justificacion");
 		popupPlaylist.setBorder(new BevelBorder(BevelBorder.RAISED));
 		jtFollowedLists.addMouseListener(new MouseAdapter(){
-			  public void mousePressed(MouseEvent e) {
-		            if ( SwingUtilities.isLeftMouseButton(e)) {
-		            	popupPlaylist.setVisible(false);
-		            	System.out.println("hola guarra");
-		            	
-		            } else {
-		                 if ( SwingUtilities.isRightMouseButton(e)) {
-		                    Point p = e.getPoint();
-		                    int rowNumber = jtFollowedLists.rowAtPoint(p);
-		                    modelo = jtFollowedLists.getSelectionModel();
-		                    modelo.setSelectionInterval( rowNumber, rowNumber );
-		                   // modelo1.clearSelection();
-		                   // modelo2.clearSelection();
-		            		id = Integer.parseInt(String.valueOf( jtFollowedLists.getValueAt(rowNumber, 0)));
-		            		popupPlaylist.show(jpListsFollowing,  e.getX(), e.getY());
-		            		 
-		                }
-		            }
-		        }
-		    });
-		
-		
+			public void mousePressed(MouseEvent e) {
+				if ( SwingUtilities.isLeftMouseButton(e)) {
+					popupPlaylist.setVisible(false);
+					//System.out.println("hola guarra");
+
+				} else {
+					if ( SwingUtilities.isRightMouseButton(e)) {
+						Point p = e.getPoint();
+						int rowNumber = jtFollowedLists.rowAtPoint(p);
+						modelo = jtFollowedLists.getSelectionModel();
+						modelo.setSelectionInterval( rowNumber, rowNumber );
+						// modelo1.clearSelection();
+						// modelo2.clearSelection();
+						id = Integer.parseInt(String.valueOf( jtFollowedLists.getValueAt(rowNumber, 0)));
+						popupPlaylist.show(jpListsFollowing,  e.getX(), e.getY());
+
+					}
+				}
+			}
+		});
+
+
 		jtFollowedLists.getTableHeader().setReorderingAllowed(false);
 		jtFollowedLists.setModel(tableModelFollowedLists);
 		jtFollowedLists.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -188,24 +188,24 @@ public class SelectedUserWindow extends JFrame {
 		jpListsFollowing.add(jspListsFollowing, BorderLayout.CENTER);
 		jpListsFollowing.setBackground(CustomColor.secondary);
 		jpListsFollowing.setPreferredSize(new Dimension(0, 300));
-		
-	
-		
+
+
+
 		this.getContentPane().add(jpListsFollowing, BorderLayout.CENTER);
 		this.getContentPane().add(jpListsFollowing,BorderLayout.CENTER);
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
 		this.getContentPane().setBackground(CustomColor.background);
 
-		
+
 		this.setSize(300, 500);
 		this.setTitle("Perfil Usuario");
 		this.setLocationRelativeTo(null);
-		
+
 	}
 	/**
 	 * Controlador de la interacci� de interacci� d'usuari amb la finestra.
@@ -217,15 +217,15 @@ public class SelectedUserWindow extends JFrame {
 		jbUnfollow.addActionListener(controller);
 		jbFollow.setActionCommand("FOLLOW");
 		jbUnfollow.setActionCommand("UNFOLLOW");
-		
-	
+
+
 	}
-	
+
 	public void registerController1(PopUpController controller){
 		visualitzar.addActionListener(controller);
 		visualitzar.setActionCommand("SelectedUserWindow.visualitzarActionCommand");;
 	}
-	
+
 	public void refreshPlaylists(LinkedList<Playlist> playlistList) {
 		LinkedList<Object[]> list = new LinkedList<Object[]>();
 		for (int i = 0; i < playlistList.size(); i++){
@@ -238,10 +238,10 @@ public class SelectedUserWindow extends JFrame {
 		for (int i = 0; i<list.size(); i++){
 			tableModelFollowedLists.addRow(list.get(i));
 		}
-		
+
 	}
-	
-	
+
+
 	/**
 	 * Actualitza continuament la llista de usuaris seguits
 	 * @param string 
@@ -258,5 +258,5 @@ public class SelectedUserWindow extends JFrame {
 	public void refreshUser(String string){
 		jtfUsername.setText(string);
 	}
-	
+
 }

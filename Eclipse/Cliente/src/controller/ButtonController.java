@@ -23,7 +23,7 @@ import view.SelectedUserWindow;
 import view.UserWindow;
 /**
  * Controlador de botons de la vista
- * @author Elna Cabot, Miguel Dï¿½az, Marc Millï¿½n, Alejandro Vogel, Marta Zapatero
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
  * @version 1.0
  * @see ActionListener
  * @see view.loginWindow
@@ -72,13 +72,13 @@ public class ButtonController implements ActionListener {
 	private NetworkController networkcontroller;
 	private UserWindow userwindow;
 
+
 	private int songIndex = 0;
-	
+
 	private NewListDialog NewListDialogDialog;
 
 	/**
 	 * Construeix un controlador de botons.
-	 * @param newListDialogDialog2 
 	 * @param loginWindow
 	 * @param registerWindow
 	 * @param mainWindow
@@ -92,9 +92,7 @@ public class ButtonController implements ActionListener {
 	 * @see controller.NetworkController
 	 * 
 	 */
-	
 	public ButtonController(NewListDialog NewListDialogDialog, LoginWindow loginWindow, RegisterWindow registerWindow, MainWindow mainWindow, SelectedUserWindow selecteduserwindow, NetworkController networkcontroller, UserWindow userwindow){
-
 		this.NewListDialogDialog = NewListDialogDialog;
 		this.loginWindow = loginWindow;
 		this.mainWindow = mainWindow;
@@ -122,10 +120,11 @@ public class ButtonController implements ActionListener {
 						loginWindow.setVisible(false);
 
 						ThreadController threadController = new ThreadController(mainWindow);
-						Main.refreshThread = new RefreshThread(threadController);
+						Main.refreshThread = new RefreshThread(threadController, networkcontroller);
 						Main.refreshThread.start();
 						Main.timeThread = new TimeThread(threadController);
 						Main.timeThread.start();
+						Main.wantToLeave = false;
 
 						User = loginWindow.getTypedUsername();
 						mainWindow.setUserId(AccessLogic.getId(User, networkcontroller));
@@ -149,8 +148,8 @@ public class ButtonController implements ActionListener {
 			loginWindow.setVisible(true);
 			registerWindow.setVisible(false);
 		}
-		
-		
+
+
 		//New
 		if(event.getActionCommand().equals("NewListDialog.createActionCommand")){
 			if(networkcontroller.addPlaylist(NewListDialogDialog.getTypedName(), mainWindow.getUserId(), NewListDialogDialog.getPublic()).equals("Add")){
@@ -166,8 +165,8 @@ public class ButtonController implements ActionListener {
 			NewListDialogDialog.setTypedName("");		
 			NewListDialogDialog.setVisible(false);
 		}
-		
-		
+
+
 		//PANTALLA registerWindow
 		if(event.getActionCommand().equals("RegisterWindow.registerActionCommand")){
 
@@ -182,10 +181,11 @@ public class ButtonController implements ActionListener {
 						registerWindow.setVisible(false);
 						User = registerWindow.getTypedUsername();
 						ThreadController threadController = new ThreadController(mainWindow);
-						Main.refreshThread = new RefreshThread(threadController);
+						Main.refreshThread = new RefreshThread(threadController,networkcontroller);
 						Main.refreshThread.start();
 						Main.timeThread = new TimeThread(threadController);
 						Main.timeThread.start();
+						Main.wantToLeave = false;
 					}
 				}
 			}
@@ -193,6 +193,8 @@ public class ButtonController implements ActionListener {
 
 		// MAINWINDOW ( NEW PLAYLIST)
 		if(event.getActionCommand().equals("MainWindow.addActionCommand")){
+
+			//NewListDialog NewListDialogDialog = new NewListDialog(); 
 			NewListDialogDialog.setVisible(true);
 		} 
 
@@ -214,10 +216,12 @@ public class ButtonController implements ActionListener {
 			Main.refreshThread.interrupt();
 			Main.timeThread.interrupt();
 			try {
+				Main.wantToLeave = true;
+				mainWindow.stopPlayer();
 				Files.deleteIfExists(Paths.get("Resources/song.mp3"));
-			} catch (IOException e) {
-				System.out.println(e);
-				System.out.println("yoink");
+			} catch (Exception e) {
+				//System.out.println(e);
+				//System.out.println("yoink");
 				// TODO Auto-generated catch block
 			}
 		}
@@ -254,7 +258,7 @@ public class ButtonController implements ActionListener {
 		//PANTALLA SEARCH USUARI
 		if(event.getActionCommand().equals("UNFOLLOW")){
 			String s  = "Unfollow";
-			int user= AccessLogic.getId(mainWindow.getUser(), networkcontroller);
+			int user = AccessLogic.getId(mainWindow.getUser(), networkcontroller);
 			int followed=AccessLogic.getId(mainWindow.getTypedSearch(), networkcontroller);
 			if(user == followed){
 				JOptionPane.showMessageDialog(null, "No puedes dejar seguirte a ti mismo", " ", JOptionPane.ERROR_MESSAGE);
@@ -290,16 +294,17 @@ public class ButtonController implements ActionListener {
 		//PANTALLA MAIN (NEXT SONG)
 		if(event.getActionCommand().equals("MainWindow.nextActionCommand")) {
 			//try {
-			System.out.println("next");
+			//System.out.println("next");
 			if (songIndex < mainWindow.getSongAmount() -1) songIndex++;
-			System.out.println(songIndex);
+			else songIndex = 0;
+			//System.out.println(songIndex);
 			String response = NetworkController.getSongFile(mainWindow.getSongAtIndex(songIndex));
 			if (response.equals("ok")) {
 				try {
 					mainWindow.changeMP3();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					//e.printStackTrace();
 				}
 			}
 
@@ -309,7 +314,7 @@ public class ButtonController implements ActionListener {
 		if(event.getActionCommand().equals("MainWindow.previousActionCommand")) {
 			//try {
 			if (songIndex > 0) songIndex--;
-			System.out.println(songIndex);
+			//System.out.println(songIndex);
 			String response = NetworkController.getSongFile(mainWindow.getSongAtIndex(songIndex));
 			if (response.equals("ok")) {
 				try {
@@ -320,6 +325,7 @@ public class ButtonController implements ActionListener {
 				}
 			}
 		}	
+
 	}
 
 }
