@@ -39,15 +39,31 @@ import model.User;
 import controller.ButtonsController;
 import controller.PopUpController;
 /**
- * 
+ * Pantalla principal de la versió de servidor de l'aplicació
  * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
  * @version 1.0
- * @see 
- *
+ * @see CustomPlayer
+ * @see JTabbedPane
+ * @see JScrollPane
+ * @see JPanel
+ * @see JLabel
+ * @see JTable
+ * @see JSlider
+ * @see JButton
+ * @see JPopupMenu
+ * @see JMenuItem
+ * @see GridLayout
+ * @see BorderLayout
+ * @see ImageIcon
+ * @see DefaultTableModel
+ * @see ButtonsController
+ * @see PopUpController
+ * @see ActionListener
  */
 public class MainWindow extends JFrame{
 	/**
-	 * 
+	 * Reproductor
+	 * @see CustomPlayer
 	 */
 	private CustomPlayer customPlayer;
 	/**
@@ -55,11 +71,15 @@ public class MainWindow extends JFrame{
 	 */
 	private JTabbedPane jtpTabs;
 	/**
-	 * 
+	 * Panell on es col·locarà la informació de cançons
+	 * @see Song
+	 * @see JPanel
 	 */
 	private JPanel jpMusic;
 	/**
-	 * 
+	 * Panell on es col·locarà la informació de usuaris
+	 * @see User
+	 * @see JPanel
 	 */
 	private JTable jpUsers;
 	/**
@@ -75,7 +95,9 @@ public class MainWindow extends JFrame{
 	 */
 	private JPanel jpPlayer; 
 	/**
-	 * 
+	 * Panell on es col·locaràn els botons del reproductor.
+	 * @see CustomPlayer
+	 * @see JPanel
 	 */
 	private JPanel jpPlayerButtons; 
 	/**
@@ -127,15 +149,18 @@ public class MainWindow extends JFrame{
 	
 	//=========================
 	/**
-	 * 
+	 * Botó <i style="color:indigo">PLAY</i> del reproductor.
+	 * @see JButton
 	 */
 	private JButton jbPlay;
-	/**
-	 * 
+	/**	
+	 * Botó <i style="color:indigo">PREVIOUS</i> del reproductor.
+	 * @see JButton
 	 */
 	private JButton jbPrevious;
 	/**
-	 * 
+	 * Botó <i style="color:indigo">NEXT</i> del reproductor.
+	 * @see JButton
 	 */
 	private JButton jbNext;
 	/**
@@ -271,6 +296,20 @@ public class MainWindow extends JFrame{
 
 	/**
 	 * Construeix la pantalla principal del servidor de l'aplicació
+	 * @see CustomPlayer
+	 * @see JTabbedPane
+	 * @see JScrollPane
+	 * @see JPanel
+	 * @see JLabel
+	 * @see JTable
+	 * @see JSlider
+	 * @see JButton
+	 * @see JPopupMenu
+	 * @see JMenuItem
+	 * @see GridLayout
+	 * @see BorderLayout
+	 * @see ImageIcon
+	 * @see DefaultTableModel
 	 */
 	public MainWindow() {
 
@@ -561,11 +600,11 @@ public class MainWindow extends JFrame{
 	
 	//==========================
 	/**
-	 * 
-	 * @param boton
-	 * @param imatge1
-	 * @param imatge2
-	 * @param imatge3
+	 * Configura l'aspecte dels botons
+	 * @param boton Botó
+	 * @param imatge1 Primera imatge: Icon
+	 * @param imatge2 Segona imatge: Rollover Icon
+	 * @param imatge3 Tercera imatge: Pressed Icon
 	 */
 	public void ConfigurationButton(JButton boton,ImageIcon imatge1,ImageIcon imatge2,ImageIcon imatge3){
 
@@ -590,8 +629,9 @@ public class MainWindow extends JFrame{
 
 	
 	/**
-	 * 
+	 * Controla l'estat del reproductor de la pantalla principal
 	 * @throws Exception
+	 * @see CustomPlayer
 	 */
 	public void goMP3() throws Exception{
 
@@ -684,9 +724,12 @@ public class MainWindow extends JFrame{
 	
 	//===============================
 	/**
-	 * 
-	 * @param controller
-	 * @param controller2
+	 * Controlador d'input de la pantalla principal de l'aplicació
+	 * @param controller Primer listener d'input de la pantalla principal
+	 * @param controller2 Segon listener de la pantalla principal
+	 * @see ActionListener
+	 * @see ButtonsController
+	 * @see PopUpController
 	 */
 
 	public void registerController(ButtonsController controller, PopUpController controller2) {
@@ -716,7 +759,7 @@ public class MainWindow extends JFrame{
 
 	}
 	/**
-	 * 
+	 * Avisa a l'usuari de que pot fer click a <i style="color:indigo">PLAY</i> per reproduir la cançó.
 	 */
 	public void changeButtonToPlay(){
 
@@ -730,7 +773,8 @@ public class MainWindow extends JFrame{
 	}
 	
 	/**
-	 * 
+	 * Actualitza els valors de temps de reproducció del reproductor
+	 * @see CustomPlayer
 	 */
 	
 	public void refreshTime() {
@@ -771,8 +815,9 @@ public class MainWindow extends JFrame{
 ///==================
 	
 	/**
-	 * 
+	 * Actualitza la llista d'usuaris
 	 * @param list
+	 * @see User
 	 */
 	public void refreshUsers(LinkedList <Object[]> list){
 		while (tableModelUser.getRowCount()!= 0){
@@ -785,8 +830,9 @@ public class MainWindow extends JFrame{
 	
 	
 	/**
-	 * 
+	 * Actualitza la llista de cançons
 	 * @param list
+	 * @see Song
 	 */
 	public void refreshSongs(LinkedList<Object[]> list) {
 		while (tableModelMusic.getRowCount()!= 0){
@@ -797,15 +843,17 @@ public class MainWindow extends JFrame{
 		}
 	}
 	/**
-	 * 
+	 * Retorna l'ID d'un usuari
 	 * @return
+	 * @see User
 	 */
 	public int getId (){
 		return id;
 	}
 	/**
-	 * 
+	 * Retorna l'ID d'una cançó
 	 * @return
+	 * @see Song
 	 */
 	public int getIdSong(){
 		return idSong;
