@@ -41,7 +41,7 @@ public class PlaylistsWindow extends JFrame{
 		new JPanel();
 		
 	
-	String[] jtUserColumns = {"id","Name", "Songs", "Privacidad"};
+	String[] jtUserColumns = {"id","Name", "Songs", "Privacy"};
 	Object[][] jtUserData = {};
 	//se crea la tabla
 	JTable jtUser = new JTable(jtUserData, jtUserColumns);
