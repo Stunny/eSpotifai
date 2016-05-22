@@ -1,0 +1,62 @@
+package threads;
+
+import java.util.LinkedList;
+
+import controller.NetworkController;
+import controller.ThreadController;
+import model.Song;
+import view.MainWindow;
+/**
+ * Thread que actualitza la informació mostrada cada 3 segons
+ * @author Elna Cabot, Miguel Diaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ *
+ */
+public class RefreshThread extends Thread {
+	/**
+	 * Controlador de Thread
+	 * @see ThreadController
+	 */
+	private ThreadController threadController;
+	/**
+	 * Construeix el thread
+	 * @param threadController Controlador de thread
+	 */
+	public RefreshThread(ThreadController threadController) {
+		super();
+		this.threadController = threadController;
+	}
+
+
+	
+
+	/**
+	 * 
+	 */
+	public void run() {
+		while (true) {
+			try {
+				Thread.sleep(3000);
+				switch(threadController.getmainWindow().getMode()){
+				case "all":
+					threadController.refreshSongList();
+				break;
+				
+				case "user lists":
+					
+				break;
+				default:
+					
+				break;
+			}
+				threadController.refresUserPlaylistList();
+				threadController.refresPublicPlaylistList();
+				
+			} catch (InterruptedException e) {
+				Thread.currentThread().interrupt();
+			}
+			
+		}
+
+	}
+
+}

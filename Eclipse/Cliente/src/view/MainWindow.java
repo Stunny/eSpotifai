@@ -94,7 +94,7 @@ public class MainWindow extends JFrame {
 	public JPopupMenu popupPlaylist1;
 
 	private JTable jpUsers;
-	private int id = 0;
+	private String id = "";
 	DefaultTableModel tableMusic;
 	DefaultTableModel tablePlaylist;
 	DefaultTableModel tableModelLists;
@@ -145,7 +145,7 @@ public class MainWindow extends JFrame {
 	private ListSelectionModel modelo;
 	private ListSelectionModel modelo1;
 	private ListSelectionModel modelo2;
-
+	private String mode= "all";
 
 
 	//DefaultTableModel tableModelLists;
@@ -226,7 +226,7 @@ public class MainWindow extends JFrame {
 
 
 		String[] jtFollowedListsColumns = {"id","Followed Lists", "Creador"};
-		Object[][] jtFollowedListsData = {{"1","HOLA", "ELNA"},{"2","HOLA1","Elna"}};
+		Object[][] jtFollowedListsData = {};
 		//se crea la tabla
 		JTable jtFollowedLists = new JTable(jtFollowedListsData, jtFollowedListsColumns);
 
@@ -259,7 +259,7 @@ public class MainWindow extends JFrame {
 						modelo.setSelectionInterval( rowNumber, rowNumber );
 						// modelo1.clearSelection();
 						// modelo2.clearSelection();
-						id = Integer.parseInt(String.valueOf( jtFollowedLists.getValueAt(rowNumber, 0)));
+						id = String.valueOf( jtFollowedLists.getValueAt(rowNumber, 0));
 						popupPlaylist.show(jpListsFollowing,  e.getX(), e.getY());
 
 					}
@@ -321,10 +321,10 @@ public class MainWindow extends JFrame {
 						Point p = e.getPoint();
 						int rowNumber = jtLists.rowAtPoint(p);
 						modelo1 = jtLists.getSelectionModel();
-						modelo1.setSelectionInterval( rowNumber, rowNumber );
+						//modelo1.setSelectionInterval( rowNumber, rowNumber );
 						//modelo.clearSelection();
 						//modelo2.clearSelection();
-						// id = Integer.parseInt(String.valueOf( jtMusic.getValueAt(rowNumber, 0)));
+						id = String.valueOf( jtLists.getValueAt(rowNumber, 0));
 						popupPlaylist1.show(jpLists,  e.getX(), e.getY());
 
 					}
@@ -617,6 +617,8 @@ public class MainWindow extends JFrame {
 
 
 
+
+	
 	public void refreshMusic(LinkedList<Object[]> list){
 		while (tableMusic.getRowCount()!= 0){
 			tableMusic.removeRow(0);
@@ -874,12 +876,12 @@ public class MainWindow extends JFrame {
 	}
 
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
 
-	public void setId(int id) {
+	public void  setId(String id) {
 		this.id = id;
 	}
 
@@ -902,4 +904,11 @@ public class MainWindow extends JFrame {
 		this.idUser = id;
 	}
 
+	public void setMode (String modo){
+		this.mode = modo;
+	}
+	
+	public String getMode (){
+		return mode;	}
+	
 }

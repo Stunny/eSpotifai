@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="controller.GeneralController"/>
@@ -57,10 +58,14 @@
 </qualifiedTypeNameHistroy>
 >>>>>>> 77b144f0a75d9608f2f63498ea4c536327ac2a6d
 =======
+=======
+>>>>>>> 76a8b9328ee26bc89e5f0dcd1258ef79380af8d0
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="javax.swing.SwingConstants"/>
-<fullyQualifiedTypeName name="javax.swing.JTextField"/>
-<fullyQualifiedTypeName name="model.Playlist"/>
+<fullyQualifiedTypeName name="model.AccessLogic"/>
+<fullyQualifiedTypeName name="controller.ButtonController"/>
 </qualifiedTypeNameHistroy>
+<<<<<<< HEAD
 >>>>>>> 2f2507b5bfcdf94f4ef0a492ef41db6c3eaff283
+=======
+>>>>>>> 76a8b9328ee26bc89e5f0dcd1258ef79380af8d0

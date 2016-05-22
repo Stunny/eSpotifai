@@ -77,8 +77,6 @@ public class NetworkController {
 	}
 
 
-
-
 	public static LinkedList<Playlist> getPlaylists() {
 		String request = "getPlaylists:";
 
@@ -120,6 +118,30 @@ public class NetworkController {
 		return playlistlist;
 	}
 	
+	
+	public static int[] getSongsPlaylistList(int id) {
+	String request = "Songs From:"+id;
+	
+	ServerCommunication servercommunication = new ServerCommunication();
+	String resposta = servercommunication.sendData(request);
+	
+	
+	GsonBuilder gsonBuilder = new GsonBuilder();
+    Gson gson = gsonBuilder.create();
+	return gson.fromJson(resposta, int[].class);
+	}
+	
+	public static String addPlaylist(String name, int id, int publica){
+			String request = "Add Playlist:"+name+"/"+id+"/"+publica;
+			System.out.printf(request);
+			System.out.printf("\n");
+			ServerCommunication servercommunication = new ServerCommunication();
+			String resposta = servercommunication.sendData(request);		
+			GsonBuilder gsonBuilder = new GsonBuilder();
+		    Gson gson = gsonBuilder.create();
+			//return gson.fromJson(resposta, String.class);
+		    return "add";
+	}
 	
 	public static String getSongFile(int id) {
 		

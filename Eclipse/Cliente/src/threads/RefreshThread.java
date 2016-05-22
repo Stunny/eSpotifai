@@ -38,7 +38,14 @@ public class RefreshThread extends Thread {
 		while (true) {
 			try {
 				Thread.sleep(5000);
-				threadController.refreshSongList();
+				switch(threadController.getmainWindow().getMode()){
+				case "all":
+					threadController.refreshSongList();
+				break;
+				default:
+					threadController.refreshSongListPlaylist();
+				break;
+				}
 				//threadController.refresUserPlaylistList();
 				//threadController.refresPublicPlaylistList();
 				

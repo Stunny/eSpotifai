@@ -170,6 +170,30 @@ public class DDBBConnection {
 		}
 	}
 	
+	public int[] getSongsList(int id){
+		LinkedList<Integer> list = new LinkedList<Integer>();
+		int[] array = new int[]{};
+		//int a[] = new int[a1.length+a2.length];
+
+		try {
+			ResultSet resultSet = ddbb.selectQuery("SELECT * FROM playlists_songs WHERE cf_playlist="+id);
+			while (resultSet.next())
+				{
+					list.add((int)resultSet.getObject("cf_song"));
+				}
+	
+			array = new int[list.size()];
+			for (int i = 0; i<list.size(); i++){
+				array[i] = list.get(i);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			return array;
+		}
+		return array;
+		
+	}
+	
 	public LinkedList<Playlist> getPlaylists(){
 		LinkedList<Playlist> list = new LinkedList<Playlist>();
 		try {
@@ -296,6 +320,11 @@ public class DDBBConnection {
 					// TODO Auto-generated catch block
 			return "Problems";
 		}
+	}
+	
+	public String addPlaylist (String name, int id, int publica){
+		//ddbb.insertQuery("INSERT INTO `playlists` (`id_playlist`, `creator_user`, `name`, `publica`) VALUES (NULL, '"+ id+"', '"+name+"', '"+publica+"'");
+		return "Add";
 	}
 	
 	public void updateLastAccess (String username){

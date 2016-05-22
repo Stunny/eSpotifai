@@ -130,8 +130,20 @@ public class AccessLogic {
 		}
 	
 	}
-	
-	
 
+	public static LinkedList<Song> getSongsFromPlaylist(LinkedList<Song> songsList, int[] array) {
+		LinkedList<Song> songs = new LinkedList<Song>();
+		for (int i = 0; i<array.length; i++){
+			for (int e = 0; i<songsList.size(); e++){
+				if (songsList.get(e).getId()== array[i]){
+					songs.add(songsList.get(e));
+					break;
+				}
+			}
+		}
+		
+		
+		return songs;
+	}
 }
 

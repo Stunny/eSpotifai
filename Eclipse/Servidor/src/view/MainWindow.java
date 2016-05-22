@@ -37,7 +37,6 @@ import javax.swing.table.DefaultTableModel;
 import model.CustomPlayer;
 import model.User;
 import controller.ButtonsController;
-import controller.MouseController;
 import controller.PopUpController;
 
 public class MainWindow extends JFrame{
