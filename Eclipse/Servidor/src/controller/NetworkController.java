@@ -109,7 +109,11 @@ public class NetworkController {
 			System.out.println("String: "+ddbbconnection.addPlaylist(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2])));
 			System.out.println("String: "+ddbbconnection.addPlaylist(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2])));
 			response  = gson.toJson(ddbbconnection.addPlaylist(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2])));
-		
+		case "updateVotacio":
+			args = s[1].split("/");
+			response = ddbbconnection.updateVotacio(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
+			break;
+			
 		default: 
 			response = "Invalid request";
 		

@@ -179,6 +179,8 @@ public class MainWindow extends JFrame {
 	private String state = "";
 	private String statePlayer = "";
 	private int max = 0, value = 0;
+	
+	private int idsong = 0;
 	//==================
 
 	/**
@@ -420,7 +422,7 @@ public class MainWindow extends JFrame {
 						modelo2.setSelectionInterval( rowNumber, rowNumber );
 						//modelo.clearSelection();
 						//modelo1.clearSelection();
-						// id = Integer.parseInt(String.valueOf( jtMusic.getValueAt(rowNumber, 0)));
+						idsong = Integer.parseInt(String.valueOf( jtMusic.getValueAt(rowNumber, 0)));
 						popup.show(jpMain,  e.getX(), e.getY());
 
 					}
@@ -936,5 +938,9 @@ public class MainWindow extends JFrame {
 	
 	public String getMode (){
 		return mode;	}
+	
+	public int getIdsong(){
+		return idsong;
+	}
 	
 }

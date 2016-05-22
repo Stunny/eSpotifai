@@ -225,14 +225,6 @@ public class ButtonController implements ActionListener {
 			}
 			
 			userwindow.refreshFollowing(userlist);
-			
-			
-			
-			
-			
-			
-			
-
 
 		}
 

@@ -133,6 +133,15 @@ public class NetworkController {
 		return playlistlist;
 	}
 	
+	public static String updateVotacio(int id, int votacio){
+		String request = "updateVotacio:"+id + "/" +votacio;
+
+		ServerCommunication servercommunication = new ServerCommunication();
+		String resposta = servercommunication.sendData(request);
+		
+		return resposta;
+	}
+	
 	
 	
 	public static String deletePlaylist(int i){

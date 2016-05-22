@@ -70,6 +70,12 @@ public class DDBBConnection {
 		
 	}
 	
+	public String updateVotacio(int id, int votacio){
+		
+		ddbb.updateQuery("UPDATE songs SET stars = " +votacio +" WHERE id_song = " +id);
+		return "actualitzada";
+	}
+	
 	/*
 	 * Devuelve un String que todos los usuarios con sus respectivos datos
 	 * Formato: Name/Fecha de registro/Fecha de la �ltima conexi�n/contrase�a
@@ -494,6 +500,8 @@ public class DDBBConnection {
 			return 0;
 		}
 	}
+	
+	
 	
 	public int nFolloweds(int id){
 		try{
