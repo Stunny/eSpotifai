@@ -104,6 +104,7 @@ public class MainWindow extends JFrame {
 	private String name = "";
 
 	private String id = "";
+	private int idMusic = 0;
 
 
 	DefaultTableModel tableMusic;
@@ -941,6 +942,10 @@ public class MainWindow extends JFrame {
 	
 	public int getIdsong(){
 		return idsong;
+	}
+
+	public int getIdMusic() {
+		return idMusic;
 	}
 	
 }

@@ -260,10 +260,10 @@ public class PopUpController implements ActionListener{
 
 		//-------------------------------------------
 		if(event.getActionCommand().equals("AddList.insertActionCommand")){
-			String respuesta = networkcontroller.AddSong(mainwindow.getId(),addlist.getIdPlaylist());
+			String respuesta = networkcontroller.AddSong(mainwindow.getIdsong(),addlist.getIdPlaylist());
 			switch(respuesta){
 				case "Add":
-					JOptionPane.showMessageDialog(null, "La cancion se ha añadido correctamente", " ", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "La cancion se ha aï¿½adido correctamente", " ", JOptionPane.INFORMATION_MESSAGE);
 				break;
 				case "Exist":
 					JOptionPane.showMessageDialog(null, "La cancion ya esta en la lista", " ", JOptionPane.ERROR_MESSAGE);
