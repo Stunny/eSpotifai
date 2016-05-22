@@ -105,6 +105,5 @@ public class NetworkController {
 		return response;
 	}
 	
-	
 
 }

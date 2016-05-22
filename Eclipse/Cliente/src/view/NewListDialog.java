@@ -101,6 +101,10 @@ public class NewListDialog extends JFrame{
 		return jtfList.getText();
 	}
 	
+	public void setTypedName(String name){
+		jtfList.setText(name);
+	}
+	
 	public int getPublic(){
 		if(jrbPublic.isSelected()){
 			return 1;
