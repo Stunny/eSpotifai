@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -35,6 +36,7 @@ import javax.swing.table.DefaultTableModel;
  *
  */
 import controller.PopUpController;
+import model.Playlist;
 
 public class PlaylistSearchUser extends JFrame{
 	/**
@@ -56,8 +58,10 @@ public class PlaylistSearchUser extends JFrame{
 	/**
 	 * IDentificador de la <i>Playlist</i>
 	 */
-	private int id = 0; 
+	private String id = ""; 
 	private JButton before; 
+	DefaultTableModel tableModelFollowedLists;
+	
 	/**
 	 * Retorna una llista de cançons a partir d'un usuari seleccionat.
 	 */
@@ -73,7 +77,7 @@ public class PlaylistSearchUser extends JFrame{
 		JTable jtFollowedLists = new JTable(jtFollowedListsData, jtFollowedListsColumns);
 
 		//se hace que los datos no sean editables
-		DefaultTableModel tableModelFollowedLists = new DefaultTableModel(jtFollowedListsData, jtFollowedListsColumns) {
+		tableModelFollowedLists = new DefaultTableModel(jtFollowedListsData, jtFollowedListsColumns) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				//all cells false
@@ -101,7 +105,7 @@ public class PlaylistSearchUser extends JFrame{
 						modelo.setSelectionInterval( rowNumber, rowNumber );
 						// modelo1.clearSelection();
 						// modelo2.clearSelection();
-						id = Integer.parseInt(String.valueOf( jtFollowedLists.getValueAt(rowNumber, 0)));
+						id = (String) jtFollowedLists.getValueAt(rowNumber, 0);
 						popupPlaylist.show(jpListsFollowing,  e.getX(), e.getY());
 
 					}
@@ -141,6 +145,30 @@ public class PlaylistSearchUser extends JFrame{
 	public void registerController(PopUpController controller){
 		before.addActionListener(controller);
 		before.setActionCommand("PlaylistSearchUser.beforeActionCommand");
+		visualitzar.addActionListener(controller);
+		visualitzar.setActionCommand("PlaylistSearchUser.visualitzarActionCommand");
+		
+	}
+	
+	
+	
+	public void refreshPlaylists(LinkedList<Playlist> playlistList) {
+		LinkedList<Object[]> list = new LinkedList<Object[]>();
+		for (int i = 0; i < playlistList.size(); i++){
+			Object[] objs = {playlistList.get(i).getId(), playlistList.get(i).getName()};
+			list.add(objs);
+		}
+		while (tableModelFollowedLists.getRowCount()!= 0){
+			tableModelFollowedLists.removeRow(0);
+		}
+		for (int i = 0; i<list.size(); i++){
+			tableModelFollowedLists.addRow(list.get(i));
+		}
+		
+	}
+	
+	public String getId(){
+		return id;
 	}
 
 

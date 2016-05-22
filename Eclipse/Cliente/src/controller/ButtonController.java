@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
@@ -23,7 +24,7 @@ import view.SelectedUserWindow;
 import view.UserWindow;
 /**
  * Controlador de botons de la vista
- * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @author Elna Cabot, Miguel Dï¿½az, Marc Millï¿½n, Alejandro Vogel, Marta Zapatero
  * @version 1.0
  * @see ActionListener
  * @see view.loginWindow
@@ -92,7 +93,8 @@ public class ButtonController implements ActionListener {
 	 * @see controller.NetworkController
 	 * 
 	 */
-	public ButtonController(NewListDialog NewListDialogDialog, LoginWindow loginWindow, RegisterWindow registerWindow, MainWindow mainWindow, SelectedUserWindow selecteduserwindow, NetworkController networkcontroller, UserWindow userwindow){
+	private AccessLogic acceslogic;
+	public ButtonController(NewListDialog NewListDialogDialog, LoginWindow loginWindow, RegisterWindow registerWindow, MainWindow mainWindow, SelectedUserWindow selecteduserwindow, NetworkController networkcontroller, UserWindow userwindow, AccessLogic accesslogic){
 		this.NewListDialogDialog = NewListDialogDialog;
 		this.loginWindow = loginWindow;
 		this.mainWindow = mainWindow;
@@ -100,6 +102,7 @@ public class ButtonController implements ActionListener {
 		this.selecteduserwindow = selecteduserwindow;
 		this.networkcontroller = networkcontroller;
 		this.userwindow = userwindow;
+		this.acceslogic = accesslogic;
 
 	}
 	/**
@@ -202,6 +205,35 @@ public class ButtonController implements ActionListener {
 		if(event.getActionCommand().equals("MainWindow.profileActionCommand")){
 			userwindow.refreshUser(User);
 			userwindow.setVisible(true);
+			//System.out.println("USER:" + User);
+			int id = AccessLogic.getId(User, networkcontroller);
+			//System.out.print("ID:" + id);
+			LinkedList<model.User> user = new LinkedList<model.User>();
+			user = networkcontroller.getUserList();
+		
+			
+			LinkedList< Integer> following = new LinkedList<Integer>();
+			following = networkcontroller.getFollowing(id);
+			
+		
+			
+			LinkedList<model.User> userlist = new LinkedList<model.User>();
+			for(int d = 0; d < following.size(); d++){
+				for(int r = 0; r < user.size(); r++){
+					if(following.get(d) == user.get(r).getId()){
+						userlist.add(user.get(r));
+					}
+				}
+			}
+			
+			userwindow.refreshFollowing(userlist);
+			
+			
+			
+			
+			
+			
+			
 
 
 		}

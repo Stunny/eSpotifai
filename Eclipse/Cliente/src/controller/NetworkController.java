@@ -75,6 +75,21 @@ public class NetworkController {
 
 		return songlist;
 	}
+	
+	public static LinkedList<Integer> getFollowing(int id){
+		String request =  "getFollowing:" + id;
+		ServerCommunication servercommunication = new ServerCommunication();
+		String resposta = servercommunication.sendData(request);
+		
+		
+		GsonBuilder gsonBuilder = new GsonBuilder();
+	    Gson gson = gsonBuilder.create();
+	    Integer[] s = gson.fromJson(resposta, Integer[].class);
+	    
+	    LinkedList<Integer> idfollowing = new LinkedList<Integer>(Arrays.asList(s));
+		return idfollowing;
+		
+	}
 
 
 	public static LinkedList<Playlist> getPlaylists() {
@@ -154,6 +169,8 @@ public class NetworkController {
 		return gson.fromJson(resposta, int[].class);
 	}
 
+	
+	
 	public static String addPlaylist(String name, int id, int publica){
 		String request = "Add Playlist:"+name+"/"+id+"/"+publica;
 		ServerCommunication servercommunication = new ServerCommunication();
@@ -210,5 +227,28 @@ public class NetworkController {
 		
 	}
 
+	public static String getFollowingFile(int id){
+		String request = "getFollowingFile:" + id;
+		
+		ServerCommunication servercommunication = new ServerCommunication();
+		String resposta = servercommunication.sendData(request);
+		if(resposta.equals("ok")){
+			FileServerCommunication fileservercommunication = new FileServerCommunication();
+			boolean ok = fileservercommunication.askForFile();
+			if(ok){
+				return "ok cliente";
+			}else{
+				return "ko cliente ";
+				
+			}
+			
+		}else{
+			return "ko cliente 2";
+		}
+		
+	}
+	
+	
+	
 }
 

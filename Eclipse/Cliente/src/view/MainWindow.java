@@ -585,6 +585,7 @@ public class MainWindow extends JFrame {
 		jbPlay.addActionListener(controller);
 		jbNext.addActionListener(controller);
 		jbPrevious.addActionListener(controller);
+		
 		jbAdd.setActionCommand("MainWindow.addActionCommand");
 		jbProfile.setActionCommand("MainWindow.profileActionCommand");
 		jbClose.setActionCommand("MainWindow.closeActionCommand");
@@ -592,8 +593,6 @@ public class MainWindow extends JFrame {
 		jbPlay.setActionCommand("MainWindow.playActionCommand");
 		jbNext.setActionCommand("MainWindow.nextActionCommand");
 		jbPrevious.setActionCommand("MainWindow.previousActionCommand");
-
-
 
 	}
 
@@ -968,6 +967,10 @@ public class MainWindow extends JFrame {
 	}
 	public int getUserId(){
 		return idUser;
+	}
+	
+	public String getName(){
+		return user;
 	}
 
 	public void setUserId (int id){

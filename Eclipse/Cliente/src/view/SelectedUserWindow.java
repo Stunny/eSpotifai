@@ -259,4 +259,10 @@ public class SelectedUserWindow extends JFrame {
 		jtfUsername.setText(string);
 	}
 
+	public int getId(){
+		return id;
+	}
+	
+	
+	
 }

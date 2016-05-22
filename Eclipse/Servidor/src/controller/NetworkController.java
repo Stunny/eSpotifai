@@ -8,6 +8,7 @@ import com.google.gson.GsonBuilder;
 import database.DDBBConnection;
 import main.Main;
 import model.Song;
+import model.User;
 
 public class NetworkController {
 
@@ -67,12 +68,22 @@ public class NetworkController {
 			case "getPlaylists":
 				response  = gson.toJson(ddbbconnection.getPlaylists());
 				break;
-			case "getFollowings":
+			case "getFollowing":
+				response = gson.toJson(ddbbconnection.getFollowing(Integer.parseInt(s[1])));
 				break;
-
 			case "deletePlaylist": 
 				response  = ddbbconnection.deletePlaylist(Integer.parseInt(s[1]));
 				break;
+			case "getFollowingFile":
+				LinkedList<User> user = ddbbconnection.getUsers();
+				for( User user1: user){
+					if (user1.getId() == Integer.parseInt(s[1])) {
+						System.out.println("ok en el server");
+						response = "ok";
+						Main.setFilePath(user1.getUsername());
+					}
+				}
+
 
 			case "Follow":
 				args = s[1].split("/");
@@ -96,16 +107,16 @@ public class NetworkController {
 
 				break;
 			case "Songs From":
-			response  = gson.toJson(ddbbconnection.getSongsList(Integer.parseInt(s[1])));
-		break;
-		case "Add Playlist":
-			args = s[1].split("/");
-			response  = gson.toJson(ddbbconnection.addPlaylist(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2])));
-		break;
-		case "AddSong":
-			args = s[1].split("/");
-			response  = gson.toJson(ddbbconnection.insertSongP(Integer.parseInt(args[0]), Integer.parseInt(args[1])));
-		break;
+				response  = gson.toJson(ddbbconnection.getSongsList(Integer.parseInt(s[1])));
+				break;
+			case "Add Playlist":
+				args = s[1].split("/");
+				response  = gson.toJson(ddbbconnection.addPlaylist(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2])));
+				break;
+			case "AddSong":
+				args = s[1].split("/");
+				response  = gson.toJson(ddbbconnection.insertSongP(Integer.parseInt(args[0]), Integer.parseInt(args[1])));
+				break;
 			default: 
 				response = "Invalid request";
 

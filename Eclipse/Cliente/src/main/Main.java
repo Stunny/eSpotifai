@@ -68,11 +68,11 @@ public class Main {
 					ModifyNameList modifynamelist = new ModifyNameList();
 
 					NewListDialog NewListDialogDialog = new NewListDialog();
-
-					ButtonController controller = new ButtonController(NewListDialogDialog, loginWindow, registerWindow, mainWindow, selecteduserwindow, networkcontroller, userWindow);
+					AccessLogic accesslogic = new AccessLogic();
 					PopUpController controller2 = new PopUpController(mainWindow, addlist, vots, selecteduserwindow, playlistsearchuser, userWindow, networkcontroller, modifynamelist);
+					ButtonController controller = new ButtonController(NewListDialogDialog, loginWindow, registerWindow, mainWindow, selecteduserwindow, networkcontroller, userWindow, accesslogic);
 
-
+				
 
 
 					//Juntamos las pantallas y el controlador
@@ -88,7 +88,7 @@ public class Main {
 					playlistsearchuser.registerController(controller2);
 					modifynamelist.registerController(controller2);
 
-					NewListDialogDialog.registerController(controller);
+					
 
 
 

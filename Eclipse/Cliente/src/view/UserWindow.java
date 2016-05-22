@@ -8,6 +8,7 @@ import java.awt.Point;
 import java.awt.ScrollPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -27,6 +28,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controller.PopUpController;
+import model.Playlist;
 /**
  * Finestra de usuari
  * @author Elna Cabot, Miguel Diaz, Marc Millan, Alejandro Vogel, Marta Zapatero
@@ -49,6 +51,8 @@ public class UserWindow extends JFrame{
 	private JMenuItem visualitzar;
 	private ListSelectionModel modelo;
 	private int id = 0; 
+	private String nombre; 
+	DefaultTableModel tableModelFollowedLists;
 
 
 	/**
@@ -163,4 +167,28 @@ public class UserWindow extends JFrame{
 	}
 
 
+	
+	public void refreshFollowing(LinkedList<model.User> following) {
+		LinkedList<Object[]> list = new LinkedList<Object[]>();
+		for (int i = 0; i < following.size(); i++){
+			Object[] objs = {following.get(i).getId(), following.get(i).getUsername()};
+			list.add(objs);
+		}
+		while (tableModelFollowedLists.getRowCount()!= 0){
+			tableModelFollowedLists.removeRow(0);
+		}
+		for (int i = 0; i<list.size(); i++){
+			tableModelFollowedLists.addRow(list.get(i));
+		}
+		
+	}
+	
+	public String getNombre(){
+		return nombre;
+	}
+
+	
+	
+	
+	
 }
