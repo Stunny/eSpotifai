@@ -67,7 +67,7 @@ public class MainWindow extends JFrame{
 	 */
 	private CustomPlayer customPlayer;
 	/**
-	 * 
+	 * Conjunt de pestanyes de la pantalla
 	 */
 	private JTabbedPane jtpTabs;
 	/**
@@ -101,7 +101,7 @@ public class MainWindow extends JFrame{
 	 */
 	private JPanel jpPlayerButtons; 
 	/**
-	 * 
+	 * Panell
 	 */
 	private JPanel jpSong;
 	/**
@@ -109,7 +109,7 @@ public class MainWindow extends JFrame{
 	 */
 	private GridLayout glButtons;
 	/**
-	 * 
+	 * Grid dels botons del reproductor
 	 */
 	private GridLayout glPlayerButtons; 
 	/**
@@ -164,51 +164,51 @@ public class MainWindow extends JFrame{
 	 */
 	private JButton jbNext;
 	/**
-	 * 
+	 * Icon de Next #1
 	 */
 	private ImageIcon iiNext1;
 	/**
-	 * 
+	 * Icon de Next #2
 	 */
 	private ImageIcon iiNext2;
 	/**
-	 * 
+	 * Icon de next #3
 	 */
 	private ImageIcon iiNext3;
 	/**
-	 * 
+	 * Icon de play #1
 	 */
 	private ImageIcon iiPlay1;
 	/**
-	 * 
+	 * Icon de play #2
 	 */
 	private ImageIcon iiPlay2;
 	/**
-	 * 
+	 * Icon de play #3
 	 */
 	private ImageIcon iiPlay3;
 	/**
-	 * 
+	 * Icon de pausa #1
 	 */
 	private ImageIcon iiPause1;
 	/**
-	 * 
+	 * Icon de pausa #2
 	 */
 	private ImageIcon iiPause2;
 	/**
-	 * 
+	 * Icon de pausa #3
 	 */
 	private ImageIcon iiPause3;
 	/**
-	 * 
+	 * Icon de anterior #1
 	 */
 	private ImageIcon iiPrevious1;
 	/**
 	 * 
-	 */
+Icon de anterior #2	 */
 	private ImageIcon iiPrevious2;
 	/**
-	 * 
+	 * Iconde anterior #3
 	 */
 	private ImageIcon iiPrevious3;
 	//private ImageIcon temporalSong;
@@ -316,6 +316,7 @@ public class MainWindow extends JFrame{
 		//Creem el conjunt de pestanyes
 		jtpTabs = new JTabbedPane();
 
+		
 		//Creem el panell per montar l'estructura de l'apartat "Music"
 		jpMusic = new JPanel();
 
