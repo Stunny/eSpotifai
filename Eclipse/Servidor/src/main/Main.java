@@ -21,11 +21,20 @@ import model.Song;
 import network.Server;
 import threads.RefreshThread;
 import threads.TimeThread;
-
+/**
+ * Classe principal de l'aplicació del servidor.
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * 
+ *
+ */
 public class Main {
 	
 	//MAIN DEL SERVIDOR
-
+	/**
+	 * Métode principal del servidor des del qual s'instancien les classes necessaries per fer funcionar aquesta versió de l'aplicació.
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
 		SwingUtilities.invokeLater(new Runnable() {
