@@ -10,18 +10,48 @@ import view.AddList;
 import view.MainWindow;
 import view.Vots;
 
-
+/**
+ * Controlador de menu emergent
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see ActionListener
+ * @see ActionEvent
+ * @see MainWindow
+ * @see AddList
+ * @see Vots
+ * @see JOptionPane
+ *
+ */
 public class PopUpController implements ActionListener{
+	/**
+	 * Pantalla principal de l'aplicació
+	 */
 	private MainWindow mainwindow;
+	/**
+	 * Menu emergent d'afegir llista
+	 */
 	private AddList addlist;
+	/**
+	 * Menu emergent per puntuar una cançó
+	 */
 	private Vots vots;
-		
+	/**
+	 * 	Construeix un nou controlador de menu emergent
+	 * @param mainwindow Pantalla principal de l'aplicació
+	 * @param addlist Menu emergent d'afegir llista
+	 * @param vots Menu emergent per puntuar una cançó
+	 * @see MainWindow
+	 * @see AddList
+	 * @see Vots
+	 */
 	public PopUpController(MainWindow mainwindow, AddList addlist, Vots vots){
 		this.mainwindow = mainwindow;
 		this.addlist = addlist;
 		this.vots = vots;
 	}
-
+	/**
+	 * 
+	 */
 	public void actionPerformed(ActionEvent event) {
 		
 		if (event.getActionCommand().equals("MainWindow.reproducirActionCommand")) {
