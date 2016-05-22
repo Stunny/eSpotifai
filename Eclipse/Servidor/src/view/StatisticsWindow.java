@@ -11,20 +11,43 @@ import javax.swing.BorderFactory;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-
-
-
+import javax.swing.border.Border;
 
 import controller.ButtonsController;
-
+/**
+ * Pantalla que mostra dades estadístiques de l'aplicació i dels seus usuaris
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see JDialog
+ * @see JPanel
+ * @see JLabel
+ * @see BorderLayout
+ * @see GridLayout
+ * @see Graphics
+ * 
+ *
+ */
 public class StatisticsWindow extends JDialog{
 
-
+	/**
+	 * Panell on es col·locarà l'informació del diàleg
+	 * @see JPanel
+	 */
     private JPanel jpStatistics;
+    /**
+     * Panell on es col·locaràn les gràfiques
+     * @see JPanel
+     */
     private JPanel jpGraphic;
-    
+    /**
+     * Border de la pantalla <i style="color:indigo;">jpStatistics</i>
+     * @see BorderLayout
+     */
     private BorderLayout blStatistics;
+    /**
+     * 
+     * @see GridLayout
+     */
     private GridLayout glGraphic;
     /*
     private JLabel jlSong1;
@@ -49,7 +72,12 @@ public class StatisticsWindow extends JDialog{
     private JLabel jlNumSong10;
     */
     
-    
+    /**
+     * Construeix el diàleg que mostra les estadístiques
+     * @see JPanel
+     * @see BorderLayout
+     * @see GridLayout
+     */
     public StatisticsWindow() {
 
         jpStatistics = new JPanel();
@@ -131,7 +159,11 @@ public class StatisticsWindow extends JDialog{
 		this.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 
     }
-
+    /**
+     * Dibuixa els gràfics
+     * @see Graphics
+     * @see StatisticWindow
+     */
     public void paint(Graphics g)
     {
         super.paint(g);
@@ -233,7 +265,21 @@ public class StatisticsWindow extends JDialog{
             g.drawString("Song 10", 1020, 620);
             g.drawString(s10, 40, 600-large10-2);
     }
-    
+    /**
+     * Retorna el que és el nombre màxim d'entre 10.
+     * @param v1 Primer valor
+     * @param v2 Segon valor
+     * @param v3 Tercer valor
+     * @param v4 Quart valor
+     * @param v5 Cinquè valor
+     * @param v6 Sisè valor
+     * @param v7 Setè valor
+     * @param v8 Vuitè valor
+     * @param v9 Novè valor
+     * @param v10 Desè valor
+     * @return El valor màxim
+     * @see Math
+     */
 	private int retornarMayor(int v1,int v2,int v3, int v4,int v5,int v6, int v7, int v8, int v9, int v10){
 		
 		int max1 = Math.max(v1, v2);

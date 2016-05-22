@@ -1,0 +1,236 @@
+package view;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import controller.ButtonsController;
+/**
+ * Afegeix una cançó a la aplicació
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see JFrame
+ * @see JPanel
+ * @see JLabel
+ * @see JTextField
+ * @see JButton
+ * @see GridLayout
+ *
+ */
+public class AddMusicWindow extends JFrame{
+	/**
+	 * 
+	 */
+	private JPanel jpAddMusic;
+	
+	/**
+	 * Etiqueta de títol de cançó
+	 */
+	private JLabel jlSongTitle;
+	/**
+	 * Etiqueta de gènere de la cançó
+	 */
+	private JLabel jlGenre;
+	/**
+	 * Etiqueta de àlbum de la cançó
+	 */
+	private JLabel jlAlbum;
+	/**
+	 * Etiqueta de artista intérpret de la cançó
+	 */
+	private JLabel jlArtist;
+	/**
+	 * Etiqueta de ruta de l'arxiu de la cançó
+	 */
+	private JLabel jlPath;
+	/**
+	 * Camp d'introducció de text: nom de la cançó
+	 */
+	private JTextField jtfSongTitle;
+	/**
+	 * Camp d'introducció de text: gènere de la cançó
+	 */
+	private JTextField jtfGenre;
+	/**
+	 * Camp d'introducció de text: àlbum de la cançó
+	 */
+	private JTextField jtfAlbum;
+	/**
+	 * Camp d'introducció de text: artista intèrpret de la cançó
+	 */
+	private JTextField jtfArtist;
+	/**
+	 * Camp d'introducció de text: ruta de l'arxiu de la cançó
+	 */
+	private JTextField jtfPath;
+	/**
+	 * Confirma la operació de afegir una cançó
+	 */
+	private JButton jbAccept;
+	/**
+	 * Obre un diàleg per trobar la ruta de l'arxiu
+	 */
+	private JButton jbFindPath;
+	/**
+	 * 
+	 */
+	public AddMusicWindow() {
+		
+		//Redistribucuó per guias simetricas de 6 files i dos columnes
+		jpAddMusic = new JPanel();
+		GridLayout glAddMusic = new GridLayout(6,2);
+		jpAddMusic.setLayout(glAddMusic);
+
+		//Creo la etiqueta de "SongTitle"
+		jlSongTitle = new JLabel();
+		jlSongTitle.setHorizontalAlignment(JLabel.LEFT);
+		jlSongTitle.setText("Song title");
+		jpAddMusic.add(jlSongTitle);
+				
+		//Creo area de text per la inscripció del nom de la canço
+		jtfSongTitle = new JTextField("");
+		jtfSongTitle.setHorizontalAlignment(JTextField.CENTER);
+		jpAddMusic.add(jtfSongTitle);
+		
+		//Creo la etiqueta de "music genre"
+		jlGenre = new JLabel();
+		jlGenre.setHorizontalAlignment(JLabel.LEFT);
+		jlGenre.setText("Music genre");
+		jpAddMusic.add(jlGenre);
+						
+		//Creo area de text per la inscripció del nom del genere de la cançó
+		jtfGenre = new JTextField("");
+		jtfGenre.setHorizontalAlignment(JTextField.CENTER);
+		jpAddMusic.add(jtfGenre);
+		
+		//Creo la etiqueta de "album"
+		jlAlbum = new JLabel();
+		jlAlbum.setHorizontalAlignment(JLabel.LEFT);
+		jlAlbum.setText("Album");
+		jpAddMusic.add(jlAlbum);
+								
+		//Creo area de text per la inscripció del nom del Album
+		jtfAlbum = new JTextField("");
+		jtfAlbum.setHorizontalAlignment(JTextField.CENTER);
+		jpAddMusic.add(jtfAlbum);
+						
+		//Creo la etiqueta de "artista"
+		jlArtist = new JLabel();
+		jlArtist.setHorizontalAlignment(JLabel.LEFT);
+		jlArtist.setText("Artist");
+		jpAddMusic.add(jlArtist);
+								
+		//Creo area de text per la inscripció del nom de Artista
+		jtfArtist = new JTextField("");
+		jtfArtist.setHorizontalAlignment(JTextField.CENTER);
+		jpAddMusic.add(jtfArtist);
+		
+		//Creo la etiqueta de de la ubicació de la cançó
+		jlPath = new JLabel();
+		jlPath.setHorizontalAlignment(JLabel.LEFT);
+		jlPath.setText("Path");
+		jpAddMusic.add(jlPath);
+			
+		//Creo area de text per la inscripció del nom de "Path" de la cançó
+		jtfPath = new JTextField("");
+		jtfPath.setHorizontalAlignment(JTextField.CENTER);
+		jpAddMusic.add(jtfPath);
+		jpAddMusic.setBorder(BorderFactory.createTitledBorder("Insert information"));
+		
+		//Creo botó de addició
+		jbAccept = new JButton("Accept");
+		//jbAccept.setPreferedSize(new Dimension(400, 20));
+		jbAccept.setHorizontalAlignment(JButton.CENTER);
+		jpAddMusic.add(jbAccept);
+		
+		jbFindPath = new JButton("Find path...");
+		jbFindPath.setHorizontalAlignment(JTextField.CENTER);
+		jpAddMusic.add(jbFindPath);
+		
+		//L'inserto en el panell general
+		this.getContentPane().add(jpAddMusic, BorderLayout.CENTER);
+		
+		//Assignem titol a la finestra
+		this.setTitle(" Music addition ");
+		
+		this.setSize(new Dimension(400,200));
+		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	}	
+	/**
+	 * 
+	 * @param controller
+	 */
+	public void registerControllerAdd(ButtonsController controller) {
+		jbAccept.addActionListener(controller);
+		jbAccept.setActionCommand("AddMusicWindow.acceptActionCommand");
+		jbFindPath.addActionListener(controller);
+		jbFindPath.setActionCommand("AddMusicWindow.findPathActionCommand");
+	}
+	/**
+	 * 
+	 * @return
+	 */
+	public String getTypedSongTitle() {
+		return jtfSongTitle.getText();
+	}
+	/**
+	 * 
+	 * @return
+	 */
+	public String getTypedArtist() {
+		return jtfArtist.getText();
+	}
+	/**
+	 * 
+	 * @return
+	 */
+	public String getTypedAlbum() {
+		return jtfAlbum.getText();
+	}
+	/**
+	 * 
+	 * @return
+	 */
+	public String getTypedGenre() {
+		return jtfGenre.getText();
+	}
+	/**
+	 * 
+	 * @return
+	 */
+	public String getTypedPath() {
+		return jtfPath.getText();
+	}
+	/**
+	 * 
+	 * @param path
+	 */
+	public void setFoundPath(String path) {
+		jtfPath.setText(path);
+	}
+	/**
+	 * 
+	 */
+	public void clearTextFields() {
+		jtfSongTitle.setText("");
+		jtfArtist.setText("");
+		jtfAlbum.setText("");
+		jtfGenre.setText("");
+		jtfPath.setText("");
+	}
+}

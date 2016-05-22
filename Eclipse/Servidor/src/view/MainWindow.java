@@ -38,89 +38,240 @@ import model.CustomPlayer;
 import model.User;
 import controller.ButtonsController;
 import controller.PopUpController;
-
+/**
+ * 
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see 
+ *
+ */
 public class MainWindow extends JFrame{
-
+	/**
+	 * 
+	 */
 	private CustomPlayer customPlayer;
-
+	/**
+	 * 
+	 */
 	private JTabbedPane jtpTabs;
+	/**
+	 * 
+	 */
 	private JPanel jpMusic;
+	/**
+	 * 
+	 */
 	private JTable jpUsers;
+	/**
+	 * 
+	 */
 	private JPanel jpPageEnd;
+	/**
+	 * 
+	 */
 	private JPanel jpButtons;
+	/**
+	 * 
+	 */
 	private JPanel jpPlayer; 
+	/**
+	 * 
+	 */
 	private JPanel jpPlayerButtons; 
+	/**
+	 * 
+	 */
 	private JPanel jpSong;
-
+	/**
+	 * 
+	 */
 	private GridLayout glButtons;
+	/**
+	 * 
+	 */
 	private GridLayout glPlayerButtons; 
+	/**
+	 * 
+	 */
 	private GridLayout glPageEnd;
+	/**
+	 * 
+	 */
 	private GridLayout glSong;
+	/**
+	 * 
+	 */
 	private BorderLayout blMusic;
+	/**
+	 * 
+	 */
 	private BorderLayout blPlayer; 
 
 	//private JTextArea jtListOfSongs;
+	/**
+	 * 
+	 */
 	private JScrollPane jspMusicList;
+	/**
+	 * 
+	 */
 	private JSlider jSlider; //
-
+	/**
+	 * 
+	 */
 	private JButton jbAdd;
+	/**
+	 * 
+	 */
 	private JButton jbStatistics;
 	
 	//=========================
-	
+	/**
+	 * 
+	 */
 	private JButton jbPlay;
+	/**
+	 * 
+	 */
 	private JButton jbPrevious;
+	/**
+	 * 
+	 */
 	private JButton jbNext;
-
+	/**
+	 * 
+	 */
 	private ImageIcon iiNext1;
+	/**
+	 * 
+	 */
 	private ImageIcon iiNext2;
+	/**
+	 * 
+	 */
 	private ImageIcon iiNext3;
-
+	/**
+	 * 
+	 */
 	private ImageIcon iiPlay1;
+	/**
+	 * 
+	 */
 	private ImageIcon iiPlay2;
+	/**
+	 * 
+	 */
 	private ImageIcon iiPlay3;
-
+	/**
+	 * 
+	 */
 	private ImageIcon iiPause1;
+	/**
+	 * 
+	 */
 	private ImageIcon iiPause2;
+	/**
+	 * 
+	 */
 	private ImageIcon iiPause3;
-
+	/**
+	 * 
+	 */
 	private ImageIcon iiPrevious1;
+	/**
+	 * 
+	 */
 	private ImageIcon iiPrevious2;
+	/**
+	 * 
+	 */
 	private ImageIcon iiPrevious3;
 	//private ImageIcon temporalSong;
 
 	//=========================
-	
+	/**
+	 * 
+	 */
 	DefaultTableModel tableModelUser;
+	/**
+	 * 
+	 */
 	DefaultTableModel tableModelMusic;
-
+	/**
+	 * 
+	 */
 	private JMenuItem seguidores;
+	/**
+	 * 
+	 */
 	private JMenuItem seguidos;
+	/**
+	 * 
+	 */
 	private JMenuItem listas;
+	/**
+	 * 
+	 */
 	private JMenuItem eliminar;
+	/**
+	 * 
+	 */
 	private JMenuItem eliminar2;
-
+	/**
+	 * 
+	 */
 	private int id = 0;
+	/**
+	 * 
+	 */
 	private int idSong = 0;
-
+	/**
+	 * 
+	 */
 	public JPopupMenu popup;
+	/**
+	 * 
+	 */
 	public JPopupMenu popupSong;
 //=============
 	//private JLabel jlTemporalSong;
+	/**
+	 * 
+	 */
 	private JLabel jlTime;
 	//private JLabel SongState;
+	/**
+	 * 
+	 */
 	private JLabel jlSongName;
+	/**
+	 * 
+	 */
 	private JLabel jlSongState;
 
 	//private ImageIcon temporalSong;
+	/**
+	 * 
+	 */
 	private boolean stateSong = false;
+	/**
+	 * 
+	 */
 	private String state = "";
+	/**
+	 * 
+	 */
 	private String statePlayer = "";
+	/**
+	 * 
+	 */
 	private int max = 0, value = 0;
 //==================
 
 
-
+	/**
+	 * Construeix la pantalla principal del servidor de l'aplicació
+	 */
 	public MainWindow() {
 
 		//Creem el conjunt de pestanyes
@@ -409,6 +560,13 @@ public class MainWindow extends JFrame{
 	
 	
 	//==========================
+	/**
+	 * 
+	 * @param boton
+	 * @param imatge1
+	 * @param imatge2
+	 * @param imatge3
+	 */
 	public void ConfigurationButton(JButton boton,ImageIcon imatge1,ImageIcon imatge2,ImageIcon imatge3){
 
 		//Definim que l'icon tindrï¿½ una imatge assignada per defecte
@@ -431,7 +589,10 @@ public class MainWindow extends JFrame{
 	}
 
 	
-	
+	/**
+	 * 
+	 * @throws Exception
+	 */
 	public void goMP3() throws Exception{
 
 		//Si la canï¿½o s'ha reproduit un cop i esta en pause, continua reproduint PAUSE
@@ -522,6 +683,11 @@ public class MainWindow extends JFrame{
 	}
 	
 	//===============================
+	/**
+	 * 
+	 * @param controller
+	 * @param controller2
+	 */
 
 	public void registerController(ButtonsController controller, PopUpController controller2) {
 		jbAdd.addActionListener(controller);
@@ -549,7 +715,9 @@ public class MainWindow extends JFrame{
 		jbPlay.setActionCommand("MainWindow.playActionCommand");
 
 	}
-
+	/**
+	 * 
+	 */
 	public void changeButtonToPlay(){
 
 		if( getState() == 2){
@@ -561,7 +729,9 @@ public class MainWindow extends JFrame{
 		}
 	}
 	
-	
+	/**
+	 * 
+	 */
 	
 	public void refreshTime() {
 
@@ -600,7 +770,10 @@ public class MainWindow extends JFrame{
 	}
 ///==================
 	
-	
+	/**
+	 * 
+	 * @param list
+	 */
 	public void refreshUsers(LinkedList <Object[]> list){
 		while (tableModelUser.getRowCount()!= 0){
 			tableModelUser.removeRow(0);
@@ -611,7 +784,10 @@ public class MainWindow extends JFrame{
 	}
 	
 	
-
+	/**
+	 * 
+	 * @param list
+	 */
 	public void refreshSongs(LinkedList<Object[]> list) {
 		while (tableModelMusic.getRowCount()!= 0){
 			tableModelMusic.removeRow(0);
@@ -620,11 +796,17 @@ public class MainWindow extends JFrame{
 			tableModelMusic.addRow(list.get(i));
 		}
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public int getId (){
 		return id;
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public int getIdSong(){
 		return idSong;
 	}

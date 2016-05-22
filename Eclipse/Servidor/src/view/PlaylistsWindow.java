@@ -24,10 +24,12 @@ import javax.swing.table.DefaultTableModel;
 public class PlaylistsWindow extends JFrame{
 	/**
 	 * Taula de contingut de la pantalla
+	 * @see DefaultTableModel
 	 */
 	private DefaultTableModel tableModelUser;
 	/**
 	 * Taula on es col·locarà el contingut
+	 * @see JTable
 	 */
 	private JTable jpUsers;
 	/**
