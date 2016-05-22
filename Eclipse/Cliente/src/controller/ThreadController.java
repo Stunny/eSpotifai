@@ -44,6 +44,11 @@ public class ThreadController {
 		mainWindow.refreshPlaylists(playlistList);
 	}
 	
+	public void refresPublicPlaylistList() {
+		LinkedList<Playlist> playlistList = NetworkController.getPublicPlaylists(mainWindow.getUserId());
+		mainWindow.refreshPublicPlaylists(playlistList);
+	}
+	
 	public void trackTime() {
 		mainWindow.refreshTime();
 	}

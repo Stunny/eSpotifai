@@ -1,7 +1,5 @@
 package database;
 
-import java.security.Timestamp;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -181,6 +179,29 @@ public class DDBBConnection {
 				Playlist playlist = new Playlist((int)resultSet.getObject("id_playlist"), (String)resultSet.getObject("name"), (String)resultSet2.getObject("user_name"));
 				list.add(playlist);
 				}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			return list;
+		}
+			return list;
+	}
+	
+	public LinkedList<Playlist> getPublicPlaylists(int id){
+		LinkedList<Playlist> list = new LinkedList<Playlist>();
+		try {
+			ResultSet resultSet = ddbb.selectQuery("SELECT * FROM followers WHERE user_follower="+id);
+			while (resultSet.next())
+				{
+				ResultSet resultSet2 = ddbb.selectQuery("SELECT id_playlist, name, creator_user  FROM playlists WHERE publica = 1 AND creator_user="+(int)resultSet.getObject("user_followed"));
+
+				while(resultSet2.next()){
+					ResultSet resultSet3  = ddbb.selectQuery("SELECT user_name FROM users WHERE id_user="+(int)resultSet2.getObject("creator_user"));
+					resultSet3.next();
+					Playlist playlist = new Playlist((int)resultSet2.getObject("id_playlist"), (String)resultSet2.getObject("name"), (String)resultSet3.getObject("user_name"));
+					list.add(playlist);
+				}
+			}
 		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -431,14 +452,14 @@ public class DDBBConnection {
 	
 	public LinkedList<Object[]> getPlaylistsDates(int id){
 		LinkedList<Object[]> list =new LinkedList<Object[]>();
-	
+		String publica; 
 		try {
 			ResultSet resultSet = ddbb.selectQuery("SELECT * FROM playlists WHERE creator_user="+id);
 			while (resultSet.next())
 				{
-					String publica ="Publica";
-					if ((int)resultSet.getObject("id_playlist") != 1){
-						publica ="Privada";
+					publica ="Privada";
+					if ((boolean)resultSet.getObject("publica") == true){
+						publica ="Publica";
 					}
 					Object[] obj = {(int)resultSet.getObject("id_playlist"),(String)resultSet.getObject("name"), nSongs((int)resultSet.getObject("id_playlist")), publica};
 					list.add(obj);

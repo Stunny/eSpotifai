@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package customExceptions;
 /**
  * 
@@ -13,3 +14,20 @@ public class ServerNotFoundException extends Exception {
 	}
 
 }
+=======
+package customExceptions;
+/**
+ * 
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see Exception
+ *
+ */
+public class ServerNotFoundException extends Exception {
+	
+	public ServerNotFoundException() {
+		super("La connexio amb el servidor ha fallat.");
+	}
+
+}
+>>>>>>> b4d63ff7a106498a4bfe5299eba34d0898475d23

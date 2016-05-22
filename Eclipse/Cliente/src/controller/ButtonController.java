@@ -121,6 +121,7 @@ public class ButtonController implements ActionListener {
 						Main.timeThread.start();
 						
 						User = loginWindow.getTypedUsername();
+						mainWindow.setUserId(AccessLogic.getId(User, networkcontroller));
 						mainWindow.setUser(User);
 						String d  = "HOLA";
 						mainWindow.refreshListsFollowing(d);

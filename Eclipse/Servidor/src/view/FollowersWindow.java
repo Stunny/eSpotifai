@@ -43,6 +43,7 @@ public class FollowersWindow extends JFrame{
 	
 	jtUser.setModel(tableModelUser);
 	jtUser.setFocusable(false);
+	jtUser.getTableHeader().setReorderingAllowed(false);
 
 	JScrollPane jspUsers = new JScrollPane(jtUser);
 	jpUsers = new JTable();

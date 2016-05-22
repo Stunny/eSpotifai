@@ -94,6 +94,7 @@ public class ButtonsController implements ActionListener{
 			
 		}
 		
+		
 		else if (event.getActionCommand().equals("AddMusicWindow.acceptActionCommand")){
 			String title = addMusicWindow.getTypedSongTitle();
 			String genre = addMusicWindow.getTypedGenre();

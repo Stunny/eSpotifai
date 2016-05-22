@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package controller;
 
 import java.awt.event.ActionEvent;
@@ -219,3 +220,226 @@ public class ButtonController implements ActionListener {
 	}
 	
 }
+=======
+package controller;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.net.MalformedURLException;
+import java.util.LinkedList;
+
+import javax.swing.JOptionPane;
+
+import main.Main;
+import model.AccessLogic;
+import network.ServerCommunication;
+import threads.RefreshThread;
+import view.LoginWindow;
+import view.MainWindow;
+import view.NewListDialog;
+import view.RegisterWindow;
+import view.SelectedUserWindow;
+import view.UserWindow;
+/**
+ * 
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see ActionListener
+ * @see view.loginWindow
+ * @see view.RegisterWindow
+ * @see view.MainWindow
+ * @see view.SelecteduserWindow
+ * @see controller.NetworkController
+ * @see model.User
+ * 
+ *
+ */
+public class ButtonController implements ActionListener {
+	/**
+	 * 
+	 */
+	private LoginWindow loginWindow;
+	/**
+	 * 
+	 */
+	private MainWindow mainWindow;
+	/**
+	 * 
+	 */
+	private ServerCommunication serverCommunication;
+	/**
+	 * 
+	 */
+	private SelectedUserWindow selecteduserwindow;
+	/**
+	 * 
+	 */
+	private RegisterWindow registerWindow;
+	/**
+	 * 
+	 */
+	private String User; 
+	/**
+	 * 
+	 */
+	private NetworkController networkcontroller;
+
+
+	/**
+	 * Construeix un controlador de botons.
+	 * @param loginWindow
+	 * @param registerWindow
+	 * @param mainWindow
+	 * @param selecteduserwindow
+	 * @param networkcontroller
+	 * @see javax.swing.JButton
+	 * @see view.loginWindow
+	 * @see view.RegisterWindow
+	 * @see view.MainWindow
+	 * @see view.SelecteduserWindow
+	 * @see controller.NetworkController
+	 * 
+	 */
+	public ButtonController(LoginWindow loginWindow, RegisterWindow registerWindow, MainWindow mainWindow, SelectedUserWindow selecteduserwindow, NetworkController networkcontroller){
+		
+		this.loginWindow = loginWindow;
+		this.mainWindow = mainWindow;
+		this.registerWindow= registerWindow;
+		this.selecteduserwindow = selecteduserwindow;
+		this.networkcontroller = networkcontroller;
+
+	}
+	/**
+	 *  
+	 */
+	public void actionPerformed(ActionEvent event){
+		
+		//PANTALLA ACCEDIR (ACCEDIR)
+		if (event.getActionCommand().equals("LoginWindow.loginActionCommand")){
+			if (loginWindow.getTypedUsername().equals("") || loginWindow.getTypedPassword().equals("")) {
+				JOptionPane.showMessageDialog(null, "Please fill in all the blanks.", " ", JOptionPane.ERROR_MESSAGE);
+			} else {
+				if (loginWindow.getTypedPassword().contains("/") || loginWindow.getTypedUsername().contains("/")) {
+					JOptionPane.showMessageDialog(null, "'/' is an invalid character.", " ", JOptionPane.ERROR_MESSAGE);
+				} else {
+					if (AccessLogic.Login(loginWindow.getTypedUsername(), loginWindow.getTypedPassword())) {
+						mainWindow.setVisible(true);
+						loginWindow.setVisible(false);
+						Main.refreshThread = new RefreshThread(new ThreadController(mainWindow));
+						Main.refreshThread.start();
+						User = loginWindow.getTypedUsername();
+						
+						String d  = "HOLA";
+						mainWindow.refreshListsFollowing(d);
+						//System.out.println("User:" + User);
+					}
+				}
+			}
+		}
+
+			//PANTALLA ACCEDIR (REGISTRET)
+		if(event.getActionCommand().equals("LoginWindow.registerActionCommand")){
+			registerWindow.setVisible(true);
+			loginWindow.setVisible(false);
+		}
+		
+		//PANTALLA REGISTRO TIRAR ATRAS
+		if(event.getActionCommand().equals("RegisterWindow.atrasActionCommand")){
+			loginWindow.setVisible(true);
+			registerWindow.setVisible(false);
+		}
+		
+		
+		
+		
+		//PANTALLA registerWindow
+		if(event.getActionCommand().equals("RegisterWindow.registerActionCommand")){
+
+			if (registerWindow.getTypedUsername().equals("") || registerWindow.getTypedPassword().equals("")) {
+				JOptionPane.showMessageDialog(null, "Please fill in all the blanks.", " ", JOptionPane.ERROR_MESSAGE);
+			} else {
+				if (registerWindow.getTypedPassword().contains("/") || registerWindow.getTypedUsername().contains("/")) {
+					JOptionPane.showMessageDialog(null, "'/' is an invalid character.", " ", JOptionPane.ERROR_MESSAGE);
+				} else {
+					if (AccessLogic.Register(registerWindow.getTypedUsername(), registerWindow.getTypedPassword())) {
+						mainWindow.setVisible(true);
+						registerWindow.setVisible(false);
+						User = registerWindow.getTypedUsername();
+						Main.refreshThread = new RefreshThread(new ThreadController(mainWindow));
+						Main.refreshThread.start();
+					}
+				}
+			}
+		}
+		
+		// MAINWINDOW ( NEW PLAYLIST)
+		if(event.getActionCommand().equals("MainWindow.addActionCommand")){
+
+			NewListDialog NewListDialogDialog = new NewListDialog(); 
+			NewListDialogDialog.setVisible(true);
+		} 
+		
+		//PANTALLA INICIO (USUARI)
+		if(event.getActionCommand().equals("MainWindow.profileActionCommand")){
+			UserWindow userWindow = new UserWindow(); 
+			userWindow.refreshUser(User);
+			userWindow.setVisible(true);
+			
+
+		}
+		
+		
+
+		//PANTALLA registerWindowSTRE (CERRAR SESION)
+		if(event.getActionCommand().equals("MainWindow.closeActionCommand")){
+			mainWindow.setVisible(false);
+			loginWindow.setVisible(true);
+			Main.refreshThread.interrupt();
+			
+		}
+		
+		//PANTALLA MAIN (CERCAR USUARI)
+		if(event.getActionCommand().equals("MainWindow.searchActionCommand")){
+			if(AccessLogic.searchUser(mainWindow.getTypedSearch(), networkcontroller)){
+				selecteduserwindow.refreshUser(mainWindow.getTypedSearch());
+				selecteduserwindow.setVisible(true);
+				
+				
+			}
+		}
+		
+		//PANTALLA SEARCH USUARIO
+		if(event.getActionCommand().equals("FOLLOW")){
+			String p = "Following";
+			selecteduserwindow.refreshFollowing(p);
+		}
+		
+		//PANTALLA SEARCH USUARI
+		if(event.getActionCommand().equals("UNFOLLOW")){
+			String s = new String();
+			s = "Unfollow";
+			selecteduserwindow.refreshFollowing(s);
+		}
+		
+		
+		//PANTALLA MAIN (PLAY SONG)
+		if(event.getActionCommand().equals("MainWindow.playActionCommand")) {
+			try {
+				mainWindow.goMP3();
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
+		
+	}
+	
+}
+>>>>>>> b4d63ff7a106498a4bfe5299eba34d0898475d23

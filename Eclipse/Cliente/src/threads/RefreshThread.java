@@ -40,6 +40,7 @@ public class RefreshThread extends Thread {
 				Thread.sleep(3000);
 				threadController.refreshSongList();
 				threadController.refresUserPlaylistList();
+				threadController.refresPublicPlaylistList();
 				
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();
