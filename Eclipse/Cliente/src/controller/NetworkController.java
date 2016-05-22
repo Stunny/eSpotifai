@@ -198,5 +198,14 @@ public class NetworkController {
 	    Gson gson = gsonBuilder.create();
 	    return gson.fromJson(resposta, String.class);
 	}
+	public static String AddSong(int idSong, int idPlaylist) {
+		String request = "AddSong:"+idSong+"/"+idPlaylist;
+		ServerCommunication servercommunication = new ServerCommunication();
+		String resposta = servercommunication.sendData(request);		
+		GsonBuilder gsonBuilder = new GsonBuilder();
+	    Gson gson = gsonBuilder.create();
+	    return gson.fromJson(resposta, String.class);
+		
+	}
 
 }

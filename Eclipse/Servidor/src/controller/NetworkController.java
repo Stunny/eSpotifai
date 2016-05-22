@@ -92,6 +92,10 @@ public class NetworkController {
 			args = s[1].split("/");
 			response  = gson.toJson(ddbbconnection.addPlaylist(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2])));
 		break;
+		case "AddSong":
+			args = s[1].split("/");
+			response  = gson.toJson(ddbbconnection.insertSongP(Integer.parseInt(args[0]), Integer.parseInt(args[1])));
+		break;
 		case "getSongFile":
 			LinkedList<Song> list = ddbbconnection.getSongs();
 			for (Song song : list) {

@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 
+import com.google.gson.JsonElement;
+
 import customExceptions.DatabaseNotLoadedException;
 import model.Playlist;
 import model.Song;
@@ -597,6 +599,25 @@ public class DDBBConnection {
 			return "Problems";
 		}
 	}
-	
-	
+
+	public String insertSongP(int idSong, int idPlaylist) {
+		try {
+			System.out.println("sfjsdlh.fhzgjalgnshglhglsdhf");
+			ResultSet resultSet = ddbb.selectQuery("SELECT count(*) FROM playlists_songs WHERE cf_playlist = "+ idPlaylist +" AND cf_song= "+idSong);
+			resultSet.next();
+			int dontExist = resultSet.getInt(1);
+			
+			if (dontExist == 0){
+				ddbb.insertQuery("INSERT INTO playlists_songs (cf_playlist ,cf_song) VALUES ('"+idPlaylist+"','"+idSong+"')");
+				return ("Add");
+			}
+			
+			else {
+				return ("Exist");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			return "Problems";
+		}
+	}	
 }

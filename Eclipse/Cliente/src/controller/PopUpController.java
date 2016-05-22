@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import model.AccessLogic;
 import view.AddList;
 import view.MainWindow;
 import view.ModifyNameList;
@@ -76,6 +77,7 @@ public class PopUpController implements ActionListener{
 			
 		}
 		if (event.getActionCommand().equals("MainWindow.anadirActionCommand")){
+			addlist.refreshPlaylits(AccessLogic.getPlaylists(mainwindow.getUser(), networkcontroller.getPlaylists()));
 			addlist.setVisible(true);
 		}
 		if(event.getActionCommand().equals("MainWindow.delatePlaylistActionCommand")){
@@ -127,7 +129,17 @@ public class PopUpController implements ActionListener{
 		}
 		
 		//-------------------------------------------
-		
+		if(event.getActionCommand().equals("AddList.insertActionCommand")){
+			String respuesta = networkcontroller.AddSong(mainwindow.getIdMusic(),addlist.getIdPlaylist());
+			switch(respuesta){
+				case "Add":
+					JOptionPane.showMessageDialog(null, "La cancion se ha añadido correctamente", " ", JOptionPane.INFORMATION_MESSAGE);
+				break;
+				case "Exist":
+					JOptionPane.showMessageDialog(null, "La cancion ya esta en la lista", " ", JOptionPane.ERROR_MESSAGE);
+				break;	
+			}
+		}
 		
 		if(event.getActionCommand().equals("UserWindow.visualitzarActionCommand")){
 			playlistsearchuser.setVisible(true);

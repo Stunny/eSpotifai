@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -22,6 +23,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
+import model.Playlist;
 import controller.PopUpController;
 /**
  * 
@@ -50,6 +52,7 @@ public class AddList extends JFrame{
 	 */
 	private JMenuItem insert;
 	
+	private int idPlaylist;
 	
 	/**
 	 * Construeix la pantalla de afegir una nova <i>playlist</i>.
@@ -74,8 +77,8 @@ public class AddList extends JFrame{
 		
 		JPanel jp = new JPanel();
 		jp.setLayout(new BorderLayout());
-		String[] columns = {"Playlists"};
-		Object[][] information = {{"Idiota"}};
+		String[] columns = {"ID","Playlists"};
+		Object[][] information = {};
 		JTable jtMusic = new JTable(information, columns);
 		tableMusic = new DefaultTableModel(information, columns){
 			@Override
@@ -92,7 +95,8 @@ public class AddList extends JFrame{
 		popup.setBorder(new BevelBorder(BevelBorder.RAISED));
 		
 		jtMusic.addMouseListener(new MouseAdapter(){
-			  public void mousePressed(MouseEvent e) {
+
+			public void mousePressed(MouseEvent e) {
 		            if ( SwingUtilities.isLeftMouseButton(e)) {
 		            	popup.setVisible(false);
 		            } else {
@@ -101,8 +105,8 @@ public class AddList extends JFrame{
 		                    int rowNumber = jtMusic.rowAtPoint(p);
 		                    ListSelectionModel modelo = jtMusic.getSelectionModel();
 		                    modelo.setSelectionInterval( rowNumber, rowNumber );
-		            		// id = Integer.parseInt(String.valueOf( jtMusic.getValueAt(rowNumber, 0)));
-		            		popup.show(jp,  e.getX(), e.getY());
+		            		idPlaylist = Integer.parseInt(String.valueOf( jtMusic.getValueAt(rowNumber, 0)));
+		            		popup.show(jtMusic,  e.getX(), e.getY());
 		            		 
 		                }
 		            }
@@ -111,6 +115,7 @@ public class AddList extends JFrame{
 		
 		jtMusic.setModel(tableMusic);
 		jtMusic.setFocusable(false);
+		jtMusic.getTableHeader().setReorderingAllowed(false);
 		
 		JScrollPane jspUsers = new JScrollPane(jtMusic);
 		
@@ -148,6 +153,24 @@ public class AddList extends JFrame{
 		insert.addActionListener(controller2);
 		insert.setActionCommand("AddList.insertActionCommand");
 		
+	}
+	
+	public void refreshPlaylits(LinkedList<Playlist> playlistList) {
+		LinkedList<Object[]> list = new LinkedList<Object[]>();
+		for (int i = 0; i < playlistList.size(); i++){
+			Object[] objs = {playlistList.get(i).getId(), playlistList.get(i).getName()};
+			list.add(objs);
+		}
+		while (tableMusic.getRowCount()!= 0){
+			tableMusic.removeRow(0);
+		}
+		for (int i = 0; i<list.size(); i++){
+			tableMusic.addRow(list.get(i));
+		}
+
+	}
+	public int getIdPlaylist() {
+		return idPlaylist;
 	}
 	
 }

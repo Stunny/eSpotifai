@@ -88,7 +88,7 @@ public class MainWindow extends JFrame {
 	public JPopupMenu popupPlaylist;
 	public JPopupMenu popupPlaylist1;
 	
-
+	private int idMusic;
 	private JTable jpUsers;
 	private int id1 = 0;
 	private int id2 = 0;
@@ -260,7 +260,6 @@ public class MainWindow extends JFrame {
 			  public void mousePressed(MouseEvent e) {
 		            if ( SwingUtilities.isLeftMouseButton(e)) {
 		            	popupPlaylist.setVisible(false);
-		            	System.out.println("hola guarra");
 		            	
 		            } else {
 		                 if ( SwingUtilities.isRightMouseButton(e)) {
@@ -427,7 +426,7 @@ public class MainWindow extends JFrame {
 						modelo2.setSelectionInterval( rowNumber, rowNumber );
 						//modelo.clearSelection();
 						//modelo1.clearSelection();
-						// id = Integer.parseInt(String.valueOf( jtMusic.getValueAt(rowNumber, 0)));
+						setIdMusic(Integer.parseInt(String.valueOf( jtMusic.getValueAt(rowNumber, 0))));
 						popup.show(jpMain,  e.getX(), e.getY());
 
 					}
@@ -952,5 +951,13 @@ public class MainWindow extends JFrame {
 	
 	public String getMode (){
 		return mode;	}
+
+	public int getIdMusic() {
+		return idMusic;
+	}
+
+	public void setIdMusic(int idMusic) {
+		this.idMusic = idMusic;
+	}
 	
 }
