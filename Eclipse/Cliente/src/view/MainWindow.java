@@ -9,6 +9,11 @@ import java.awt.Point;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
@@ -526,8 +531,19 @@ public class MainWindow extends JFrame {
 		this.setSize(1280, 720);
 		this.setTitle("Espotifai");
 		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		
+		this.addWindowListener(new java.awt.event.WindowAdapter() {
+		    @Override
+		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+		        try {
+					Files.deleteIfExists(Paths.get("Resources/song.mp3"));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+				}
+		            System.exit(0);
+		    }
+		});
+		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
 
@@ -674,11 +690,7 @@ public class MainWindow extends JFrame {
 				//player = new Player();
 
 				state = "";
-				//String songLink = "C:/Users/Marc/Downloads/Quentin Tarantino Soundtracks Discography - HTD 2015/Pulp Fiction (Collector's Edition) (2009) - Soundtrack/04. Let's Stay Together.mp3";
-				//String songLink = "C:/Users/Marc/Downloads/Quentin Tarantino Soundtracks Discography - HTD 2015/Pulp Fiction (Collector's Edition) (2009) - Soundtrack/14. Personality Goes a Long Way.mp3";
-				//String songLink = "C:/Users/Marc/Downloads/grillos05_mp3.mp3";
-				//String songLink = "/Users/elnacabotparedes/Music/iTunes/iTunes Media/Music/Martin Garrix/Unknown Album/01 Poison.mp3";
-				String songLink = "C:/Users/Marta/Music/Mystery_Skulls_-Magic.mp3";
+				String songLink = "Resources/song.mp3";
 
 				customPlayer.abrirMp3(songLink);
 				state = customPlayer.playPlayer(jSlider);
@@ -691,31 +703,7 @@ public class MainWindow extends JFrame {
 			jlSongName.setText(customPlayer.getName());
 
 		}
-		/*//Si el player est� parat i fa clik
-		if (player.isEnded()){
 
-			try{
-
-				//Creo un reproductor un altre cop ja que internament el BasicPlayer ha fet un closeStrem();
-				player = new Player();
-
-				System.out.println("\nENTRO EN EL VISUALITZADOR DE CAN�O PER SEGON COP\n");
-				state = "";
-				String songLink = "C:/Users/Marc/Downloads/Quentin Tarantino Soundtracks Discography - HTD 2015/Pulp Fiction (Collector's Edition) (2009) - Soundtrack/14. Personality Goes a Long Way.mp3";
-				//String songLink = "C:/Users/Marc/Downloads/grillos05_mp3.mp3";
-				player.AbrirMp3(songLink);
-				state = player.Play(jSlider1);
-
-			}catch (Exception ex) {
-				System.out.println("Error: " + ex.getMessage());
-			}
-			ConfigurationButton(playButton, pausebutton1, pausebutton2, pausebutton3);
-			NameSong.setText(player.getName());
-		}
-		 */
-
-
-		//miro l'estat i el printo per pantalla i el nom de la can�o
 		if(customPlayer.getStatus() == 0){
 
 			jlSongState.setForeground(new Color(26, 140, 60));
@@ -736,12 +724,12 @@ public class MainWindow extends JFrame {
 
 	}
 
-	public void changeMP3(String songLink) throws Exception {
+	public void changeMP3() throws Exception {
 
 		try{
 			//customPlayer.stopPlayer();
 			state = "";
-			customPlayer.abrirMp3(songLink);
+			customPlayer.abrirMp3("Resources/song.mp3");
 			state = customPlayer.playPlayer(jSlider);
 
 		}catch (Exception ex) {
