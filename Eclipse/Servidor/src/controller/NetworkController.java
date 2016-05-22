@@ -70,7 +70,6 @@ public class NetworkController {
 		case "getPublicPlaylists":
 			response  = gson.toJson(ddbbconnection.getPublicPlaylists(Integer.parseInt(s[1])));
 			break;
-<<<<<<< HEAD
 		case "Songs From":
 			response  = gson.toJson(ddbbconnection.getSongsList(Integer.parseInt(s[1])));
 		break;
@@ -78,7 +77,6 @@ public class NetworkController {
 			args = s[1].split("/");
 			response  = gson.toJson(ddbbconnection.addPlaylist(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2])));
 		break;
-=======
 		case "getSongFile":
 			LinkedList<Song> list = ddbbconnection.getSongs();
 			for (Song song : list) {
@@ -90,8 +88,6 @@ public class NetworkController {
 			
 			break;
 		
-		
->>>>>>> 144f2d0aead8c5be9d5450cc61440d5da920830d
 		default: 
 			response = "Invalid request";
 		break;

@@ -91,9 +91,13 @@ public class ButtonController implements ActionListener {
 	 * @see controller.NetworkController
 	 * 
 	 */
-	
+<<<<<<< HEAD
 	public ButtonController(NewListDialog NewListDialogDialog, LoginWindow loginWindow, RegisterWindow registerWindow, MainWindow mainWindow, SelectedUserWindow selecteduserwindow, NetworkController networkcontroller, UserWindow userwindow){
 		this.NewListDialogDialog = NewListDialogDialog;
+=======
+	public ButtonController(LoginWindow loginWindow, RegisterWindow registerWindow, MainWindow mainWindow, SelectedUserWindow selecteduserwindow, NetworkController networkcontroller, UserWindow userwindow){
+
+>>>>>>> 144f2d0aead8c5be9d5450cc61440d5da920830d
 		this.loginWindow = loginWindow;
 		this.mainWindow = mainWindow;
 		this.registerWindow= registerWindow;
@@ -147,6 +151,7 @@ public class ButtonController implements ActionListener {
 			loginWindow.setVisible(true);
 			registerWindow.setVisible(false);
 		}
+<<<<<<< HEAD
 		
 		
 		//New
@@ -166,6 +171,12 @@ public class ButtonController implements ActionListener {
 		}
 		
 		
+=======
+
+
+
+
+>>>>>>> 144f2d0aead8c5be9d5450cc61440d5da920830d
 		//PANTALLA registerWindow
 		if(event.getActionCommand().equals("RegisterWindow.registerActionCommand")){
 

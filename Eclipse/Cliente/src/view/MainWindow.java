@@ -159,6 +159,8 @@ public class MainWindow extends JFrame {
 		//private JLabel SongState;
 		private JLabel jlSongName;
 		private JLabel jlSongState;
+		private String state;
+		private boolean stateSong;
 
 		/**
 =======
@@ -176,7 +178,6 @@ public class MainWindow extends JFrame {
 	//==================
 
 	/**
->>>>>>> 144f2d0aead8c5be9d5450cc61440d5da920830d
 	 * Constructor de la pantalla principal.
 	 */
 
@@ -699,7 +700,7 @@ public class MainWindow extends JFrame {
 
 				customPlayer.abrirMp3("Resources/song.mp3");
 
-				customPlayer.abrirMp3(songLink);
+				//customPlayer.abrirMp3(songLink);
 				customPlayer.playPlayer(jSlider);
 				state = customPlayer.playPlayer(jSlider);
 
