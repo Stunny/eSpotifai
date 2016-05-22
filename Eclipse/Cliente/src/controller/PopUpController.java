@@ -21,14 +21,16 @@ public class PopUpController implements ActionListener{
 	private SelectedUserWindow selecteduserwindow;
 	private PlaylistSearchUser playlistsearchuser;
 	private UserWindow userwindow;
+	private NetworkController networkcontroller;
 		
-	public PopUpController(MainWindow mainwindow, AddList addlist, Vots vots, SelectedUserWindow selecteduserwindow,PlaylistSearchUser playlistsearchuser, UserWindow userwindow ){
+	public PopUpController(MainWindow mainwindow, AddList addlist, Vots vots, SelectedUserWindow selecteduserwindow,PlaylistSearchUser playlistsearchuser, UserWindow userwindow, NetworkController networkcontroller ){
 		this.mainwindow = mainwindow;
 		this.addlist = addlist;
 		this.vots = vots;
 		this.selecteduserwindow = selecteduserwindow;
 		this.playlistsearchuser = playlistsearchuser;
 		this.userwindow = userwindow;
+		this.networkcontroller = networkcontroller;
 	}
 
 	public void actionPerformed(ActionEvent event) {
@@ -42,7 +44,10 @@ public class PopUpController implements ActionListener{
 		if(event.getActionCommand().equals("MainWindow.delatePlaylistActionCommand")){
 			int reply = JOptionPane.showConfirmDialog(null, "Seguro que quieres eliminar el usuario?", "", JOptionPane.YES_NO_OPTION);
 			if (reply == JOptionPane.YES_OPTION) {
-				
+				//String resposta = networkcontroller.deletePlaylist(mainwindow.getId2());
+				JOptionPane.showConfirmDialog(null, networkcontroller.deletePlaylist(mainwindow.getId2()));
+			}else{
+				JOptionPane.showMessageDialog(null, "No se ha podido eliminar la canción.");
 			}
 			 
 			

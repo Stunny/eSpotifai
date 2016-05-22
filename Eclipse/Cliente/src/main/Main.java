@@ -67,7 +67,7 @@ public class Main {
 				
 				//Creamos el controlador
 				ButtonController controller = new ButtonController(loginWindow, registerWindow, mainWindow, selecteduserwindow, networkcontroller, userWindow);
-				PopUpController controller2 = new PopUpController(mainWindow, addlist, vots, selecteduserwindow, playlistsearchuser, userWindow);
+				PopUpController controller2 = new PopUpController(mainWindow, addlist, vots, selecteduserwindow, playlistsearchuser, userWindow, networkcontroller);
 				
 				//Juntamos las pantallas y el controlador
 				loginWindow.registerController(controller);

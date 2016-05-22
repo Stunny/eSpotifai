@@ -63,6 +63,12 @@ public class NetworkController {
 		case "getPlaylists":
 			response  = gson.toJson(ddbbconnection.getPlaylists());
 			break;
+		case "getFollowings":
+			break;
+			
+		case "deletePlaylist": 
+			response  = ddbbconnection.deletePlaylist(Integer.parseInt(s[1]));
+			break;
 		
 		
 		default: 

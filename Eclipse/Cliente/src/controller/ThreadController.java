@@ -29,5 +29,7 @@ public class ThreadController {
 	public void trackTime() {
 		mainWindow.refreshTime();
 	}
+	
+	
 
 }

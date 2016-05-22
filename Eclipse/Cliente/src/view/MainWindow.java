@@ -89,7 +89,9 @@ public class MainWindow extends JFrame {
 	public JPopupMenu popupPlaylist1;
 	
 	private JTable jpUsers;
-	private int id = 0;
+	private int id1 = 0;
+	private int id2 = 0;
+	private int id3 = 0;
 	DefaultTableModel tableMusic;
 	DefaultTableModel tablePlaylist;
 	DefaultTableModel tableModelLists;
@@ -246,7 +248,7 @@ public class MainWindow extends JFrame {
 		                    modelo.setSelectionInterval( rowNumber, rowNumber );
 		                   // modelo1.clearSelection();
 		                   // modelo2.clearSelection();
-		            		id = Integer.parseInt(String.valueOf( jtFollowedLists.getValueAt(rowNumber, 0)));
+		            		id1 = Integer.parseInt(String.valueOf( jtFollowedLists.getValueAt(rowNumber, 0)));
 		            		popupPlaylist.show(jpListsFollowing,  e.getX(), e.getY());
 		            		 
 		                }
@@ -311,7 +313,7 @@ public class MainWindow extends JFrame {
 		                    modelo1.setSelectionInterval( rowNumber, rowNumber );
 		                    //modelo.clearSelection();
 		                    //modelo2.clearSelection();
-		            		// id = Integer.parseInt(String.valueOf( jtMusic.getValueAt(rowNumber, 0)));
+		            		id2 = Integer.parseInt(String.valueOf( jtLists.getValueAt(rowNumber, 0)));
 		            		popupPlaylist1.show(jpLists,  e.getX(), e.getY());
 		            		 
 		                }
@@ -398,7 +400,7 @@ public class MainWindow extends JFrame {
 		                    modelo2.setSelectionInterval( rowNumber, rowNumber );
 		                    //modelo.clearSelection();
 		                    //modelo1.clearSelection();
-		            		// id = Integer.parseInt(String.valueOf( jtMusic.getValueAt(rowNumber, 0)));
+		            		id3 = Integer.parseInt(String.valueOf( jtMusic.getValueAt(rowNumber, 0)));
 		            		popup.show(jpMain,  e.getX(), e.getY());
 		            		 
 		                }
@@ -815,13 +817,30 @@ public void refreshPlaylists(LinkedList<Playlist> playlistList) {
 		
 	}
 
-	public int getId() {
-		return id;
+	public int getId1() {
+		return id1;
 	}
 
 
 	public void setId(int id) {
-		this.id = id;
+		this.id1 = id;
+	}
+	
+	public int getId2() {
+		return id2;
+	}
+
+
+	public void setId2(int id) {
+		this.id2 = id;
+	}
+	public int getId3() {
+		return id3;
+	}
+
+
+	public void setId3(int id) {
+		this.id3 = id;
 	}
 	
 	public void setUser (String user){
