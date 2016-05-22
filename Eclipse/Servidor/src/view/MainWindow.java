@@ -76,7 +76,7 @@ public class MainWindow extends JFrame{
 	private JButton jbPlay;
 	private JButton jbPrevious;
 	private JButton jbNext;
-	private JButton eliminar;
+	//private JButton eliminar;
 	private JButton jbCancelDelete;
 	
 
@@ -105,7 +105,7 @@ public class MainWindow extends JFrame{
 	private JMenuItem seguidores;
 	private JMenuItem seguidos;
 	private JMenuItem listas;
-	//private JMenuItem eliminar;
+	private JMenuItem eliminar;
 	private JMenuItem eliminar2;
 
 	private int id = 0;
@@ -113,6 +113,7 @@ public class MainWindow extends JFrame{
 
 	public JPopupMenu popup;
 	public JPopupMenu popupSong;
+	public JPopupMenu popupDeleteUser;
 //=============
 	//private JLabel jlTemporalSong;
 	private JLabel jlTime;
@@ -334,7 +335,7 @@ public class MainWindow extends JFrame{
 
 		popup.add(listas = new JMenuItem("Mostrar listas de reproduccion", null));
 		listas.setHorizontalTextPosition(JMenuItem.RIGHT);
-
+/*
 		jdDelete= new JDialog();
 		jpDelete = new JPanel();
 		BorderLayout blDelete = new BorderLayout();
@@ -357,7 +358,7 @@ public class MainWindow extends JFrame{
 		jpDelete.add(jpDeleteOption, BorderLayout.SOUTH);
 		
 		jdDelete.add(jpDelete);
-		
+	*/	
 		/*
 		popup.addSeparator();
 		popup.add(eliminar = new JMenuItem("Eliminar "));
@@ -369,14 +370,6 @@ public class MainWindow extends JFrame{
 
 			public void mousePressed(MouseEvent e) {
 				if ( SwingUtilities.isLeftMouseButton(e)) {
-					
-					jdDelete.setTitle(" Verificación eliminar usuario ");
-
-					jdDelete.setSize(new Dimension(240,100));
-					jdDelete.setResizable(false);
-					jdDelete.setLocationRelativeTo(null);
-					jdDelete.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-					jdDelete.setVisible(true);
 					
 					popup.setVisible(false);
 				
@@ -392,6 +385,34 @@ public class MainWindow extends JFrame{
 				}
 			}
 	    });
+
+		popupDeleteUser = new JPopupMenu();
+		popupDeleteUser.add(eliminar = new JMenuItem("Eliminar", null));
+		eliminar.setHorizontalTextPosition(JMenuItem.RIGHT);
+		    
+		popupDeleteUser.setLabel("Justification");
+		popupDeleteUser.setBorder(new BevelBorder(BevelBorder.RAISED));
+		    
+		jtUser.addMouseListener(new MouseAdapter() {
+	        public void mousePressed(MouseEvent e) {
+	            if ( SwingUtilities.isLeftMouseButton(e)) {
+	            	
+						Point p = e.getPoint();
+						int rowNumber = jtUser.rowAtPoint( p );
+						ListSelectionModel modelo = jtUser.getSelectionModel();
+						modelo.setSelectionInterval( rowNumber, rowNumber );
+						id = Integer.parseInt(String.valueOf( jtUser.getValueAt(rowNumber, 0)));
+						popupDeleteUser.show(jtpTabs,  e.getX(), e.getY());
+					
+	            } else {
+	            	if ( SwingUtilities.isRightMouseButton(e)) {
+	            		popupDeleteUser.setVisible(false);
+	                }
+	            }
+	        }
+	    });
+		
+		
 		
 		jtUser.setModel(tableModelUser);
 		jtUser.setFocusable(false);
@@ -404,6 +425,10 @@ public class MainWindow extends JFrame{
 			public void mousePressed(MouseEvent e) {
 				if ( SwingUtilities.isLeftMouseButton(e)) {
 					popup.setVisible(false);
+					//popupDeleteUser.setVisible(true);
+				}else if(SwingUtilities.isRightMouseButton(e)){
+					popupDeleteUser.setVisible(false);
+					//popup.setVisible(true);
 				}
 			}
 		});
@@ -527,8 +552,8 @@ public class MainWindow extends JFrame{
 		listas.addActionListener(controller2);
 		listas.setActionCommand("MainWindow.listasActionCommand");
 
-		jbCancelDelete.addActionListener(controller2);
-		jbCancelDelete.setActionCommand("MainWindow.cancelEliminarActionCommand");
+		//jbCancelDelete.addActionListener(controller2);
+		//jbCancelDelete.setActionCommand("MainWindow.cancelEliminarActionCommand");
 		
 		eliminar.addActionListener(controller2);
 		eliminar.setActionCommand("MainWindow.eliminarActionCommand");
@@ -549,9 +574,9 @@ public class MainWindow extends JFrame{
 			jlSongState.setText("           --> CLICK PLAY TO LISTEN THE SONG <--");
 		}
 	}
-	public void closeDialog(){
-		jdDelete.dispose();
-	}
+	//public void closeDialog(){
+	//	jdDelete.dispose();
+	//}
 	
 	public void refreshTime() {
 

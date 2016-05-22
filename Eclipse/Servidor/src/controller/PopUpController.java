@@ -52,17 +52,16 @@ public class PopUpController implements ActionListener{
 				} else {
 					JOptionPane.showMessageDialog(null, "No se ha podido eliminar el usuario.");
 				}
-				main.closeDialog();
+			//	main.closeDialog();
 			} else {
 				JOptionPane.showMessageDialog(null, "No se ha eliminado el usuario.");
-				main.closeDialog();
+			//	main.closeDialog();
 			}
-		}
-		else if (event.getActionCommand().equals("MainWindow.cancelEliminarActionCommand")){
-			JOptionPane.showMessageDialog(null, "No se ha eliminado el usuario.");
-			main.closeDialog();
-		}
-		else if (event.getActionCommand().equals("MainWindow.eliminar2ActionCommand")){
+		//}
+		//else if (event.getActionCommand().equals("MainWindow.cancelEliminarActionCommand")){
+		//	JOptionPane.showMessageDialog(null, "No se ha eliminado el usuario.");
+		//	main.closeDialog();
+		}else if (event.getActionCommand().equals("MainWindow.eliminar2ActionCommand")){
 			
 			int reply = JOptionPane.showConfirmDialog(null, "Seguro que quieres eliminar la cancion?", "", JOptionPane.YES_NO_OPTION);
 			if (reply == JOptionPane.YES_OPTION) {
