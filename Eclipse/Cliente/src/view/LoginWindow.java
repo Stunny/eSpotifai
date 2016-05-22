@@ -88,7 +88,7 @@ public class LoginWindow  extends JFrame{
 
 		JPanel jpPassword = new JPanel(); 
 		jpPassword.setLayout(new GridLayout(1,2));
-		JLabel contrasenya = new JLabel("Contrasenya");
+		JLabel contrasenya = new JLabel("Password");
 		contrasenya.setForeground(Color.white);
 		jpPassword.add(contrasenya, BorderLayout.CENTER);
 
@@ -98,7 +98,7 @@ public class LoginWindow  extends JFrame{
 		jpPassword.setBackground(CustomColor.background);
 
 		JPanel jpLoginButton = new JPanel(); 
-		jbLogin = new JButton("ACCEDIR");
+		jbLogin = new JButton("LOG IN");
 		jpLoginButton.add(jbLogin, BorderLayout.CENTER);
 
 		jpLoginButton.setBackground(CustomColor.background);
@@ -107,7 +107,7 @@ public class LoginWindow  extends JFrame{
 		jpLogin.add(jpPassword);
 		jpLogin.add(jpLoginButton);
 
-		TitledBorder titledBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Accedir a Espotifai", javax.swing.border.
+		TitledBorder titledBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Log into Espotifai", javax.swing.border.
 				TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.
 				TitledBorder.DEFAULT_POSITION, null, java.awt.Color.white);
 
@@ -125,19 +125,19 @@ public class LoginWindow  extends JFrame{
 		jpRegister.setLayout(new GridLayout(2,1));
 
 		JPanel jlRegister = new JPanel(); 
-		JLabel register = new JLabel("Encara no tens usuari? Registra't");
+		JLabel register = new JLabel("Not a member yet? Register now!");
 		register.setForeground(Color.white);
 		jlRegister.add(register);
 		jlRegister.setBackground(CustomColor.background);
 		jpRegister.add(jlRegister, BorderLayout.CENTER);
 		JPanel jpRegisterButton = new JPanel();
-		jbRegister  = new JButton("REGISTRA'T");
+		jbRegister  = new JButton("REGISTER");
 		jpRegisterButton.add(jbRegister, BorderLayout.CENTER);
 		jpRegisterButton.setBackground(CustomColor.background);
 		jpRegister.add(jpRegisterButton);
 
 
-		TitledBorder titledBorder2 = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Registrar-se", javax.swing.border.
+		TitledBorder titledBorder2 = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Register", javax.swing.border.
 				TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.
 				TitledBorder.DEFAULT_POSITION, null, java.awt.Color.white);
 
@@ -151,7 +151,7 @@ public class LoginWindow  extends JFrame{
 
 		//TAMAÑO DE LA VENTANA
 		this.setSize(300, 300);
-		this.setTitle("Accès a Espotyfai");
+		this.setTitle("Access to Espotyfai");
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}

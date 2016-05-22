@@ -95,10 +95,13 @@ public class MainWindow extends JFrame {
 	public JPopupMenu popup;
 	public JPopupMenu popupPlaylist;
 	public JPopupMenu popupPlaylist1;
+
 	
 	private int idMusic;
 	
 	private int inReproduccion = 0;
+
+
 
 	private JTable jpUsers;
 	private int id1 = 0;
@@ -214,11 +217,11 @@ public class MainWindow extends JFrame {
 		jtfSearch = new JTextField();
 		jtfSearch.setBackground(CustomColor.icon);
 		jpPageStart.add(jtfSearch, BorderLayout.CENTER);
-		jbSearch = new JButton("BUSCAR"); 
+		jbSearch = new JButton("SEARCH USER"); 
 		jpPageStart.add(jbSearch, BorderLayout.CENTER);
-		jbClose = new JButton("CERRAR SESIÓN"); 
+		jbClose = new JButton("LOG OUT"); 
 		jpPageStart.add(jbClose, BorderLayout.CENTER);
-		jbProfile = new JButton("USUARIO");
+		jbProfile = new JButton("USER");
 		jpPageStart.add(jbProfile, BorderLayout.PAGE_START);
 		jpPageStart.setBackground(CustomColor.background);
 
@@ -238,7 +241,7 @@ public class MainWindow extends JFrame {
 		jpListsFollowing.setBorder(BorderFactory.createTitledBorder("PLAYLIST FOLLOWING"));
 
 
-		String[] jtFollowedListsColumns = {"id","Followed Lists", "Creador"};
+		String[] jtFollowedListsColumns = {"id","Followed Lists", "Owner"};
 		Object[][] jtFollowedListsData = {};
 		//se crea la tabla
 		JTable jtFollowedLists = new JTable(jtFollowedListsData, jtFollowedListsColumns);
@@ -254,11 +257,12 @@ public class MainWindow extends JFrame {
 		}; 
 
 		popupPlaylist = new JPopupMenu();
-		popupPlaylist.add(visualitzar = new JMenuItem("Visualitzar llista"));
+		popupPlaylist.add(visualitzar = new JMenuItem("See list"));
 		visualitzar.setHorizontalTextPosition(JMenuItem.RIGHT);
 		popupPlaylist.setLabel("Justificacion");
 		popupPlaylist.setBorder(new BevelBorder(BevelBorder.RAISED));
 		jtFollowedLists.addMouseListener(new MouseAdapter(){
+
 			  public void mousePressed(MouseEvent e) {
 		            if ( SwingUtilities.isLeftMouseButton(e)) {
 		            	popupPlaylist.setVisible(false);
@@ -300,7 +304,7 @@ public class MainWindow extends JFrame {
 		jpLists.setBorder(BorderFactory.createTitledBorder("PLAYLIST "));
 
 		String[] jtListsColumns1 = {"id","Lists"};
-		Object[][] jtListsData1 = {{"1","HOLA"}};
+		Object[][] jtListsData1 = {};
 		//se crea la tabla
 		JTable jtLists = new JTable(jtListsData1, jtListsColumns1);
 
@@ -315,9 +319,9 @@ public class MainWindow extends JFrame {
 		}; 
 
 		popupPlaylist1 = new JPopupMenu();
-		popupPlaylist1.add(visualitzarPlaylist = new JMenuItem("Visualitzar llista"));
+		popupPlaylist1.add(visualitzarPlaylist = new JMenuItem("View Playlist"));
 		visualitzarPlaylist.setHorizontalTextPosition(JMenuItem.RIGHT);
-		popupPlaylist1.add(delatePlaylist  = new JMenuItem("Eliminar Llista"));
+		popupPlaylist1.add(delatePlaylist  = new JMenuItem("Delete Playlist"));
 		delatePlaylist.setHorizontalTextPosition(JMenuItem.RIGHT);
 		popupPlaylist1.setLabel("Justificacion");
 		popupPlaylist1.setBorder(new BevelBorder(BevelBorder.RAISED));
@@ -385,7 +389,7 @@ public class MainWindow extends JFrame {
 
 		//START jpPageCenter
 
-		String[] columns = {"ID","NOMBRE", "GÉNERO", "ALBUM", "ARTISTA", "ESTRELLAS", "REPRODUCCIONES"};
+		String[] columns = {"ID","NAME", "GENRE", "ALBUM", "ARTIST", "STARS", "VIEWS"};
 		Object[][] information = {};
 		JTable jtMusic = new JTable(information, columns);
 		tableMusic = new DefaultTableModel(information, columns){
@@ -397,11 +401,11 @@ public class MainWindow extends JFrame {
 		};
 
 		popup = new JPopupMenu();
-		popup.add(reproducir = new JMenuItem("Reproduir Canço"));
+		popup.add(reproducir = new JMenuItem("Play Song"));
 		reproducir.setHorizontalTextPosition(JMenuItem.RIGHT);
-		popup.add(anadir = new JMenuItem("Afeguir a una Playlist"));
+		popup.add(anadir = new JMenuItem("Add to a Playlist"));
 		anadir.setHorizontalTextPosition(JMenuItem.RIGHT);
-		popup.add(vot = new JMenuItem("Votar per la canço"));
+		popup.add(vot = new JMenuItem("Rate song"));
 		vot.setHorizontalTextPosition(JMenuItem.RIGHT);
 
 		//popup.add(reproducir = new JMenuItem("Eliminar Canço", new ImageIcon("1.gif")));
@@ -516,7 +520,7 @@ public class MainWindow extends JFrame {
 		jlSongName = new JLabel();
 		jlSongName.setForeground(new Color(22, 88, 210));
 		jlSongName.setFont(new Font("Britannic Bold", Font.ITALIC, 16));
-		jlSongName.setText(" .........Select one song..........");
+		jlSongName.setText(" .........Click play..........");
 		jlSongName.setHorizontalAlignment(JTextField.RIGHT);
 		jpSong.add(jlSongName);
 

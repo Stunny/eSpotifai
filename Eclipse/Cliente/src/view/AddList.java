@@ -89,7 +89,7 @@ public class AddList extends JFrame{
 		};
 
 		popup = new JPopupMenu();
-		popup.add(insert = new JMenuItem("AfeguirCanço"));
+		popup.add(insert = new JMenuItem("Add song"));
 		insert.setHorizontalTextPosition(JMenuItem.RIGHT);
 		popup.setLabel("Justificacion");
 		popup.setBorder(new BevelBorder(BevelBorder.RAISED));
@@ -115,7 +115,7 @@ public class AddList extends JFrame{
 		jtMusic.setModel(tableMusic);
 		jtMusic.setFocusable(false);
 		jtMusic.getTableHeader().setReorderingAllowed(false);
-		
+
 		JScrollPane jspUsers = new JScrollPane(jtMusic);
 
 
@@ -137,7 +137,7 @@ public class AddList extends JFrame{
 
 		this.setResizable(true);
 		this.setSize(300, 300);
-		this.setTitle("Añadir Canción en Playlist");
+		this.setTitle("Add song to playlist");
 		this.setLocationRelativeTo(null);
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -153,7 +153,7 @@ public class AddList extends JFrame{
 		insert.setActionCommand("AddList.insertActionCommand");
 
 	}
-	
+
 	public void refreshPlaylits(LinkedList<Playlist> playlistList) {
 		LinkedList<Object[]> list = new LinkedList<Object[]>();
 		for (int i = 0; i < playlistList.size(); i++){

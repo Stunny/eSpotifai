@@ -99,7 +99,7 @@ public class Main {
 
 
 				} catch (Exception e) {
-					JOptionPane.showMessageDialog(null, "Hi ha hagut un problema.", " ", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "There has been a problem.", " ", JOptionPane.ERROR_MESSAGE);
 				}
 
 

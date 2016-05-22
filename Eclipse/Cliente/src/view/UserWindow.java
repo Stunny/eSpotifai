@@ -59,14 +59,14 @@ public class UserWindow extends JFrame{
 
 		JPanel jpHead = new JPanel(); 
 		jpHead.setLayout(new GridLayout(1, 2));
-		JLabel jlUsername = new JLabel("Nickname:");
+		JLabel jlUsername = new JLabel("Username:");
 		jlUsername.setForeground(Color.white);
 		jtaUsername = new JTextArea(); 
 		jtaUsername.setEditable(false);
 		jtaUsername.setBackground(CustomColor.icon);
 		jpHead.add(jlUsername, BorderLayout.CENTER);
 		jpHead.add(jtaUsername, BorderLayout.CENTER);
-		TitledBorder titledBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Usuario", javax.swing.border.
+		TitledBorder titledBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Username", javax.swing.border.
 				TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.
 				TitledBorder.DEFAULT_POSITION, null, java.awt.Color.white);
 
@@ -81,8 +81,8 @@ public class UserWindow extends JFrame{
 		jpListsFollowing.setBorder(BorderFactory.createTitledBorder("Following"));
 
 
-		String[] jtFollowedListsColumns = {"id","Following List"};
-		Object[][] jtFollowedListsData = {{"1", "ELNA"},{"2","Elna"}};
+		String[] jtFollowedListsColumns = {"id","Followed List"};
+		Object[][] jtFollowedListsData = {};
 		//se crea la tabla
 		JTable jtFollowedLists = new JTable(jtFollowedListsData, jtFollowedListsColumns);
 
@@ -97,7 +97,7 @@ public class UserWindow extends JFrame{
 		}; 
 
 		popupPlaylist = new JPopupMenu();
-		popupPlaylist.add(visualitzar = new JMenuItem("Visualitzar llista"));
+		popupPlaylist.add(visualitzar = new JMenuItem("View playlists"));
 		visualitzar.setHorizontalTextPosition(JMenuItem.RIGHT);
 		popupPlaylist.setLabel("Justificacion");
 		popupPlaylist.setBorder(new BevelBorder(BevelBorder.RAISED));
@@ -144,7 +144,7 @@ public class UserWindow extends JFrame{
 
 
 		this.setSize(300, 500);
-		this.setTitle("Perfil Usuario");
+		this.setTitle("User profile");
 		this.setLocationRelativeTo(null);
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

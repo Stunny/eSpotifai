@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import model.AccessLogic;
 import view.AddList;
 import view.MainWindow;
 import view.ModifyNameList;
@@ -77,7 +76,6 @@ public class PopUpController implements ActionListener{
 
 		}
 		if (event.getActionCommand().equals("MainWindow.anadirActionCommand")){
-			addlist.refreshPlaylits(AccessLogic.getPlaylists(mainwindow.getUser(), networkcontroller.getPlaylists()));
 			addlist.setVisible(true);
 		}
 		if(event.getActionCommand().equals("MainWindow.delatePlaylistActionCommand")){
@@ -140,7 +138,7 @@ public class PopUpController implements ActionListener{
 				break;	
 			}
 		}
-		
+
 		if(event.getActionCommand().equals("UserWindow.visualitzarActionCommand")){
 			playlistsearchuser.setVisible(true);
 			userwindow.setVisible(false);

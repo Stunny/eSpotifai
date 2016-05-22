@@ -8,16 +8,53 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 
 import customExceptions.DatabaseNotLoadedException;
-
+/**
+ * 
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @versio 1.0
+ * @see DDBBConnection
+ * @see DatabaseNotLoadedException
+ * @see DriverManager
+ * @see SQLException
+ * @see Connection
+ *
+ */
 public class DataBase {
+	/**
+	 * Nom de l'usuari de la base de dades
+	 */
 	static String username;
+	/**
+	 * Contrassenya de l'usuari de la base de dades
+	 */
 	static String password;
+	/**
+	 * Nom de la base de dades
+	 */
 	static String ddbbName;
+	/**
+	 * Port de conexió de la base de dades
+	 */
 	static int port;
+	/**
+	 * Direcció URL de la base de dades
+	 */
 	static String url = "jdbc:mysql://localhost";
+	/**
+	 * Instanciació de conexió amb la base de dades
+	 */
 	static Connection conn = null;
+	/**
+	 * Doble pas per executar les queries per tal d'evitar <i>Injection</i>
+	 */
 	static Statement s;
-
+	/**
+	 * Prepara les dades per a la conexio amb la base de dades
+	 * @param username Nom d'usuari de la base de dades
+	 * @param password Contrassenya de l'usuari de la base de dades
+	 * @param ddbbName Nom de la base de dades
+	 * @param port Port de conexió de la base de dades
+	 */
 	public DataBase(String username, String password, String ddbbName, int port) {
 		DataBase.username = username;
 		DataBase.password = password;
@@ -26,7 +63,10 @@ public class DataBase {
 		DataBase.url += ":"+port+"/";
 		DataBase.url += ddbbName;
 	}
-
+	/**
+	 * Executa la conexió amb la base de dades mitjançant els atributs inicialitzats ateriorment.
+	 * @throws DatabaseNotLoadedException En cas de error a l'hora de conectar.
+	 */
 	public void connect() throws DatabaseNotLoadedException{
 
 		try {
@@ -89,7 +129,7 @@ public class DataBase {
 			rs = s.executeQuery (query);
 
 		} catch (SQLException ex) {
-			//System.out.println("Problema al Recuperar les dades --> " + ex.getSQLState());
+			//System.out.println("Problem when fetching data --> " + ex.getSQLState());
 		}
 		return rs;
 	}
@@ -98,7 +138,7 @@ public class DataBase {
 		try {
 			conn.close();
 		} catch (SQLException e) {
-			//System.out.println("Problema al tancar la connexió --> " + e.getSQLState());
+			//System.out.println("Issue when logging out --> " + e.getSQLState());
 		}
 	}
 }

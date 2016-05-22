@@ -13,26 +13,39 @@ import customExceptions.DatabaseNotLoadedException;
 import model.Playlist;
 import model.Song;
 import model.User;
-
+/**
+ * 
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see DataBase
+ * @see ServerConfiguration
+ * @see ResultSet
+ * @see SQLException
+ * @see SimpleDateFormat
+ *@see java.sql.Timestamp
+ */
 public class DDBBConnection {
 	DataBase ddbb;
-
-	/*
-	 * Contructor que crea la clase DataBase que permite la conexiï¿½n y modificaciï¿½n con la base de datos.
+	
+	/**
+	 * Prepara totes les dades necessàries per a la conexió amb la base de dades. 
+	 * @see DataBase
 	 */
 	public DDBBConnection (String username, String password, String ddbbName, int port){
 		ddbb = new DataBase(username, password, ddbbName, port);
 	}
-
-	/*
-	 * Conexiï¿½n con el servidor 
+	
+	/**
+	 * Executa la conexió amb la base de dades
+	 * @throws DatabaseNotLoadedException En cas de que hagi hagut algun problema amb la conexió
 	 */
 	public void startConnection() throws DatabaseNotLoadedException {
 		ddbb.connect();
 	}
-
-	/*
-	 * Desconexion con el servidor 
+	
+	/**
+	 * Atura la conexió amb la base de dades.
+	 * @see DataBase
 	 */
 	public void stopConnection (){
 		ddbb.disconnect();	
@@ -44,6 +57,16 @@ public class DDBBConnection {
 	 * 		"Incorrect username" -> Usuario no encontrado 
 	 * 		"Welcome" -> Usuario enncontrado y la contraseï¿½a coincide
 	 * 		"Incorrect password" -> Usuario encontrado pero la contraseï¿½ no coincide
+	 */
+	/**
+	 * Cerca si l'usuari existeix a la base de dades i comprova si la contrassenya és correcta.
+	 * 
+	 * @param username Nom d'usuari
+	 * @param password Contrassenya d'usuari
+	 * @return <p>En cas de l'usuari no es trobi a la base de dades, es retornara: <i>Incorrect username</i></p><p>En cas de la contrassenya sigui incorrecta: <i>Incorrect Password</i> </p>
+	 * 			<p>Es mostrarà: <i>Welcome</i> quan l'usuari s'hagi trobat i la contrassenya sigui correcta.</p>
+	 * @see ResultSet
+	 * @see SQLException
 	 */
 	public String userConnection(String username, String password){
 		try {
@@ -74,7 +97,14 @@ public class DDBBConnection {
 
 	/*
 	 * Devuelve un String que todos los usuarios con sus respectivos datos
-	 * Formato: Name/Fecha de registro/Fecha de la ï¿½ltima conexiï¿½n/contraseï¿½a
+	 * Formato: Name/Fecha de registro/Fecha de la última conexión/contraseña
+	 */
+	/**
+	 * <i>Request</i> d'usuaris.
+	 * @return Llista d'usuaris en forma d'String cadascun, seguint el format: <i>Nom/Data de registre/Data d'ultima conexió/Contrassenya</i>
+	 * @see ResultSet
+	 * @see LinkedList
+	 * @see SQLException
 	 */
 	public LinkedList<User> getUsers(){
 		ResultSet resultSet = ddbb.selectQuery("SELECT * FROM users");
@@ -97,10 +127,14 @@ public class DDBBConnection {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			//System.out.println("Error al recuperar los usuarios de la base de datos");
+			//System.out.println("Error in data fetch to the database");
 		}
 		return list;
 	}
-
+	/**
+	 * <i>Rquest</i> de dades d'usuari
+	 * @return Llista d'object amb cadascun dels camps de l'Object corresponent a una data d'usuari
+	 */
 	public LinkedList<Object[]> getUsersDates(){
 		LinkedList<User> userList = getUsers();
 		LinkedList<Object[]> list = new LinkedList<Object[]>();
@@ -113,7 +147,11 @@ public class DDBBConnection {
 		}
 		return list;
 	}
-
+	/**
+	 * <i>Request</i> de nom d'usuari
+	 * @param id IDentificador de l'usuari
+	 * @return En cas de que existeixi l'ID d'usuari tornarà el nom del mateix. En cas contrari tornarà <i>"Desconegut"</i>.
+	 */
 	public String getName(int id){
 		LinkedList<User> userList = getUsers();
 		for (int i = 0; i<userList.size(); i++){
@@ -123,7 +161,13 @@ public class DDBBConnection {
 		}
 		return "Desconocido";
 	}
-
+	/**
+	 * <i>Request</i> de les dades dels seguidors de l'usuari al que pertany la ID passada per paràmetre.
+	 * @param id IDentificador de l'usuari
+	 * @return Llista de Object amb les dades dels seguidors de l'usuari
+	 * @see ResultSet
+	 * @see SQLException
+	 */
 	public LinkedList<Object[]> getFollowersDates(int id){
 		LinkedList<User> userList = getUsers();
 		LinkedList<Object[]> list =new LinkedList<Object[]>();
@@ -237,7 +281,13 @@ public class DDBBConnection {
 		}
 		return list;
 	}
-
+	/**
+	 * <i>Request</i> de les dades dels usuaris als que segueix l'especificat mitjançant l'ID per paràmetre.
+	 * @param id IDentificador d'usuari.
+	 * @return Llista d'object amb les dades dels usuaris als que segueix l'especificat.
+	 * @see ResultSet
+	 * @see SQLException
+	 */
 	public LinkedList<Object[]> getFollowedsDates(int id){
 		LinkedList<User> userList = getUsers();
 		LinkedList<Object[]> list =new LinkedList<Object[]>();
@@ -265,8 +315,13 @@ public class DDBBConnection {
 			return list;
 		}
 	}
-
-
+	
+	/**
+	 * <i>Request de totes les cançons de la base de dades</i>
+	 * @return LinkedList de Song amb totes les cançons que poseeix el servidor en el moment.
+	 * @see ResultSet
+	 * @see SQLException
+	 */
 	public LinkedList<Song> getSongs(){
 		ResultSet resultSet = ddbb.selectQuery("SELECT * FROM songs");
 		LinkedList<Song> list = new LinkedList<Song> (); 
@@ -284,7 +339,13 @@ public class DDBBConnection {
 		}
 		return list;
 	}
-
+	/**
+	 * <i>Request</i> de les cançons que s'inclouen en una <i>playlist</i>
+	 * @param id IDentificador de la <i>playlist</i>
+	 * @return LinkedList de Song amb totes les cançons que s'inclouen a la llista especificada.
+	 * @see ResultSet
+	 * @see SQLException
+	 */
 	public LinkedList<Song> getPlaylistSongs (int id){
 		ResultSet resultSet = ddbb.selectQuery("SELECT cf_song FROM playlists_songs WHERE cf_playlist="+id);
 		LinkedList<Song> list = new LinkedList<Song> (); 
@@ -307,7 +368,11 @@ public class DDBBConnection {
 		}
 		return list;
 	}
-
+	/**
+	 * <i>Request</i> dels noms de les <i>playlists</i> que ha creat un usuari determinat.
+	 * @param id IDentificador de l'usuari creador de les playlists.
+	 * @return String amb els noms de totes les llistes de l'usuari.
+	 */
 	public String showPlaylitsUser(int id){
 		String text = "";
 		try {
@@ -340,12 +405,22 @@ public class DDBBConnection {
 			return "Problems";
 		}
 	}
-
+	/**
+	 * Actualitza la data de l'ultim accés de un usuari a l'aplicació
+	 * @param username
+	 */
 	public void updateLastAccess (String username){
 		ddbb.updateQuery("UPDATE users SET date_last_acces = now() WHERE user_name='"+username+"'");
 	}
-
-
+	
+	/**
+	 * Solicita el registre d'un usuari a la base de dades
+	 * @param username Nom d'usuari
+	 * @param password Contrassenya d'usuari
+	 * @return En cas de registre satisfactori retornarà <i>Added</i>. En cas contrari (que el nom d'usuari ja existeix), retornarà <i>Username already exists</i>.
+	 * @see SQLException
+	 * @see ResultSet
+	 */
 	public String addUser (String username, String password){
 		try {
 			ResultSet resultSet = ddbb.selectQuery("SELECT count(user_name) FROM users WHERE user_name like '"+ username +"'");
@@ -365,11 +440,13 @@ public class DDBBConnection {
 			return "Problems";
 		}
 	}
-
-
-
-
-
+	/**
+	 * Solicita la eliminació d'un usuari a la base de dades
+	 * @param username Nom d'usuari
+	 * @return Si l'usuari no existeix, tornarà: <i>Fail</i>. Si la solicitud es correcta i acceptada, retornarà un <i>Deleted</i>. En cas d'excepció retonarà: <i>Problems</i>.
+	 * @see ResultSet
+	 * @see SQLException
+	 */
 	public String deleteUser (String username){
 		try {
 			ResultSet resultSet = ddbb.selectQuery("SELECT count(user_name) FROM users WHERE user_name like '"+ username +"'");
@@ -406,7 +483,18 @@ public class DDBBConnection {
 			return "Problems";
 		}
 	}
-
+	/**
+	 * <i>Request</i> per a afegir una nova cançó al servidor
+	 * @param name Nom de la cançó
+	 * @param genre Gènere al que pertany la cançó
+	 * @param artist Artista intèrpret de la cançó
+	 * @param album Album en el qual s'inclou la cançó
+	 * @param location Ruta de l'arxiu d'audio que conté la cançó
+	 * @param stars Puntuació
+	 * @return En cas de no existir al servidor, es retornarà: <i>Added</i>. En cas contrari: <i>Exists</i>. En cas d'excepció es retornarà <i>Problems</i>
+	 * @see ResultSet
+	 * @see SQLException
+	 */
 	public String addSong(String name, String genre, String artist, String album, String location, int stars){
 		try {
 			ResultSet resultSet = ddbb.selectQuery("SELECT count(name) FROM songs WHERE name like '"+ name +"' AND artist like '"+ artist+"'");
@@ -426,7 +514,13 @@ public class DDBBConnection {
 			return "Problems";
 		}
 	}
-
+	/**
+	 * Solicita l'eliminació d'una cançó a la base de dades.
+	 * @param idDelete IDentificador de la cançó que es vol eliminar
+	 * @return En cas de no existir al servidor, es retornarà: <i>Fail</i>. En cas contrari: <i>Deleted</i>. En cas d'excepció es retornarà <i>Problems</i>
+	 * @see ResultSet
+	 * @see SQLException
+	 */
 	public String deleteSong (int idDelete){
 		try {
 			ResultSet resultSet = ddbb.selectQuery("SELECT count(name) FROM songs WHERE id_song = "+idDelete);
@@ -471,7 +565,13 @@ public class DDBBConnection {
 			return 0;
 		}
 	}
-
+	/**
+	 * Solicita el nomrbe de gent a la que segueix un usuari determinat
+	 * @param id IDentificador de usuari
+	 * @return En cas d'excepció es tornarà 0. En els altres casos es retornarà el valor emmagatzemat.
+	 * @see SQLException
+	 * @see ResultSet
+	 */
 	public int nFolloweds(int id){
 		try{
 			ResultSet resultSet = ddbb.selectQuery("SELECT count(*) FROM followers WHERE user_follower="+id);
@@ -483,7 +583,13 @@ public class DDBBConnection {
 			return 0;
 		}
 	}
-
+	/**
+	 * Solicita el nombre de playlists que ha creat un usuari.
+	 * @param id IDentificador de usuari
+	 * @return En cas d'excepció es tornarà 0. En els altres casos es retornarà el valor emmagatzemat.
+	 * @see ResultSet
+	 * @see SQLException
+	 */
 	public int nPlaylists(int id){
 		try{
 			ResultSet resultSet = ddbb.selectQuery("SELECT count(*) FROM playlists WHERE creator_user="+id);
@@ -495,7 +601,13 @@ public class DDBBConnection {
 			return 0;
 		}
 	}
-
+	/**
+	 * Solicita el nombre de cançons d'una <i>playlist</i>
+	 * @param id IDentificador de la playlist
+	 * @return En cas d'excepció es tornarà 0. En els altres casos es retornarà el valor emmagatzemat.
+	 * @see ResultSet
+	 * @see SQLException
+	 */
 	public int nSongs (int id){
 		try{
 			ResultSet resultSet = ddbb.selectQuery("SELECT count(*) FROM playlists_songs WHERE cf_playlist="+id);
@@ -507,7 +619,13 @@ public class DDBBConnection {
 			return 0;
 		}
 	}
-
+	/**
+	 * Solicita les dades de la playlist especificada
+	 * @param id IDentificador de la playlist.
+	 * @return LinkedList d'Object on, en cas d'éxit, emmagatzemarà les dades de la playlist. En cas contrari es mantendrà a null.
+	 * @see SQLException
+	 * @see ResultSet
+	 */
 	public LinkedList<Object[]> getPlaylistsDates(int id){
 		LinkedList<Object[]> list =new LinkedList<Object[]>();
 		String publica; 
@@ -530,7 +648,12 @@ public class DDBBConnection {
 			return list;
 		}
 	}
-
+	/**
+	 * Solicita una instancia de User de la base de dades.
+	 * @param id IDentificador de l'usuari que es demana
+	 * @return Instancia de model.User
+	 * @see model.User
+	 */
 	public User getUser (int id){
 		LinkedList<User> userList = getUsers();
 		for (int i = 0; i<userList.size(); i++){
@@ -540,7 +663,14 @@ public class DDBBConnection {
 		}
 		return null;
 	}
-
+	/**
+	 * Solicita la quantitat de cançons que inclou una llista de reproducció
+	 * @param id IDentificador de la llista de reproducció
+	 * @return En cas de solicitud satisfactoria, retornarà el nombre de cançons que inclou la llista especificada. En cas contrari es tornarà sempre 0.
+	 * @see ResultSet
+	 * @see SQLException
+	 * @see NullPointerException
+	 */
 	public int totalSongs (int id){
 		int songs = 0;
 		try{
@@ -554,6 +684,7 @@ public class DDBBConnection {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			//System.out.println("Problemas al obtener el numero de usuarios seguidos");
+			//System.out.println("Issues during fetch of number of followed users");
 			return 0;
 		} catch (NullPointerException e){
 			return 0;
@@ -601,6 +732,12 @@ public class DDBBConnection {
 	}
 
 
+	public int getIdUser(String name ) throws SQLException{
+		ResultSet resultSet = ddbb.selectQuery("SElECT id FROM users where user_name = " +name);
+		resultSet.next();
+		return  resultSet.getInt(1);
+	}
+
 	public String insertSongP(int idSong, int idPlaylist) {
 		try {
 			System.out.println("sfjsdlh.fhzgjalgnshglhglsdhf");
@@ -622,16 +759,9 @@ public class DDBBConnection {
 		}
 	}	
 
-	public int getIdUser(String name ) throws SQLException{
-		ResultSet resultSet = ddbb.selectQuery("SElECT id FROM users where user_name = " +name);
-		resultSet.next();
-		return  resultSet.getInt(1);
-	}
-
 	public String reproducciones(int id) {
 		ddbb.updateQuery("UPDATE songs SET reproducciones = reproducciones + 1 WHERE id_song="+id);
 		return null;
 	}
-
 
 }

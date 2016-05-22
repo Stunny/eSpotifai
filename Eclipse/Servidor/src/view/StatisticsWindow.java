@@ -56,6 +56,7 @@ public class StatisticsWindow extends JDialog{
 		System.out.println("AQUI DESPUES  repaint");
 
 		jpStatistics.setBorder(BorderFactory.createTitledBorder("Stadistics Top 10 songs of eSpotifai"));
+
 		//Assignem titol a la finestra
 		this.setTitle(" TOP 10 SONGS ");
 
@@ -162,6 +163,7 @@ public class StatisticsWindow extends JDialog{
 					songs.set(j, auxSong);
 				}
 			}
+			
 		}
 		int s = 0;
 		while (s < songs.size() && s < 10){

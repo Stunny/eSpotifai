@@ -83,7 +83,7 @@ public class SelectedUserWindow extends JFrame {
 
 		JPanel jpHead = new JPanel(); 
 		jpHead.setLayout(new GridLayout(1, 2));
-		JLabel jlUsername = new JLabel("Nickname:");
+		JLabel jlUsername = new JLabel("Username:");
 		jlUsername.setForeground(Color.white);
 		jtfUsername = new JTextField(); 
 		jtfUsername.setEditable(false);
@@ -93,7 +93,7 @@ public class SelectedUserWindow extends JFrame {
 		jtfUsername.setEditable(false);
 		jpHead.add(jlUsername, BorderLayout.CENTER);
 		jpHead.add(jtfUsername, BorderLayout.CENTER);
-		TitledBorder titledBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Usuario", javax.swing.border.
+		TitledBorder titledBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Username", javax.swing.border.
 				TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.
 				TitledBorder.DEFAULT_POSITION, null, java.awt.Color.white);
 
@@ -103,7 +103,7 @@ public class SelectedUserWindow extends JFrame {
 
 		JPanel jpSecond = new JPanel(); 
 		jpSecond.setLayout(new GridLayout(2, 2));
-		JLabel jlfollowing = new JLabel("Estado");
+		JLabel jlfollowing = new JLabel("Status");
 		jlfollowing.setForeground(Color.white);
 		jtffollow = new JTextField();
 		jtffollow.setBackground(CustomColor.icon);
@@ -131,11 +131,11 @@ public class SelectedUserWindow extends JFrame {
 
 
 		JPanel jpListsFollowing = new JPanel(new BorderLayout());
-		jpListsFollowing.setBorder(BorderFactory.createTitledBorder("Playlist"));
+		jpListsFollowing.setBorder(BorderFactory.createTitledBorder("Playlists"));
 
 
 		String[] jtFollowedListsColumns = {"id","Playlist"};
-		Object[][] jtFollowedListsData = {{"1", "playlist"},{"2","playlist"}};
+		Object[][] jtFollowedListsData = {};
 		//se crea la tabla
 		JTable jtFollowedLists = new JTable(jtFollowedListsData, jtFollowedListsColumns);
 
@@ -150,7 +150,7 @@ public class SelectedUserWindow extends JFrame {
 		}; 
 
 		popupPlaylist = new JPopupMenu();
-		popupPlaylist.add(visualitzar = new JMenuItem("Visualitzar cançons"));
+		popupPlaylist.add(visualitzar = new JMenuItem("View songs"));
 		visualitzar.setHorizontalTextPosition(JMenuItem.RIGHT);
 		popupPlaylist.setLabel("Justificacion");
 		popupPlaylist.setBorder(new BevelBorder(BevelBorder.RAISED));
@@ -203,7 +203,7 @@ public class SelectedUserWindow extends JFrame {
 
 
 		this.setSize(300, 500);
-		this.setTitle("Perfil Usuario");
+		this.setTitle("User profile");
 		this.setLocationRelativeTo(null);
 
 	}

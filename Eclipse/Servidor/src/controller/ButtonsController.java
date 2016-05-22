@@ -104,7 +104,7 @@ public class ButtonsController implements ActionListener{
 			String path = addMusicWindow.getTypedPath();
 
 			if (title.equals("") || genre.equals("") || artist.equals("") || album.equals("") || path.equals("")) {
-				JOptionPane.showMessageDialog(null, "Rellena todos los campos.", " ", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Fill in all gaps.", " ", JOptionPane.ERROR_MESSAGE);
 			} else {
 				path = path.replace('\\', '/');
 				ddbbConnection.addSong(title, genre, artist, album, path, 0);
