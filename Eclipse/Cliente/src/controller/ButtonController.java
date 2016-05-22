@@ -218,6 +218,8 @@ public class ButtonController implements ActionListener {
 		if(event.getActionCommand().equals("FOLLOW")){
 			String p = "Following";
 			selecteduserwindow.refreshFollowing(p);
+			//JOptionPane.showMessageDialog(null, networkcontroller.getPublicPlaylists()
+			
 			
 		}
 		
