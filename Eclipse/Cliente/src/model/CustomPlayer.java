@@ -363,8 +363,8 @@ public class CustomPlayer implements BasicPlayerListener {
 		
 	}
 	/**
-	 * 
-	 * @return
+	 * Retorna el frame al que estroba l'slider
+	 * @return Actual slider frame
 	 */
 	public int getFrameSlider(){
 		return frameSlider;
