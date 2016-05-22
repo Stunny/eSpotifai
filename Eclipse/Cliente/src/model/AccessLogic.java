@@ -42,6 +42,16 @@ public class AccessLogic {
 		}
 	}
 	
+	public static int getId( String username, NetworkController networkcontroller){
+		LinkedList<User>  userlist = new LinkedList<User>();
+		userlist = networkcontroller.getUserList();
+		for(int i = 0; i < userlist.size(); i++){
+			if(username.equals(userlist.get(i).getUsername())){
+				return userlist.get(i).getId();			}
+		}
+		return 0;
+	}
+	
 	/**
 	 * Realitza l'accés d'usuari a l'aplicació. En cas de que no es dugui a terme mostrarà un missatge d'error.
 	 * @param username Nom d'usuari

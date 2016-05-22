@@ -63,6 +63,9 @@ public class NetworkController {
 		case "getPlaylists":
 			response  = gson.toJson(ddbbconnection.getPlaylists());
 			break;
+		case "getPublicPlaylists":
+			response  = gson.toJson(ddbbconnection.getPublicPlaylists(Integer.parseInt(s[1])));
+			break;
 		
 		
 		default: 

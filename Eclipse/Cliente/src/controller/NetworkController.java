@@ -79,4 +79,24 @@ public static LinkedList<Playlist> getPlaylists() {
 	return playlistlist;
 }
 
+public static LinkedList<Playlist> getPublicPlaylists(int id) {
+	String request = "getPublicPlaylists:"+id;
+	
+	ServerCommunication servercommunication = new ServerCommunication();
+	String resposta = servercommunication.sendData(request);
+	
+	
+	GsonBuilder gsonBuilder = new GsonBuilder();
+    Gson gson = gsonBuilder.create();
+	Playlist[] p = gson.fromJson(resposta, Playlist[].class);
+	
+
+	LinkedList<Playlist> playlistlist = new LinkedList<Playlist>(Arrays.asList(p));
+	/*for(int  i = 0; i < songlist.size(); i++){
+		System.out.println(songlist.get(i).getName());
+	}*/
+		
+	return playlistlist;
+}
+
 }

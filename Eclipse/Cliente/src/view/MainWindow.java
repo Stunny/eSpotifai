@@ -93,6 +93,8 @@ public class MainWindow extends JFrame {
 	DefaultTableModel tableMusic;
 	DefaultTableModel tablePlaylist;
 	DefaultTableModel tableModelLists;
+	DefaultTableModel tableModelFollowedLists;
+	private int idUser = 0; 
 	
 	private JMenuItem reproducir;
 	private JMenuItem anadir;
@@ -217,7 +219,7 @@ public class MainWindow extends JFrame {
 		JTable jtFollowedLists = new JTable(jtFollowedListsData, jtFollowedListsColumns);
 		
 		//se hace que los datos no sean editables
-		DefaultTableModel tableModelFollowedLists = new DefaultTableModel(jtFollowedListsData, jtFollowedListsColumns) {
+		tableModelFollowedLists = new DefaultTableModel(jtFollowedListsData, jtFollowedListsColumns) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				//all cells false
@@ -811,6 +813,23 @@ public void refreshPlaylists(LinkedList<Playlist> playlistList) {
 		
 	}
 
+	public void refreshPublicPlaylists(LinkedList<Playlist> playlistList) {
+		LinkedList<Object[]> list = new LinkedList<Object[]>();
+		for (int i = 0; i < playlistList.size(); i++){
+			Object[] objs = {playlistList.get(i).getId(), playlistList.get(i).getName(), playlistList.get(i).getUsername()};
+			list.add(objs);
+		}
+		while (tableModelFollowedLists.getRowCount()!= 0){
+			tableModelFollowedLists.removeRow(0);
+		}
+		for (int i = 0; i<list.size(); i++){
+			tableModelFollowedLists.addRow(list.get(i));
+		}
+		
+	}
+
+
+
 	public int getId() {
 		return id;
 	}
@@ -824,6 +843,12 @@ public void refreshPlaylists(LinkedList<Playlist> playlistList) {
 		this.user = user;
 	}
 	
+	public int getUserId(){
+		return idUser;
+	}
 	
+	public void setUserId (int id){
+		this.idUser = id;
+	}
 	
 }
