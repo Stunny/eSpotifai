@@ -5,7 +5,7 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-//Ventana para informar al usuario de que se ha eliminado correctamente el coche
+//Ventana para informar al usuario de que se ha eliminado correctamente el usuario
 @SuppressWarnings("serial")
 public class DeletedWindow extends JFrame {
 	//Atributo que contiene el mensaje 

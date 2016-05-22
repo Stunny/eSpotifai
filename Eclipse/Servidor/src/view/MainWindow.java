@@ -65,9 +65,9 @@ public class MainWindow extends JFrame{
 
 	private JButton jbAdd;
 	private JButton jbStatistics;
-	
+
 	//=========================
-	
+
 	private JButton jbPlay;
 	private JButton jbPrevious;
 	private JButton jbNext;
@@ -90,7 +90,7 @@ public class MainWindow extends JFrame{
 	//private ImageIcon temporalSong;
 
 	//=========================
-	
+
 	DefaultTableModel tableModelUser;
 	DefaultTableModel tableModelMusic;
 
@@ -105,7 +105,7 @@ public class MainWindow extends JFrame{
 
 	public JPopupMenu popup;
 	public JPopupMenu popupSong;
-//=============
+	//=============
 	//private JLabel jlTemporalSong;
 	private JLabel jlTime;
 	//private JLabel SongState;
@@ -117,7 +117,7 @@ public class MainWindow extends JFrame{
 	private String state = "";
 	private String statePlayer = "";
 	private int max = 0, value = 0;
-//==================
+	//==================
 
 
 
@@ -150,33 +150,33 @@ public class MainWindow extends JFrame{
 				return false;
 			}
 		}; 
-		
+
 		popupSong = new JPopupMenu();
 		eliminar2 = new JMenuItem("Eliminar ");
 		eliminar2.setHorizontalTextPosition(JMenuItem.RIGHT);
 		popupSong.add(eliminar2);
-		    
+
 
 		popupSong.setLabel("Justification");
 		popupSong.setBorder(new BevelBorder(BevelBorder.RAISED));
-		    
+
 		jtMusicList.addMouseListener(new MouseAdapter() {
-	        public void mousePressed(MouseEvent e) {
-	            if ( SwingUtilities.isLeftMouseButton(e)) {
-	            	popupSong.setVisible(false);
-	            } else {
-	                 if ( SwingUtilities.isRightMouseButton(e)) {
-	                    Point p = e.getPoint();
-	                    int rowNumber = jtMusicList.rowAtPoint( p );
-	                    ListSelectionModel modelo = jtMusicList.getSelectionModel();
-	                    modelo.setSelectionInterval( rowNumber, rowNumber );
-	            		 idSong = Integer.parseInt(String.valueOf( jtMusicList.getValueAt(rowNumber, 0)));
-	            		 popupSong.show(jtMusicList,  e.getX(), e.getY());
-	            		 
-	                }
-	            }
-	        }
-	    });
+			public void mousePressed(MouseEvent e) {
+				if ( SwingUtilities.isLeftMouseButton(e)) {
+					popupSong.setVisible(false);
+				} else {
+					if ( SwingUtilities.isRightMouseButton(e)) {
+						Point p = e.getPoint();
+						int rowNumber = jtMusicList.rowAtPoint( p );
+						ListSelectionModel modelo = jtMusicList.getSelectionModel();
+						modelo.setSelectionInterval( rowNumber, rowNumber );
+						idSong = Integer.parseInt(String.valueOf( jtMusicList.getValueAt(rowNumber, 0)));
+						popupSong.show(jtMusicList,  e.getX(), e.getY());
+
+					}
+				}
+			}
+		});
 		jtMusicList.setModel(tableModelMusic);
 		//jtMusicList.setForeground(Color.BLACK);
 		//jtMusicList.setBackground(Color.DARK_GRAY);
@@ -234,7 +234,7 @@ public class MainWindow extends JFrame{
 		glPlayerButtons = new GridLayout(1,3);
 		jpPlayerButtons.setLayout(glPlayerButtons);
 
-		
+
 		iiPlay1 = new ImageIcon("src/imagenes/playButn1.png");
 		iiPlay2 = new ImageIcon("src/imagenes/playButn2.png");
 		iiPlay3 = new ImageIcon("src/imagenes/playButn3.png");
@@ -294,7 +294,7 @@ public class MainWindow extends JFrame{
 		//jpPlayer.add(jlTemporalSong, BorderLayout.CENTER);
 		jpPlayer.add(jSlider, BorderLayout.CENTER);
 		jpPlayer.add(jlTime, BorderLayout.EAST);
-		
+
 		jpMusic.add(jpButtons, BorderLayout.PAGE_END);
 
 
@@ -318,6 +318,8 @@ public class MainWindow extends JFrame{
 		}; 
 
 		popup = new JPopupMenu();
+		JPopupMenu popupdelete = new JPopupMenu();
+
 		popup.add(seguidores = new JMenuItem("Mostrar seguidores", null));
 		seguidores.setHorizontalTextPosition(JMenuItem.RIGHT);
 
@@ -327,13 +329,37 @@ public class MainWindow extends JFrame{
 		popup.add(listas = new JMenuItem("Mostrar listas de reproduccion", null));
 		listas.setHorizontalTextPosition(JMenuItem.RIGHT);
 
-		popup.addSeparator();
-		popup.add(eliminar = new JMenuItem("Eliminar "));
+		//popup.addSeparator();
+		//popup.add(eliminar = new JMenuItem("Eliminar "));
+		popupdelete.add(eliminar = new JMenuItem("Eliminar "));
+		eliminar.setHorizontalTextPosition(JMenuItem.RIGHT);
+		
+		popupdelete.setLabel("Justification");
+		popupdelete.setBorder(new BevelBorder(BevelBorder.RAISED));
 
+	//		popup.setLabel("Justification");
+		//		popup.setBorder(new BevelBorder(BevelBorder.RAISED));
 
-		popup.setLabel("Justification");
-		popup.setBorder(new BevelBorder(BevelBorder.RAISED));
-
+		jtUser.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if ( SwingUtilities.isLeftMouseButton(e)) {
+					if ( SwingUtilities.isRightMouseButton(e)) {
+						Point p = e.getPoint();
+						int rowNumber = jtUser.rowAtPoint( p );
+						ListSelectionModel modelo = jtUser.getSelectionModel();
+						modelo.setSelectionInterval( rowNumber, rowNumber );
+						id = Integer.parseInt(String.valueOf( jtUser.getValueAt(rowNumber, 0)));
+						popupdelete.show(jtpTabs,  e.getX(), e.getY());
+					}
+					
+				} else {
+					popupdelete.setVisible(false);
+				}
+			}
+		});
+		jtUser.setModel(tableModelUser);
+		jtUser.setFocusable(false);
+		
 		jtUser.addMouseListener(new MouseAdapter() {
 
 			public void mousePressed(MouseEvent e) {
@@ -347,12 +373,11 @@ public class MainWindow extends JFrame{
 						modelo.setSelectionInterval( rowNumber, rowNumber );
 						id = Integer.parseInt(String.valueOf( jtUser.getValueAt(rowNumber, 0)));
 						popup.show(jtpTabs,  e.getX(), e.getY());
-
 					}
 				}
 			}
-	    });
-		
+		});
+
 		jtUser.setModel(tableModelUser);
 		jtUser.setFocusable(false);
 
@@ -369,7 +394,7 @@ public class MainWindow extends JFrame{
 		});
 
 		//jpUsers.add(popup = new PopupMenu());
-		//Incloeixo les pesta�es a la finestra
+		//Incloeixo les pestanyes a la finestra
 		jtpTabs.addTab("Music", jpMusic);
 		jtpTabs.addTab("Users", jspUsers);
 		jtpTabs.addMouseListener(new MouseAdapter() {
@@ -389,8 +414,8 @@ public class MainWindow extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
-	
-	
+
+
 	//==========================
 	public void ConfigurationButton(JButton boton,ImageIcon imatge1,ImageIcon imatge2,ImageIcon imatge3){
 
@@ -413,8 +438,8 @@ public class MainWindow extends JFrame{
 
 	}
 
-	
-	
+
+
 	public void goMP3() throws Exception{
 
 		//Si la can�o s'ha reproduit un cop i esta en pause, continua reproduint PAUSE
@@ -428,16 +453,12 @@ public class MainWindow extends JFrame{
 			//Si la can�o s'est� reproduint pula pausa PLAY
 		}else if (customPlayer.getStatus() == 0){
 
-			//}else if (stateSong){
-
 			customPlayer.pause();
 			ConfigurationButton(jbPlay, iiPlay1, iiPlay2, iiPlay3);
 			stateSong = false;
-		}else {//if (player.getStatus() == 2 || (player.getStatus() != 0 && player.getStatus() != 1)){
-			//Si no ha arrancat encara la can�o obre el fitxer mp3
-			//}else{
-			try{
+		}else {
 
+			try{
 
 				state = "";
 				String songLink = "C:/Users/Marc/Downloads/Quentin Tarantino Soundtracks Discography - HTD 2015/Pulp Fiction (Collector's Edition) (2009) - Soundtrack/04. Let's Stay Together.mp3";
@@ -446,8 +467,6 @@ public class MainWindow extends JFrame{
 				//String songLink = "/Users/elnacabotparedes/Music/iTunes/iTunes Media/Music/Martin Garrix/Unknown Album/01 Poison.mp3";
 				//String songLink = "storeSongs/Enrique Iglesias - Bailando.mp3";
 
-
-				
 				customPlayer.abrirMp3(songLink);
 				state = customPlayer.playPlayer(jSlider);
 
@@ -480,8 +499,7 @@ public class MainWindow extends JFrame{
 		jlSongName.setText(customPlayer.getName());
 
 	}
-	
-	//===============================
+
 
 	public void registerController(ButtonsController controller, PopUpController controller2) {
 		jbAdd.addActionListener(controller);
@@ -501,13 +519,12 @@ public class MainWindow extends JFrame{
 
 		eliminar.addActionListener(controller2);
 		eliminar.setActionCommand("MainWindow.eliminarActionCommand");
-		
+
 		eliminar2.addActionListener(controller2);
 		eliminar2.setActionCommand("MainWindow.eliminar2ActionCommand");
-//===============
+
 		jbPlay.addActionListener(controller);
 		jbPlay.setActionCommand("MainWindow.playActionCommand");
-
 	}
 
 	public void changeButtonToPlay(){
@@ -517,12 +534,9 @@ public class MainWindow extends JFrame{
 			ConfigurationButton(jbPlay, iiPlay1, iiPlay2, iiPlay3);
 			jlSongState.setForeground(new Color(255,255,255));
 			jlSongState.setText("           --> CLICK PLAY TO LISTEN THE SONG <--");
-
 		}
 	}
-	
-	
-	
+
 	public void refreshTime() {
 
 		int auxMinutes = 0;
@@ -549,18 +563,14 @@ public class MainWindow extends JFrame{
 		String finalSting = auxMinutesString + ":" + auxSecondsString;
 
 		jlTime.setText(auxMinutesString + ":" + auxSecondsString);
-		
+
 		jSlider.setValue(customPlayer.getFrameSlider());
 		//changeButtonToPlay();
 		if (customPlayer.getStatus() == 2){
 			ConfigurationButton(jbPlay, iiPlay1, iiPlay2, iiPlay3);
 		}
-
-		//jlTime.setText(String.valueOf(player.getMinutes() + ":" + player.getSeconds()));
 	}
-///==================
-	
-	
+
 	public void refreshUsers(LinkedList <Object[]> list){
 		while (tableModelUser.getRowCount()!= 0){
 			tableModelUser.removeRow(0);
@@ -569,9 +579,7 @@ public class MainWindow extends JFrame{
 			tableModelUser.addRow(list.get(i));
 		}
 	}
-	
-	
-	
+
 	public void refreshSongs(LinkedList<Object[]> list) {
 		while (tableModelMusic.getRowCount()!= 0){
 			tableModelMusic.removeRow(0);
@@ -580,11 +588,11 @@ public class MainWindow extends JFrame{
 			tableModelMusic.addRow(list.get(i));
 		}
 	}
-	
+
 	public int getId (){
 		return id;
 	}
-	
+
 	public int getIdSong(){
 		return idSong;
 	}
