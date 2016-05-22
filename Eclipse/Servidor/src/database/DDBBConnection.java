@@ -558,5 +558,11 @@ public class DDBBConnection {
 		}
 	}
 	
+	public int getIdUser(String name ) throws SQLException{
+		ResultSet resultSet = ddbb.selectQuery("SElECT id FROM users where user_name = " +name);
+		resultSet.next();
+		return  resultSet.getInt(1);
+	}
+	
 	
 }
