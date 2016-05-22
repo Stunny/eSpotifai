@@ -62,11 +62,12 @@ public class Main {
 				Vots vots = new Vots();
 				PlaylistSearchUser playlistsearchuser = new PlaylistSearchUser();
 				UserWindow userWindow = new UserWindow();
+				NewListDialog NewListDialogDialog = new NewListDialog();
 				//nwc.getUserList();
 				//nwc.getSongList();
 				
 				//Creamos el controlador
-				ButtonController controller = new ButtonController(loginWindow, registerWindow, mainWindow, selecteduserwindow, networkcontroller, userWindow);
+				ButtonController controller = new ButtonController(NewListDialogDialog, loginWindow, registerWindow, mainWindow, selecteduserwindow, networkcontroller, userWindow);
 				PopUpController controller2 = new PopUpController(mainWindow, addlist, vots, selecteduserwindow, playlistsearchuser, userWindow);
 				
 				//Juntamos las pantallas y el controlador
@@ -80,6 +81,7 @@ public class Main {
 				userWindow.registerController1(controller2);
 				selecteduserwindow.registerController1(controller2);
 				playlistsearchuser.registerController(controller2);
+				NewListDialogDialog.registerController(controller);
 				
 				
 				

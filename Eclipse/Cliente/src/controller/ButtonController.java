@@ -70,7 +70,8 @@ public class ButtonController implements ActionListener {
 	private UserWindow userwindow;
 	
 	private int songIndex = 0;
-
+	
+	private NewListDialog NewListDialogDialog;
 
 	/**
 	 * Construeix un controlador de botons.
@@ -87,8 +88,8 @@ public class ButtonController implements ActionListener {
 	 * @see controller.NetworkController
 	 * 
 	 */
-	public ButtonController(LoginWindow loginWindow, RegisterWindow registerWindow, MainWindow mainWindow, SelectedUserWindow selecteduserwindow, NetworkController networkcontroller, UserWindow userwindow){
-		
+	public ButtonController(NewListDialog NewListDialogDialog, LoginWindow loginWindow, RegisterWindow registerWindow, MainWindow mainWindow, SelectedUserWindow selecteduserwindow, NetworkController networkcontroller, UserWindow userwindow){
+		this.NewListDialogDialog = NewListDialogDialog;
 		this.loginWindow = loginWindow;
 		this.mainWindow = mainWindow;
 		this.registerWindow= registerWindow;
@@ -144,6 +145,17 @@ public class ButtonController implements ActionListener {
 		}
 		
 		
+		//New
+		if(event.getActionCommand().equals("NewListDialog.createActionCommand")){
+			System.out.println("Creando");
+			if(networkcontroller.addPlaylist(NewListDialogDialog.getTypedName(), mainWindow.getUserId(), NewListDialogDialog.getPublic()).equals("Add")){
+				
+			}
+		}
+		if(event.getActionCommand().equals("NewListDialog.cancelActionCommand")){
+			NewListDialogDialog.setVisible(false);
+			System.out.println("Creando");
+		}
 		
 		
 		//PANTALLA registerWindow
@@ -171,8 +183,6 @@ public class ButtonController implements ActionListener {
 		
 		// MAINWINDOW ( NEW PLAYLIST)
 		if(event.getActionCommand().equals("MainWindow.addActionCommand")){
-
-			NewListDialog NewListDialogDialog = new NewListDialog(); 
 			NewListDialogDialog.setVisible(true);
 		} 
 		

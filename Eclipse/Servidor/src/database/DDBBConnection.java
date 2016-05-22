@@ -322,6 +322,11 @@ public class DDBBConnection {
 		}
 	}
 	
+	public String addPlaylist (String name, int id, int publica){
+		//ddbb.insertQuery("INSERT INTO `playlists` (`id_playlist`, `creator_user`, `name`, `publica`) VALUES (NULL, '"+ id+"', '"+name+"', '"+publica+"'");
+		return "Add";
+	}
+	
 	public void updateLastAccess (String username){
 		ddbb.updateQuery("UPDATE users SET date_last_acces = now() WHERE user_name='"+username+"'");
 	}
