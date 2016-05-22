@@ -1,0 +1,54 @@
+package main;
+
+import provaConfigurationServer.ManagementConfiguration;
+import view.AddMusicWindow;
+import view.MainWindow;
+import view.StatisticsWindow;
+import controller.ButtonsController;
+import controller.GeneralController;
+import customExceptions.DatabaseNotLoadedException;
+import model.DDBBConnection;
+
+public class Main {
+
+	public static void main(String[] args) {
+		DDBBConnection ddbbConnection = new DDBBConnection ("root", "", "espotyfai", 3306);
+		try {
+			
+			ddbbConnection.startConnection();
+			ManagementConfiguration mc = new ManagementConfiguration();
+			mc.runConfiguration();
+			
+			// Creem la VISTA
+<<<<<<< HEAD:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/82/f071832bf71900161508e02ab987e452
+			
+=======
+>>>>>>> 77b144f0a75d9608f2f63498ea4c536327ac2a6d:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/18/70cfc71ce91900161508e02ab987e452~753afecea9090c9fa737a93a8bc4afd6ad533c55
+			MainWindow mainWindow = new MainWindow();
+			ButtonsController buttonscontroller = new ButtonsController(mainWindow);
+			GeneralController controller = new GeneralController (ddbbConnection, mainWindow);
+			mainWindow.registerController(buttonscontroller);
+<<<<<<< HEAD:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/82/f071832bf71900161508e02ab987e452
+			mainWindow.setVisible(true);
+			controller.refreshLists();
+=======
+			controller.refreshLists();
+			mainWindow.setVisible(true);
+			
+>>>>>>> 77b144f0a75d9608f2f63498ea4c536327ac2a6d:Eclipse/.metadata/.plugins/org.eclipse.core.resources/.history/18/70cfc71ce91900161508e02ab987e452~753afecea9090c9fa737a93a8bc4afd6ad533c55
+			//Creem la vista temporal de adició
+			AddMusicWindow addView = new AddMusicWindow();
+			//addView.setVisible(true);
+			
+			StatisticsWindow statisticsWindow = new StatisticsWindow();
+			//statisticsWindow.setVisible(true);
+			
+			ddbbConnection.stopConnection();
+			
+		} catch (DatabaseNotLoadedException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
+	}
+}

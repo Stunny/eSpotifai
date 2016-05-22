@@ -1,0 +1,22 @@
+<<<<<<< HEAD
+{
+	configuration: {
+		portConexionBBDD: 3306,
+		IPBBDD: "localhost",
+		nameBBDD: "espotyfai",
+		userBBDD: "root",
+		passwordBBDD: "root",
+		portClientComunication: 3307
+	}
+=======
+{
+	configuration: {
+		portConexionBBDD: 3306,
+		IPBBDD: "localhost",
+		nameBBDD: "espotyfai",
+		userBBDD: "root",
+		passwordBBDD: "root",
+		portClientComunication: 3307
+	}
+>>>>>>> 43c168751615550625957d287686bbb151ca0f40
+}

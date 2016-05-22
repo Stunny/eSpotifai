@@ -1,0 +1,111 @@
+<<<<<<< HEAD
+package threads;
+
+import java.util.LinkedList;
+
+import controller.NetworkController;
+import controller.ThreadController;
+import model.Song;
+import view.MainWindow;
+/**
+ * Thread que actualitza la informació mostrada cada 3 segons
+ * @author Elna Cabot, Miguel Diaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ *
+ */
+public class RefreshThread extends Thread {
+	/**
+	 * Controlador de Thread
+	 * @see ThreadController
+	 */
+	private ThreadController threadController;
+	/**
+	 * Construeix el thread
+	 * @param threadController Controlador de thread
+	 */
+	public RefreshThread(ThreadController threadController) {
+		super();
+		this.threadController = threadController;
+	}
+
+
+	
+
+	/**
+	 * 
+	 */
+	public void run() {
+		
+		int i=0;
+		while (true) {
+			try {
+				Thread.sleep(3000);
+				threadController.refreshSongList();
+				threadController.refresUserPlaylistList();
+				threadController.refresPublicPlaylistList();
+				threadController
+				
+			} catch (InterruptedException e) {
+				Thread.currentThread().interrupt();
+			}
+			
+		}
+
+	}
+
+}
+=======
+package threads;
+
+import java.util.LinkedList;
+
+import controller.NetworkController;
+import controller.ThreadController;
+import model.Song;
+import view.MainWindow;
+/**
+ * Thread que actualitza la informació mostrada cada 3 segons
+ * @author Elna Cabot, Miguel Diaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ *
+ */
+public class RefreshThread extends Thread {
+	/**
+	 * Controlador de Thread
+	 * @see ThreadController
+	 */
+	private ThreadController threadController;
+	/**
+	 * Construeix el thread
+	 * @param threadController Controlador de thread
+	 */
+	public RefreshThread(ThreadController threadController) {
+		super();
+		this.threadController = threadController;
+	}
+
+
+	
+
+	/**
+	 * 
+	 */
+	public void run() {
+		
+		int i=0;
+		while (true) {
+			try {
+				Thread.sleep(3000);
+				threadController.refreshSongList();
+				threadController.refresUserPlaylistList();
+				threadController.refresPublicPlaylistList();
+				threadController
+				
+			} catch (InterruptedException e) {
+				Thread.currentThread().interrupt();
+			}
+			
+		}
+
+	}
+
+}
+>>>>>>> 43c168751615550625957d287686bbb151ca0f40

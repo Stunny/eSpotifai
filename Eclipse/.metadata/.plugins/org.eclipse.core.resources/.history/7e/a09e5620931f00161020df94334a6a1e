@@ -1,0 +1,55 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+package customExceptions;
+/**
+ * 
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see Exception
+ *
+ */
+public class ServerNotFoundException extends Exception {
+	
+	public ServerNotFoundException() {
+		super("La connexio amb el servidor ha fallat.");
+	}
+
+}
+=======
+=======
+>>>>>>> 43c168751615550625957d287686bbb151ca0f40
+package customExceptions;
+/**
+ * 
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see Exception
+ *
+ */
+public class ServerNotFoundException extends Exception {
+	
+	public ServerNotFoundException() {
+		super("La connexio amb el servidor ha fallat.");
+	}
+
+}
+<<<<<<< HEAD
+=======
+=======
+package customExceptions;
+/**
+ * 
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see Exception
+ *
+ */
+public class ServerNotFoundException extends Exception {
+	
+	public ServerNotFoundException() {
+		super("La connexio amb el servidor ha fallat.");
+	}
+
+}
+>>>>>>> 43c168751615550625957d287686bbb151ca0f40
+>>>>>>> b4d63ff7a106498a4bfe5299eba34d0898475d23

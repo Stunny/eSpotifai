@@ -1,18 +1,39 @@
+
 package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import view.ManagementMusicView;
+import java.awt.event.KeyEvent;
+import java.io.File;
+import java.net.MalformedURLException;
+
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import database.DDBBConnection;
+import model.CustomPlayer;
+import view.AddMusicWindow;
+import view.MainWindow;
+import view.StatisticsWindow;
 
 public class ButtonsController implements ActionListener{
 
 	// VISTA
-	private ManagementMusicView view;
+	private MainWindow mainWindow;
+	private CustomPlayer p;
+	private AddMusicWindow addMusicWindow;
+	private int songIndex = 0;
+
 	// NETWORK
 	//private InformationService infoService;
+	private DDBBConnection ddbbConnection;
 
-	public ButtonsController(ManagementMusicView view) {
-		this.view = view;
+	public ButtonsController(MainWindow mainWindow, DDBBConnection ddbbConnection, AddMusicWindow addMusicWindow) {
+		this.mainWindow = mainWindow;
+		this.ddbbConnection = ddbbConnection;
+		this.addMusicWindow = addMusicWindow;
 		// Instanciem la classe per poder enviar missatges.
 		// Passem una referencia a lobjecte per si cal notificar alguna informacio.
 		// Aquest tambe podria ser creat des del prinicpal.	
@@ -20,14 +41,98 @@ public class ButtonsController implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent event) {
-		if (event.getActionCommand().equals("ADD")) {
+
+		if (event.getActionCommand().equals("MainWindow.addActionCommand")) {
 			// Recuperem la informació que sha escrit a la vista
 			// i l'enviem al servidor
+			addMusicWindow.setVisible(true);
 
 			// Actualitzem la vista
 			//vista.addText(vista.getTypedMessage());
-		}else if (event.getActionCommand().equals("ESTADISTICS")){
+		}else if (event.getActionCommand().equals("MainWindow.statisticsActionCommand")){
+			StatisticsWindow StadisticsView = new StatisticsWindow(ddbbConnection.getSongs());
+			StadisticsView.setVisible(true);
 
+		}else if (event.getActionCommand().equals("MainWindow.playActionCommand")){
+			try {
+				mainWindow.goMP3(mainWindow.getSongPath(songIndex));
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		} else if (event.getActionCommand().equals("MainWindow.nextActionCommand")){
+			if (songIndex < mainWindow.getSongAmount()-1) songIndex++;
+			else songIndex = 0;
+			try {
+				mainWindow.changeMP3(mainWindow.getSongPath(songIndex));
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		} else if (event.getActionCommand().equals("MainWindow.previousActionCommand")){
+
+			if (songIndex > 0) songIndex--;
+			try {
+				mainWindow.changeMP3(mainWindow.getSongPath(songIndex));
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+
+
+		else if (event.getActionCommand().equals("AddMusicWindow.acceptActionCommand")){
+			String title = addMusicWindow.getTypedSongTitle();
+			String genre = addMusicWindow.getTypedGenre();
+			String artist = addMusicWindow.getTypedArtist();
+			String album = addMusicWindow.getTypedAlbum();
+			String path = addMusicWindow.getTypedPath();
+
+			if (title.equals("") || genre.equals("") || artist.equals("") || album.equals("") || path.equals("")) {
+				JOptionPane.showMessageDialog(null, "Fill in all gaps.", " ", JOptionPane.ERROR_MESSAGE);
+			} else {
+				path = path.replace('\\', '/');
+				ddbbConnection.addSong(title, genre, artist, album, path, 0);
+				//System.out.println("Añadida: "+ title);
+
+				addMusicWindow.setVisible(false);
+				addMusicWindow.clearTextFields();
+			}
+		}
+
+		else if (event.getActionCommand().equals("AddMusicWindow.findPathActionCommand")) {
+
+			JFileChooser jFileChooser = new JFileChooser();
+			String path = "";
+			jFileChooser.setFileFilter(new FileNameExtensionFilter("MP3 files", "mp3"));
+			jFileChooser.setCurrentDirectory(new File("./Resources"));
+			if (jFileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+				path = jFileChooser.getSelectedFile().getAbsolutePath();
+			}
+			addMusicWindow.setFoundPath(path);
+
+		}
+	}
+
+
+	public void run(){
+		while (true){
+			mainWindow.refreshTime();
 		}
 	}
 }

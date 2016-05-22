@@ -1,0 +1,47 @@
+<<<<<<< HEAD
+package controller;
+
+import java.util.LinkedList;
+
+import model.Song;
+import view.MainWindow;
+
+public class ThreadController {
+	
+	private MainWindow mainWindow;
+	
+	public ThreadController(MainWindow mainWindow) {
+		super();
+		this.mainWindow = mainWindow;
+	}
+	
+	public void refreshSongList() {
+		LinkedList<Song> songsList = NetworkController.getSongList();
+		mainWindow.refreshSongs(songsList);
+	}
+
+}
+=======
+package controller;
+
+import java.util.LinkedList;
+
+import model.Song;
+import view.MainWindow;
+
+public class ThreadController {
+	
+	private MainWindow mainWindow;
+	
+	public ThreadController(MainWindow mainWindow) {
+		super();
+		this.mainWindow = mainWindow;
+	}
+	
+	public void refreshSongList() {
+		LinkedList<Song> songsList = NetworkController.getSongList();
+		mainWindow.refreshSongs(songsList);
+	}
+
+}
+>>>>>>> 753afecea9090c9fa737a93a8bc4afd6ad533c55

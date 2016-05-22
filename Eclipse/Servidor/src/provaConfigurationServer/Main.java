@@ -2,58 +2,44 @@ package provaConfigurationServer;
 
 import java.util.Scanner;
 
-import view.ManagementMusicAddView;
-import view.ManagementMusicView;;
+import controller.ButtonsController;
+import controller.NetworkController;
+import model.ManagementConfiguration;
+import network.Server;
+import controller.GeneralController;
+import controller.PopUpController;
+import view.AddMusicWindow;
+import view.FollowersWindow;
+import view.MainWindow;
+import view.StatisticsWindow;
 
 public class Main {
 	
 	public static void main(String[] args ){
 		
-		login();
-		
 		ManagementConfiguration mc = new ManagementConfiguration();
 		mc.runConfiguration();
 		
 		// Creem la VISTA
-		ManagementMusicView mainView = new ManagementMusicView();
-		mainView.setVisible(true);
+		AddMusicWindow addView = new AddMusicWindow();
+		MainWindow mainWindow = new MainWindow();
+		//FollowersWindow followerswindow = new FollowersWindow(null);
+
+
+		mainWindow.setVisible(true);
 		
 		//Creem la vista temporal de adició
-		ManagementMusicAddView addView = new ManagementMusicAddView();
-		addView.setVisible(true);
+		
+		//addView.setVisible(true);
+		
+		//StatisticsWindow statisticsWindow = new StatisticsWindow();
+		//statisticsWindow.setVisible(true);
+		
+		//controller.run();
+		
+		Server server = new Server(new NetworkController(null));
+		server.startServer();
 		
 	}
 	
-	private static void login() {
-		boolean ok = false;
-		Scanner sc = new Scanner(System.in);
-		LoginManager lm = new LoginManager();
-		
-		
-		while (!ok) {
-		System.out.println("1.-login 2.-register");
-		int option = sc.nextInt();
-		String dummy = sc.nextLine();
-		
-		System.out.println("user? ");
-		String user = sc.nextLine();
-		
-		System.out.println("password? ");
-		String password = sc.nextLine();
-		
-		
-		switch (option) {
-		case 1: ok = lm.login(user, password);
-		break;
-		case 2: ok = lm.register(user, password);
-		break;
-		default: ok = false;
-		}
-		
-		
-		if (ok) System.out.println("ok!");
-		
-		}
-	}
 }
-

@@ -1,0 +1,27 @@
+package controller;
+
+import java.io.IOException;
+
+import network.ConexionServidor;
+
+public class TimeCounter extends Thread{
+	private boolean running;
+	
+	//Constructor
+	public TimeCounter() {
+		running = false;
+	}
+	
+	//Bucle que pide y recibe los datos de los coches del servidor
+	public void ejecutar(GeneralController controller) throws IOException {
+		running = true;
+		while (running) {
+			try {
+				Thread.sleep(5000);
+				controller
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+}

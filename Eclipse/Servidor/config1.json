@@ -1,0 +1,10 @@
+{
+	configuration: {
+		portConexionBBDD: 3306,
+		IPBBDD: "localhost",
+		nameBBDD: "eSpotyfai",
+		userBBDD: "root",
+		passwordBBDD: "",
+		portClientComunication: 3307
+	}
+}
