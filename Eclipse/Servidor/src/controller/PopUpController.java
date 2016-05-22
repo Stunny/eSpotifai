@@ -7,8 +7,6 @@ import javax.swing.JOptionPane;
 
 import database.DDBBConnection;
 import view.AddMusicWindow;
-import view.DeletedSongWindow;
-import view.DeletedWindow;
 import view.FollowedsWindow;
 import view.FollowersWindow;
 import view.MainWindow;

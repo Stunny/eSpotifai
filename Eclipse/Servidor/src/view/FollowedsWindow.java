@@ -10,12 +10,37 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
+/**
+ * Pantalla on es mostren tots els seguidors d'un usuari determinat
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see JFrame
+ * @see JTable
+ * @see JPanel
+ * @see JScrollPane
+ * @see DefaultTableModel
+ *
+ */
 public class FollowedsWindow extends JFrame{
-	
+	/**
+	 * Taula de contingut de la pantalla
+	 * @see DefaultTableModel
+	 */
 	private DefaultTableModel tableModelUser;
+	/**
+	 * Taula on es col·locarà el contingut a la pantalla
+	 * @see JTable
+	 */
 	private JTable jpUsers;
-
+	/**
+	 * Construeix la pantalla de seguidros d'un usuari
+	 * @param infTable
+	 * @param name
+	 * @see JTable
+	 * @see JPanel
+	 * @see JScrollPane
+	 * @see DefaultTableModel
+	 */
 	public FollowedsWindow(LinkedList<Object[]> infTable, String name){
 		new JPanel();
 		
