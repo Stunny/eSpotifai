@@ -13,6 +13,7 @@ import java.awt.event.MouseEvent;
 import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,6 +22,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.JTabbedPane;
@@ -71,6 +73,8 @@ public class MainWindow extends JFrame{
 	private JButton jbPlay;
 	private JButton jbPrevious;
 	private JButton jbNext;
+	private JRadioButton jrbRepeatOne;
+	private JRadioButton jrbRepeatList;
 
 	private ImageIcon iiNext1;
 	private ImageIcon iiNext2;
@@ -284,7 +288,7 @@ public class MainWindow extends JFrame{
 
 		//Creem el panell que anir� al BorderLayout de NORTH, que contindr� dos JLabels amb l'etiqueta de la can�o i l'estat d'aquesta
 		jpSong = new JPanel();
-		glSong = new GridLayout(1,2);
+		glSong = new GridLayout(1,3);
 		jpSong.setLayout(glSong);
 
 		//Creem etiqueta de la can�� que est� sonant y de l'estat d'aquesta
@@ -301,6 +305,16 @@ public class MainWindow extends JFrame{
 		jlSongState.setText(" ");
 		jlSongState.setHorizontalAlignment(JTextField.LEFT);
 		jpSong.add(jlSongState);
+		
+		JPanel jpRadioButtons = new JPanel();
+		jrbRepeatList = new JRadioButton("Global repeat", true);
+		jrbRepeatOne = new JRadioButton("Single repeat", false);
+		ButtonGroup buttonGroup = new ButtonGroup();
+		buttonGroup.add(jrbRepeatList);
+		buttonGroup.add(jrbRepeatOne);
+		jpRadioButtons.add(jrbRepeatList);
+		jpRadioButtons.add(jrbRepeatOne);
+		jpSong.add(jpRadioButtons);
 
 		jpPlayer.add(jpSong, BorderLayout.NORTH);
 		jpPlayer.add(jpPlayerButtons, BorderLayout.WEST);
