@@ -83,15 +83,15 @@ public class MainWindow extends JFrame{
 	 */
 	private JTable jpUsers;
 	/**
-	 * 
+	 * Subpanell
 	 */
 	private JPanel jpPageEnd;
 	/**
-	 * 
+	 * Subpanell de botons
 	 */
 	private JPanel jpButtons;
 	/**
-	 * 
+	 * Panell on va col·locat el reproductor
 	 */
 	private JPanel jpPlayer; 
 	/**
@@ -101,49 +101,50 @@ public class MainWindow extends JFrame{
 	 */
 	private JPanel jpPlayerButtons; 
 	/**
-	 * Panell
+	 * Panell de cançons
 	 */
 	private JPanel jpSong;
 	/**
-	 * 
+	 * Grid Layoput del subpanell de butons
 	 */
 	private GridLayout glButtons;
 	/**
-	 * Grid dels botons del reproductor
+	 * Grid Layout dels botons del reproductor
 	 */
 	private GridLayout glPlayerButtons; 
 	/**
-	 * 
+	 * Indicará dins un border layout l'etiqueta d'una cançó i l'estat de la mateixa
 	 */
 	private GridLayout glPageEnd;
 	/**
-	 * 
+	 * Grid Layout
 	 */
 	private GridLayout glSong;
 	/**
-	 * 
+	 * Estructura Border Layout com a finestra de cintingut de musica
 	 */
 	private BorderLayout blMusic;
 	/**
-	 * 
+	 * Estructura Border Layout per contenir el reproductor
 	 */
 	private BorderLayout blPlayer; 
 
 	//private JTextArea jtListOfSongs;
 	/**
-	 * 
+	 * Area de representació on es podrà fer scroll
 	 */
 	private JScrollPane jspMusicList;
 	/**
-	 * 
+	 * Mostra gráficament el moment en el que es troba la cançó.
+	 * @see JSlider
 	 */
 	private JSlider jSlider; //
 	/**
-	 * 
+	 * Botó per a afegir camps
 	 */
 	private JButton jbAdd;
 	/**
-	 * 
+	 * Mostrarà les estadístiques de la aplicació
 	 */
 	private JButton jbStatistics;
 	
@@ -205,7 +206,8 @@ public class MainWindow extends JFrame{
 	private ImageIcon iiPrevious1;
 	/**
 	 * 
-Icon de anterior #2	 */
+	 * Icon de anterior #2	 
+	 */
 	private ImageIcon iiPrevious2;
 	/**
 	 * Iconde anterior #3
@@ -215,62 +217,62 @@ Icon de anterior #2	 */
 
 	//=========================
 	/**
-	 * 
+	 * Taula de contingut de la part d'usuari
 	 */
 	DefaultTableModel tableModelUser;
 	/**
-	 * 
+	 * Taula de contigut de la part de música
 	 */
 	DefaultTableModel tableModelMusic;
 	/**
-	 * 
+	 * Porta a la pantalla de seguidors
 	 */
 	private JMenuItem seguidores;
 	/**
-	 * 
+	 * Porta a la pantalla de seguits
 	 */
 	private JMenuItem seguidos;
 	/**
-	 * 
+	 * Porta a la pantalla de <i>playlists</i>
 	 */
 	private JMenuItem listas;
 	/**
-	 * 
+	 * Obre el diàleg per confirmar l'eliminació
 	 */
 	private JMenuItem eliminar;
 	/**
-	 * 
+	 * Obre el diàleg per confirmar l'eliminació
 	 */
 	private JMenuItem eliminar2;
 	/**
-	 * 
+	 * ID d'usuari
 	 */
 	private int id = 0;
 	/**
-	 * 
+	 * ID de cançó
 	 */
 	private int idSong = 0;
 	/**
-	 * 
+	 * Menú emergent a l'usuari
 	 */
 	public JPopupMenu popup;
 	/**
-	 * 
+	 * Menu emergent d'una cançó
 	 */
 	public JPopupMenu popupSong;
 //=============
 	//private JLabel jlTemporalSong;
 	/**
-	 * 
+	 * Etiqueta on es representa la mesura del temps del reproductor
 	 */
 	private JLabel jlTime;
 	//private JLabel SongState;
 	/**
-	 * 
+	 * Etiqueta on es representa elnom de lacançó que està sent reproduida
 	 */
 	private JLabel jlSongName;
 	/**
-	 * 
+	 * Estat de la reproducció dela cançó(aturat,pausat,en reproducció...)
 	 */
 	private JLabel jlSongState;
 
