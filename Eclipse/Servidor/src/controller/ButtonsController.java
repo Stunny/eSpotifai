@@ -34,25 +34,30 @@ public class ButtonsController implements ActionListener{
 	// VISTA
 	/**
 	 * Pantalla principal de l'aplicació
+	 * @see MainWindow
 	 */
 	private MainWindow mainWindow;
 	/**
 	 * Reproductor
+	 * @see CustomPlayer
 	 */
 	private CustomPlayer p;
 	/**
-	 * 
+	 * Pantalla per afegir una nova cançó.
+	 * @see AddMusicWindow
 	 */
 	private AddMusicWindow addMusicWindow;
 	
 	// NETWORK
 	//private InformationService infoService;
 	/**
-	 * 
+	 * Conexió amb la base de dades
+	 * @see DDBBConnection
 	 */
 	private DDBBConnection ddbbConnection;
+	
 	/**
-	 * 
+	 * Construeix un nou controlador de botons
 	 * @param mainWindow
 	 * @param ddbbConnection
 	 * @param addMusicWindow
@@ -137,7 +142,7 @@ public class ButtonsController implements ActionListener{
 	}
 
 	/**
-	 * 
+	 * Cicle de vida del controlador
 	 */
 	public void run(){
 		while (true){
