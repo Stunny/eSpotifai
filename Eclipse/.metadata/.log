@@ -9300,6 +9300,7 @@ org.xml.sax.SAXParseException; lineNumber: 1; columnNumber: 2; El marcador en el
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:608)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1515)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1488)
+<<<<<<< HEAD
 =======
 
 !ENTRY org.eclipse.jdt.ui 4 10001 2016-05-21 23:53:52.312
@@ -9533,3 +9534,8 @@ org.eclipse.recommenders.utils.Logs$LogTraceException
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:603)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1465)
 >>>>>>> c1a722f6dd85f3a7250b6773c9ad5a78d77687fe
+=======
+
+!ENTRY org.eclipse.ui 4 4 2016-05-22 02:17:37.608
+!MESSAGE Conflicting handlers for org.eclipse.ui.navigate.backwardHistory: {ActionHandler(org.eclipse.ui.internal.NavigationHistoryAction@67a6a2d0)} vs {ActionHandler(org.eclipse.ui.internal.dialogs.PreferencePageHistory$1@5e607bf3)}
+>>>>>>> b07c1d6f0726261148706d4dd3a7fcbf47547db7

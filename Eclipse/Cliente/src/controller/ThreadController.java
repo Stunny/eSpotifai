@@ -5,17 +5,35 @@ import java.util.LinkedList;
 import model.Playlist;
 import model.Song;
 import view.MainWindow;
-
+/**
+ * Controlador de threads de l'aplicació
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see MainWindow
+ * @see NetworkController
+ * @see Thread
+ * @see Song
+ * 
+ *
+ */
 public class ThreadController {
-	
+	/**
+	 * Pantalla principal de l'aplicació
+	 * 
+	 */
 	private MainWindow mainWindow;
-	
+	/**
+	 * Construeix un nou controlador de threads
+	 * @param mainWindow Pantalla principal de l'aplicació
+	 */
 	public ThreadController(MainWindow mainWindow) {
 		super();
 		this.mainWindow = mainWindow;
 	}
 	
-	
+	/**
+	 * Actualitza la llista de cançons segons el contingut del servidor
+	 */
 	public void refreshSongList() {
 		LinkedList<Song> songsList = NetworkController.getSongList();
 		mainWindow.refreshSongs(songsList);

@@ -71,6 +71,8 @@ public class PopUpController implements ActionListener{
 				JOptionPane.showMessageDialog(null, "No se ha eliminado la cancion.");
 			}
 		}
+		
+		
 
 	}
 }
