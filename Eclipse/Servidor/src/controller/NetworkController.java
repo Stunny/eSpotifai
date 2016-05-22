@@ -72,6 +72,7 @@ public class NetworkController {
 			response = "Invalid request";
 		
 		}
+		
 	    } catch (Exception e) {
 	    	response = "Invalid request";
 	    	System.out.println(e);

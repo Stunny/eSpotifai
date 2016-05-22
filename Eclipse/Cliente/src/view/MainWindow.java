@@ -141,7 +141,13 @@ public class MainWindow extends JFrame {
 	private ListSelectionModel modelo1;
 	private ListSelectionModel modelo2;
 	
+
+	
+	//DefaultTableModel tableModelLists;
+	
+	
 	private String user;
+
 	//private ImageIcon temporalSong;
 	//=====
 	
@@ -582,7 +588,7 @@ public class MainWindow extends JFrame {
 	}
 	
 	
-	public void refreshUsers(LinkedList <Object[]> list){
+	public void refreshPlaylist(LinkedList <Object[]> list){
 		while (tablePlaylist.getRowCount()!= 0){
 			tablePlaylist.removeRow(0);
 		}
@@ -590,6 +596,8 @@ public class MainWindow extends JFrame {
 			tablePlaylist.addRow(list.get(i));
 		}
 	}
+	
+
 	
 	public void refreshMusic(LinkedList<Object[]> list){
 		while (tableMusic.getRowCount()!= 0){
