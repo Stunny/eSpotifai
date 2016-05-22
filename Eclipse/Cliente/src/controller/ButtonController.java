@@ -213,8 +213,9 @@ public class ButtonController implements ActionListener {
 			Main.refreshThread.interrupt();
 			Main.timeThread.interrupt();
 			try {
+				mainWindow.stopPlayer();
 				Files.deleteIfExists(Paths.get("Resources/song.mp3"));
-			} catch (IOException e) {
+			} catch (Exception e) {
 				System.out.println(e);
 				System.out.println("yoink");
 				// TODO Auto-generated catch block

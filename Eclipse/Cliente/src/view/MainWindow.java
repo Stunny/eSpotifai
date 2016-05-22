@@ -536,8 +536,9 @@ public class MainWindow extends JFrame {
 			@Override
 			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
 				try {
+					customPlayer.stopPlayer();
 					Files.deleteIfExists(Paths.get("Resources/song.mp3"));
-				} catch (IOException e) {
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					System.out.println(e);
 					System.out.println("yoink");
@@ -616,7 +617,9 @@ public class MainWindow extends JFrame {
 	}
 
 
-
+	public void stopPlayer() throws Exception {
+		customPlayer.stopPlayer();
+	}
 
 	
 	public void refreshMusic(LinkedList<Object[]> list){
