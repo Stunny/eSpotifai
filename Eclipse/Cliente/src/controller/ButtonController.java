@@ -73,9 +73,9 @@ public class ButtonController implements ActionListener {
 	private NetworkController networkcontroller;
 	private UserWindow userwindow;
 
-
+	
 	private int songIndex = 0;
-
+	
 	private NewListDialog NewListDialogDialog;
 
 	/**
@@ -127,7 +127,6 @@ public class ButtonController implements ActionListener {
 						Main.refreshThread.start();
 						Main.timeThread = new TimeThread(threadController);
 						Main.timeThread.start();
-						Main.wantToLeave = false;
 
 						User = loginWindow.getTypedUsername();
 						mainWindow.setUserId(AccessLogic.getId(User, networkcontroller));
@@ -152,24 +151,24 @@ public class ButtonController implements ActionListener {
 			registerWindow.setVisible(false);
 		}
 
-
+		
 		//New
 		if(event.getActionCommand().equals("NewListDialog.createActionCommand")){
 			if(networkcontroller.addPlaylist(NewListDialogDialog.getTypedName(), mainWindow.getUserId(), NewListDialogDialog.getPublic()).equals("Add")){
 				NewListDialogDialog.setTypedName("");
-				JOptionPane.showMessageDialog(null, "List created successfully.", " ", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Lista creada correctamente", " ", JOptionPane.INFORMATION_MESSAGE);
 				NewListDialogDialog.setVisible(false);
 			}
 			else{
-				JOptionPane.showMessageDialog(null, "This list already exists.", " ", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Ya existe dicha lista", " ", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		if(event.getActionCommand().equals("NewListDialog.cancelActionCommand")){
 			NewListDialogDialog.setTypedName("");		
 			NewListDialogDialog.setVisible(false);
 		}
-
-
+		
+		
 		//PANTALLA registerWindow
 		if(event.getActionCommand().equals("RegisterWindow.registerActionCommand")){
 
@@ -188,7 +187,6 @@ public class ButtonController implements ActionListener {
 						Main.refreshThread.start();
 						Main.timeThread = new TimeThread(threadController);
 						Main.timeThread.start();
-						Main.wantToLeave = false;
 					}
 				}
 			}
@@ -227,8 +225,6 @@ public class ButtonController implements ActionListener {
 			}
 			
 			userwindow.refreshFollowing(userlist);
-			
-
 
 		}
 
@@ -238,16 +234,14 @@ public class ButtonController implements ActionListener {
 		if(event.getActionCommand().equals("MainWindow.closeActionCommand")){
 			mainWindow.setVisible(false);
 			loginWindow.setVisible(true);
-			mainWindow.setMode("all");
 			Main.refreshThread.interrupt();
 			Main.timeThread.interrupt();
 			try {
-				Main.wantToLeave = true;
 				mainWindow.stopPlayer();
 				Files.deleteIfExists(Paths.get("Resources/song.mp3"));
 			} catch (Exception e) {
-				//System.out.println(e);
-				//System.out.println("yoink");
+				System.out.println(e);
+				System.out.println("yoink");
 				// TODO Auto-generated catch block
 			}
 		}
@@ -256,7 +250,7 @@ public class ButtonController implements ActionListener {
 		if(event.getActionCommand().equals("MainWindow.searchActionCommand")){
 			if(AccessLogic.searchUser(mainWindow.getTypedSearch(), networkcontroller)){
 				selecteduserwindow.refreshUser(mainWindow.getTypedSearch());
-				selecteduserwindow.refreshPlaylists(AccessLogic.getPlaylists(mainWindow.getTypedSearch(), networkcontroller.getPlaylists(mainWindow.getId())));
+				selecteduserwindow.refreshPlaylists(AccessLogic.getPlaylists(mainWindow.getTypedSearch(), networkcontroller.getPlaylists()));
 				selecteduserwindow.setVisible(true);
 			}
 		}
@@ -264,40 +258,13 @@ public class ButtonController implements ActionListener {
 		//PANTALLA SEARCH USUARIO
 		if(event.getActionCommand().equals("FOLLOW")){
 			String p = "Following";
-			int user= AccessLogic.getId(mainWindow.getUser(), networkcontroller);
-			int followed=AccessLogic.getId(mainWindow.getTypedSearch(), networkcontroller);
-			if(user == followed){
-				JOptionPane.showMessageDialog(null, "No puedes seguirte a ti mismo", " ", JOptionPane.ERROR_MESSAGE);
-				p = "You";
-			}
-			else{
-				if(networkcontroller.follow(user, followed).equals("Exist")){
-					JOptionPane.showMessageDialog(null, "Ya estas siguiendo a este usuario", " ", JOptionPane.ERROR_MESSAGE);
-				}
-				else{
-					JOptionPane.showMessageDialog(null, "Has empezado a seguir a un usuario", " ", JOptionPane.INFORMATION_MESSAGE);
-				}
-			}
 			selecteduserwindow.refreshFollowing(p);
 		}
 
 		//PANTALLA SEARCH USUARI
 		if(event.getActionCommand().equals("UNFOLLOW")){
-			String s  = "Unfollow";
-			int user = AccessLogic.getId(mainWindow.getUser(), networkcontroller);
-			int followed=AccessLogic.getId(mainWindow.getTypedSearch(), networkcontroller);
-			if(user == followed){
-				JOptionPane.showMessageDialog(null, "No puedes dejar seguirte a ti mismo", " ", JOptionPane.ERROR_MESSAGE);
-				s = "You";
-			}
-			else{
-				if(networkcontroller.unfollow(user, followed).equals("Dont")){
-					JOptionPane.showMessageDialog(null, "Ya no sigues a este usuario", " ", JOptionPane.ERROR_MESSAGE);
-				}
-				else{
-					JOptionPane.showMessageDialog(null, "Has dejado de seguir al usuario", " ", JOptionPane.INFORMATION_MESSAGE);
-				}
-			}
+			String s = new String();
+			s = "Unfollow";
 			selecteduserwindow.refreshFollowing(s);
 		}
 
@@ -320,17 +287,16 @@ public class ButtonController implements ActionListener {
 		//PANTALLA MAIN (NEXT SONG)
 		if(event.getActionCommand().equals("MainWindow.nextActionCommand")) {
 			//try {
-			//System.out.println("next");
+			System.out.println("next");
 			if (songIndex < mainWindow.getSongAmount() -1) songIndex++;
-			else songIndex = 0;
-			//System.out.println(songIndex);
+			System.out.println(songIndex);
 			String response = NetworkController.getSongFile(mainWindow.getSongAtIndex(songIndex));
 			if (response.equals("ok")) {
 				try {
 					mainWindow.changeMP3();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					//e.printStackTrace();
+					e.printStackTrace();
 				}
 			}
 
@@ -340,7 +306,7 @@ public class ButtonController implements ActionListener {
 		if(event.getActionCommand().equals("MainWindow.previousActionCommand")) {
 			//try {
 			if (songIndex > 0) songIndex--;
-			//System.out.println(songIndex);
+			System.out.println(songIndex);
 			String response = NetworkController.getSongFile(mainWindow.getSongAtIndex(songIndex));
 			if (response.equals("ok")) {
 				try {
@@ -351,6 +317,7 @@ public class ButtonController implements ActionListener {
 				}
 			}
 		}	
+
 
 	}
 

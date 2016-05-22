@@ -3,10 +3,12 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
 
 import model.AccessLogic;
+import model.Song;
 import view.AddList;
 import view.MainWindow;
 import view.ModifyNameList;
@@ -123,24 +125,142 @@ public class PopUpController implements ActionListener{
 		//--------- ACCION DE VOTAR ------------------
 
 		if(event.getActionCommand().equals("Vots.jrb1")){
-			JOptionPane.showMessageDialog(null, "puta");
+			System.out.println("HOLA");
+			LinkedList<model.User> user = new LinkedList<model.User>();
+			user = networkcontroller.getUserList();
+			int numberofusers = 0; 
+			for(int i = 0; i < user.size(); i++){
+				numberofusers++;
+			}
+			System.out.println("numberofuser" +numberofusers);
+			
+			LinkedList<Song> songlist = new LinkedList<Song>();
+			songlist = networkcontroller.getSongList();
+			int votacioaux = 0; 
+			for(int j = 0; j < songlist.size(); j++){
+				if(songlist.get(j).getId() == mainwindow.getIdsong()){
+					votacioaux = songlist.get(j).getStars();
+					System.out.println("votacioaux:" +votacioaux);
+				}
+			}
+			
+			int stars = 0; 
+			stars = (votacioaux + 1)/numberofusers;
+			
+			
+			JOptionPane.showMessageDialog(null,networkcontroller.updateVotacio(mainwindow.getIdsong(), stars));
+			
+			
+			
 		}
 		if(event.getActionCommand().equals("Vots.jrb2")){
-			JOptionPane.showMessageDialog(null, "puta2");
+			System.out.println("HOLA");
+			LinkedList<model.User> user = new LinkedList<model.User>();
+			user = networkcontroller.getUserList();
+			int numberofusers = 0; 
+			for(int i = 0; i < user.size(); i++){
+				numberofusers++;
+			}
+			System.out.println("numberofuser" +numberofusers);
+			
+			LinkedList<Song> songlist = new LinkedList<Song>();
+			songlist = networkcontroller.getSongList();
+			int votacioaux = 0; 
+			for(int j = 0; j < songlist.size(); j++){
+				if(songlist.get(j).getId() == mainwindow.getIdsong()){
+					votacioaux = songlist.get(j).getStars();
+					System.out.println("votacioaux:" +votacioaux);
+				}
+			}
+			
+			int stars = 0; 
+			stars = (votacioaux + 2)/numberofusers;
+			
+			
+			JOptionPane.showMessageDialog(null,networkcontroller.updateVotacio(mainwindow.getIdsong(), stars));
 		}
 		if(event.getActionCommand().equals("Vots.jrb3")){
-			JOptionPane.showMessageDialog(null, "puta3");
+			System.out.println("HOLA");
+			LinkedList<model.User> user = new LinkedList<model.User>();
+			user = networkcontroller.getUserList();
+			int numberofusers = 0; 
+			for(int i = 0; i < user.size(); i++){
+				numberofusers++;
+			}
+			System.out.println("numberofuser" +numberofusers);
+			
+			LinkedList<Song> songlist = new LinkedList<Song>();
+			songlist = networkcontroller.getSongList();
+			int votacioaux = 0; 
+			for(int j = 0; j < songlist.size(); j++){
+				if(songlist.get(j).getId() == mainwindow.getIdsong()){
+					votacioaux = songlist.get(j).getStars();
+					System.out.println("votacioaux:" +votacioaux);
+				}
+			}
+			
+			int stars = 0; 
+			stars = (votacioaux + 3)/numberofusers;
+			
+			
+			JOptionPane.showMessageDialog(null,networkcontroller.updateVotacio(mainwindow.getIdsong(), stars));
 		}
 		if(event.getActionCommand().equals("Vots.jrb4")){
-			JOptionPane.showMessageDialog(null, "puta4");
+			System.out.println("HOLA");
+			LinkedList<model.User> user = new LinkedList<model.User>();
+			user = networkcontroller.getUserList();
+			int numberofusers = 0; 
+			for(int i = 0; i < user.size(); i++){
+				numberofusers++;
+			}
+			System.out.println("numberofuser" +numberofusers);
+			
+			LinkedList<Song> songlist = new LinkedList<Song>();
+			songlist = networkcontroller.getSongList();
+			int votacioaux = 0; 
+			for(int j = 0; j < songlist.size(); j++){
+				if(songlist.get(j).getId() == mainwindow.getIdsong()){
+					votacioaux = songlist.get(j).getStars();
+					System.out.println("votacioaux:" +votacioaux);
+				}
+			}
+			
+			int stars = 0; 
+			stars = (votacioaux + 4)/numberofusers;
+			
+			
+			JOptionPane.showMessageDialog(null,networkcontroller.updateVotacio(mainwindow.getIdsong(), stars));
 		}
 		if(event.getActionCommand().equals("Vots.jrb5")){
-			JOptionPane.showMessageDialog(null, "puta5");
+			System.out.println("HOLA");
+			LinkedList<model.User> user = new LinkedList<model.User>();
+			user = networkcontroller.getUserList();
+			int numberofusers = 0; 
+			for(int i = 0; i < user.size(); i++){
+				numberofusers++;
+			}
+			System.out.println("numberofuser" +numberofusers);
+			
+			LinkedList<Song> songlist = new LinkedList<Song>();
+			songlist = networkcontroller.getSongList();
+			int votacioaux = 0; 
+			for(int j = 0; j < songlist.size(); j++){
+				if(songlist.get(j).getId() == mainwindow.getIdsong()){
+					votacioaux = songlist.get(j).getStars();
+					System.out.println("votacioaux:" +votacioaux);
+				}
+			}
+			
+			int stars = 0; 
+			stars = (votacioaux + 5)/numberofusers;
+			
+			
+			JOptionPane.showMessageDialog(null,networkcontroller.updateVotacio(mainwindow.getIdsong(), stars));
 		}
 
 		//-------------------------------------------
 		if(event.getActionCommand().equals("AddList.insertActionCommand")){
-			String respuesta = networkcontroller.AddSong(mainwindow.getIdMusic(),addlist.getIdPlaylist());
+			String respuesta = networkcontroller.AddSong(mainwindow.getId(),addlist.getIdPlaylist());
 			switch(respuesta){
 				case "Add":
 					JOptionPane.showMessageDialog(null, "La cancion se ha añadido correctamente", " ", JOptionPane.INFORMATION_MESSAGE);
@@ -159,7 +279,7 @@ public class PopUpController implements ActionListener{
 			 * */
 			
 			
-			playlistsearchuser.refreshPlaylists(AccessLogic.getPlaylists(userwindow.getNombre(), networkcontroller.getPlaylists(mainwindow.getId())));
+			playlistsearchuser.refreshPlaylists(AccessLogic.getPlaylists(userwindow.getNombre(), networkcontroller.getPlaylists()));
 			playlistsearchuser.setVisible(true);
 			userwindow.setVisible(false);
 		}

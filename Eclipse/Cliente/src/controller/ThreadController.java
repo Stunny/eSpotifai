@@ -50,7 +50,7 @@ public class ThreadController {
 	}
 
 	public void refreshUserPlaylistList() {
-		LinkedList<Playlist> playlistList = NetworkController.getPlaylists(mainWindow.getId());
+		LinkedList<Playlist> playlistList = NetworkController.getPlaylists();
 		mainWindow.refreshPlaylists(playlistList);
 	}
 
