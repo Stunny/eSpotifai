@@ -49,7 +49,7 @@ public class ButtonsController implements ActionListener{
 			// Actualitzem la vista
 			//vista.addText(vista.getTypedMessage());
 		}else if (event.getActionCommand().equals("MainWindow.statisticsActionCommand")){
-			StatisticsWindow StadisticsView = new StatisticsWindow();
+			StatisticsWindow StadisticsView = new StatisticsWindow(ddbbConnection.getSongs());
 			StadisticsView.setVisible(true);
 
 		}else if (event.getActionCommand().equals("MainWindow.playActionCommand")){
@@ -66,13 +66,13 @@ public class ButtonsController implements ActionListener{
 			}
 			
 		} else if (event.getActionCommand().equals("RIGHTSONG")){
-			StatisticsWindow StadisticsView = new StatisticsWindow();
-			StadisticsView.setVisible(true);
+			//StatisticsWindow StadisticsView = new StatisticsWindow();
+			//StadisticsView.setVisible(true);
 			
 		} else if (event.getActionCommand().equals("LEFTSONG")){
 			
-			StatisticsWindow StadisticsView = new StatisticsWindow();
-			StadisticsView.setVisible(true);
+			//StatisticsWindow StadisticsView = new StatisticsWindow();
+			//StadisticsView.setVisible(true);
 		}
 		else if (event.getActionCommand().equals("AddMusicWindow.acceptActionCommand")){
 			String title = addMusicWindow.getTypedSongTitle();

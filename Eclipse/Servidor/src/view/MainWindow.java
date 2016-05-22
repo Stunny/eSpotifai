@@ -217,8 +217,6 @@ public class MainWindow extends JFrame{
 		jbStatistics.setHorizontalAlignment(JButton.CENTER);
 		jpButtons.add(jbStatistics);
 
-		//jpPageEnd.add(jpButtons);
-//========================
 		/*
 		 * AQUI S'HA DE CREAR EL REPRODUCTOR !!
 		 */
@@ -236,8 +234,7 @@ public class MainWindow extends JFrame{
 		glPlayerButtons = new GridLayout(1,3);
 		jpPlayerButtons.setLayout(glPlayerButtons);
 
-
-
+		
 		iiPlay1 = new ImageIcon("src/imagenes/playButn1.png");
 		iiPlay2 = new ImageIcon("src/imagenes/playButn2.png");
 		iiPlay3 = new ImageIcon("src/imagenes/playButn3.png");
@@ -254,9 +251,6 @@ public class MainWindow extends JFrame{
 		iiNext2 = new ImageIcon("src/imagenes/leftbutn2.png");
 		iiNext3 = new ImageIcon("src/imagenes/leftbutn3.png");
 
-		//temporalSong = new ImageIcon("src/imagenes/secuencialSong.png");
-		//jlTemporalSong = new JLabel(temporalSong);
-		//jlTemporalSong.setPreferredSize(new Dimension(700,10));
 
 		jlTime = new JLabel();
 		jlTime.setHorizontalAlignment(JLabel.CENTER);
@@ -301,11 +295,6 @@ public class MainWindow extends JFrame{
 		jpPlayer.add(jSlider, BorderLayout.CENTER);
 		jpPlayer.add(jlTime, BorderLayout.EAST);
 		
-		//=====================================
-
-		/*jpPageEnd.add(jpPlayer);
-		jpPageEnd.setPreferredSize(new Dimension(0, 130));*/
-
 		jpMusic.add(jpButtons, BorderLayout.PAGE_END);
 
 
@@ -449,16 +438,16 @@ public class MainWindow extends JFrame{
 			//}else{
 			try{
 
-				//Creo un reproductor
-				//player = new Player();
 
 				state = "";
-				//String songLink = "C:/Users/Marc/Downloads/Quentin Tarantino Soundtracks Discography - HTD 2015/Pulp Fiction (Collector's Edition) (2009) - Soundtrack/04. Let's Stay Together.mp3";
+				String songLink = "C:/Users/Marc/Downloads/Quentin Tarantino Soundtracks Discography - HTD 2015/Pulp Fiction (Collector's Edition) (2009) - Soundtrack/04. Let's Stay Together.mp3";
 				//String songLink = "C:/Users/Marc/Downloads/Quentin Tarantino Soundtracks Discography - HTD 2015/Pulp Fiction (Collector's Edition) (2009) - Soundtrack/14. Personality Goes a Long Way.mp3";
 				//String songLink = "C:/Users/Marc/Downloads/grillos05_mp3.mp3";
 				//String songLink = "/Users/elnacabotparedes/Music/iTunes/iTunes Media/Music/Martin Garrix/Unknown Album/01 Poison.mp3";
-				String songLink = "C:/Users/Marta/Music/Mystery Skulls - Ghost.mp3";
+				//String songLink = "storeSongs/Enrique Iglesias - Bailando.mp3";
 
+
+				
 				customPlayer.abrirMp3(songLink);
 				state = customPlayer.playPlayer(jSlider);
 
@@ -470,29 +459,6 @@ public class MainWindow extends JFrame{
 			jlSongName.setText(customPlayer.getName());
 
 		}
-		/*//Si el player est� parat i fa clik
-		if (player.isEnded()){
-
-			try{
-
-				//Creo un reproductor un altre cop ja que internament el BasicPlayer ha fet un closeStrem();
-				player = new Player();
-
-				System.out.println("\nENTRO EN EL VISUALITZADOR DE CAN�O PER SEGON COP\n");
-				state = "";
-				String songLink = "C:/Users/Marc/Downloads/Quentin Tarantino Soundtracks Discography - HTD 2015/Pulp Fiction (Collector's Edition) (2009) - Soundtrack/14. Personality Goes a Long Way.mp3";
-				//String songLink = "C:/Users/Marc/Downloads/grillos05_mp3.mp3";
-				player.AbrirMp3(songLink);
-				state = player.Play(jSlider1);
-
-			}catch (Exception ex) {
-				System.out.println("Error: " + ex.getMessage());
-			}
-			ConfigurationButton(playButton, pausebutton1, pausebutton2, pausebutton3);
-			NameSong.setText(player.getName());
-		}
-		 */
-
 
 		//miro l'estat i el printo per pantalla i el nom de la can�o
 		if(customPlayer.getStatus() == 0){
