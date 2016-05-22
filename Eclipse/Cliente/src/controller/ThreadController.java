@@ -12,7 +12,7 @@ import view.MainWindow;
  * @see NetworkController
  * @see Thread
  * @see Song
- * @
+ * 
  *
  */
 public class ThreadController {
