@@ -27,104 +27,33 @@ import javax.media.Manager;
 import javax.media.NoPlayerException;
 
 import javax.swing.JSlider;
-/**
- * Reproductor custom a partir de BasicPlayer
- * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
- * @version 1.0
- * @see BasicPlayer
- * @see Timer
- * @see TimerTask
- * @see Map
- * 
- *
- */
+
 public class CustomPlayer implements BasicPlayerListener {
-	/**
-	 * Frame actual
-	 */
 	private int frameNow;
-	/**
-	 * Reproductor
-	 */
 	private BasicPlayer player;
-	/**
-	 * Status de la reproducció
-	 */
 	private boolean todoOk = false;
-	/**
-	 * Indica si la reproducció és activa
-	 */
 	private boolean run = false;
-	/**
-	 * Stastus message
-	 */
 	private String t = "";
-	/**
-	 * Temporitzador
-	 * @see Timer
-	 */
 
 	private Long duration;
 
 	private Timer tiempo ;
-	/**
-	 * Tasca associada a un moment determinat del Timer
-	 * @see TimerTask
-	 * @see Timer
-	 */
 	private TimerTask task;
-	/**
-	 * Mapa de hash
-	 * @see Map
-	 */
 	private Map empty_map = new HashMap();
-	/**
-	 * Longitud en bytes de la cançó
-	 */
 	private int bytesLength;
-	/**
-	 * Frame on es troba l'slider
-	 */
 	private int frameSlider;
-	/**
-	 * Actualitza continuament l'indicador de de segons del reproductor
-	 */
 	private int seconds = 0;
-	/**
-	 * Actualitza continuament l'indicador de minuts del reproductor
-	 */
 	private int minutes = 0;
-	/**
-	 * Nom de la cançó que s'està reproduint
-	 */
 	private String nameSong = "";
-	/**
-	 * Frames totals de la cançó
-	 */
 	private int framesSong = 1;
-	/**
-	 * Frame de la reproducció on es troba la cançó actualment
-	 */
 	private int framesSongActual = 1;
-	/**
-	 * Microsegon de la reproducció on es troba la cançó en el moment.
-	 */
 	//private Double microsecondsSongActual;
-	/**
-	 * Durada de la cançó en microsegons
-	 */
 	private int durationSong = 0;
-	/**
-	 * Microsegon en el 
-	 */
 	private int microdecondsSongActual;
 
 	//velocidad del runable dels frames
 	private int speed = 1000;
-/**
-	 * Construeix un nou reproductor
-	 * 
-	 */
+
 	public CustomPlayer(){ 
 		player = new BasicPlayer();
 		// Me suscribo al reproductor para obtener sus eventos.
@@ -135,20 +64,11 @@ public class CustomPlayer implements BasicPlayerListener {
 
 		return this.seconds;
 	}
-	/**
-	 * Getter de minuts
-	 * @return Minutes
-	 */
 	public int getMinutes(){
 
 		return this.minutes;
 	}
-	/**
-	 * Reprodueix la cançó
-	 * @param b Slider
-	 * @return Playing status
-	 * @throws Exception
-	 */
+
 	public String playPlayer(JSlider b) throws Exception{
 		t = "No existe ningun archivo...";
 
@@ -188,12 +108,6 @@ public class CustomPlayer implements BasicPlayerListener {
 
 
 
-		//System.out.println("El get pan es : " + player.getPan());
-	
-	/**
-	 * Getter del nom de la cançó
-	 * @return Song name
-	 */
 	public String getName(){
 
 		String[] itemsSong = nameSong.split("/");
@@ -204,10 +118,9 @@ public class CustomPlayer implements BasicPlayerListener {
 		return finalName;
 
 	}
-	/**
-	 * Getter del status de la reproducció
-	 * @return Playing status
-	 */
+	
+	
+	
 	public int getStatus(){
 		return player.getStatus();
 	}
@@ -223,10 +136,8 @@ public class CustomPlayer implements BasicPlayerListener {
 		//System.out.println("INDICO al task time temps que es cancela");
 		task.cancel();            
 	}
-	/**
-	 * Pausa la reproducció
-	 * @throws Exception
-	 */
+
+	
 	public void pause() throws Exception {
 		//this.nameSong = "/PAUSE";
 		player.pause();
@@ -238,10 +149,7 @@ public class CustomPlayer implements BasicPlayerListener {
 		player.resume();
 		//tiempo.
 	}
-	/**
-	 * Indica si la reproducció ha terminat
-	 * @return <i style="color:indigo;">FALSE</i> si la reproducció no ha conclòs. <i style="color:indigo">TRUE</i> si aquesta ha conclòs.
-	 */
+
 	public boolean isEnded(){
 
 		if (player.getStatus() == 2){
@@ -250,10 +158,7 @@ public class CustomPlayer implements BasicPlayerListener {
 			return false;
 		}
 	}
-/**
-	 * Atura la reproducció
-	 * @throws Exception
-	 */
+
 	public void stopPlayer() throws Exception {
 		player.stop();
 		this.todoOk = false;
@@ -282,10 +187,6 @@ public class CustomPlayer implements BasicPlayerListener {
 	}
 
 	
-	/**
-	 * Retorna el frame al que estroba l'slider
-	 * @return Actual slider frame
-	 */
 	public int getFrameSlider(){
 		return frameSlider;
 	}
