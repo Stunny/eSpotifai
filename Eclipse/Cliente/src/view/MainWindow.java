@@ -243,7 +243,7 @@ public class MainWindow extends JFrame {
 		                 if ( SwingUtilities.isRightMouseButton(e)) {
 		                    Point p = e.getPoint();
 		                    int rowNumber = jtFollowedLists.rowAtPoint(p);
-		                    modelo = jtFollowedLists.getSelectionModel();
+		                    ListSelectionModel modelo = jtFollowedLists.getSelectionModel();
 		                    modelo.setSelectionInterval( rowNumber, rowNumber );
 		                   // modelo1.clearSelection();
 		                   // modelo2.clearSelection();
