@@ -18,13 +18,16 @@ import database.DDBBConnection;
 import model.ManagementConfiguration;
 import model.ServerConfiguration;
 import model.Song;
+import network.FileServer;
 import network.Server;
 import threads.RefreshThread;
 import threads.TimeThread;
 
 public class Main {
 	
-	//MAIN DEL SERVIDOR
+	 //MAIN DEL SERVIDOR
+	
+	private static FileServer fileServer;
 
 	public static void main(String[] args) {
 
@@ -59,7 +62,8 @@ public class Main {
 					(new TimeThread(controller)).start();
 					Server server = new Server(new NetworkController(ddbbConnection));
 					server.startServer();
-
+					fileServer = new FileServer();
+					fileServer.startServer();
 					
 
 
@@ -71,5 +75,10 @@ public class Main {
 				}
 			}
 		});
+	}
+	
+	public static void setFilePath(String path) {
+		System.out.println(path);
+		fileServer.setFilePath(path);
 	}
 }

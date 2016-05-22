@@ -2,7 +2,10 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.net.MalformedURLException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
@@ -68,7 +71,7 @@ public class ButtonController implements ActionListener {
 	 */
 	private NetworkController networkcontroller;
 	private UserWindow userwindow;
-	
+
 	private int songIndex = 0;
 	
 	private NewListDialog NewListDialogDialog;
@@ -88,8 +91,13 @@ public class ButtonController implements ActionListener {
 	 * @see controller.NetworkController
 	 * 
 	 */
+<<<<<<< HEAD
 	public ButtonController(NewListDialog NewListDialogDialog, LoginWindow loginWindow, RegisterWindow registerWindow, MainWindow mainWindow, SelectedUserWindow selecteduserwindow, NetworkController networkcontroller, UserWindow userwindow){
 		this.NewListDialogDialog = NewListDialogDialog;
+=======
+	public ButtonController(LoginWindow loginWindow, RegisterWindow registerWindow, MainWindow mainWindow, SelectedUserWindow selecteduserwindow, NetworkController networkcontroller, UserWindow userwindow){
+
+>>>>>>> 144f2d0aead8c5be9d5450cc61440d5da920830d
 		this.loginWindow = loginWindow;
 		this.mainWindow = mainWindow;
 		this.registerWindow= registerWindow;
@@ -102,7 +110,7 @@ public class ButtonController implements ActionListener {
 	 *  
 	 */
 	public void actionPerformed(ActionEvent event){
-		
+
 		//PANTALLA ACCEDIR (ACCEDIR)
 		if (event.getActionCommand().equals("LoginWindow.loginActionCommand")){
 			if (loginWindow.getTypedUsername().equals("") || loginWindow.getTypedPassword().equals("")) {
@@ -114,13 +122,13 @@ public class ButtonController implements ActionListener {
 					if (AccessLogic.Login(loginWindow.getTypedUsername(), loginWindow.getTypedPassword())) {
 						mainWindow.setVisible(true);
 						loginWindow.setVisible(false);
-						
+
 						ThreadController threadController = new ThreadController(mainWindow);
 						Main.refreshThread = new RefreshThread(threadController);
 						Main.refreshThread.start();
 						Main.timeThread = new TimeThread(threadController);
 						Main.timeThread.start();
-						
+
 						User = loginWindow.getTypedUsername();
 						mainWindow.setUserId(AccessLogic.getId(User, networkcontroller));
 						mainWindow.setUser(User);
@@ -132,17 +140,18 @@ public class ButtonController implements ActionListener {
 			}
 		}
 
-			//PANTALLA ACCEDIR (REGISTRET)
+		//PANTALLA ACCEDIR (REGISTRET)
 		if(event.getActionCommand().equals("LoginWindow.registerActionCommand")){
 			registerWindow.setVisible(true);
 			loginWindow.setVisible(false);
 		}
-		
+
 		//PANTALLA REGISTRO TIRAR ATRAS
 		if(event.getActionCommand().equals("RegisterWindow.atrasActionCommand")){
 			loginWindow.setVisible(true);
 			registerWindow.setVisible(false);
 		}
+<<<<<<< HEAD
 		
 		
 		//New
@@ -162,6 +171,12 @@ public class ButtonController implements ActionListener {
 		}
 		
 		
+=======
+
+
+
+
+>>>>>>> 144f2d0aead8c5be9d5450cc61440d5da920830d
 		//PANTALLA registerWindow
 		if(event.getActionCommand().equals("RegisterWindow.registerActionCommand")){
 
@@ -184,21 +199,21 @@ public class ButtonController implements ActionListener {
 				}
 			}
 		}
-		
+
 		// MAINWINDOW ( NEW PLAYLIST)
 		if(event.getActionCommand().equals("MainWindow.addActionCommand")){
 			NewListDialogDialog.setVisible(true);
 		} 
-		
+
 		//PANTALLA INICIO (USUARI)
 		if(event.getActionCommand().equals("MainWindow.profileActionCommand")){
 			userwindow.refreshUser(User);
 			userwindow.setVisible(true);
-			
+
 
 		}
-		
-		
+
+
 
 		//PANTALLA registerWindowSTRE (CERRAR SESION)
 		if(event.getActionCommand().equals("MainWindow.closeActionCommand")){
@@ -206,8 +221,15 @@ public class ButtonController implements ActionListener {
 			loginWindow.setVisible(true);
 			Main.refreshThread.interrupt();
 			Main.timeThread.interrupt();
+			try {
+				Files.deleteIfExists(Paths.get("Resources/song.mp3"));
+			} catch (IOException e) {
+				System.out.println(e);
+				System.out.println("yoink");
+				// TODO Auto-generated catch block
+			}
 		}
-		
+
 		//PANTALLA MAIN (CERCAR USUARI)
 		if(event.getActionCommand().equals("MainWindow.searchActionCommand")){
 			if(AccessLogic.searchUser(mainWindow.getTypedSearch(), networkcontroller)){
@@ -216,72 +238,74 @@ public class ButtonController implements ActionListener {
 				selecteduserwindow.setVisible(true);
 			}
 		}
-		
+
 		//PANTALLA SEARCH USUARIO
 		if(event.getActionCommand().equals("FOLLOW")){
 			String p = "Following";
 			selecteduserwindow.refreshFollowing(p);
 		}
-		
+
 		//PANTALLA SEARCH USUARI
 		if(event.getActionCommand().equals("UNFOLLOW")){
 			String s = new String();
 			s = "Unfollow";
 			selecteduserwindow.refreshFollowing(s);
 		}
-		
-		
+
+
 		//PANTALLA MAIN (PLAY SONG)
 		if(event.getActionCommand().equals("MainWindow.playActionCommand")) {
 			//try {
-				//int songId = mainWindow.getSongAtIndex(songIndex);
-				//mainWindow.goMP3();
-			/*} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}*/
-		}
-		
-		//PANTALLA MAIN (NEXT SONG)
-				if(event.getActionCommand().equals("MainWindow.nextActionCommand")) {
-					//try {
-					if (songIndex < mainWindow.getSongAmount()) songIndex++;
-					//int songId = mainWindow.getSongAtIndex(songIndex);
-						//mainWindow.goMP3();
-					/*} catch (MalformedURLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-						
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}*/
+			String response = NetworkController.getSongFile(mainWindow.getSongAtIndex(songIndex));
+			if (response.equals("ok")) {
+				try {
+					mainWindow.goMP3();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-				
-				//PANTALLA MAIN (PREVIOUS SONG)
-				if(event.getActionCommand().equals("MainWindow.previousActionCommand")) {
-					//try {
-					if (songIndex > 0) songIndex--;
-					//int songId = mainWindow.getSongAtIndex(songIndex);
-						//mainWindow.goMP3();
-					/*} catch (MalformedURLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-						
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}*/
-				}	
-		
-		
-		
-		
-		
+			}
+		}
+
+
+		//PANTALLA MAIN (NEXT SONG)
+		if(event.getActionCommand().equals("MainWindow.nextActionCommand")) {
+			//try {
+			System.out.println("next");
+			if (songIndex < mainWindow.getSongAmount() -1) songIndex++;
+			System.out.println(songIndex);
+			String response = NetworkController.getSongFile(mainWindow.getSongAtIndex(songIndex));
+			if (response.equals("ok")) {
+				try {
+					mainWindow.changeMP3();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+		}
+
+		//PANTALLA MAIN (PREVIOUS SONG)
+		if(event.getActionCommand().equals("MainWindow.previousActionCommand")) {
+			//try {
+			if (songIndex > 0) songIndex--;
+			System.out.println(songIndex);
+			String response = NetworkController.getSongFile(mainWindow.getSongAtIndex(songIndex));
+			if (response.equals("ok")) {
+				try {
+					mainWindow.changeMP3();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}	
+
+
+
+
+
 	}
-	
+
 }

@@ -119,6 +119,7 @@ public class ButtonsController implements ActionListener{
 			JFileChooser jFileChooser = new JFileChooser();
 			String path = "";
 			jFileChooser.setFileFilter(new FileNameExtensionFilter("MP3 files", "mp3"));
+			jFileChooser.setCurrentDirectory(new File("./Resources"));
 			if (jFileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 				path = jFileChooser.getSelectedFile().getAbsolutePath();
 			}

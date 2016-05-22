@@ -122,7 +122,7 @@ public class MainWindow extends JFrame{
 
 	private JTable jtMusicList;
 	private JTable jtUser;
-	
+
 
 	public MainWindow() {
 
@@ -403,7 +403,7 @@ public class MainWindow extends JFrame{
 		this.getContentPane().add(jpPlayer, BorderLayout.SOUTH);
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setResizable(true);
-		this.setSize(new Dimension(1600,860));
+		this.setSize(new Dimension(1280,720));
 		this.setTitle("eSpotifai - Server Management");
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -502,10 +502,10 @@ public class MainWindow extends JFrame{
 		jlSongName.setText(customPlayer.getName());
 
 	}
-	
-	
+
+
 	public void changeMP3(String songLink) throws Exception {
-		
+
 		try{
 			//customPlayer.stopPlayer();
 			state = "";
@@ -518,7 +518,7 @@ public class MainWindow extends JFrame{
 		stateSong = true;
 		ConfigurationButton(jbPlay, iiPause1, iiPause2, iiPause3);
 		jlSongName.setText(customPlayer.getName());
-		
+
 		if(customPlayer.getStatus() == 0){
 
 			jlSongState.setForeground(new Color(26, 140, 60));
@@ -535,7 +535,7 @@ public class MainWindow extends JFrame{
 			jlSongState.setText("           --> CLICK PLAY TO LISTEN THE SONG <--");
 		}
 	}
-	
+
 
 	//===============================
 
@@ -563,10 +563,10 @@ public class MainWindow extends JFrame{
 		//===============
 		jbPlay.addActionListener(controller);
 		jbPlay.setActionCommand("MainWindow.playActionCommand");
-		
+
 		jbNext.addActionListener(controller);
 		jbNext.setActionCommand("MainWindow.nextActionCommand");
-		
+
 		jbPrevious.addActionListener(controller);
 		jbPrevious.setActionCommand("MainWindow.previousActionCommand");
 		//============================
@@ -643,22 +643,22 @@ public class MainWindow extends JFrame{
 			tableModelMusic.addRow(list.get(i));
 		}
 	}
-	
+
 	public int getId (){
 		return id;
 	}
-	
+
 	public int getIdSong(){
 		return idSong;
 	}
-	
+
 	public String getSongPath(int index) {
 		return (String)tableModelMusic.getValueAt(index, 5);
 	}
-	
+
 	public int getSongAmount() {
 		return tableModelMusic.getRowCount();
 	}
-	
+
 
 }
