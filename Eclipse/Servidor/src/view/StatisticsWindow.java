@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JDialog;
@@ -16,6 +17,9 @@ import javax.swing.JPanel;
 
 
 
+
+
+import model.Song;
 import controller.ButtonsController;
 
 public class StatisticsWindow extends JDialog{
@@ -26,100 +30,30 @@ public class StatisticsWindow extends JDialog{
     
     private BorderLayout blStatistics;
     private GridLayout glGraphic;
-    /*
-    private JLabel jlSong1;
-    private JLabel jlSong2;
-    private JLabel jlSong3;
-    private JLabel jlSong4;
-    private JLabel jlSong5;
-    private JLabel jlSong6;
-    private JLabel jlSong7;
-    private JLabel jlSong8;
-    private JLabel jlSong9;
-    private JLabel jlSong10;
-    private JLabel jlNumSong1;
-    private JLabel jlNumSong2;
-    private JLabel jlNumSong3;
-    private JLabel jlNumSong4;
-    private JLabel jlNumSong5;
-    private JLabel jlNumSong6;
-    private JLabel jlNumSong7;
-    private JLabel jlNumSong8;
-    private JLabel jlNumSong9;
-    private JLabel jlNumSong10;
-    */
+    private LinkedList<Song> songs;
+    private LinkedList<Song> listSortSongs;
     
+    private int maxNum = 0;
     
-    public StatisticsWindow() {
+    public StatisticsWindow(LinkedList<Song> s) {
 
+        System.out.println("AQUI ANTES declaraciones ");
         jpStatistics = new JPanel();
         blStatistics = new BorderLayout();
         setContentPane(jpStatistics);
         jpStatistics.setLayout(null);
+
+        System.out.println("AQUI DESPUES declaraciones ");
+       
+        songs = new LinkedList<Song>();
+        this.songs = s;
+        listSortSongs = new LinkedList<Song>();
         
-        //Creo un altre panell per inserir les barres estadistiques
-        /*jpGraphic = new JPanel();
-        glGraphic = new GridLayout(2,10);
-        jpGraphic.setLayout(glGraphic);
-        */
-        /*	
-        	CREACIÓ DE BARRESSSSSSS
-        	HERE
-        */
-        /*
-        jlSong1 = new JLabel();
-        jlSong1.setHorizontalAlignment(JLabel.CENTER);
-        jlSong1.setText("Song1");
-        
-        jlSong2 = new JLabel();
-        jlSong2.setHorizontalAlignment(JLabel.CENTER);
-        jlSong2.setText("Song2");
-        
-        jlSong3 = new JLabel();
-        jlSong3.setHorizontalAlignment(JLabel.CENTER);
-        jlSong3.setText("Song3");
+        listSortSongs = sortSongs(songs);
 
-        jlSong4 = new JLabel();
-        jlSong4.setHorizontalAlignment(JLabel.CENTER);
-        jlSong4.setText("Song4");
-
-        jlSong5 = new JLabel();
-        jlSong5.setHorizontalAlignment(JLabel.CENTER);
-        jlSong5.setText("Song5");
-
-        jlSong6 = new JLabel();
-        jlSong6.setHorizontalAlignment(JLabel.CENTER);
-        jlSong6.setText("Song6");
-
-        jlSong7 = new JLabel();
-        jlSong7.setHorizontalAlignment(JLabel.CENTER);
-        jlSong7.setText("Song7");
-
-        jlSong8 = new JLabel();
-        jlSong8.setHorizontalAlignment(JLabel.CENTER);
-        jlSong8.setText("Song8");
-
-        jlSong9 = new JLabel();
-        jlSong9.setHorizontalAlignment(JLabel.CENTER);
-        jlSong9.setText("Song9");
-
-        jlSong10 = new JLabel();
-        jlSong10.setHorizontalAlignment(JLabel.CENTER);
-        jlSong10.setText("Song10");
-        
-        jpGraphic.add(jlSong1);
-        jpGraphic.add(jlSong2);
-        jpGraphic.add(jlSong3);
-        jpGraphic.add(jlSong4);
-        jpGraphic.add(jlSong5);
-        jpGraphic.add(jlSong6);
-        jpGraphic.add(jlSong7);
-        jpGraphic.add(jlSong8);
-        jpGraphic.add(jlSong9);
-        jpGraphic.add(jlSong10);
-        */
-        
+        System.out.println("AQUI ANTES repaint ");
         repaint();
+        System.out.println("AQUI DESPUES  repaint");
         
         jpStatistics.setBorder(BorderFactory.createTitledBorder("Stadistics Top 10 songs of eSpotifai"));
 		//Assignem titol a la finestra
@@ -128,125 +62,116 @@ public class StatisticsWindow extends JDialog{
 		this.setSize(new Dimension(1100,680));
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
+		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
     }
 
-    public void paint(Graphics g)
-    {
+    public void paint(Graphics g){
+    	
         super.paint(g);
+        
+        int j = 0;
+        
+        g.setColor(new Color(0, 0, 0));
+        g.fillRect(90, 60, 3, 580);
+        
+        g.setColor(new Color(0, 0, 0));
+        g.fillRect(20,600, 1060,3);
+        g.drawString("nº " + '\n' + "reproductions", 100,70);
+        maxNum = 0;
 
-            String s1 = "100";
-            String s2 = "200";
-            String s3 = "400";
-            String s4 = "100";
-            String s5 = "2000";
-            String s6 = "4500";
-            String s7 = "1400";
-            String s8 = "2700";
-            String s9 = "4040";
-            String s10 = "1400";
-            
-            int v1=Integer.parseInt(s1);
-            int v2=Integer.parseInt(s2);
-            int v3=Integer.parseInt(s3);
-            int v4=Integer.parseInt(s4);
-            int v5=Integer.parseInt(s5);
-            int v6=Integer.parseInt(s6);
-            int v7=Integer.parseInt(s7);
-            int v8=Integer.parseInt(s8);
-            int v9=Integer.parseInt(s9);
-            int v10=Integer.parseInt(s10);
-            
-            int mayor = retornarMayor(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10);
-            
-            int large1=v1*500/mayor;
-            int large2=v2*500/mayor;
-            int large3=v3*500/mayor;
-            int large4=v4*500/mayor;
-            int large5=v5*500/mayor;
-            int large6=v6*500/mayor;
-            int large7=v7*500/mayor;
-            int large8=v8*500/mayor;
-            int large9=v9*500/mayor;
-            int large10=v10*500/mayor;
+        System.out.println("AQUI ANTES ");
+        while ( j < listSortSongs.size() && j < 10){
+        
+        	System.out.println("TAMANYO : " + listSortSongs.size());
 
-            g.setColor(new Color(0, 0, 0));
-            g.fillRect(90, 60, 3, 580);
+        	int v1 = listSortSongs.get(j).getReproducciones();
+        	System.out.println("listSortsongs top ordenats " + 0 + "  name " + listSortSongs.get(j).getName());
+
+        	System.out.println("listSortsongs top ordenats " + 0 + "  name " + listSortSongs.get(j).getReproducciones());
+        	
+        	if( maxNum <= v1){
+        		maxNum = v1;
+        	}
+        	System.out.println("j : " + j);
+        	j++;
+        }
+        System.out.println("AQUI DESPUES");
+        
+        int xRect = 120;
+        int xRectName = 120;
+        int colorGreen = 0;
+        int colorBlue = 0;
+        int colorRed = 0;
+        
+        if ( maxNum == 0){
+        	maxNum++;
+        }
+        
+        j = 0;
+        while( j < listSortSongs.size() && j < 10){
+        	
+        	System.out.println("NAME : " + listSortSongs.get(j).getName() + "views : " + listSortSongs.get(j).getReproducciones());
+        	
+            int s1 = listSortSongs.get(j).getReproducciones();
             
-            g.setColor(new Color(0, 0, 0));
-            g.fillRect(20,600, 1060,3);
-            g.drawString("nº " + '\n' + "reproductions", 100,70);
+            int large = (listSortSongs.get(j).getReproducciones())*500/maxNum;
             
+            if(large == 0){
+            	large = large +5;
+            }
+        
+            System.out.println("NAME : " + listSortSongs.get(j).getName() + "large barra estadisticas " + large);
+        	
             //1r camp x
             //2o camp y, comença a printar-se la barra
             //3r camp grossor de la barra
             //4o camp longitud de barra
             
-            g.setColor(new Color(255,0,0));
-            g.fillRect(120,600-large1,40,large1);
-            g.drawString("Song 1", 120, 620);
-            g.drawString(s1, 40, 600-large1-2);
+            g.setColor(new Color(colorRed,colorGreen,colorBlue));
+            g.fillRect(xRectName,600-large,40,large);
+            g.drawString(listSortSongs.get(j).getName(), xRectName, 620);
+            g.drawString(s1+"", 40, 600-large-2);
 
-            g.setColor(new Color(0,128,0));
-            g.fillRect(220,600-large2,40,large2);
-            g.drawString("Song 2", 220, 620);
-            g.drawString(s2, 40, 600-large2-2);
-
-            g.setColor(new Color(0,0,255));
-            g.fillRect(320,600-large3, 40, large3);
-            g.drawString("Song 3", 320, 620);
-            g.drawString(s3, 40, 600-large3-2);
-            
-            g.setColor(new Color(255,50,0));
-            g.fillRect(420,600-large4, 40, large4);
-            g.drawString("Song 4",420, 620);
-            g.drawString(s4, 40, 600-large4-2);
-
-            g.setColor(new Color(0,128,50));
-            g.fillRect(520,600-large5,40, large5);
-            g.drawString("Song 5", 520, 620);
-            g.drawString(s5, 40, 600-large5-2);
-
-            g.setColor(new Color(50,0,255));
-            g.fillRect(620,600-large6,40, large6);
-            g.drawString("Song 6",620, 620);
-            g.drawString(s6, 40, 600-large6-2);
-            
-            g.setColor(new Color(255,90,0));
-            g.fillRect(720,600-large7,40,large7);
-            g.drawString("Song 7", 720, 620);
-            g.drawString(s7, 40, 600-large7-2);
-
-            g.setColor(new Color(0,128,90));
-            g.fillRect(820,600-large8,40, large8);
-            g.drawString("Song 8", 820, 620);
-            g.drawString(s8, 40, 600-large8-2);
-
-            g.setColor(new Color(90,0,255));
-            g.fillRect(920,600-large9,40, large9);
-            g.drawString("Song 9", 920, 620);
-            g.drawString(s9, 40, 600-large9-2);
-            
-            g.setColor(new Color(255,0,100));
-            g.fillRect(1020,600-large10,40, large10);
-            g.drawString("Song 10", 1020, 620);
-            g.drawString(s10, 40, 600-large10-2);
+            xRect = xRect +100;
+            xRectName = xRectName +100;
+            if(j%2 == 1){
+            	colorGreen = colorGreen +100;
+            }else if (j%2 == 0){
+            	colorBlue = colorBlue + 100;
+            	
+            }else{
+            	colorRed = colorRed + 100;
+            }
+            j++;
+        }
     }
-    
-	private int retornarMayor(int v1,int v2,int v3, int v4,int v5,int v6, int v7, int v8, int v9, int v10){
+
+	public LinkedList<Song> sortSongs(LinkedList<Song> songs){
+		int i, j;
+		Song auxSong;
+		LinkedList<Song> auxTop10 = new LinkedList<Song>();
 		
-		int max1 = Math.max(v1, v2);
-		int max2 = Math.max(max1,v3);
-		int max3 = Math.max(max2,v4);
-		int max4 = Math.max(max3,v5);
-		int max5 = Math.max(max4,v6);
-		int max6 = Math.max(max5,v7);
-		int max7 = Math.max(max6,v8);
-		int max8 = Math.max(max7,v9);
-		int max9 = Math.max(max8,v10);
-		
-		return max9;
+		for( i = 0; i<songs.size()-1; i++){
+			for(j = 0; j < (songs.size()-i-1); j++){
+				if(songs.get(j+1).getReproducciones() < songs.get(j).getReproducciones()){
+
+				//	System.out.println("songs top desordenats" + j + "name " + songs.get(j).getName());
+					auxSong = songs.get(j+1);
+					songs.set(j+1, songs.get(j));
+					songs.set(j, auxSong);
+				}
+			}
+		}
+		int s = 0;
+		while (s < songs.size() && s < 10){
+			//System.out.println("songs top ordenats" + s + "name " + songs.get(s).getName());
+			auxTop10.add(songs.get(s));
+			s++;
+		}
+		//System.out.println("songs top ordenats" + 0 + "name " + songs.get(0).getName());
+
+		//System.out.println("songs top ordenats" + 0 + "name " + songs.get(1).getName());
+	return auxTop10;
 	}
-       
 }

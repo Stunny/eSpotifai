@@ -50,7 +50,7 @@ public class ButtonsController implements ActionListener{
 			// Actualitzem la vista
 			//vista.addText(vista.getTypedMessage());
 		}else if (event.getActionCommand().equals("MainWindow.statisticsActionCommand")){
-			StatisticsWindow StadisticsView = new StatisticsWindow();
+			StatisticsWindow StadisticsView = new StatisticsWindow(ddbbConnection.getSongs());
 			StadisticsView.setVisible(true);
 
 		}else if (event.getActionCommand().equals("MainWindow.playActionCommand")){

@@ -53,7 +53,7 @@ public class Main {
 					mainWindow.setVisible(true);
 
 
-					StatisticsWindow statisticsWindow = new StatisticsWindow();
+					//StatisticsWindow statisticsWindow = new StatisticsWindow();
 
 					(new RefreshThread(controller)).start();
 					(new TimeThread(controller)).start();

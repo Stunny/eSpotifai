@@ -32,7 +32,7 @@ public class Main {
 		
 		//addView.setVisible(true);
 		
-		StatisticsWindow statisticsWindow = new StatisticsWindow();
+		//StatisticsWindow statisticsWindow = new StatisticsWindow();
 		//statisticsWindow.setVisible(true);
 		
 		//controller.run();

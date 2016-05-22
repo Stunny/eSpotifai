@@ -645,6 +645,14 @@ public class MainWindow extends JFrame{
 		}
 	}
 	
+	public int getId (){
+		return id;
+	}
+	
+	public int getIdSong(){
+		return idSong;
+	}
+	
 	public String getSongPath(int index) {
 		return (String)tableModelMusic.getValueAt(index, 5);
 	}
@@ -652,15 +660,6 @@ public class MainWindow extends JFrame{
 	public int getSongAmount() {
 		return tableModelMusic.getRowCount();
 	}
-
-	public int getId (){
-		return id;
-	}
-
-	public int getIdSong(){
-		return idSong;
-	}
-	
 	
 
 }
