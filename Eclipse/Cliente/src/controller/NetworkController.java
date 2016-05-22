@@ -130,13 +130,10 @@ public static LinkedList<Playlist> getPublicPlaylists(int id) {
 	
 	public static String addPlaylist(String name, int id, int publica){
 			String request = "Add Playlist:"+name+"/"+id+"/"+publica;
-			System.out.printf(request);
-			System.out.printf("\n");
 			ServerCommunication servercommunication = new ServerCommunication();
 			String resposta = servercommunication.sendData(request);		
 			GsonBuilder gsonBuilder = new GsonBuilder();
 		    Gson gson = gsonBuilder.create();
-			//return gson.fromJson(resposta, String.class);
-		    return "add";
+		    return gson.fromJson(resposta, String.class);
 	}
 }

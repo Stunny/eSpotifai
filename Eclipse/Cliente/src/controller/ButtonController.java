@@ -147,14 +147,18 @@ public class ButtonController implements ActionListener {
 		
 		//New
 		if(event.getActionCommand().equals("NewListDialog.createActionCommand")){
-			System.out.println("Creando");
 			if(networkcontroller.addPlaylist(NewListDialogDialog.getTypedName(), mainWindow.getUserId(), NewListDialogDialog.getPublic()).equals("Add")){
-				
+				NewListDialogDialog.setTypedName("");
+				JOptionPane.showMessageDialog(null, "Lista creada correctamente", " ", JOptionPane.INFORMATION_MESSAGE);
+				NewListDialogDialog.setVisible(false);
+			}
+			else{
+				JOptionPane.showMessageDialog(null, "Ya existe dicha lista", " ", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		if(event.getActionCommand().equals("NewListDialog.cancelActionCommand")){
+			NewListDialogDialog.setTypedName("");		
 			NewListDialogDialog.setVisible(false);
-			System.out.println("Creando");
 		}
 		
 		

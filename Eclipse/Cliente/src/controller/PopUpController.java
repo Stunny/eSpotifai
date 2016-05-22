@@ -73,9 +73,7 @@ public class PopUpController implements ActionListener{
 			int reply = JOptionPane.showConfirmDialog(null, "Seguro que quieres eliminar el usuario?", "", JOptionPane.YES_NO_OPTION);
 			if (reply == JOptionPane.YES_OPTION) {
 				
-			}
-			 
-			
+			} 
 			
 		}
 		

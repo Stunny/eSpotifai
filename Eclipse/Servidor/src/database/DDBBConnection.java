@@ -323,8 +323,20 @@ public class DDBBConnection {
 	}
 	
 	public String addPlaylist (String name, int id, int publica){
-		//ddbb.insertQuery("INSERT INTO `playlists` (`id_playlist`, `creator_user`, `name`, `publica`) VALUES (NULL, '"+ id+"', '"+name+"', '"+publica+"'");
-		return "Add";
+		try {
+			ResultSet resultSet = ddbb.selectQuery("SELECT count(name) FROM playlists WHERE creator_user= "+id+" and name = '"+name+"'");
+			resultSet.next();
+			int dontExist = resultSet.getInt(1);
+			if (dontExist == 0){
+				ddbb.insertQuery("INSERT INTO playlists (creator_user, name, publica) VALUES ("+id+", '"+name+"', "+publica+")");
+				return "Add";
+			}
+		
+			return "Exit";
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			return "Problems";
+		}
 	}
 	
 	public void updateLastAccess (String username){

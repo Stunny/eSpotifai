@@ -71,14 +71,11 @@ public class NetworkController {
 		break;
 		case "Add Playlist":
 			args = s[1].split("/");
-			System.out.println(args[0]+ Integer.parseInt(args[1])+Integer.parseInt(args[2]));
-			System.out.println("String: "+ddbbconnection.addPlaylist(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2])));
-			System.out.println("String: "+ddbbconnection.addPlaylist(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2])));
-			System.out.println("String: "+ddbbconnection.addPlaylist(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2])));
 			response  = gson.toJson(ddbbconnection.addPlaylist(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2])));
-		
+		break;
 		default: 
 			response = "Invalid request";
+		break;
 		
 		}
 		
