@@ -19,27 +19,68 @@ import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import controller.ButtonsController;
-
+/**
+ * 
+ * @author avoge
+ *
+ */
 public class AddMusicWindow extends JFrame{
-	
+	/**
+	 * 
+	 */
 	private JPanel jpAddMusic;
 	
-
+	/**
+	 * 
+	 */
 	private JLabel jlSongTitle;
+	/**
+	 * 
+	 */
 	private JLabel jlGenre;
+	/**
+	 * 
+	 */
 	private JLabel jlAlbum;
+	/**
+	 * 
+	 */
 	private JLabel jlArtist;
+	/**
+	 * 
+	 */
 	private JLabel jlPath;
-	
+	/**
+	 * 
+	 */
 	private JTextField jtfSongTitle;
+	/**
+	 * 
+	 */
 	private JTextField jtfGenre;
+	/**
+	 * 
+	 */
 	private JTextField jtfAlbum;
+	/**
+	 * 
+	 */
 	private JTextField jtfArtist;
+	/**
+	 * 
+	 */
 	private JTextField jtfPath;
-	
+	/**
+	 * 
+	 */
 	private JButton jbAccept;
+	/**
+	 * 
+	 */
 	private JButton jbFindPath;
-
+	/**
+	 * 
+	 */
 	public AddMusicWindow() {
 		
 		//Redistribucuó per guias simetricas de 6 files i dos columnes
@@ -123,38 +164,61 @@ public class AddMusicWindow extends JFrame{
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}	
-	
+	/**
+	 * 
+	 * @param controller
+	 */
 	public void registerControllerAdd(ButtonsController controller) {
 		jbAccept.addActionListener(controller);
 		jbAccept.setActionCommand("AddMusicWindow.acceptActionCommand");
 		jbFindPath.addActionListener(controller);
 		jbFindPath.setActionCommand("AddMusicWindow.findPathActionCommand");
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getTypedSongTitle() {
 		return jtfSongTitle.getText();
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getTypedArtist() {
 		return jtfArtist.getText();
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getTypedAlbum() {
 		return jtfAlbum.getText();
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getTypedGenre() {
 		return jtfGenre.getText();
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getTypedPath() {
 		return jtfPath.getText();
 	}
-	
+	/**
+	 * 
+	 * @param path
+	 */
 	public void setFoundPath(String path) {
 		jtfPath.setText(path);
 	}
-	
+	/**
+	 * 
+	 */
 	public void clearTextFields() {
 		jtfSongTitle.setText("");
 		jtfArtist.setText("");

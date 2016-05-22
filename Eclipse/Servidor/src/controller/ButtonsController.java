@@ -17,18 +17,46 @@ import model.CustomPlayer;
 import view.AddMusicWindow;
 import view.MainWindow;
 import view.StatisticsWindow;
-
+/**
+ * Controlador de botons
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see ActionListener
+ * @see MainWindow
+ * @see CustomPlayer
+ * @see AddMusicWindow
+ * @see DDBBConnection
+ * 
+ *
+ */
 public class ButtonsController implements ActionListener{
 
 	// VISTA
+	/**
+	 * Pantalla principal de l'aplicació
+	 */
 	private MainWindow mainWindow;
+	/**
+	 * Reproductor
+	 */
 	private CustomPlayer p;
+	/**
+	 * 
+	 */
 	private AddMusicWindow addMusicWindow;
 	
 	// NETWORK
 	//private InformationService infoService;
+	/**
+	 * 
+	 */
 	private DDBBConnection ddbbConnection;
-
+	/**
+	 * 
+	 * @param mainWindow
+	 * @param ddbbConnection
+	 * @param addMusicWindow
+	 */
 	public ButtonsController(MainWindow mainWindow, DDBBConnection ddbbConnection, AddMusicWindow addMusicWindow) {
 		this.mainWindow = mainWindow;
 		this.ddbbConnection = ddbbConnection;
@@ -38,7 +66,9 @@ public class ButtonsController implements ActionListener{
 		// Aquest tambe podria ser creat des del prinicpal.	
 		//this.infoService = new InformationService(this);
 	}
-
+	/**
+	 * 
+	 */
 	public void actionPerformed(ActionEvent event) {
 		
 		if (event.getActionCommand().equals("MainWindow.addActionCommand")) {
@@ -106,7 +136,9 @@ public class ButtonsController implements ActionListener{
 		}
 	}
 
-
+	/**
+	 * 
+	 */
 	public void run(){
 		while (true){
 			mainWindow.refreshTime();
