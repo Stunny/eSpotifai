@@ -198,6 +198,8 @@ public class ButtonController implements ActionListener {
 			try {
 				Files.deleteIfExists(Paths.get("Resources/song.mp3"));
 			} catch (IOException e) {
+				System.out.println(e);
+				System.out.println("yoink");
 				// TODO Auto-generated catch block
 			}
 		}
@@ -237,41 +239,45 @@ public class ButtonController implements ActionListener {
 					e.printStackTrace();
 				}
 			}
+		}
 
 
-			//PANTALLA MAIN (NEXT SONG)
-			if(event.getActionCommand().equals("MainWindow.nextActionCommand")) {
-				//try {
-				if (songIndex < mainWindow.getSongAmount() -1) songIndex++;
-				String response2 = NetworkController.getSongFile(mainWindow.getSongAtIndex(songIndex));
-				if (response.equals("ok")) {
-					try {
-						mainWindow.changeMP3();
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+		//PANTALLA MAIN (NEXT SONG)
+		if(event.getActionCommand().equals("MainWindow.nextActionCommand")) {
+			//try {
+			System.out.println("next");
+			if (songIndex < mainWindow.getSongAmount() -1) songIndex++;
+			System.out.println(songIndex);
+			String response = NetworkController.getSongFile(mainWindow.getSongAtIndex(songIndex));
+			if (response.equals("ok")) {
+				try {
+					mainWindow.changeMP3();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-
 			}
 
-			//PANTALLA MAIN (PREVIOUS SONG)
-			if(event.getActionCommand().equals("MainWindow.previousActionCommand")) {
-				//try {
-				if (songIndex > 0) songIndex--;
-				String response3 = NetworkController.getSongFile(mainWindow.getSongAtIndex(songIndex));
-				if (response.equals("ok")) {
-					try {
-						mainWindow.changeMP3();
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-			}	
-
-
 		}
+
+		//PANTALLA MAIN (PREVIOUS SONG)
+		if(event.getActionCommand().equals("MainWindow.previousActionCommand")) {
+			//try {
+			if (songIndex > 0) songIndex--;
+			System.out.println(songIndex);
+			String response = NetworkController.getSongFile(mainWindow.getSongAtIndex(songIndex));
+			if (response.equals("ok")) {
+				try {
+					mainWindow.changeMP3();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}	
+
+
+
 
 
 	}

@@ -531,17 +531,19 @@ public class MainWindow extends JFrame {
 		this.setSize(1280, 720);
 		this.setTitle("Espotifai");
 		this.setLocationRelativeTo(null);
-		
+
 		this.addWindowListener(new java.awt.event.WindowAdapter() {
-		    @Override
-		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-		        try {
+			@Override
+			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+				try {
 					Files.deleteIfExists(Paths.get("Resources/song.mp3"));
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
+					System.out.println(e);
+					System.out.println("yoink");
 				}
-		            System.exit(0);
-		    }
+				System.exit(0);
+			}
 		});
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -690,9 +692,14 @@ public class MainWindow extends JFrame {
 				//player = new Player();
 
 				state = "";
-				String songLink = "Resources/song.mp3";
+				//String songLink = "C:/Users/Marc/Downloads/Quentin Tarantino Soundtracks Discography - HTD 2015/Pulp Fiction (Collector's Edition) (2009) - Soundtrack/04. Let's Stay Together.mp3";
+				//String songLink = "C:/Users/Marc/Downloads/Quentin Tarantino Soundtracks Discography - HTD 2015/Pulp Fiction (Collector's Edition) (2009) - Soundtrack/14. Personality Goes a Long Way.mp3";
+				//String songLink = "C:/Users/Marc/Downloads/grillos05_mp3.mp3";
+				//String songLink = "/Users/elnacabotparedes/Music/iTunes/iTunes Media/Music/Martin Garrix/Unknown Album/01 Poison.mp3";
+				//String songLink = "C:/Users/Marta/Music/Mystery_Skulls_-Magic.mp3";
 
-				customPlayer.abrirMp3(songLink);
+				customPlayer.abrirMp3("Resources/song.mp3");
+
 				state = customPlayer.playPlayer(jSlider);
 
 			}catch (Exception ex) {
@@ -704,6 +711,8 @@ public class MainWindow extends JFrame {
 
 		}
 
+
+		//miro l'estat i el printo per pantalla i el nom de la can�o
 		if(customPlayer.getStatus() == 0){
 
 			jlSongState.setForeground(new Color(26, 140, 60));
@@ -721,39 +730,6 @@ public class MainWindow extends JFrame {
 		}
 
 		jlSongName.setText(customPlayer.getName());
-
-	}
-
-	public void changeMP3() throws Exception {
-
-		try{
-			//customPlayer.stopPlayer();
-			state = "";
-			customPlayer.abrirMp3("Resources/song.mp3");
-			state = customPlayer.playPlayer(jSlider);
-
-		}catch (Exception ex) {
-			System.out.println("Error: " + ex.getMessage());
-		}
-		stateSong = true;
-		ConfigurationButton(jbPlay, iiPause1, iiPause2, iiPause3);
-		jlSongName.setText(customPlayer.getName());
-
-		if(customPlayer.getStatus() == 0){
-
-			jlSongState.setForeground(new Color(26, 140, 60));
-			jlSongState.setText("           --> PLAYING <--");
-
-		}else if(customPlayer.getStatus() == 1){
-
-			jlSongState.setForeground(new Color(184, 12, 16));
-			jlSongState.setText("           --> PAUSED <--");
-
-		}else if( getState() == 2){
-
-			jlSongState.setForeground(new Color(255,255,255));
-			jlSongState.setText("           --> CLICK PLAY TO LISTEN THE SONG <--");
-		}
 	}
 
 
@@ -864,6 +840,38 @@ public class MainWindow extends JFrame {
 
 	}
 
+
+	public void changeMP3() throws Exception {
+
+		try{
+			//customPlayer.stopPlayer();
+			state = "";
+			customPlayer.abrirMp3("Resources/song.mp3");
+			state = customPlayer.playPlayer(jSlider);
+
+		}catch (Exception ex) {
+			System.out.println("Error: " + ex.getMessage());
+		}
+		stateSong = true;
+		ConfigurationButton(jbPlay, iiPause1, iiPause2, iiPause3);
+		jlSongName.setText(customPlayer.getName());
+
+		if(customPlayer.getStatus() == 0){
+
+			jlSongState.setForeground(new Color(26, 140, 60));
+			jlSongState.setText("           --> PLAYING <--");
+
+		}else if(customPlayer.getStatus() == 1){
+
+			jlSongState.setForeground(new Color(184, 12, 16));
+			jlSongState.setText("           --> PAUSED <--");
+
+		}else if( getState() == 2){
+
+			jlSongState.setForeground(new Color(255,255,255));
+			jlSongState.setText("           --> CLICK PLAY TO LISTEN THE SONG <--");
+		}
+	}
 
 
 	public int getId() {
