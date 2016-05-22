@@ -7,24 +7,52 @@ import javax.swing.JOptionPane;
 
 import database.DDBBConnection;
 import view.AddMusicWindow;
-import view.DeletedSongWindow;
-import view.DeletedWindow;
 import view.FollowedsWindow;
 import view.FollowersWindow;
 import view.MainWindow;
 import view.PlaylistsWindow;
 import view.StatisticsWindow;
-
+/**
+ * 
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see ActionListener
+ * @see FollowersWindow
+ * @see FollowedsWindow
+ * @see PlaylistsWindow
+ * @see MainWindow
+ * @see DDBBConnection
+ * @see ActionEvent
+ *
+ */
 public class PopUpController implements ActionListener{
+	/**
+	 * Pantalla on es mostren tots els seguidors d'un usuari determinat.
+	 * @see FollowedsWindow
+	 */
 	private FollowersWindow followersWindow;
+	/**
+	 * Pantalla principal de l'aplicació
+	 * @see MainWindow
+	 */
 	private MainWindow main;
+	/**
+	 * Conexió amb la base de dades
+	 * @see DDBBConnection
+	 */
 	private DDBBConnection ddbbConnection; 
-
+	/**
+	 * Construeix un nou controlador de menus emergents
+	 * @param main
+	 * @param ddbbConnection
+	 */
 	public PopUpController(MainWindow main, DDBBConnection ddbbConnection) {
 		this.main = main;
 		this.ddbbConnection = ddbbConnection;
 	}
-
+	/**
+	 * 
+	 */
 	public void actionPerformed(ActionEvent event) {
 
 		if (event.getActionCommand().equals("MainWindow.seguidoresActionCommand")) {

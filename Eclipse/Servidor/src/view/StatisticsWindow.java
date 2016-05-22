@@ -12,6 +12,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 
 
@@ -21,20 +22,51 @@ import javax.swing.JPanel;
 
 import model.Song;
 import controller.ButtonsController;
-
+/**
+ * Pantalla que mostra dades estadístiques de l'aplicació i dels seus usuaris
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see JDialog
+ * @see JPanel
+ * @see JLabel
+ * @see BorderLayout
+ * @see GridLayout
+ * @see Graphics
+ * 
+ *
+ */
 public class StatisticsWindow extends JDialog{
 
-
+	/**
+	 * Panell on es col·locarà l'informació del diàleg
+	 * @see JPanel
+	 */
     private JPanel jpStatistics;
+    /**
+     * Panell on es col·locaràn les gràfiques
+     * @see JPanel
+     */
     private JPanel jpGraphic;
-    
+    /**
+     * Border de la pantalla <i style="color:indigo;">jpStatistics</i>
+     * @see BorderLayout
+     */
     private BorderLayout blStatistics;
+    /**
+     * 
+     * @see GridLayout
+     */
     private GridLayout glGraphic;
     private LinkedList<Song> songs;
     private LinkedList<Song> listSortSongs;
     
     private int maxNum = 0;
-    
+    /**
+     * Construeix el diàleg que mostra les estadístiques
+     * @see JPanel
+     * @see BorderLayout
+     * @see GridLayout
+     */
     public StatisticsWindow(LinkedList<Song> s) {
 
         System.out.println("AQUI ANTES declaraciones ");
@@ -85,10 +117,10 @@ public class StatisticsWindow extends JDialog{
         
         	System.out.println("TAMANYO : " + listSortSongs.size());
 
-        	int v1 = listSortSongs.get(j).getReproducciones();
+        	int v1 = listSortSongs.get(j).getReproductions();
         	System.out.println("listSortsongs top ordenats " + 0 + "  name " + listSortSongs.get(j).getName());
 
-        	System.out.println("listSortsongs top ordenats " + 0 + "  name " + listSortSongs.get(j).getReproducciones());
+        	System.out.println("listSortsongs top ordenats " + 0 + "  name " + listSortSongs.get(j).getReproductions());
         	
         	if( maxNum <= v1){
         		maxNum = v1;
@@ -111,11 +143,11 @@ public class StatisticsWindow extends JDialog{
         j = 0;
         while( j < listSortSongs.size() && j < 10){
         	
-        	System.out.println("NAME : " + listSortSongs.get(j).getName() + "views : " + listSortSongs.get(j).getReproducciones());
+        	System.out.println("NAME : " + listSortSongs.get(j).getName() + "views : " + listSortSongs.get(j).getReproductions());
         	
-            int s1 = listSortSongs.get(j).getReproducciones();
+            int s1 = listSortSongs.get(j).getReproductions();
             
-            int large = (listSortSongs.get(j).getReproducciones())*500/maxNum;
+            int large = (listSortSongs.get(j).getReproductions())*500/maxNum;
             
             if(large == 0){
             	large = large +5;
@@ -154,7 +186,7 @@ public class StatisticsWindow extends JDialog{
 		
 		for( i = 0; i<songs.size()-1; i++){
 			for(j = 0; j < (songs.size()-i-1); j++){
-				if(songs.get(j+1).getReproducciones() < songs.get(j).getReproducciones()){
+				if(songs.get(j+1).getReproductions() < songs.get(j).getReproductions()){
 
 				//	System.out.println("songs top desordenats" + j + "name " + songs.get(j).getName());
 					auxSong = songs.get(j+1);

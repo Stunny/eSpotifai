@@ -1,0 +1,31 @@
+package threads;
+
+import controller.GeneralController;
+/**
+ * 
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see Thread
+ * @see GeneralController
+ *
+ */
+public class TimeThread extends Thread {
+	/**
+	 * Controlador general
+	 */
+	private GeneralController controller;
+
+	public TimeThread(GeneralController controller) {
+		super();
+		this.controller = controller;
+	}
+	/**
+	 * 
+	 */
+	public void run() {
+
+		while (true) {
+				controller.trackTime();
+		}
+	}
+}

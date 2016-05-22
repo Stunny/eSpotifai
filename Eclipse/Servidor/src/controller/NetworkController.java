@@ -8,18 +8,37 @@ import com.google.gson.GsonBuilder;
 import database.DDBBConnection;
 import main.Main;
 import model.Song;
-
+/**
+ * Controlador de conexions del servidor
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see Gson
+ * @see GsonBuilder
+ * @see DDBBConnection
+ *
+ */
 public class NetworkController {
-	
+	/**
+	 * Conexió amb la base de dades.
+	 * @see DDBBConnection
+	 */
 	private DDBBConnection ddbbconnection;
 	
-	
+	/**
+	 * Construeix un nou controlador de conexions
+	 * @param ddbbconnection Conexió amb la base de dades.
+	 */
 	
 	public NetworkController(DDBBConnection ddbbconnection) {
 		super();
 		this.ddbbconnection = ddbbconnection;
 	}
 
+	/**
+	 * Gestiona les requests que requereixen informació de la base de dades.
+	 * @param request Operació que es vol dur a terme
+	 * @return Resposta de la base de dades en format JSON
+	 */
 
 
 	public String manageInput (String request) {

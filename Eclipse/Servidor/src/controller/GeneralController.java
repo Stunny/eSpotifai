@@ -7,21 +7,48 @@ import customExceptions.DatabaseNotLoadedException;
 import database.DDBBConnection;
 import model.Song;
 import model.User;
-
+/**
+ * 
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see DDBBConnection
+ * @see MainWindow
+ * @see DatabaseNotLoadedException
+ *
+ */
 public class GeneralController {
 	//DDBB
+	/**
+	 * Conexió amb la base de dades
+	 * @see DDBBConnection
+	 */
 	private DDBBConnection ddbbConnection;
 	
 	//VIEW
+	/**
+	 * Pantalla principal de l'aplicació
+	 * @see MainWindow
+	 */
 	private MainWindow view;
-
+	/**
+	 * 
+	 */
 	private LinkedList<User> ArrayUtils;
-	
+	/**
+	 * 
+	 * @param ddbbConnection Conexió amb la base de dades
+	 * @param view Pantalla principal de l'aplicació
+	 * @see DDBBConnection
+	 * @see MainWindow
+	 */
 	public GeneralController(DDBBConnection ddbbConnection, MainWindow view){
 		this.ddbbConnection = ddbbConnection;
 		this.view = view;
 	}
-	
+	/**
+	 * Executa les conexions pertinents per inicialitzar el servidor amb la base de dades.
+	 * @see DatabaseNotLoadedException
+	 */
 	public void startConnections (){
 		try{
 			ddbbConnection.startConnection();
@@ -29,7 +56,10 @@ public class GeneralController {
 			System.out.println(e.getMessage());
 		}
 	}
-	
+	/**
+	 * Actualitza continuament les llistes de la pantalla principal
+	 * @see User
+	 */
 	public void refreshLists(){
 		LinkedList<User> userList = ddbbConnection.getUsers();
 		LinkedList<Object[]> list = new LinkedList<Object[]>();
@@ -42,7 +72,10 @@ public class GeneralController {
 		view.refreshUsers(list);
 	}
 	
-
+	/**
+	 * Actualitza continuament les llistes de la pantalla principal
+	 * @see User
+	 */
 	public void refreshLists2(){
 		LinkedList<Object[]> list = new LinkedList<Object[]>();
 		view.refreshUsers(ddbbConnection.getUsersDates());
@@ -52,12 +85,14 @@ public class GeneralController {
 		for (int i = 0; i < songList.size(); i++){
 			Object[] objs = {songList.get(i).getId(), songList.get(i).getName(), songList.get(i).getGenre(),
 							songList.get(i).getAlbum(), songList.get(i).getArtist(), songList.get(i).getLocation(), 
-							songList.get(i).getStars(), songList.get(i).getReproducciones()};
+							songList.get(i).getStars(), songList.get(i).getReproductions()};
 			list.add(objs);
 		}
 		view.refreshSongs(list);
 	}
-	
+	/**
+	 * Segueix el temps d'execució
+	 */
 	public void trackTime() {
 		view.refreshTime();
 	}

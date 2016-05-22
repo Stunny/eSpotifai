@@ -9,12 +9,34 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
+/**
+ * Pantalla que mostra les <i>playlists</i> d'un usuari determinat
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see JFrame
+ * @see DefaultTableModel
+ * @see JTable
+ * @see Jpanel
+ * @see JScrollPane
+ * 
+ *
+ */
 public class PlaylistsWindow extends JFrame{
-	
+	/**
+	 * Taula de contingut de la pantalla
+	 * @see DefaultTableModel
+	 */
 	private DefaultTableModel tableModelUser;
+	/**
+	 * Taula on es col·locarà el contingut
+	 * @see JTable
+	 */
 	private JTable jpUsers;
-
+	/**
+	 * Construeix la pantalla on es mosstren les llistes
+	 * @param infTable Conjunt de <i>playlists</i> a mostrar
+	 * @param name Nom de l'usuari que ha creat les <i>playlists</i>.
+	 */
 	public PlaylistsWindow(LinkedList<Object[]> infTable, String name){
 		new JPanel();
 		

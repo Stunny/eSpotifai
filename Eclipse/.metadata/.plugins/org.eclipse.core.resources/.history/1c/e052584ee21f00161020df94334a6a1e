@@ -1,0 +1,150 @@
+package model;
+/**
+ * 
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see ManagementConfiguration
+ * @see network.Server
+ *
+ */
+public class ServerConfiguration {
+	/**
+	 * Port de conexió a la base de dades.
+	 * @see database.DDBBConnection
+	 */
+	private int portConexionBBDD;
+	/**
+	 * Direcció IP de la base de dades
+	 * @see database.DDBBConnection
+	 */
+	private String IPBBDD;
+	/**
+	 * Nom de la base de dades
+	 * @see database.DataBase
+	 */
+	private String nameBBDD;
+	/**
+	 * Nom d'usuari de la base de dades
+	 * @see database.DataBase
+	 */
+	private String userBBDD;
+	/**
+	 * Contrassenya de la base de dades
+	 * @see database.DataBase
+	 */
+	private String passwordBBDD;
+	/**
+	 * Port de comunicació amb el client
+	 * @see network.Server
+	 */
+	private int portClientComunication;
+	
+	/**
+	 * Construeix una configuració de servidor
+	 * @param portConexionBBDD Port de conexió a la base de dades.
+	 * @param iPBBDD Direcció IP de la base de dades
+	 * @param nameBBDD Nom de la base de dades
+	 * @param userBBDD Nom d'usuari de la base de dades
+	 * @param passwordBBDD Contrassenya de la base de dades
+	 * @param portClientComunication Port de comunicació amb el client
+	 */
+	public ServerConfiguration(int portConexionBBDD, String iPBBDD, String nameBBDD,
+			String userBBDD, String passwordBBDD, int portClientComunication) {
+		super();
+		this.portConexionBBDD = portConexionBBDD;
+		this.IPBBDD = iPBBDD;
+		this.nameBBDD = nameBBDD;
+		this.userBBDD = userBBDD;
+		this.passwordBBDD = passwordBBDD;
+		this.portClientComunication = portClientComunication;
+	}
+	/**
+	 * Constructor buit de una configuració buida de servidor.
+	 */
+	public ServerConfiguration(){
+	}
+	/**
+	 * Getter del port de conexió a la base de dades
+	 * @return Database Connection Port
+	 */
+	public int getPortConexionBBDD() {
+		return portConexionBBDD;
+	}
+	/**
+	 * Setter del port de conexió amb la base de dades
+	 * @param portConexionBBDD Database Connection Port
+	 */
+	public void setPortConexionBBDD(int portConexionBBDD) {
+		this.portConexionBBDD = portConexionBBDD;
+	}
+	/**
+	 * Getter de la direcció IP del host de la base de dades
+	 * @return Database IP address
+	 */
+	public String getIPBBDD() {
+		return IPBBDD;
+	}
+	/**
+	 * Setter de la direcció IP del host de la base de dades
+	 * @param iPBBDD
+	 */
+	public void setIPBBDD(String iPBBDD) {
+		IPBBDD = iPBBDD;
+	}
+	/**
+	 * 
+	 * @return
+	 */
+	public String getNameBBDD() {
+		return nameBBDD;
+	}
+	/**
+	 * 
+	 * @param nameBBDD
+	 */
+	public void setNameBBDD(String nameBBDD) {
+		this.nameBBDD = nameBBDD;
+	}
+	/**
+	 * 
+	 * @return
+	 */
+	public String getUserBBDD() {
+		return userBBDD;
+	}
+	/**
+	 * 
+	 * @param userBBDD
+	 */
+	public void setUserBBDD(String userBBDD) {
+		this.userBBDD = userBBDD;
+	}
+	/**
+	 * 
+	 * @return
+	 */
+	public String getPasswordBBDD() {
+		return passwordBBDD;
+	}
+	/**
+	 * 
+	 * @param passwordBBDD
+	 */
+	public void setPasswordBBDD(String passwordBBDD) {
+		this.passwordBBDD = passwordBBDD;
+	}
+	/**
+	 * 
+	 * @return
+	 */
+	public int getPortClientComunication() {
+		return portClientComunication;
+	}
+	/**
+	 * 
+	 * @param portClientComunication
+	 */
+	public void setPortClientComunication(int portClientComunication) {
+		this.portClientComunication = portClientComunication;
+	}
+}

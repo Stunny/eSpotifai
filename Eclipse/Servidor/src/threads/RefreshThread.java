@@ -1,16 +1,32 @@
 package threads;
 
 import controller.GeneralController;
-
+/**
+ * Actualitza un thread
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see GeneralController
+ * @see Thread
+ * 
+ *
+ */
 public class RefreshThread extends Thread {
-	
+	/**
+	 * Controlador general
+	 * @see GeneralController
+	 */
 	private GeneralController controller;
-
+	/**
+	 * Actualitza un thread
+	 * @param controller
+	 */
 	public RefreshThread(GeneralController controller) {
 		super();
 		this.controller = controller;
 	}
-	
+	/**
+	 * 
+	 */
 	public void run() {
 
 		while (true) {
