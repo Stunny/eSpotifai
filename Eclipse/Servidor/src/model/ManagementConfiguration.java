@@ -7,15 +7,33 @@ import java.io.IOException;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-
+/**
+ * Gestiona la configuració del servidor
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see ServerConfiguration
+ * @see Gson
+ * @see JsonObject
+ * @see BufferedReader
+ *
+ */
 public class ManagementConfiguration {
-
+	/**
+	 * Configuració de servidor
+	 * @see ServerConfiguration
+	 */
 	private ServerConfiguration serverConfiguration;
-
+	/**
+	 * Construeix un gestor de configuració de servidor buida
+	 */
 	public ManagementConfiguration(){
 		serverConfiguration = new ServerConfiguration();
 	}
-
+	/**
+	 * Executa la configuracio del servidor
+	 * @see ServerConfiguration
+	 * @see model.ResultSetToJSON
+	 */
 	public void runConfiguration(){
 		boolean error = false;
 		error = readJSON();
@@ -24,15 +42,24 @@ public class ManagementConfiguration {
 
 		}
 	}
-
+	/**
+	 * Getter de la configuracio del servidor
+	 * @return Server Configuration
+	 */
 	public ServerConfiguration getServerConfiguration() {
 		return serverConfiguration;
 	}
-
+	/**
+	 * Setter de la configuració de servidor
+	 * @param serverConfiguration Server Configuration
+	 */
 	public void setServerConfiguration(ServerConfiguration serverConfiguration) {
 		this.serverConfiguration = serverConfiguration;
 	}
-
+	/**
+	 * Llegeix la configuració predeterminada al fitxer <i style="color:indigo">config.json</i>.
+	 * @return <i style="color:indigo">TRUE</i> en cas de que es llegeixi correctament el fitxer. En cas contrari es retorna <i style="color:indigo">FALSE</i>.
+	 */
 	public boolean readJSON(){
 		boolean error = false;
 		Gson gson = new Gson();
@@ -56,12 +83,14 @@ public class ManagementConfiguration {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			//System.out.println("Fitxer de dades del servidor no existeix");
+			//System.out.println("Server data file doesn't exist.");
 			error = true;
 
 		} catch (IOException e) {
 			e.printStackTrace();
 			error = true;
 			//System.out.println("Fitxer de dades del servidor amb error/s sintactics");
+			//System.out.println("Server data file has syntax errors.");
 		}
 
 		//Si el fitxer no està creat o hi ha algún error en la seva estructura,

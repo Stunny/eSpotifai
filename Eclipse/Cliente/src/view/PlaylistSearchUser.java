@@ -63,10 +63,11 @@ public class PlaylistSearchUser extends JFrame{
 	 */
 	public PlaylistSearchUser(){
 		JPanel jpListsFollowing = new JPanel(new BorderLayout());
-		jpListsFollowing.setBorder(BorderFactory.createTitledBorder("Playlist"));
-
-
-		String[] jtFollowedListsColumns = {"id","Playlist"};
+		
+		jpListsFollowing.setBorder(BorderFactory.createTitledBorder("Following"));
+		
+		
+		String[] jtFollowedListsColumns = {"id","Followed Ones List"};
 		Object[][] jtFollowedListsData = {{"1", "ELNA"},{"2","Elna"}};
 		//se crea la tabla
 		JTable jtFollowedLists = new JTable(jtFollowedListsData, jtFollowedListsColumns);
@@ -82,7 +83,7 @@ public class PlaylistSearchUser extends JFrame{
 		}; 
 
 		popupPlaylist = new JPopupMenu();
-		popupPlaylist.add(visualitzar = new JMenuItem("Visualitzar cançons"));
+		popupPlaylist.add(visualitzar = new JMenuItem("View List"));
 		visualitzar.setHorizontalTextPosition(JMenuItem.RIGHT);
 		popupPlaylist.setLabel("Justificacion");
 		popupPlaylist.setBorder(new BevelBorder(BevelBorder.RAISED));
@@ -133,7 +134,7 @@ public class PlaylistSearchUser extends JFrame{
 
 
 		this.setSize(300, 500);
-		this.setTitle("Playlist Usuario");
+		this.setTitle("User Playlist");
 		this.setLocationRelativeTo(null);
 	}
 

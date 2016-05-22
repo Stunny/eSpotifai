@@ -125,13 +125,13 @@ public class LoginWindow  extends JFrame{
 		jpRegister.setLayout(new GridLayout(2,1));
 
 		JPanel jlRegister = new JPanel(); 
-		JLabel register = new JLabel("Encara no tens usuari? Registra't");
+		JLabel register = new JLabel("Not a member yet? Register now!");
 		register.setForeground(Color.white);
 		jlRegister.add(register);
 		jlRegister.setBackground(CustomColor.background);
 		jpRegister.add(jlRegister, BorderLayout.CENTER);
 		JPanel jpRegisterButton = new JPanel();
-		jbRegister  = new JButton("REGISTRA'T");
+		jbRegister  = new JButton("REGISTER");
 		jpRegisterButton.add(jbRegister, BorderLayout.CENTER);
 		jpRegisterButton.setBackground(CustomColor.background);
 		jpRegister.add(jpRegisterButton);
@@ -151,7 +151,7 @@ public class LoginWindow  extends JFrame{
 
 		//TAMAÑO DE LA VENTANA
 		this.setSize(300, 300);
-		this.setTitle("Accès a Espotyfai");
+		this.setTitle("Access to Espotyfai");
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}

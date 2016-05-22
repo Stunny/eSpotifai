@@ -59,7 +59,7 @@ public class UserWindow extends JFrame{
 
 		JPanel jpHead = new JPanel(); 
 		jpHead.setLayout(new GridLayout(1, 2));
-		JLabel jlUsername = new JLabel("Nickname:");
+		JLabel jlUsername = new JLabel("Username:");
 		jlUsername.setForeground(Color.white);
 		jtaUsername = new JTextArea(); 
 		jtaUsername.setEditable(false);
@@ -81,7 +81,7 @@ public class UserWindow extends JFrame{
 		jpListsFollowing.setBorder(BorderFactory.createTitledBorder("Following"));
 
 
-		String[] jtFollowedListsColumns = {"id","Following List"};
+		String[] jtFollowedListsColumns = {"id","Followed List"};
 		Object[][] jtFollowedListsData = {{"1", "ELNA"},{"2","Elna"}};
 		//se crea la tabla
 		JTable jtFollowedLists = new JTable(jtFollowedListsData, jtFollowedListsColumns);
@@ -97,7 +97,7 @@ public class UserWindow extends JFrame{
 		}; 
 
 		popupPlaylist = new JPopupMenu();
-		popupPlaylist.add(visualitzar = new JMenuItem("Visualitzar llista"));
+		popupPlaylist.add(visualitzar = new JMenuItem("View playlist"));
 		visualitzar.setHorizontalTextPosition(JMenuItem.RIGHT);
 		popupPlaylist.setLabel("Justificacion");
 		popupPlaylist.setBorder(new BevelBorder(BevelBorder.RAISED));
@@ -144,7 +144,7 @@ public class UserWindow extends JFrame{
 
 
 		this.setSize(300, 500);
-		this.setTitle("Perfil Usuario");
+		this.setTitle("User profile");
 		this.setLocationRelativeTo(null);
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

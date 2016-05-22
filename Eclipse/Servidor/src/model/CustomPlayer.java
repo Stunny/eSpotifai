@@ -27,44 +27,121 @@ import javax.media.Manager;
 import javax.media.NoPlayerException;
 
 import javax.swing.JSlider;
-
+/**
+ * Reproductor custom a partir de BasicPlayer
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see BasicPlayer
+ * @see Timer
+ * @see TimerTask
+ * @see Map
+ *
+ */
 public class CustomPlayer implements BasicPlayerListener {
 	private int frameNow;
+	/**
+	 * Reproductor d'audio
+	 * @see BasicPlayer
+	 */
 	private BasicPlayer player;
+	/**
+	 * Indica que no hi ha cap problema de reproducció
+	 */
 	private boolean todoOk = false;
+	/**
+	 * Indica si la reproducció esta en curs
+	 */
 	private boolean run = false;
+	/**
+	 * Status de la reproducció
+	 */
 	private String t = "";
-
-
+	/**
+	 * Durada de la cançó que s'està reproduint
+	 */
 	private Long duration;
-
+	/**
+	 * Temporitzador de la reproducció
+	 * @see Timer
+	 */
 	private Timer tiempo ;
+	/**
+	 * Tasca associada a un moment determinat del Timer
+	 * @see TimerTask
+	 * @see Timer
+	 */
 	private TimerTask task;
+	/**
+	 * Mapa de hash
+	 * @see Map
+	 */
 	private Map empty_map = new HashMap();
+	/**
+	 *  Longitud en bytes de la cançó
+	 */
 	private int bytesLength;
+	/**
+	 * Frame on es troba l'slider
+	 */
 	private int frameSlider;
+	/**
+	 * Actualitza continuament l'indicador de de segons del reproductor
+	 */
 	private int seconds = 0;
+	/**
+	 * Actualitza continuament l'indicador de minuts del reproductor
+	 */
 	private int minutes = 0;
+	/**
+	 * Nom de la cançó que s'està reproduint
+	 */
 	private String nameSong = "";
+	/**
+	 *  Frames totals de la cançó
+	 */
 	private int framesSong = 1;
+	/**
+	 * Frame de la reproducció on es troba la cançó actualment
+	 */
 	private int framesSongActual = 1;
+	/**
+	 * Microsegon de la reproducció on es troba la cançó en el moment.
+	 */
 	//private Double microsecondsSongActual;
+	/**
+	 * Durada de la cançó en microsegons
+	 */
 	private int durationSong = 0;
+	/**
+	 * Durada de la cançó en microsegons
+	 */
 	private int microdecondsSongActual;
 
 	//velocidad del runable dels frames
+	/**
+	 * Velocitat del <i>runable</i> dels frames
+	 */
 	private int speed = 1000;
-
+	/**
+	 * Construeix un nou reproductor
+	 */
 	public CustomPlayer(){ 
 		player = new BasicPlayer();
 		// Me suscribo al reproductor para obtener sus eventos.
 		player.addBasicPlayerListener(this);
 	}
-
+	/**
+	 * Getter de segons
+	 * @return Seconds
+	 */
 	public int getSeconds(){
 
 		return this.seconds;
 	}
+	/**
+	 * Getter de minuts
+	 * @return Minutes
+	 */
 	public int getMinutes(){
 
 		return this.minutes;
@@ -92,7 +169,12 @@ public class CustomPlayer implements BasicPlayerListener {
 		return t;
 	}
 
-
+	//public String AbrirMp3(String ruta) throws Exception{
+	/**
+	 * Obre l'arxiu d'audio a reproduir
+	 * @param ruta Ruta de l'arxiu d'audio que es vol obrir
+	 * @throws Exception
+	 */
 	public void abrirMp3(String ruta) throws Exception{
 
 		//si se esta reproduciendo un mp3, se detiene
@@ -122,16 +204,16 @@ public class CustomPlayer implements BasicPlayerListener {
 		return finalName;
 
 	}
-
-
-
+	/**
+	 * Getter del status de la reproducció
+	 * @return Playing status
+	 */
 	public int getStatus(){
 		return player.getStatus();
 	}
-
-
-
-
+	/**
+	 * Atura l'animació de reproducció
+	 */
 	public void stopAnimation() {
 
 		//System.out.println("INDICO al temps que es cancela");
@@ -140,20 +222,28 @@ public class CustomPlayer implements BasicPlayerListener {
 		//System.out.println("INDICO al task time temps que es cancela");
 		task.cancel();            
 	}
-
-
+	/**
+	 * Pausa la reproducció
+	 * @throws Exception
+	 */
 	public void pause() throws Exception {
 		//this.nameSong = "/PAUSE";
 		player.pause();
 		//tiempo.wait();
 		//task.wait();
 	}
-
+	/**
+	 * Reprén la reproducció
+	 * @throws Exception
+	 */
 	public void resume() throws Exception {
 		player.resume();
 		//tiempo.
 	}
-
+	/**
+	 * Indica si la reproducció ha terminat
+	 * @return <i style="color:indigo;">FALSE</i> si la reproducció no ha conclòs. <i style="color:indigo">TRUE</i> si aquesta ha conclòs.
+	 */
 	public boolean isEnded(){
 
 		if (player.getStatus() == 2){
@@ -162,7 +252,10 @@ public class CustomPlayer implements BasicPlayerListener {
 			return false;
 		}
 	}
-
+	/**
+	 * Atura la reproducció
+	 * @throws Exception
+	 */
 	public void stopPlayer() throws Exception {
 		player.stop();
 		this.todoOk = false;
