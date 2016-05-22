@@ -22,46 +22,131 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.JSlider;
-
+/**
+ * Reproductor custom a partir de BasicPlayer
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see BasicPlayer
+ * @see Timer
+ * @see TimerTask
+ * @see Map
+ * 
+ *
+ */
 public class CustomPlayer implements BasicPlayerListener {
+	/**
+	 * Frame actual
+	 */
 	private int frameNow;
+	/**
+	 * Reproductor
+	 */
 	private BasicPlayer player;
+	/**
+	 * Status de la reproducció
+	 */
 	private boolean todoOk = false;
+	/**
+	 * Indica si la reproducció és activa
+	 */
 	private boolean run = false;
+	/**
+	 * Stastus message
+	 */
 	private String t = "";
-
+	/**
+	 * Temporitzador
+	 * @see Timer
+	 */
 	private Timer tiempo ;
+	/**
+	 * Tasca associada a un moment determinat del Timer
+	 * @see TimerTask
+	 * @see Timer
+	 */
 	private TimerTask task;
+	/**
+	 * Mapa de hash
+	 * @see Map
+	 */
 	private Map empty_map = new HashMap();
+	/**
+	 * Longitud en bytes de la cançó
+	 */
 	private Double bytesLength;
+	/**
+	 * Frame on es troba l'slider
+	 */
 	private int frameSlider;
+	/**
+	 * Actualitza continuament l'indicador de de segons del reproductor
+	 */
 	private int seconds = 0;
+	/**
+	 * Actualitza continuament l'indicador de minuts del reproductor
+	 */
 	private int minutes = 0;
+	/**
+	 * Nom de la cançó que s'està reproduint
+	 */
 	private String nameSong = "";
+	/**
+	 * Frames totals de la cançó
+	 */
 	private Double framesSong = 1.0;
+	/**
+	 * Frame de la reproducció on es troba la cançó actualment
+	 */
 	private Double framesSongActual = 1.0;
+	/**
+	 * Microsegon de la reproducció on es troba la cançó en el moment.
+	 */
 	private Double microsecondsSongActual;
+	/**
+	 * Durada de la cançó en microsegons
+	 */
 	private Double durationSong;
+	/**
+	 * Microsegon en el 
+	 */
 	private Double microdecondsSongActual;
 	
 	//velocidad del runable dels frames
+	/**
+	 * Velocitat del <i>runable</i> dels frames
+	 */
 	private int speed = 1000;
-
+	/**
+	 * Construeix un nou reproductor
+	 * 
+	 */
 	public CustomPlayer(){ 
 		player = new BasicPlayer();
 		// Me suscribo al reproductor para obtener sus eventos.
 		player.addBasicPlayerListener(this);
 	}
-
+	/**
+	 * Getter de segons
+	 * @return Seconds
+	 */
 	public int getSeconds(){
 
 		return this.seconds;
 	}
+	/**
+	 * Getter de minuts
+	 * @return Minutes
+	 */
 	public int getMinutes(){
 		
 		return this.minutes;
 	}
-	
+	/**
+	 * Reprodueix la cançó
+	 * @param b Slider
+	 * @return Playing status
+	 * @throws Exception
+	 */
 	public String play(JSlider b)throws Exception{
 		t = "No existe ningun archivo...";
 		if (todoOk){
@@ -144,6 +229,11 @@ public class CustomPlayer implements BasicPlayerListener {
 	}*/
 
 	//public String AbrirMp3(String ruta) throws Exception{
+	/**
+	 * Obre l'arxiu d'audio a reproduir
+	 * @param ruta Ruta de l'arxiu d'audio que es vol obrir
+	 * @throws Exception
+	 */
 	public void abrirMp3(String ruta) throws Exception{
 
 		//URL url = new URL("file:/C:/Users/Marc/Downloads/Quentin Tarantino Soundtracks Discography - HTD 2015/Pulp Fiction (Collector's Edition) (2009) - Soundtrack/04. Let's Stay Together.mp3");
@@ -177,6 +267,10 @@ public class CustomPlayer implements BasicPlayerListener {
 
 		//System.out.println("El get pan es : " + player.getPan());
 	}
+	/**
+	 * Getter del nom de la cançó
+	 * @return Song name
+	 */
 	public String getName(){
 		
 		String[] itemsSong = nameSong.split("/");
@@ -187,12 +281,18 @@ public class CustomPlayer implements BasicPlayerListener {
 		return finalName;
 		
 	}
+	/**
+	 * Getter del status de la reproducció
+	 * @return Playing status
+	 */
 	public int getStatus(){
 		
 		return player.getStatus();
 	
 	}
-	
+	/**
+	 * Atura l'animació de reproducció
+	 */
 	public void stopAnimation() {
 		//System.out.println("INDICO al temps que es cancela");
 
@@ -201,19 +301,28 @@ public class CustomPlayer implements BasicPlayerListener {
 		//System.out.println("INDICO al task time temps que es cancela");
 		task.cancel();            
 	}
-
+	/**
+	 * Pausa la reproducció
+	 * @throws Exception
+	 */
 	public void pause() throws Exception {
 		//this.nameSong = "/PAUSE";
 		player.pause();
 		//tiempo.wait();
 		//task.wait();
 	}
-
+	/**
+	 * Reprén la reproducció
+	 * @throws Exception
+	 */
 	public void resume() throws Exception {
 		player.resume();
 		//tiempo.
 	}
-
+	/**
+	 * Indica si la reproducció ha terminat
+	 * @return <i style="color:indigo;">FALSE</i> si la reproducció no ha conclòs. <i style="color:indigo">TRUE</i> si aquesta ha conclòs.
+	 */
 	public boolean isEnded(){
 		
 		if (player.getStatus() == 2){
@@ -222,7 +331,10 @@ public class CustomPlayer implements BasicPlayerListener {
 			return false;
 		}
 	}
-	
+	/**
+	 * Atura la reproducció
+	 * @throws Exception
+	 */
 	public void stop() throws Exception {
 		player.stop();
 		this.todoOk = false;
@@ -230,10 +342,12 @@ public class CustomPlayer implements BasicPlayerListener {
 		//return "stop";
 		//stopAnimation();
 	}
-
+	
 	@Override
-	/** * Necesario por implementar BasicPlayerListener. Es ejecutado una vez se
-	 * carga un fichero. En este caso, obtiene el tamaï¿½o en bytes del fichero. */
+	/**
+	 * Necesario por implementar BasicPlayerListener. Es ejecutado una vez se
+	 * carga un fichero. En este caso, obtiene el tamaï¿½o en bytes del fichero. 
+	 */
 	public void opened(Object arg0, Map arg1) {
 		if (arg1.containsKey("audio.length.bytes")) {
 			bytesLength = Double.parseDouble(arg1.get("audio.length.bytes").toString());
@@ -248,15 +362,20 @@ public class CustomPlayer implements BasicPlayerListener {
 		//System.out.println("propiedades: " + arg1);
 		
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public int getFrameSlider(){
 		return frameSlider;
 	}
 	//Imaginad que querï¿½is usarlo en un jSlider, solamente habrï¿½a que fijar el mï¿½ximo del slider en bytesLength y el valor actual en lo que diga progress
 
-	/** * Necesario por implementar BasicPlayerListener. Segï¿½n la documentaciï¿½n,
+	/** 
+	 *  Necesario por implementar BasicPlayerListener. Segï¿½n la documentaciï¿½n,
 	 * este mï¿½todo es llamado varias veces por segundo para informar del
-	 * progreso en la reproducciï¿½n. */
+	 * progreso en la reproducciï¿½n. 
+	 */
 	public void progress(int bytesread, long microseconds, byte[] pcmdata,  Map properties) {
 		float progressUpdate = (float) (bytesread * 1.0f / bytesLength * 1.0f);
 		int progressNow = (int) (bytesLength * progressUpdate);
@@ -302,12 +421,17 @@ public class CustomPlayer implements BasicPlayerListener {
 	
 	
 	//PROCEDIMENTS OBLIGATORIS D'IMPLEMENTAR JA QUE ESTEM UTILITZANT una clase implementada de BasicPlayerListener
+	/**
+	 * 
+	 */
 	@Override
 	public void setController(BasicController arg0) {
 		// TODO Auto-generated method stub
 
 	}
-
+	/**
+	 * 
+	 */
 	@Override
 	public void stateUpdated(BasicPlayerEvent arg0) {
 		// TODO Auto-generated method stub
