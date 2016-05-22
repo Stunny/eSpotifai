@@ -69,7 +69,7 @@ public class AccessLogic {
 		String resposta = servercommunication.sendData(request);
 		
 		if (resposta.equals("Welcome")) {
-			JOptionPane.showMessageDialog(null, "Welcome to eSpotyfai, " + username + "!", " ", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Welcome to eSpotyfai, " + username + "!", " ",JOptionPane.PLAIN_MESSAGE);
 			return true;
 		} else {
 			if (resposta.equals("Incorrect username")) {

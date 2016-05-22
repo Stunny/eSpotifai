@@ -724,7 +724,7 @@ public class MainWindow extends JFrame{
 			}
 			stateSong = true;
 			ConfigurationButton(jbPlay, iiPause1, iiPause2, iiPause3);
-			jlSongName.setText(customPlayer.getName());
+			//jlSongName.setText(customPlayer.getName());
 
 		}
 
@@ -746,7 +746,7 @@ public class MainWindow extends JFrame{
 			jlSongState.setText("           --> CLICK PLAY TO LISTEN THE SONG <--");
 		}
 
-		jlSongName.setText(customPlayer.getName());
+		//jlSongName.setText(customPlayer.getName());
 
 	}
 
@@ -764,7 +764,7 @@ public class MainWindow extends JFrame{
 		}
 		stateSong = true;
 		ConfigurationButton(jbPlay, iiPause1, iiPause2, iiPause3);
-		jlSongName.setText(customPlayer.getName());
+		//jlSongName.setText(customPlayer.getName());
 
 		if(customPlayer.getStatus() == 0){
 
@@ -941,6 +941,7 @@ public class MainWindow extends JFrame{
 	}
 
 	public String getSongPath(int index) {
+		jlSongName.setText((String)tableModelMusic.getValueAt(index, 4) +" - "+ (String)tableModelMusic.getValueAt(index, 1));
 		return (String)tableModelMusic.getValueAt(index, 5);
 	}
 
