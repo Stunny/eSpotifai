@@ -102,6 +102,7 @@ public class MainWindow extends JFrame {
 	private int id2 = 0;
 	private int id3 = 0;
 	private String name = "";
+	private int idMusic;
 
 	private String id = "";
 
@@ -804,6 +805,10 @@ public class MainWindow extends JFrame {
 
 		//jlTime.setText(String.valueOf(player.getMinutes() + ":" + player.getSeconds()));
 	}
+	
+	public int getIdMusic() {
+		  return idMusic;
+		 }
 
 	public void refreshSongs(LinkedList<Song> songsList) {
 
