@@ -8,16 +8,53 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 
 import customExceptions.DatabaseNotLoadedException;
-
+/**
+ * 
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @versio 1.0
+ * @see DDBBConnection
+ * @see DatabaseNotLoadedException
+ * @see DriverManager
+ * @see SQLException
+ * @see Connection
+ *
+ */
 public class DataBase {
+	/**
+	 * Nom de l'usuari de la base de dades
+	 */
 	static String username;
+	/**
+	 * Contrassenya de l'usuari de la base de dades
+	 */
 	static String password;
+	/**
+	 * Nom de la base de dades
+	 */
 	static String ddbbName;
+	/**
+	 * Port de conexió de la base de dades
+	 */
 	static int port;
+	/**
+	 * Direcció URL de la base de dades
+	 */
 	static String url = "jdbc:mysql://localhost";
+	/**
+	 * Instanciació de conexió amb la base de dades
+	 */
 	static Connection conn = null;
+	/**
+	 * Doble pas per executar les queries per tal d'evitar <i>Injection</i>
+	 */
 	static Statement s;
-	
+	/**
+	 * Prepara les dades per a la conexio amb la base de dades
+	 * @param username Nom d'usuari de la base de dades
+	 * @param password Contrassenya de l'usuari de la base de dades
+	 * @param ddbbName Nom de la base de dades
+	 * @param port Port de conexió de la base de dades
+	 */
 	public DataBase(String username, String password, String ddbbName, int port) {
 		DataBase.username = username;
 		DataBase.password = password;
@@ -26,7 +63,10 @@ public class DataBase {
 		DataBase.url += ":"+port+"/";
 		DataBase.url += ddbbName;
 	}
-	
+	/**
+	 * Executa la conexió amb la base de dades mitjançant els atributs inicialitzats ateriorment.
+	 * @throws DatabaseNotLoadedException En cas de error a l'hora de conectar.
+	 */
 	public void connect() throws DatabaseNotLoadedException{
     	
         try {
@@ -50,7 +90,10 @@ public class DataBase {
         }
 
     }
-    
+    /**
+     * Executa una query <i>INSERT</i>
+     * @param query Quey a realitzar
+     */
     public void insertQuery(String query){
         try {
             s =(Statement) conn.createStatement();
@@ -60,7 +103,10 @@ public class DataBase {
             System.out.println("Problema al Inserir --> " + ex.getSQLState());
         }
     }
-    
+    /**
+     * Executa una query <i>UPDATE</i>
+     * @param query Query a realitzar
+     */
     public void updateQuery(String query){
     	 try {
              s =(Statement) conn.createStatement();
@@ -70,7 +116,10 @@ public class DataBase {
              System.out.println("Problema al Modificar --> " + ex.getSQLState());
          }
     }
-    
+    /**
+     * Executa una query <i>DELETE</i>
+     * @param query Query a realitzar
+     */
     public void deleteQuery(String query){
     	 try {
              s =(Statement) conn.createStatement();
@@ -81,7 +130,13 @@ public class DataBase {
          }
     	
     }
-    
+    /**
+     * Executa una query <i>SELECT</i>
+     * @param query Query a realitzar
+     * @return Les dades solicitades en format ResultSet
+     * @see ResultSet
+     * @see model.ResultSetToJSON
+     */
     public ResultSet selectQuery(String query){
     	ResultSet rs = null;
     	 try {
@@ -93,7 +148,9 @@ public class DataBase {
          }
 		return rs;
     }
-    
+    /**
+     * Realitza la desconexió de la base de dades.
+     */
     public void disconnect(){
     	try {
 			conn.close();
