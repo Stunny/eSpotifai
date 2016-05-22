@@ -149,7 +149,7 @@ public class StatisticsWindow extends JDialog{
         
         repaint();
         
-        jpStatistics.setBorder(BorderFactory.createTitledBorder("Stadistics Top 10 songs of eSpotifai"));
+        jpStatistics.setBorder(BorderFactory.createTitledBorder("Top 10 songs of eSpotifai"));
 		//Assignem titol a la finestra
 		this.setTitle(" TOP 10 SONGS ");
 
