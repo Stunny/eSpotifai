@@ -7,15 +7,30 @@ import java.io.IOException;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-
+/**
+ * 
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see ServerConfiguration
+ * @see Gson
+ * @see JsonObject
+ * @see BufferedReader
+ *
+ */
 public class ManagementConfiguration {
-
+	/**
+	 * 
+	 */
 	private ServerConfiguration serverConfiguration;
-	
+	/**
+	 * 
+	 */
 	public ManagementConfiguration(){
 		serverConfiguration = new ServerConfiguration();
 	}
-
+	/**
+	 * 
+	 */
 	public void runConfiguration(){
 		boolean error = false;
 		error = readJSON();
@@ -24,15 +39,24 @@ public class ManagementConfiguration {
 			
 		}
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public ServerConfiguration getServerConfiguration() {
 		return serverConfiguration;
 	}
-
+	/**
+	 * 
+	 * @param serverConfiguration
+	 */
 	public void setServerConfiguration(ServerConfiguration serverConfiguration) {
 		this.serverConfiguration = serverConfiguration;
 	}
-
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean readJSON(){
 		boolean error = false;
 		Gson gson = new Gson();
