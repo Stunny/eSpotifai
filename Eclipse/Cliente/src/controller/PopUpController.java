@@ -49,6 +49,7 @@ public class PopUpController implements ActionListener{
 	private NetworkController networkcontroller;
 	private ModifyNameList modifynamelist;
 
+	
 	public PopUpController(MainWindow mainwindow, AddList addlist, Vots vots, SelectedUserWindow selecteduserwindow,PlaylistSearchUser playlistsearchuser, UserWindow userwindow, NetworkController networkcontroller, ModifyNameList modifynamelist ){
 
 		/**
