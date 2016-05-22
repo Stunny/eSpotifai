@@ -20,66 +20,91 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import controller.ButtonsController;
 /**
- * 
- * @author avoge
+ * Pantalla per afegir una nova cançó a l'aplicació
+ * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @version 1.0
+ * @see JFrame
+ * @see JPanel
+ * @see JLabel
+ * @see JTextField
+ * @see JButton
+ * @see GridLayout
  *
  */
 public class AddMusicWindow extends JFrame{
 	/**
-	 * 
+	 * Finestra que conté la pantalla d'afegir una nova cançó
+	 * @see JPanel
 	 */
 	private JPanel jpAddMusic;
 	
 	/**
-	 * 
+	 * Etiqueta de títol de cançó
+	 * @see JLabel
 	 */
 	private JLabel jlSongTitle;
 	/**
-	 * 
+	 * Etiqueta de gènere de la cançó
+	 * @see JLabel
 	 */
 	private JLabel jlGenre;
 	/**
-	 * 
+	 * Etiqueta de àlbum de la cançó
+	 * @see JLabel
 	 */
 	private JLabel jlAlbum;
 	/**
-	 * 
+	 * Etiqueta de artista intérpret de la cançó
+	 * @see JLabel
 	 */
 	private JLabel jlArtist;
 	/**
-	 * 
+	 * Etiqueta de ruta de l'arxiu de la cançó
+	 * @see JLabel
 	 */
 	private JLabel jlPath;
 	/**
-	 * 
+	 * Camp d'introducció de text: nom de la cançó
+	 * @see JTextField
 	 */
 	private JTextField jtfSongTitle;
 	/**
-	 * 
+	 * Camp d'introducció de text: gènere de la cançó
+	 * @see JTextField
 	 */
 	private JTextField jtfGenre;
 	/**
-	 * 
+	 * Camp d'introducció de text: àlbum de la cançó
+	 * @see JTextField
 	 */
 	private JTextField jtfAlbum;
 	/**
-	 * 
+	 * Camp d'introducció de text: artista intèrpret de la cançó
+	 * @see JTextField
 	 */
 	private JTextField jtfArtist;
 	/**
-	 * 
+	 * Camp d'introducció de text: ruta de l'arxiu de la cançó
+	 * @see JTextField
 	 */
 	private JTextField jtfPath;
 	/**
-	 * 
+	 * Confirma la operació de afegir una cançó
+	 * @see JButton
 	 */
 	private JButton jbAccept;
 	/**
-	 * 
+	 * Obre un diàleg per trobar la ruta de l'arxiu
+	 * @see JButton
 	 */
 	private JButton jbFindPath;
 	/**
-	 * 
+	 * Construeix una pantalla de afegir una nova cançó
+	 * @see GridLayout
+	 * @see JPanel
+	 * @see JLabel
+	 * @see JTextField
+	 * @see JButton
 	 */
 	public AddMusicWindow() {
 		
@@ -165,8 +190,9 @@ public class AddMusicWindow extends JFrame{
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}	
 	/**
-	 * 
-	 * @param controller
+	 * Controlador de input d'usuari a la pantalla d'afegir una nova cançó
+	 * @param controller Listener d'input
+	 * @see ButtonsController
 	 */
 	public void registerControllerAdd(ButtonsController controller) {
 		jbAccept.addActionListener(controller);
@@ -175,49 +201,49 @@ public class AddMusicWindow extends JFrame{
 		jbFindPath.setActionCommand("AddMusicWindow.findPathActionCommand");
 	}
 	/**
-	 * 
-	 * @return
+	 * Torna el títol de la cançó introduida
+	 * @return Song Title
 	 */
 	public String getTypedSongTitle() {
 		return jtfSongTitle.getText();
 	}
 	/**
-	 * 
-	 * @return
+	 * Torna el nom de l'artista introduit
+	 * @return Song Artist
 	 */
 	public String getTypedArtist() {
 		return jtfArtist.getText();
 	}
 	/**
-	 * 
-	 * @return
+	 * Torna el nom de l'album introduit
+	 * @return Song Album
 	 */
 	public String getTypedAlbum() {
 		return jtfAlbum.getText();
 	}
 	/**
-	 * 
-	 * @return
+	 * Torna el gènere de la cançó introduit
+	 * @return Song genre
 	 */
 	public String getTypedGenre() {
 		return jtfGenre.getText();
 	}
 	/**
-	 * 
-	 * @return
+	 * Torna la ruta de l'arxiu d'audio de la cançó
+	 * @return Song path
 	 */
 	public String getTypedPath() {
 		return jtfPath.getText();
 	}
 	/**
-	 * 
-	 * @param path
+	 * Introdueix la ruta trobada 
+	 * @param path Song path
 	 */
 	public void setFoundPath(String path) {
 		jtfPath.setText(path);
 	}
 	/**
-	 * 
+	 * Posa en blanc tots els camps d'introducció de text del diàleg
 	 */
 	public void clearTextFields() {
 		jtfSongTitle.setText("");
