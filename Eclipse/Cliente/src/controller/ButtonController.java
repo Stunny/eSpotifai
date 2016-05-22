@@ -68,6 +68,8 @@ public class ButtonController implements ActionListener {
 	 */
 	private NetworkController networkcontroller;
 	private UserWindow userwindow;
+	
+	private int songIndex = 0;
 
 
 	/**
@@ -217,17 +219,50 @@ public class ButtonController implements ActionListener {
 		
 		//PANTALLA MAIN (PLAY SONG)
 		if(event.getActionCommand().equals("MainWindow.playActionCommand")) {
-			try {
-				mainWindow.goMP3();
-			} catch (MalformedURLException e) {
+			//try {
+				//int songId = mainWindow.getSongAtIndex(songIndex);
+				//mainWindow.goMP3();
+			/*} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}*/
 		}
+		
+		//PANTALLA MAIN (NEXT SONG)
+				if(event.getActionCommand().equals("MainWindow.nextActionCommand")) {
+					//try {
+					if (songIndex < mainWindow.getSongAmount()) songIndex++;
+					//int songId = mainWindow.getSongAtIndex(songIndex);
+						//mainWindow.goMP3();
+					/*} catch (MalformedURLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}*/
+				}
+				
+				//PANTALLA MAIN (PREVIOUS SONG)
+				if(event.getActionCommand().equals("MainWindow.previousActionCommand")) {
+					//try {
+					if (songIndex > 0) songIndex--;
+					//int songId = mainWindow.getSongAtIndex(songIndex);
+						//mainWindow.goMP3();
+					/*} catch (MalformedURLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}*/
+				}	
 		
 		
 		

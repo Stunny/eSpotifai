@@ -535,12 +535,15 @@ public class MainWindow extends JFrame {
 		jbClose.addActionListener(controller);
 		jbSearch.addActionListener(controller);
 		jbPlay.addActionListener(controller);
+		jbNext.addActionListener(controller);
+		jbPrevious.addActionListener(controller);
 		jbAdd.setActionCommand("MainWindow.addActionCommand");
 		jbProfile.setActionCommand("MainWindow.profileActionCommand");
 		jbClose.setActionCommand("MainWindow.closeActionCommand");
 		jbSearch.setActionCommand("MainWindow.searchActionCommand");
 		jbPlay.setActionCommand("MainWindow.playActionCommand");
-		
+		jbNext.setActionCommand("MainWindow.nextActionCommand");
+		jbPrevious.setActionCommand("MainWindow.previousActionCommand");
 		
 		
 		
@@ -828,6 +831,13 @@ public void refreshPlaylists(LinkedList<Playlist> playlistList) {
 		this.user = user;
 	}
 	
+	public int getSongAtIndex(int index) {
+		return Integer.parseInt((String) tableMusic.getValueAt(index, 0));
+	}
+	
+	public int getSongAmount() {
+		return tableMusic.getRowCount();
+	}
 	
 	
 }
