@@ -203,28 +203,23 @@ public class ButtonController implements ActionListener {
 		if(event.getActionCommand().equals("MainWindow.profileActionCommand")){
 			userwindow.refreshUser(User);
 			userwindow.setVisible(true);
-			System.out.println("USER:" + User);
+			//System.out.println("USER:" + User);
 			int id = AccessLogic.getId(User, networkcontroller);
-			System.out.print("ID:" + id);
+			//System.out.print("ID:" + id);
 			LinkedList<model.User> user = new LinkedList<model.User>();
 			user = networkcontroller.getUserList();
-			for(int i = 0; i < user.size(); i++){
-				System.out.println("usuari:" + user.get(i).getId());
-			}
+		
+			
 			LinkedList< Integer> following = new LinkedList<Integer>();
 			following = networkcontroller.getFollowing(id);
-			String resultat = "";
-			for(int i = 0; i < following.size(); i++){
-				System.out.print("following:" +following.get(i)+"\n");
-			}
+			
+		
 			
 			LinkedList<model.User> userlist = new LinkedList<model.User>();
 			for(int d = 0; d < following.size(); d++){
 				for(int r = 0; r < user.size(); r++){
 					if(following.get(d) == user.get(r).getId()){
 						userlist.add(user.get(r));
-					}else{
-						System.out.print("KO\n");
 					}
 				}
 			}

@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -21,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
 /**
  * 
  * A partir d'un usuari retorna una <i>playlist</i>.
- * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @author Elna Cabot, Miguel Dï¿½az, Marc Millï¿½n, Alejandro Vogel, Marta Zapatero
  * 
  * @version 1.0
  * @see JPanel
@@ -35,6 +36,7 @@ import javax.swing.table.DefaultTableModel;
  *
  */
 import controller.PopUpController;
+import model.Playlist;
 
 public class PlaylistSearchUser extends JFrame{
 	/**
@@ -49,7 +51,7 @@ public class PlaylistSearchUser extends JFrame{
 	 */
 	private JMenuItem visualitzar;
 	/**
-	 * Llista de selecció
+	 * Llista de selecciï¿½
 	 * @see ListSelectionModel
 	 */
 	private ListSelectionModel modelo;
@@ -58,8 +60,10 @@ public class PlaylistSearchUser extends JFrame{
 	 */
 	private int id = 0; 
 	private JButton before; 
+	DefaultTableModel tableModelFollowedLists;
+	
 	/**
-	 * Retorna una llista de cançons a partir d'un usuari seleccionat.
+	 * Retorna una llista de canï¿½ons a partir d'un usuari seleccionat.
 	 */
 	public PlaylistSearchUser(){
 		JPanel jpListsFollowing = new JPanel(new BorderLayout());
@@ -67,12 +71,12 @@ public class PlaylistSearchUser extends JFrame{
 		
 		
 		String[] jtFollowedListsColumns = {"id","Playlist"};
-		Object[][] jtFollowedListsData = {{"1", "ELNA"},{"2","Elna"}};
+		Object[][] jtFollowedListsData = {};
 		//se crea la tabla
 		JTable jtFollowedLists = new JTable(jtFollowedListsData, jtFollowedListsColumns);
 		
 		//se hace que los datos no sean editables
-		DefaultTableModel tableModelFollowedLists = new DefaultTableModel(jtFollowedListsData, jtFollowedListsColumns) {
+		tableModelFollowedLists = new DefaultTableModel(jtFollowedListsData, jtFollowedListsColumns) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				//all cells false
@@ -140,6 +144,21 @@ public class PlaylistSearchUser extends JFrame{
 	public void registerController(PopUpController controller){
 		before.addActionListener(controller);
 		before.setActionCommand("PlaylistSearchUser.beforeActionCommand");
+	}
+	
+	public void refreshPlaylists(LinkedList<Playlist> playlistList) {
+		LinkedList<Object[]> list = new LinkedList<Object[]>();
+		for (int i = 0; i < playlistList.size(); i++){
+			Object[] objs = {playlistList.get(i).getId(), playlistList.get(i).getName()};
+			list.add(objs);
+		}
+		while (tableModelFollowedLists.getRowCount()!= 0){
+			tableModelFollowedLists.removeRow(0);
+		}
+		for (int i = 0; i<list.size(); i++){
+			tableModelFollowedLists.addRow(list.get(i));
+		}
+		
 	}
 	
 	

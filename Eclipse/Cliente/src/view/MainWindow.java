@@ -583,6 +583,7 @@ public class MainWindow extends JFrame {
 		jbPlay.addActionListener(controller);
 		jbNext.addActionListener(controller);
 		jbPrevious.addActionListener(controller);
+		
 		jbAdd.setActionCommand("MainWindow.addActionCommand");
 		jbProfile.setActionCommand("MainWindow.profileActionCommand");
 		jbClose.setActionCommand("MainWindow.closeActionCommand");

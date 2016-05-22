@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import model.AccessLogic;
 import view.AddList;
 import view.MainWindow;
 import view.ModifyNameList;
@@ -130,6 +131,13 @@ public class PopUpController implements ActionListener{
 		
 		
 		if(event.getActionCommand().equals("UserWindow.visualitzarActionCommand")){
+			/*selecteduserwindow.refreshUser(mainWindow.getTypedSearch());
+				selecteduserwindow.refreshPlaylists(AccessLogic.getPlaylists(mainWindow.getTypedSearch(), networkcontroller.getPlaylists()));
+				selecteduserwindow.setVisible(true); 
+			 * */
+			
+			
+			playlistsearchuser.refreshPlaylists(AccessLogic.getPlaylists(userwindow.getNombre(), networkcontroller.getPlaylists()));
 			playlistsearchuser.setVisible(true);
 			userwindow.setVisible(false);
 		}
