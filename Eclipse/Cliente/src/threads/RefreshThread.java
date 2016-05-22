@@ -27,13 +27,13 @@ public class RefreshThread extends Thread {
 	}
 
 
-	
+
 
 	/**
 	 * 
 	 */
 	public void run() {
-		
+
 		int i=0;
 		while (true) {
 			try {
@@ -41,18 +41,18 @@ public class RefreshThread extends Thread {
 				switch(threadController.getmainWindow().getMode()){
 				case "all":
 					threadController.refreshSongList();
-				break;
+					break;
 				default:
 					threadController.refreshSongListPlaylist();
-				break;
+					break;
 				}
 				threadController.refresUserPlaylistList();
 				threadController.refresPublicPlaylistList();
-				
+
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();
 			}
-			
+
 		}
 
 	}

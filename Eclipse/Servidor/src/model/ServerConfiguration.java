@@ -8,8 +8,8 @@ public class ServerConfiguration {
 	private String userBBDD;
 	private String passwordBBDD;
 	private int portClientComunication;
-	
-	
+
+
 	public ServerConfiguration(int portConexionBBDD, String iPBBDD, String nameBBDD,
 			String userBBDD, String passwordBBDD, int portClientComunication) {
 		super();

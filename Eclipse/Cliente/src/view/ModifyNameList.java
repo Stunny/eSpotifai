@@ -41,7 +41,7 @@ public class ModifyNameList extends JFrame{
 	private JRadioButton jrbPublic;
 	private JRadioButton jrbPrivate;
 	private String name = "";
-	
+
 
 	/**
 	 * Constructor de la ventana emergent
@@ -52,31 +52,31 @@ public class ModifyNameList extends JFrame{
 	public ModifyNameList(){
 		JPanel jpMain = new JPanel();
 		jpMain.setLayout(new GridLayout(2,2));
-		
-		
+
+
 		JLabel jlNewList = new JLabel("Nombre Lista:");
 		jlNewList.setForeground(Color.white);
 		jpMain.add(jlNewList);
 		jtfList = new JTextField();
 		jtfList.setBackground(CustomColor.icon);
 		jpMain.add(jtfList);
-		
+
 		jbCreate = new JButton("CREAR");
 		jbCancel = new JButton("CANCELAR");
 		jpMain.add(jbCreate);
 		jpMain.add(jbCancel);
 		jpMain.setBackground(CustomColor.background);
-		
+
 		this.getContentPane().add(jpMain, BorderLayout.CENTER);
-		
-		
+
+
 		this.setSize(350, 120);
 		this.setTitle("Crear nueva lista");
 		this.setLocationRelativeTo(null);
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-	
-		
+
+
+
 	}
 	/**
 	 * Controlador de interacci� de l'usuari
@@ -89,11 +89,11 @@ public class ModifyNameList extends JFrame{
 		jbCreate.setActionCommand("ModifyNameList.createActionCommand");
 		jbCancel.setActionCommand("ModifyNameList.cancelActionCommand");
 	}
-	
+
 	public String getTypedName(){
 		return jtfList.getText();
 	}
-	
-	
-	
+
+
+
 }

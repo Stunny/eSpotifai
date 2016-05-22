@@ -96,7 +96,7 @@ public class MainWindow extends JFrame {
 	public JPopupMenu popupPlaylist;
 	public JPopupMenu popupPlaylist1;
 
-	
+
 
 	private JTable jpUsers;
 	private int id1 = 0;
@@ -261,7 +261,7 @@ public class MainWindow extends JFrame {
 			public void mousePressed(MouseEvent e) {
 				if ( SwingUtilities.isLeftMouseButton(e)) {
 					popupPlaylist.setVisible(false);
-					System.out.println("hola guarra");
+					//System.out.println("hola guarra");
 
 				} else {
 					if ( SwingUtilities.isRightMouseButton(e)) {
@@ -535,7 +535,7 @@ public class MainWindow extends JFrame {
 		jpRadioButtons.add(jrbRepeatList);
 		jpRadioButtons.add(jrbRepeatOne);
 		jpSong.add(jpRadioButtons);
-		
+
 		jpPlayer.add(jpSong, BorderLayout.NORTH);
 		jpPlayer.add(jpPlayerButtons, BorderLayout.WEST);
 		//jpPlayer.add(jlTemporalSong, BorderLayout.CENTER);
@@ -561,8 +561,8 @@ public class MainWindow extends JFrame {
 					Files.deleteIfExists(Paths.get("Resources/song.mp3"));
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					System.out.println(e);
-					System.out.println("yoink");
+					//System.out.println(e);
+					//System.out.println("yoink");
 				}
 				System.exit(0);
 			}
@@ -639,12 +639,12 @@ public class MainWindow extends JFrame {
 	public void stopPlayer() throws Exception {
 		customPlayer.stopPlayer();
 	}
-	
+
 	public void pausePlayer() throws Exception {
 		customPlayer.pause();
 	}
 
-	
+
 	public void refreshMusic(LinkedList<Object[]> list){
 		while (tableMusic.getRowCount()!= 0){
 			tableMusic.removeRow(0);
@@ -731,7 +731,7 @@ public class MainWindow extends JFrame {
 				state = customPlayer.playPlayer(jSlider);
 
 			}catch (Exception ex) {
-				System.out.println("Error: " + ex.getMessage());
+				//System.out.println("Error: " + ex.getMessage());
 			}
 			stateSong = true;
 			ConfigurationButton(jbPlay, iiPause1, iiPause2, iiPause3);
@@ -806,7 +806,7 @@ public class MainWindow extends JFrame {
 		if (customPlayer.getStatus() == 2){
 			ConfigurationButton(jbPlay, iiPlay1, iiPlay2, iiPlay3);
 		}
-		
+
 		if (customPlayer.isEnded() && jrbRepeatOne.isSelected() && !Main.wantToLeave) {
 			try {
 				changeMP3();
@@ -874,7 +874,7 @@ public class MainWindow extends JFrame {
 	public void setId(int id) {
 		this.id1 = id;
 	}
-	
+
 	public int getId2() {
 		return id2;
 	}
@@ -917,7 +917,7 @@ public class MainWindow extends JFrame {
 			state = customPlayer.playPlayer(jSlider);
 
 		}catch (Exception ex) {
-			System.out.println("Error: " + ex.getMessage());
+			//System.out.println("Error: " + ex.getMessage());
 		}
 		stateSong = true;
 		ConfigurationButton(jbPlay, iiPause1, iiPause2, iiPause3);
@@ -953,7 +953,7 @@ public class MainWindow extends JFrame {
 	public void setUser (String user){
 		this.user = user;
 	}
-	
+
 	public String getUser () {
 		return user;
 	}
@@ -977,8 +977,8 @@ public class MainWindow extends JFrame {
 	public void setMode (String modo){
 		this.mode = modo;
 	}
-	
+
 	public String getMode (){
 		return mode;	}
-	
+
 }

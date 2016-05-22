@@ -48,10 +48,10 @@ public class LoginWindow  extends JFrame{
 	 * @see RegisterWindow
 	 */
 	private JButton jbRegister; 
-	
-	
+
+
 	// Color.decode("#282324");  COLOR FONS
-	
+
 	/**
 	 * Constructor de la ventana de inici de sessió de usuari.
 	 * @see JPanel
@@ -59,7 +59,7 @@ public class LoginWindow  extends JFrame{
 	 * @see TitledBorder
 	 */
 	public LoginWindow(){
-		
+
 		JPanel jpLogo = new JPanel(); 
 		JLabel jlLogo = new JLabel("ESPOTIFAI"); 
 		jlLogo.setFont(new java.awt.Font("Phosphate", 0, 36)); 
@@ -67,13 +67,13 @@ public class LoginWindow  extends JFrame{
 		jpLogo.add(jlLogo);
 		jpLogo.setBackground(CustomColor.background);
 		this.getContentPane().add(jpLogo, BorderLayout.PAGE_START);
-		
+
 		//PRIMERA VENTANA ACCEDER Y REGISTRARSE
 		// PRIMER PANEL PARA ACCEDER TE PIDE USUARIO Y CONTRASEÃ‘A
 		JPanel jpLogin = new JPanel(); 
 		jpLogin.setLayout(new GridLayout(3, 1));
-	
-		
+
+
 		JPanel jpUsername = new JPanel(); 
 		jpUsername.setLayout(new GridLayout(1,2));
 		JLabel user = new JLabel("Username"); 
@@ -83,47 +83,47 @@ public class LoginWindow  extends JFrame{
 		jtfUsername.setBackground(CustomColor.icon);
 		jpUsername.add(jtfUsername, BorderLayout.CENTER);
 		jpUsername.setBackground(CustomColor.background);
-		
-		
-		
+
+
+
 		JPanel jpPassword = new JPanel(); 
 		jpPassword.setLayout(new GridLayout(1,2));
 		JLabel contrasenya = new JLabel("Contrasenya");
 		contrasenya.setForeground(Color.white);
 		jpPassword.add(contrasenya, BorderLayout.CENTER);
-		
+
 		jtfPassword = new JTextField();
 		jtfPassword.setBackground(CustomColor.icon);
 		jpPassword.add(jtfPassword, BorderLayout.CENTER);
 		jpPassword.setBackground(CustomColor.background);
-		
+
 		JPanel jpLoginButton = new JPanel(); 
 		jbLogin = new JButton("ACCEDIR");
 		jpLoginButton.add(jbLogin, BorderLayout.CENTER);
-		
+
 		jpLoginButton.setBackground(CustomColor.background);
-		
+
 		jpLogin.add(jpUsername);
 		jpLogin.add(jpPassword);
 		jpLogin.add(jpLoginButton);
-		
+
 		TitledBorder titledBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Accedir a Espotifai", javax.swing.border.
-			      TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.
-			      TitledBorder.DEFAULT_POSITION, null, java.awt.Color.white);
-		
+				TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.
+				TitledBorder.DEFAULT_POSITION, null, java.awt.Color.white);
+
 		jpLogin.setBorder(titledBorder);
-		
+
 		//jpLogin.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Accedir a Espotifai"));
-		
+
 		//jpLogin.setBorder(BorderFactory.createTitledBorder("Accedir a Espotifai"));
 		jpLogin.setBackground(CustomColor.background);
 		this.getContentPane().add(jpLogin, BorderLayout.CENTER);
-		
-		
+
+
 		// SEGUNDO PANEL TE PREGUNTA SI NO TIENES USUARIO Y SI QUIERES REGISTRARTE
 		JPanel jpRegister = new JPanel();
 		jpRegister.setLayout(new GridLayout(2,1));
-		
+
 		JPanel jlRegister = new JPanel(); 
 		JLabel register = new JLabel("Encara no tens usuari? Registra't");
 		register.setForeground(Color.white);
@@ -136,19 +136,19 @@ public class LoginWindow  extends JFrame{
 		jpRegisterButton.setBackground(CustomColor.background);
 		jpRegister.add(jpRegisterButton);
 
-		
+
 		TitledBorder titledBorder2 = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Registrar-se", javax.swing.border.
-			      TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.
-			      TitledBorder.DEFAULT_POSITION, null, java.awt.Color.white);
-		
+				TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.
+				TitledBorder.DEFAULT_POSITION, null, java.awt.Color.white);
+
 		jpRegister.setBorder(titledBorder2);
-		
+
 		//jpRegister.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Registrar-se"));
 		jpRegister.setBackground(Color.decode("#282324")); // COLOR DE FONDO
 		this.getContentPane().add(jpRegister, BorderLayout.AFTER_LAST_LINE);
-		
-		
-		
+
+
+
 		//TAMAÃ‘O DE LA VENTANA
 		this.setSize(300, 300);
 		this.setTitle("AccÃ¨s a Espotyfai");
@@ -166,7 +166,7 @@ public class LoginWindow  extends JFrame{
 		jbLogin.setActionCommand("LoginWindow.loginActionCommand");
 		jbRegister.setActionCommand("LoginWindow.registerActionCommand");
 	}
-	
+
 	/**
 	 * Métode que retorna el nom d'susari entrat
 	 * @return Es torna el nom d'usuari entrat
@@ -181,9 +181,9 @@ public class LoginWindow  extends JFrame{
 	public String getTypedPassword() {
 		return jtfPassword.getText();
 	}
-	
 
-	
-	
+
+
+
 }
 

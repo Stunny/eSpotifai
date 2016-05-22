@@ -57,8 +57,8 @@ public class User {
 		this.playlist = playlist;
 		this.following = following;
 	}
-	
-	
+
+
 	/**
 	 * Construeix un usuari amb la llista d'usuaris als que segueix buida. La llista de <i>playlists</i> també s'inicialitzarà buida.
 	 * @param id IDentificador de l'usuari
@@ -218,7 +218,7 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
-	
+
+
+
 }

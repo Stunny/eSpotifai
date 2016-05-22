@@ -10,23 +10,23 @@ import javax.swing.JLabel;
 public class DeletedWindow extends JFrame {
 	//Atributo que contiene el mensaje 
 	private JLabel jlEtiqueta;
-	
+
 	public DeletedWindow() {
 		//Creamos una etiqueta que ponga el mensaje 
 		jlEtiqueta = new JLabel("El Usuario ha sido eliminado correctamente");
 		//Alineamos el texto
 		jlEtiqueta.setHorizontalAlignment(JLabel.CENTER);
-		
+
 		//Añadimos el panel del mensaje al panel principal que se nos mostrará
 		getContentPane().add(jlEtiqueta, BorderLayout.CENTER);
-		
+
 		//Determinamoas las caracteristicas de esta ventana emergente
 		setSize(300,100);
 		setTitle("REMOVE: ");
 		setLocationRelativeTo(null);
-		
+
 		//Indicamos como cerrar la ventana
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
-	
+
 }

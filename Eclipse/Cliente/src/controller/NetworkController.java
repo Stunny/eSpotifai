@@ -44,7 +44,7 @@ public class NetworkController {
 		LinkedList<User> userlist = new LinkedList<User>(Arrays.asList(u));
 
 		for(int i = 0; i < userlist.size(); i++){
-			System.out.println(userlist.get(i).getUsername());
+			//System.out.println(userlist.get(i).getUsername());
 		}
 
 		return userlist;
@@ -117,89 +117,89 @@ public class NetworkController {
 
 		return playlistlist;
 	}
-	
-	
-	
+
+
+
 	public static String deletePlaylist(int i){
 		String request = "deletePlaylist:" +i;
-		
-		
+
+
 		ServerCommunication servercommunication = new ServerCommunication();
 		String resposta = servercommunication.sendData(request);
 
 		return resposta;
-		
+
 	}
-	
+
 	public static String updatePlaylist(String name, int id){
 		String request = "updatePlaylist:" + name+ "/" +id;
-		
+
 		ServerCommunication servercommunication = new ServerCommunication();
 		String resposta = servercommunication.sendData(request);
 
 		return resposta;
-		
+
 
 	}
 
 	public static int[] getSongsPlaylistList(int id) {
-	String request = "Songs From:"+id;
-	
-	ServerCommunication servercommunication = new ServerCommunication();
-	String resposta = servercommunication.sendData(request);
-	
-	
-	GsonBuilder gsonBuilder = new GsonBuilder();
-    Gson gson = gsonBuilder.create();
-	return gson.fromJson(resposta, int[].class);
+		String request = "Songs From:"+id;
+
+		ServerCommunication servercommunication = new ServerCommunication();
+		String resposta = servercommunication.sendData(request);
+
+
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		Gson gson = gsonBuilder.create();
+		return gson.fromJson(resposta, int[].class);
 	}
-	
+
 	public static String addPlaylist(String name, int id, int publica){
-			String request = "Add Playlist:"+name+"/"+id+"/"+publica;
-			ServerCommunication servercommunication = new ServerCommunication();
-			String resposta = servercommunication.sendData(request);		
-			GsonBuilder gsonBuilder = new GsonBuilder();
-		    Gson gson = gsonBuilder.create();
-			//return gson.fromJson(resposta, String.class);
-		    return "add";
+		String request = "Add Playlist:"+name+"/"+id+"/"+publica;
+		ServerCommunication servercommunication = new ServerCommunication();
+		String resposta = servercommunication.sendData(request);		
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		Gson gson = gsonBuilder.create();
+		//return gson.fromJson(resposta, String.class);
+		return "add";
 	}
-	
+
 	public static String follow(int idU, int idF){
 		String request = "Follow:"+idU+"/"+idF;
 		ServerCommunication servercommunication = new ServerCommunication();
 		String resposta = servercommunication.sendData(request);		
 		GsonBuilder gsonBuilder = new GsonBuilder();
-	    Gson gson = gsonBuilder.create();
-	    return gson.fromJson(resposta, String.class);
+		Gson gson = gsonBuilder.create();
+		return gson.fromJson(resposta, String.class);
 	}
-	
+
 	public static String unfollow(int idU, int idF) {
 		String request = "UnFollow:"+idU+"/"+idF;
 		ServerCommunication servercommunication = new ServerCommunication();
 		String resposta = servercommunication.sendData(request);		
 		GsonBuilder gsonBuilder = new GsonBuilder();
-	    Gson gson = gsonBuilder.create();
-	    return gson.fromJson(resposta, String.class);
+		Gson gson = gsonBuilder.create();
+		return gson.fromJson(resposta, String.class);
 	}
-	
+
 	public static String getSongFile(int id) {
-		
+
 		String request = "getSongFile:"+id;
 
-		System.out.println("Primero hablamos con el server");
+		//System.out.println("Primero hablamos con el server");
 		ServerCommunication servercommunication = new ServerCommunication();
 		String resposta = servercommunication.sendData(request);
-		System.out.println("Hemos hablado con el server");
+		//System.out.println("Hemos hablado con el server");
 		if (resposta.equals("ok")) {
-			System.out.println("ha dicho que si!\nVamos a pedir el archivo");
+			//System.out.println("ha dicho que si!\nVamos a pedir el archivo");
 			FileServerCommunication fileservercommunication = new FileServerCommunication();
 			boolean ok = fileservercommunication.askForFile();
-			if (ok) {System.out.println("Nos han dado el archivo");return "ok";}
-			else {System.out.println("Nos hemos quedado sin archivo");return "ko";}
+			if (ok) {return "ok";}
+			else {return "ko";}
 			//System.out.println("No hemos pedido archivo.");
-			
-		} else {System.out.println("Dice que no");return "ko";}
+
+		} else {return "ko";}
 	}
-	
+
 }
 

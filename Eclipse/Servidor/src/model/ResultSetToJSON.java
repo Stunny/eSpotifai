@@ -8,7 +8,7 @@ import com.google.gson.JsonObject;
 public class ResultSetToJSON {
 
 	public static JsonArray convertToJSON(ResultSet resultSet) throws Exception {
-		
+
 		JsonArray jsonArray = new JsonArray();
 		while (resultSet.next()) {
 			int total_rows = resultSet.getMetaData().getColumnCount();

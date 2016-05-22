@@ -31,7 +31,7 @@ public class ThreadController {
 		super();
 		this.mainWindow = mainWindow;
 	}
-	
+
 	/**
 	 * Actualitza la llista de can�ons segons el contingut del servidor
 	 */
@@ -39,30 +39,30 @@ public class ThreadController {
 		LinkedList<Song> songsList = NetworkController.getSongList();
 		mainWindow.refreshSongs(songsList);
 	}
-	
+
 	public void refreshSongListPlaylist(){
 		LinkedList<Song> songsList = NetworkController.getSongList();
-		System.out.println("Mode: ");
-		System.out.println(mainWindow.getMode());
-		System.out.println(Integer.valueOf(mainWindow.getMode()));
+		//System.out.println("Mode: ");
+		//System.out.println(mainWindow.getMode());
+		//System.out.println(Integer.valueOf(mainWindow.getMode()));
 		int[] array = NetworkController.getSongsPlaylistList(Integer.valueOf(mainWindow.getMode()));
 		mainWindow.refreshSongs(AccessLogic.getSongsFromPlaylist(songsList, array));
 	}
-	
+
 	public void refresUserPlaylistList() {
 		LinkedList<Playlist> playlistList = NetworkController.getPlaylists();
 		mainWindow.refreshPlaylists(playlistList);
 	}
-	
+
 	public void refresPublicPlaylistList() {
 		LinkedList<Playlist> playlistList = NetworkController.getPublicPlaylists(mainWindow.getUserId());
 		mainWindow.refreshPublicPlaylists(playlistList);
 	}
-	
+
 	public void trackTime() {
 		mainWindow.refreshTime();
 	}
-	
+
 
 	public MainWindow getmainWindow(){
 		return mainWindow;

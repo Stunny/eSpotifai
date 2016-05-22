@@ -40,7 +40,7 @@ public class NewListDialog extends JFrame{
 	private JButton jbCancel;
 	private JRadioButton jrbPublic;
 	private JRadioButton jrbPrivate;
-	
+
 
 	/**
 	 * Constructor de la ventana emergent
@@ -51,18 +51,18 @@ public class NewListDialog extends JFrame{
 	public NewListDialog(){
 		JPanel jpMain = new JPanel();
 		jpMain.setLayout(new GridLayout(3,2));
-		
-		
+
+
 		JLabel jlNewList = new JLabel("Nueva Lista");
 		jlNewList.setForeground(Color.white);
 		jpMain.add(jlNewList);
 		jtfList = new JTextField();
 		jtfList.setBackground(CustomColor.icon);
 		jpMain.add(jtfList);
-		
+
 		jrbPublic = new JRadioButton("Publica", true);
 		jrbPrivate = new JRadioButton("Privada", false);
-		
+
 		ButtonGroup buttonGroup = new ButtonGroup();
 		buttonGroup.add(jrbPublic);
 		buttonGroup.add(jrbPrivate);
@@ -73,17 +73,17 @@ public class NewListDialog extends JFrame{
 		jpMain.add(jbCreate);
 		jpMain.add(jbCancel);
 		jpMain.setBackground(CustomColor.background);
-		
+
 		this.getContentPane().add(jpMain, BorderLayout.CENTER);
-		
-		
+
+
 		this.setSize(350, 120);
 		this.setTitle("Crear nueva lista");
 		this.setLocationRelativeTo(null);
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-	
-		
+
+
+
 	}
 	/**
 	 * Controlador de interacció de l'usuari
@@ -96,15 +96,15 @@ public class NewListDialog extends JFrame{
 		jbCancel.addActionListener(controller);
 		jbCancel.setActionCommand("NewListDialog.cancelActionCommand");
 	}
-	
+
 	public String getTypedName() {
 		return jtfList.getText();
 	}
-	
+
 	public void setTypedName(String name){
 		jtfList.setText(name);
 	}
-	
+
 	public int getPublic(){
 		if(jrbPublic.isSelected()){
 			return 1;

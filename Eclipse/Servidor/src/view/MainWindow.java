@@ -526,7 +526,7 @@ public class MainWindow extends JFrame{
 		jlSongState.setText(" ");
 		jlSongState.setHorizontalAlignment(JTextField.LEFT);
 		jpSong.add(jlSongState);
-		
+
 		JPanel jpRadioButtons = new JPanel();
 		jrbRepeatList = new JRadioButton("Global repeat", true);
 		jrbRepeatOne = new JRadioButton("Single repeat", false);
@@ -720,7 +720,7 @@ public class MainWindow extends JFrame{
 				state = customPlayer.playPlayer(jSlider);
 
 			}catch (Exception ex) {
-				System.out.println("Error: " + ex.getMessage());
+				//System.out.println("Error: " + ex.getMessage());
 			}
 			stateSong = true;
 			ConfigurationButton(jbPlay, iiPause1, iiPause2, iiPause3);
@@ -760,7 +760,7 @@ public class MainWindow extends JFrame{
 			state = customPlayer.playPlayer(jSlider);
 
 		}catch (Exception ex) {
-			System.out.println("Error: " + ex.getMessage());
+			//System.out.println("Error: " + ex.getMessage());
 		}
 		stateSong = true;
 		ConfigurationButton(jbPlay, iiPause1, iiPause2, iiPause3);
@@ -840,12 +840,12 @@ public class MainWindow extends JFrame{
 
 		}
 	}
-	
+
 	/**
 	 * Actualitza els valors de temps de reproducció del reproductor
 	 * @see CustomPlayer
 	 */
-	
+
 	public void refreshTime() {
 
 		int auxMinutes = 0;
@@ -878,7 +878,7 @@ public class MainWindow extends JFrame{
 		if (customPlayer.getStatus() == 2){
 			ConfigurationButton(jbPlay, iiPlay1, iiPlay2, iiPlay3);
 		}
-		
+
 		if (customPlayer.isEnded() && jrbRepeatOne.isSelected()) {
 			try {
 				changeMP3(customPlayer.getSongPath());
@@ -893,8 +893,8 @@ public class MainWindow extends JFrame{
 
 		//jlTime.setText(String.valueOf(player.getMinutes() + ":" + player.getSeconds()));
 	}
-///==================
-	
+	///==================
+
 	/**
 	 * Actualitza la llista d'usuaris
 	 * @param list
@@ -908,8 +908,8 @@ public class MainWindow extends JFrame{
 			tableModelUser.addRow(list.get(i));
 		}
 	}
-	
-	
+
+
 	/**
 	 * Actualitza la llista de cançons
 	 * @param list

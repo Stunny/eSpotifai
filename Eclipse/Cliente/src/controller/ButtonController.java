@@ -72,9 +72,9 @@ public class ButtonController implements ActionListener {
 	private NetworkController networkcontroller;
 	private UserWindow userwindow;
 
-	
+
 	private int songIndex = 0;
-	
+
 	private NewListDialog NewListDialogDialog;
 
 	/**
@@ -149,7 +149,7 @@ public class ButtonController implements ActionListener {
 			registerWindow.setVisible(false);
 		}
 
-		
+
 		//New
 		if(event.getActionCommand().equals("NewListDialog.createActionCommand")){
 			if(networkcontroller.addPlaylist(NewListDialogDialog.getTypedName(), mainWindow.getUserId(), NewListDialogDialog.getPublic()).equals("Add")){
@@ -165,8 +165,8 @@ public class ButtonController implements ActionListener {
 			NewListDialogDialog.setTypedName("");		
 			NewListDialogDialog.setVisible(false);
 		}
-		
-		
+
+
 		//PANTALLA registerWindow
 		if(event.getActionCommand().equals("RegisterWindow.registerActionCommand")){
 
@@ -220,8 +220,8 @@ public class ButtonController implements ActionListener {
 				mainWindow.stopPlayer();
 				Files.deleteIfExists(Paths.get("Resources/song.mp3"));
 			} catch (Exception e) {
-				System.out.println(e);
-				System.out.println("yoink");
+				//System.out.println(e);
+				//System.out.println("yoink");
 				// TODO Auto-generated catch block
 			}
 		}
@@ -294,17 +294,17 @@ public class ButtonController implements ActionListener {
 		//PANTALLA MAIN (NEXT SONG)
 		if(event.getActionCommand().equals("MainWindow.nextActionCommand")) {
 			//try {
-			System.out.println("next");
+			//System.out.println("next");
 			if (songIndex < mainWindow.getSongAmount() -1) songIndex++;
 			else songIndex = 0;
-			System.out.println(songIndex);
+			//System.out.println(songIndex);
 			String response = NetworkController.getSongFile(mainWindow.getSongAtIndex(songIndex));
 			if (response.equals("ok")) {
 				try {
 					mainWindow.changeMP3();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					//e.printStackTrace();
 				}
 			}
 
@@ -314,7 +314,7 @@ public class ButtonController implements ActionListener {
 		if(event.getActionCommand().equals("MainWindow.previousActionCommand")) {
 			//try {
 			if (songIndex > 0) songIndex--;
-			System.out.println(songIndex);
+			//System.out.println(songIndex);
 			String response = NetworkController.getSongFile(mainWindow.getSongAtIndex(songIndex));
 			if (response.equals("ok")) {
 				try {

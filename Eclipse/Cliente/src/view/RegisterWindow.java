@@ -50,7 +50,7 @@ public class RegisterWindow extends JFrame{
 	 * @see JLabel
 	 */
 	public RegisterWindow(){
-		
+
 		JPanel jpLogo = new JPanel(); 
 		JLabel jlLogo = new JLabel("ESPOTIFAI"); 
 		jlLogo.setFont(new java.awt.Font("Phosphate", 0, 36)); 
@@ -58,11 +58,11 @@ public class RegisterWindow extends JFrame{
 		jpLogo.add(jlLogo);
 		jpLogo.setBackground(CustomColor.background);
 		this.getContentPane().add(jpLogo, BorderLayout.PAGE_START);
-	
-		
+
+
 		JPanel jpRegister = new JPanel(); 
 		jpRegister.setLayout(new GridLayout(3, 1));
-		
+
 		JPanel jpUsername = new JPanel(); 
 		jpUsername.setLayout(new GridLayout(1,2));
 		JLabel jlUsername = new JLabel("Username");
@@ -72,7 +72,7 @@ public class RegisterWindow extends JFrame{
 		jtfUsername.setBackground(CustomColor.icon);
 		jpUsername.add(jtfUsername, BorderLayout.CENTER);
 		jpUsername.setBackground(CustomColor.background);
-		
+
 		JPanel jpPassword = new JPanel(); 
 		jpPassword.setLayout(new GridLayout(1,2));
 		JLabel password = new JLabel("Contrasenya");
@@ -83,7 +83,7 @@ public class RegisterWindow extends JFrame{
 		jtfPassword.setBackground(CustomColor.icon);
 		jpPassword.add(jtfPassword, BorderLayout.CENTER);
 		jpPassword.setBackground(CustomColor.background);
-		
+
 		JPanel jpRegisterButton = new JPanel(new GridLayout(1, 2)); 
 		jbAtras = new JButton("ENRERE");
 		jbRegister = new JButton("REGISTRA'T");
@@ -91,19 +91,19 @@ public class RegisterWindow extends JFrame{
 		jpRegisterButton.add(jbRegister, BorderLayout.CENTER);
 		jpRegisterButton.setBackground(CustomColor.background);
 		//jpRegisterButton.setBackground(Color.gray);
-		
+
 		jpRegister.add(jpUsername, BorderLayout.NORTH);
 		jpRegister.add(jpPassword, BorderLayout.CENTER);
 		jpRegister.add(jpRegisterButton, BorderLayout.SOUTH);
 		TitledBorder titledBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Registrar-se", javax.swing.border.
-			      TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.
-			      TitledBorder.DEFAULT_POSITION, null, java.awt.Color.white);
-		
+				TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.
+				TitledBorder.DEFAULT_POSITION, null, java.awt.Color.white);
+
 		jpRegister.setBorder(titledBorder);
 		//jpRegister.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Registrar-se"));
 		jpRegister.setBackground(Color.decode("#282324"));
 		this.getContentPane().add(jpRegister, BorderLayout.CENTER);
-		
+
 		this.setSize(300, 300);
 		this.setTitle("Registrar-se a Espotifai");
 		this.setLocationRelativeTo(null);
@@ -134,6 +134,6 @@ public class RegisterWindow extends JFrame{
 	public String getTypedPassword(){
 		return jtfPassword.getText();
 	}
-	
-	
+
+
 }

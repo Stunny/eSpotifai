@@ -28,11 +28,11 @@ public class CustomColor {
 	 * <p style="color:#8E8B8A;"><strong>COLOR</strong></p>
 	 */
 	final static Color icon = Color.decode("#8E8B8A");
-	
+
 	/**
 	 * Constructor de la paleta de colors.
 	 */
 	public CustomColor(){
 	}
-	
+
 }
