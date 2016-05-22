@@ -74,7 +74,14 @@ public class NetworkController {
 			response  = ddbbconnection.deletePlaylist(Integer.parseInt(s[1]));
 			break;
 		
-
+		case "Follow":
+			args = s[1].split("/");
+			response  = ddbbconnection.follow(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
+		break;
+		case "UnFollow":
+			args = s[1].split("/");
+			response  = ddbbconnection.unFollow(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
+			break;
 		case "getPublicPlaylists":
 			response  = gson.toJson(ddbbconnection.getPublicPlaylists(Integer.parseInt(s[1])));
 			break;

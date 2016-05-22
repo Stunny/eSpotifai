@@ -5,6 +5,7 @@ import java.util.LinkedList;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
 import model.Playlist;
 import model.Song;
 import model.User;
@@ -178,6 +179,24 @@ public class NetworkController {
 			GsonBuilder gsonBuilder = new GsonBuilder();
 		    Gson gson = gsonBuilder.create();
 		    return gson.fromJson(resposta, String.class);
+	}
+	
+	public static String follow(int idU, int idF){
+		String request = "Follow:"+idU+"/"+idF;
+		ServerCommunication servercommunication = new ServerCommunication();
+		String resposta = servercommunication.sendData(request);		
+		GsonBuilder gsonBuilder = new GsonBuilder();
+	    Gson gson = gsonBuilder.create();
+	    return gson.fromJson(resposta, String.class);
+	}
+	
+	public static String unfollow(int idU, int idF) {
+		String request = "UnFollow:"+idU+"/"+idF;
+		ServerCommunication servercommunication = new ServerCommunication();
+		String resposta = servercommunication.sendData(request);		
+		GsonBuilder gsonBuilder = new GsonBuilder();
+	    Gson gson = gsonBuilder.create();
+	    return gson.fromJson(resposta, String.class);
 	}
 
 }

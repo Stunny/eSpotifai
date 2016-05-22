@@ -203,7 +203,7 @@ public class MainWindow extends JFrame {
 			{  
 				// you can open a new frame here as
 				// i have assumed you have declared "frame" as instance variable
-				JOptionPane.showMessageDialog(null, "HOLA GUARRA");
+				mode = "all";
 
 			}  
 		}); 
@@ -926,8 +926,8 @@ public class MainWindow extends JFrame {
 		this.user = user;
 	}
 	
-	public String getName(){
-		return name;
+	public String getUser(){
+		return user;
 	}
 	
 	public int getSongAtIndex(int index) {
