@@ -591,8 +591,6 @@ public class MainWindow extends JFrame {
 		jbNext.setActionCommand("MainWindow.nextActionCommand");
 		jbPrevious.setActionCommand("MainWindow.previousActionCommand");
 
-
-
 	}
 
 	public void registerController1(PopUpController controller2){
@@ -921,6 +919,10 @@ public class MainWindow extends JFrame {
 	}
 	public int getUserId(){
 		return idUser;
+	}
+	
+	public String getName(){
+		return user;
 	}
 
 	public void setUserId (int id){

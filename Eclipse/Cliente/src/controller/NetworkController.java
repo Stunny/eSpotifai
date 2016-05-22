@@ -11,8 +11,8 @@ import model.User;
 import network.FileServerCommunication;
 import network.ServerCommunication;
 /**
- * Controlador de comunicació amb el servidor. 
- * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * Controlador de comunicaciï¿½ amb el servidor. 
+ * @author Elna Cabot, Miguel Dï¿½az, Marc Millï¿½n, Alejandro Vogel, Marta Zapatero
  * @version 1.0
  * @see ServerCommunication
  * @see GsonBuilder
@@ -74,6 +74,21 @@ public class NetworkController {
 		}*/
 
 		return songlist;
+	}
+	
+	public static LinkedList<Integer> getFollowing(int id){
+		String request =  "getFollowing:" + id;
+		ServerCommunication servercommunication = new ServerCommunication();
+		String resposta = servercommunication.sendData(request);
+		
+		
+		GsonBuilder gsonBuilder = new GsonBuilder();
+	    Gson gson = gsonBuilder.create();
+	    Integer[] s = gson.fromJson(resposta, Integer[].class);
+	    
+	    LinkedList<Integer> idfollowing = new LinkedList<Integer>(Arrays.asList(s));
+		return idfollowing;
+		
 	}
 
 
@@ -154,6 +169,8 @@ public class NetworkController {
 	return gson.fromJson(resposta, int[].class);
 	}
 	
+	
+	
 	public static String addPlaylist(String name, int id, int publica){
 			String request = "Add Playlist:"+name+"/"+id+"/"+publica;
 			ServerCommunication servercommunication = new ServerCommunication();
@@ -176,11 +193,40 @@ public class NetworkController {
 			System.out.println("ha dicho que si!\nVamos a pedir el archivo");
 			FileServerCommunication fileservercommunication = new FileServerCommunication();
 			boolean ok = fileservercommunication.askForFile();
-			if (ok) {System.out.println("Nos han dado el archivo");return "ok";}
-			else {System.out.println("Nos hemos quedado sin archivo");return "ko";}
+			if (ok) {
+				System.out.println("Nos han dado el archivo");
+				return "ok";
+			}
+			else {
+				System.out.println("Nos hemos quedado sin archivo");
+				return "ko";
+			}
 			//System.out.println("No hemos pedido archivo.");
 			
 		} else {System.out.println("Dice que no");return "ko";}
 	}
+	
+	public static String getFollowingFile(int id){
+		String request = "getFollowingFile:" + id;
+		
+		ServerCommunication servercommunication = new ServerCommunication();
+		String resposta = servercommunication.sendData(request);
+		if(resposta.equals("ok")){
+			FileServerCommunication fileservercommunication = new FileServerCommunication();
+			boolean ok = fileservercommunication.askForFile();
+			if(ok){
+				return "ok cliente";
+			}else{
+				return "ko cliente ";
+				
+			}
+			
+		}else{
+			return "ko cliente 2";
+		}
+		
+	}
+	
+	
 	
 }

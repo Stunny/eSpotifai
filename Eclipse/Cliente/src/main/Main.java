@@ -63,12 +63,13 @@ public class Main {
 				Vots vots = new Vots();
 				PlaylistSearchUser playlistsearchuser = new PlaylistSearchUser();
 				UserWindow userWindow = new UserWindow();
+				AccessLogic accesslogic = new AccessLogic();
 
 				ModifyNameList modifynamelist = new ModifyNameList();
 
 				NewListDialog NewListDialogDialog = new NewListDialog();
 
-				ButtonController controller = new ButtonController(NewListDialogDialog, loginWindow, registerWindow, mainWindow, selecteduserwindow, networkcontroller, userWindow);
+				ButtonController controller = new ButtonController(NewListDialogDialog, loginWindow, registerWindow, mainWindow, selecteduserwindow, networkcontroller, userWindow, accesslogic);
 				PopUpController controller2 = new PopUpController(mainWindow, addlist, vots, selecteduserwindow, playlistsearchuser, userWindow, networkcontroller, modifynamelist);
 
 				

@@ -194,6 +194,31 @@ public class DDBBConnection {
 		
 	}
 	
+	
+	
+	public int[]  getFollowing(int id){
+		LinkedList<Integer> list = new LinkedList<Integer>();
+		int[] array = new int[]{};
+		//int a[] = new int[a1.length+a2.length];
+
+		try {
+			ResultSet resultSet = ddbb.selectQuery("SELECT * FROM followers WHERE user_follower="+id);
+			while (resultSet.next())
+				{
+					list.add((int)resultSet.getObject("user_followed"));
+				}
+	
+			array = new int[list.size()];
+			for (int i = 0; i<list.size(); i++){
+				array[i] = list.get(i);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			return array;
+		}
+		return array;
+	}
+	
 	public LinkedList<Playlist> getPlaylists(){
 		LinkedList<Playlist> list = new LinkedList<Playlist>();
 		try {

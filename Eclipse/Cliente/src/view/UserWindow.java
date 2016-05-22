@@ -8,6 +8,7 @@ import java.awt.Point;
 import java.awt.ScrollPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -27,6 +28,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controller.PopUpController;
+import model.Playlist;
 /**
  * Finestra de usuari
  * @author Elna Cabot, Miguel Diaz, Marc Millan, Alejandro Vogel, Marta Zapatero
@@ -49,6 +51,7 @@ public class UserWindow extends JFrame{
 	private JMenuItem visualitzar;
 	private ListSelectionModel modelo;
 	private int id = 0; 
+	DefaultTableModel tableModelFollowedLists;
 	
 	
 	/**
@@ -82,12 +85,12 @@ public class UserWindow extends JFrame{
 		
 		
 		String[] jtFollowedListsColumns = {"id","Following List"};
-		Object[][] jtFollowedListsData = {{"1", "ELNA"},{"2","Elna"}};
+		Object[][] jtFollowedListsData = {};
 		//se crea la tabla
 		JTable jtFollowedLists = new JTable(jtFollowedListsData, jtFollowedListsColumns);
 		
 		//se hace que los datos no sean editables
-		DefaultTableModel tableModelFollowedLists = new DefaultTableModel(jtFollowedListsData, jtFollowedListsColumns) {
+		tableModelFollowedLists = new DefaultTableModel(jtFollowedListsData, jtFollowedListsColumns) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				//all cells false
@@ -161,6 +164,25 @@ public class UserWindow extends JFrame{
 		visualitzar.addActionListener(controller);
 		visualitzar.setActionCommand("UserWindow.visualitzarActionCommand");;
 	}
+	
+	public void refreshFollowing(LinkedList<model.User> following) {
+		LinkedList<Object[]> list = new LinkedList<Object[]>();
+		for (int i = 0; i < following.size(); i++){
+			Object[] objs = {following.get(i).getId(), following.get(i).getUsername()};
+			list.add(objs);
+		}
+		while (tableModelFollowedLists.getRowCount()!= 0){
+			tableModelFollowedLists.removeRow(0);
+		}
+		for (int i = 0; i<list.size(); i++){
+			tableModelFollowedLists.addRow(list.get(i));
+		}
+		
+	}
+	
+
+	
+	
 	
 	
 }
