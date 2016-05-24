@@ -7,8 +7,8 @@ import controller.ThreadController;
 import model.Song;
 import view.MainWindow;
 /**
- * Thread que actualitza la informació mostrada cada 3 segons
- * @author Elna Cabot, Miguel Diaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * Thread que actualitza la informaciï¿½ mostrada cada 3 segons
+ * @author Elna Cabot, Miguel Diaz, Marc Millï¿½n, Alejandro Vogel, Marta Zapatero
  *
  */
 public class RefreshThread extends Thread {
@@ -17,13 +17,16 @@ public class RefreshThread extends Thread {
 	 * @see ThreadController
 	 */
 	private ThreadController threadController;
+	
+	private NetworkController networkcontroller;
 	/**
 	 * Construeix el thread
 	 * @param threadController Controlador de thread
 	 */
-	public RefreshThread(ThreadController threadController) {
+	public RefreshThread(ThreadController threadController, NetworkController networkcontroller) {
 		super();
 		this.threadController = threadController;
+		this.networkcontroller = networkcontroller;
 	}
 
 
@@ -46,8 +49,10 @@ public class RefreshThread extends Thread {
 					threadController.refreshSongListPlaylist();
 					break;
 				}
+
 				threadController.refreshUserPlaylistList();
 				threadController.refreshPublicPlaylistList();
+				
 
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();

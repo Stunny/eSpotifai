@@ -123,10 +123,11 @@ public class ButtonController implements ActionListener {
 						loginWindow.setVisible(false);
 
 						ThreadController threadController = new ThreadController(mainWindow);
-						Main.refreshThread = new RefreshThread(threadController);
+						Main.refreshThread = new RefreshThread(threadController, networkcontroller);
 						Main.refreshThread.start();
 						Main.timeThread = new TimeThread(threadController);
 						Main.timeThread.start();
+						Main.wantToLeave = false;
 
 						User = loginWindow.getTypedUsername();
 						mainWindow.setUserId(AccessLogic.getId(User, networkcontroller));
@@ -183,10 +184,11 @@ public class ButtonController implements ActionListener {
 						registerWindow.setVisible(false);
 						User = registerWindow.getTypedUsername();
 						ThreadController threadController = new ThreadController(mainWindow);
-						Main.refreshThread = new RefreshThread(threadController);
+						Main.refreshThread = new RefreshThread(threadController,networkcontroller);
 						Main.refreshThread.start();
 						Main.timeThread = new TimeThread(threadController);
 						Main.timeThread.start();
+						Main.wantToLeave = false;
 					}
 				}
 			}
@@ -237,11 +239,12 @@ public class ButtonController implements ActionListener {
 			Main.refreshThread.interrupt();
 			Main.timeThread.interrupt();
 			try {
+				Main.wantToLeave = true;
 				mainWindow.stopPlayer();
 				Files.deleteIfExists(Paths.get("Resources/song.mp3"));
 			} catch (Exception e) {
-				System.out.println(e);
-				System.out.println("yoink");
+				//System.out.println(e);
+				//System.out.println("yoink");
 				// TODO Auto-generated catch block
 			}
 		}
@@ -266,6 +269,7 @@ public class ButtonController implements ActionListener {
 			String s = new String();
 			s = "Unfollow";
 			selecteduserwindow.refreshFollowing(s);
+			
 		}
 
 
@@ -289,6 +293,7 @@ public class ButtonController implements ActionListener {
 			//try {
 			System.out.println("next");
 			if (songIndex < mainWindow.getSongAmount() -1) songIndex++;
+			else songIndex = 0;
 			System.out.println(songIndex);
 			String response = NetworkController.getSongFile(mainWindow.getSongAtIndex(songIndex));
 			if (response.equals("ok")) {

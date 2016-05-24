@@ -271,7 +271,6 @@ public class PopUpController implements ActionListener{
 			}
 		}
 
-
 		if(event.getActionCommand().equals("UserWindow.visualitzarActionCommand")){
 			/*selecteduserwindow.refreshUser(mainWindow.getTypedSearch());
 				selecteduserwindow.refreshPlaylists(AccessLogic.getPlaylists(mainWindow.getTypedSearch(), networkcontroller.getPlaylists()));

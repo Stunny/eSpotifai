@@ -51,10 +51,10 @@ public class NetworkController {
 		case "deleteUser":
 			response = ddbbconnection.deleteUser(s[1]);
 			break;
-		case "addSong":
+		case "AddSong":
 			//extreure dades de la request
 			args = s[1].split("/");
-			response = ddbbconnection.addSong(args[0], args[1], args[2], args[3], args[4], Integer.parseInt(args[5]));
+			response  = gson.toJson(ddbbconnection.insertSongP(Integer.parseInt(args[0]), Integer.parseInt(args[1])));
 			break;
 		case "getUsers":
 			response = gson.toJson(ddbbconnection.getUsers());
@@ -67,6 +67,7 @@ public class NetworkController {
 			break;
 		case "getPlaylists":
 			response  = gson.toJson(ddbbconnection.getPlaylists());
+
 			break;
 		case "getFollowing":
 			response = gson.toJson(ddbbconnection.getFollowing(Integer.parseInt(s[1])));
@@ -75,6 +76,7 @@ public class NetworkController {
 		case "deletePlaylist": 
 			response  = ddbbconnection.deletePlaylist(Integer.parseInt(s[1]));
 			break;
+
 		case "getFollowingFile":
 			LinkedList<User> user = ddbbconnection.getUsers();
 			for( User user1: user){
@@ -84,11 +86,9 @@ public class NetworkController {
 					Main.setFilePath(user1.getUsername());
 				}
 			}
-		
-
-		case "getPublicPlaylists":
-			response  = gson.toJson(ddbbconnection.getPublicPlaylists(Integer.parseInt(s[1])));
 			break;
+
+			
 		case "getSongFile":
 			LinkedList<Song> list = ddbbconnection.getSongs();
 			for (Song song : list) {
@@ -99,6 +99,19 @@ public class NetworkController {
 			}
 			
 			break;
+		
+		case "Follow":
+			args = s[1].split("/");
+			response  = ddbbconnection.follow(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
+		break;
+		case "UnFollow":
+			args = s[1].split("/");
+			response  = ddbbconnection.unFollow(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
+			break;
+		case "getPublicPlaylists":
+			response  = gson.toJson(ddbbconnection.getPublicPlaylists(Integer.parseInt(s[1])));
+			break;
+
 		case "Songs From":
 			response  = gson.toJson(ddbbconnection.getSongsList(Integer.parseInt(s[1])));
 		break;
@@ -125,6 +138,7 @@ public class NetworkController {
 	    }
 		
 		return response;
+
 	}
 	
 

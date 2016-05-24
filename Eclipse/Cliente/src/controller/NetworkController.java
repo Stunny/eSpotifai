@@ -69,9 +69,6 @@ public class NetworkController {
 
 
 		LinkedList<Song> songlist = new LinkedList<Song>(Arrays.asList(s));
-		/*for(int  i = 0; i < songlist.size(); i++){
-			System.out.println(songlist.get(i).getName());
-		}*/
 
 		return songlist;
 	}
@@ -126,10 +123,6 @@ public class NetworkController {
 
 
 		LinkedList<Playlist> playlistlist = new LinkedList<Playlist>(Arrays.asList(p));
-		/*for(int  i = 0; i < songlist.size(); i++){
-		System.out.println(songlist.get(i).getName());
-	}*/
-
 		return playlistlist;
 	}
 	
@@ -235,6 +228,7 @@ public class NetworkController {
 		}
 		
 	}
+
 	
 	public static String AddSong(int idSong, int idPlaylist) {
 		  String request = "AddSong:"+idSong+"/"+idPlaylist;
@@ -250,4 +244,5 @@ public class NetworkController {
 	
 	
 	
+
 }

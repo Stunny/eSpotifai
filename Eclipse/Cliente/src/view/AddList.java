@@ -51,8 +51,6 @@ public class AddList extends JFrame{
 	 * @see JMenuItem
 	 */
 	private JMenuItem insert;
-
-
 	
 	private int idPlaylist;
 	
@@ -98,22 +96,22 @@ public class AddList extends JFrame{
 
 		jtMusic.addMouseListener(new MouseAdapter(){
 			public void mousePressed(MouseEvent e) {
-				if ( SwingUtilities.isLeftMouseButton(e)) {
-					popup.setVisible(false);
-				} else {
-					if ( SwingUtilities.isRightMouseButton(e)) {
-						Point p = e.getPoint();
-						int rowNumber = jtMusic.rowAtPoint(p);
-						ListSelectionModel modelo = jtMusic.getSelectionModel();
-						modelo.setSelectionInterval( rowNumber, rowNumber );
-						idPlaylist = Integer.parseInt(String.valueOf( jtMusic.getValueAt(rowNumber, 0)));
-						popup.show(jtMusic,  e.getX(), e.getY());
-
-					}
-				}
-			}
-		});
-
+		            if ( SwingUtilities.isLeftMouseButton(e)) {
+		            	popup.setVisible(false);
+		            } else {
+		                 if ( SwingUtilities.isRightMouseButton(e)) {
+		                    Point p = e.getPoint();
+		                    int rowNumber = jtMusic.rowAtPoint(p);
+		                    ListSelectionModel modelo = jtMusic.getSelectionModel();
+		                    modelo.setSelectionInterval( rowNumber, rowNumber );
+		            		idPlaylist = Integer.parseInt(String.valueOf( jtMusic.getValueAt(rowNumber, 0)));
+		            		popup.show(jtMusic,  e.getX(), e.getY());
+		            		 
+		                }
+		            }
+		        }
+		    });
+		
 		jtMusic.setModel(tableMusic);
 		jtMusic.setFocusable(false);
 		jtMusic.getTableHeader().setReorderingAllowed(false);

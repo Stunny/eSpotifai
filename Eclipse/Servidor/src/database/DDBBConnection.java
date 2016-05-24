@@ -305,7 +305,7 @@ public class DDBBConnection {
 			{
 				list.add(new Song ((int)resultSet.getObject("id_Song"), (String)resultSet.getObject("name"), 
 						(String)resultSet.getObject("genre"), (String)resultSet.getObject("album"), (String)resultSet.getObject("artist"),
-						(String)resultSet.getObject("location"), (int)resultSet.getObject("Stars"), (int)resultSet.getObject("reproducciones")));
+						(String)resultSet.getObject("location"), (int)resultSet.getObject("stars"), (int)resultSet.getObject("reproducciones")));
 			}	
 		} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -590,6 +590,80 @@ public class DDBBConnection {
 			return 0;
 		}
 	}
-	
-	
+
+
+	public String follow(int idUser, int idFollowed) {
+		try {
+			ResultSet resultSet = ddbb.selectQuery("SELECT count(*) FROM followers WHERE user_follower = "+ idUser +" AND user_followed= "+idFollowed);
+			resultSet.next();
+			int dontExist = resultSet.getInt(1);
+
+			if (dontExist == 0){
+				ddbb.insertQuery("INSERT INTO followers (user_follower,user_followed) VALUES ('"+idUser+"','"+idFollowed+"')");
+				return ("Follow");
+			}
+
+			else {
+				return ("Exist");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			return "Problems";
+		}
+	}
+
+	public String unFollow(int idUser, int idFollowed) {
+		try {
+			ResultSet resultSet = ddbb.selectQuery("SELECT count(*) FROM followers WHERE user_follower = "+ idUser +" AND user_followed= "+idFollowed);
+			resultSet.next();
+			int dontExist = resultSet.getInt(1);
+
+			if (dontExist != 0){
+				ddbb.deleteQuery("DELETE FROM followers WHERE user_follower =" +idUser+" AND user_followed="+idFollowed);
+				return ("UnFollow");
+			}
+
+			else {
+				return ("Dont");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			return "Problems";
+		}
+	}
+
+
+	public int getIdUser(String name ) throws SQLException{
+		ResultSet resultSet = ddbb.selectQuery("SElECT id FROM users where user_name = " +name);
+		resultSet.next();
+		return  resultSet.getInt(1);
+	}
+
+	public String insertSongP(int idSong, int idPlaylist) {
+		try {
+			System.out.println("sfjsdlh.fhzgjalgnshglhglsdhf");
+			ResultSet resultSet = ddbb.selectQuery("SELECT count(*) FROM playlists_songs WHERE cf_playlist = "+ idPlaylist +" AND cf_song= "+idSong);
+			resultSet.next();
+			int dontExist = resultSet.getInt(1);
+			
+			if (dontExist == 0){
+				ddbb.insertQuery("INSERT INTO playlists_songs (cf_playlist ,cf_song) VALUES ('"+idPlaylist+"','"+idSong+"')");
+				return ("Add");
+			}
+			
+			else {
+				return ("Exist");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			return "Problems";
+		}
+	}	
+
+	public String reproducciones(int id) {
+		ddbb.updateQuery("UPDATE songs SET reproducciones = reproducciones + 1 WHERE id_song="+id);
+		return null;
+	}
+
+
 }
