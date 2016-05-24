@@ -33,6 +33,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.Popup;
 import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
+import javax.swing.border.TitledBorder;
 //import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
@@ -42,8 +43,8 @@ import model.User;
 import controller.ButtonsController;
 import controller.PopUpController;
 /**
- * Pantalla principal de la versió de servidor de l'aplicació
- * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * Pantalla principal de la versiï¿½ de servidor de l'aplicaciï¿½
+ * @author Elna Cabot, Miguel Dï¿½az, Marc Millï¿½n, Alejandro Vogel, Marta Zapatero
  * @version 1.0
  * @see CustomPlayer
  * @see JTabbedPane
@@ -74,7 +75,7 @@ public class MainWindow extends JFrame{
 	 */
 	private JTabbedPane jtpTabs;
 	/**
-	 * Panell on es col·locarà la informació de cançons
+	 * Panell on es colï¿½locarï¿½ la informaciï¿½ de canï¿½ons
 	 * @see Song
 	 * @see JPanel
 	 */
@@ -92,13 +93,13 @@ public class MainWindow extends JFrame{
 	private JPanel jpButtons;
 
 	/**
-	 * Panell on va col·locat el reproductor
+	 * Panell on va colï¿½locat el reproductor
 	 */
 	private JPanel jpPlayer; 
 	private JPanel jpPlayerButtons; 
 
 	/**
-	 * Panell de cançons
+	 * Panell de canï¿½ons
 	 */
 	private JPanel jpSong;
 
@@ -113,7 +114,7 @@ public class MainWindow extends JFrame{
 	private GridLayout glPlayerButtons; 
 
 	/**
-	 * Indicará dins un border layout l'etiqueta d'una cançó i l'estat de la mateixa
+	 * Indicarï¿½ dins un border layout l'etiqueta d'una canï¿½ï¿½ i l'estat de la mateixa
 	 */
 	private GridLayout glPageEnd;
 
@@ -135,49 +136,49 @@ public class MainWindow extends JFrame{
 	//private JTextArea jtListOfSongs;
 
 	/**
-	 * Area de representació on es podrà fer scroll
+	 * Area de representaciï¿½ on es podrï¿½ fer scroll
 	 */
 	private JScrollPane jspMusicList;
 
 	/**
-	 * Mostra gráficament el moment en el que es troba la cançó.
+	 * Mostra grï¿½ficament el moment en el que es troba la canï¿½ï¿½.
 	 * @see JSlider
 	 */
 	private JSlider jSlider; //
 
 	/**
-	 * Botó per a afegir camps
+	 * Botï¿½ per a afegir camps
 	 */
 	private JButton jbAdd;
 
 	/**
-	 * Mostrarà les estadístiques de la aplicació
+	 * Mostrarï¿½ les estadï¿½stiques de la aplicaciï¿½
 	 */
 	private JButton jbStatistics;
 
 	//=========================
 	/**
-	 * Botó <i style="color:indigo">PLAY</i> del reproductor.
+	 * Botï¿½ <i style="color:indigo">PLAY</i> del reproductor.
 	 * @see JButton
 	 */
 	private JButton jbPlay;
 	/**	
-	 * Botó <i style="color:indigo">PREVIOUS</i> del reproductor.
+	 * Botï¿½ <i style="color:indigo">PREVIOUS</i> del reproductor.
 	 * @see JButton
 	 */
 	private JButton jbPrevious;
 	/**
-	 * Botó <i style="color:indigo">NEXT</i> del reproductor.
+	 * Botï¿½ <i style="color:indigo">NEXT</i> del reproductor.
 	 * @see JButton
 	 */
 	private JButton jbNext;
 	/**
-	 * Botó <i style="color:indigo">SINGLE REPEAT</i> del reproductor.
+	 * Botï¿½ <i style="color:indigo">SINGLE REPEAT</i> del reproductor.
 	 * @see JRadioButton
 	 */
 	private JRadioButton jrbRepeatOne;
 	/**
-	 * Botó <i style="color:indigo">GLOBAL REPEAT</i> del reproductor.
+	 * Botï¿½ <i style="color:indigo">GLOBAL REPEAT</i> del reproductor.
 	 * @see JRadioButton
 	 */
 	private JRadioButton jrbRepeatList;
@@ -241,7 +242,7 @@ public class MainWindow extends JFrame{
 	DefaultTableModel tableModelUser;
 
 	/**
-	 * Taula de contigut de la part de música
+	 * Taula de contigut de la part de mï¿½sica
 	 */
 	DefaultTableModel tableModelMusic;
 
@@ -261,12 +262,12 @@ public class MainWindow extends JFrame{
 	private JMenuItem listas;
 
 	/**
-	 * Obre el diàleg per confirmar l'eliminació
+	 * Obre el diï¿½leg per confirmar l'eliminaciï¿½
 	 */
 	private JMenuItem eliminar;
 
 	/**
-	 * Obre el diàleg per confirmar l'eliminació
+	 * Obre el diï¿½leg per confirmar l'eliminaciï¿½
 	 */
 	private JMenuItem eliminar2;
 
@@ -276,17 +277,17 @@ public class MainWindow extends JFrame{
 	private int id = 0;
 
 	/**
-	 * ID de cançó
+	 * ID de canï¿½ï¿½
 	 */
 	private int idSong = 0;
 
 	/**
-	 * Menú emergent a l'usuari
+	 * Menï¿½ emergent a l'usuari
 	 */
 	public JPopupMenu popup;
 
 	/**
-	 * Menu emergent d'una cançó
+	 * Menu emergent d'una canï¿½ï¿½
 	 */
 	public JPopupMenu popupSong;
 	//=============
@@ -299,12 +300,12 @@ public class MainWindow extends JFrame{
 	//private JLabel SongState;
 
 	/**
-	 * Etiqueta on es representa elnom de lacançó que està sent reproduida
+	 * Etiqueta on es representa elnom de lacanï¿½ï¿½ que estï¿½ sent reproduida
 	 */
 	private JLabel jlSongName;
 
 	/**
-	 * Estat de la reproducció dela cançó(aturat,pausat,en reproducció...)
+	 * Estat de la reproducciï¿½ dela canï¿½ï¿½(aturat,pausat,en reproducciï¿½...)
 	 */
 	private JLabel jlSongState;
 
@@ -333,7 +334,7 @@ public class MainWindow extends JFrame{
 
 
 	/**
-	 * Construeix la pantalla principal del servidor de l'aplicació
+	 * Construeix la pantalla principal del servidor de l'aplicaciï¿½
 	 * @see CustomPlayer
 	 * @see JTabbedPane
 	 * @see JScrollPane
@@ -351,8 +352,10 @@ public class MainWindow extends JFrame{
 	 */
 	public MainWindow() {
 
+		
 		//Creem el conjunt de pestanyes
 		jtpTabs = new JTabbedPane();
+		
 
 		//Creem el panell per montar l'estructura de l'apartat "Music"
 		jpMusic = new JPanel();
@@ -362,6 +365,8 @@ public class MainWindow extends JFrame{
 		jpMusic.setLayout(blMusic);
 
 
+		
+		
 		//Creo el panell Scroll de la llista de canï¿½ons
 		//table
 		//hardcodeo de columnas y datos 
@@ -412,18 +417,25 @@ public class MainWindow extends JFrame{
 		jtMusicList.setFocusable(false);
 		//jtMusicList.setForeground(Color.BLACK);
 		//jtMusicList.setBackground(Color.DARK_GRAY);
-		Color myColor = Color.getHSBColor(0.51F,  0.93F,  0.5F);          
-		jtMusicList.setBackground(myColor);
+		//Color myColor = Color.getHSBColor(0.51F,  0.93F,  0.5F);          
+		jtMusicList.setBackground(CustomColor.icon);
 
 		//Li assigno a aquesta area de text que pugui fer scroll
 		//jspMusicList = new JScrollPane(jtListOfSongs);
 		jspMusicList = new JScrollPane(jtMusicList);
 
 		//Asigno un titul al apartat de la llista de canï¿½ons
-		jspMusicList.setBorder(BorderFactory.createTitledBorder("List of songs"));
+		//jspMusicList.setBorder(BorderFactory.createTitledBorder("List of songs"));
 
 		//Introdueixo aquest apartat/Panell a la primera fila del panell
 		jpMusic.add(jspMusicList, BorderLayout.CENTER);
+		//jpMusic.setBorder(BorderFactory.createTitledBorder("List of songs"));
+		TitledBorder titledBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "LIST OF SONGS", javax.swing.border.
+				TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.
+				TitledBorder.DEFAULT_POSITION, null, java.awt.Color.white);
+
+		jpMusic.setBorder(titledBorder);
+		jpMusic.setBackground(CustomColor.background);
 
 		//Creem el subpanell per montar l'estructura del apartat "butons  - ADD i estadistiques - i el reproductor "
 		/*jpPageEnd = new JPanel();
@@ -642,14 +654,15 @@ public class MainWindow extends JFrame{
 		this.setTitle("eSpotifai - Server Management");
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		this.getContentPane().setBackground(CustomColor.background);
+		
 	}
 
 
 	//==========================
 	/**
 	 * Configura l'aspecte dels botons
-	 * @param boton Botó
+	 * @param boton Botï¿½
 	 * @param imatge1 Primera imatge: Icon
 	 * @param imatge2 Segona imatge: Rollover Icon
 	 * @param imatge3 Tercera imatge: Pressed Icon
@@ -786,7 +799,7 @@ public class MainWindow extends JFrame{
 
 	//===============================
 	/**
-	 * Controlador d'input de la pantalla principal de l'aplicació
+	 * Controlador d'input de la pantalla principal de l'aplicaciï¿½
 	 * @param controller Primer listener d'input de la pantalla principal
 	 * @param controller2 Segon listener de la pantalla principal
 	 * @see ActionListener
@@ -828,7 +841,7 @@ public class MainWindow extends JFrame{
 
 	}
 	/**
-	 * Avisa a l'usuari de que pot fer click a <i style="color:indigo">PLAY</i> per reproduir la cançó.
+	 * Avisa a l'usuari de que pot fer click a <i style="color:indigo">PLAY</i> per reproduir la canï¿½ï¿½.
 	 */
 	public void changeButtonToPlay(){
 
@@ -842,7 +855,7 @@ public class MainWindow extends JFrame{
 	}
 
 	/**
-	 * Actualitza els valors de temps de reproducció del reproductor
+	 * Actualitza els valors de temps de reproducciï¿½ del reproductor
 	 * @see CustomPlayer
 	 */
 
@@ -911,7 +924,7 @@ public class MainWindow extends JFrame{
 
 
 	/**
-	 * Actualitza la llista de cançons
+	 * Actualitza la llista de canï¿½ons
 	 * @param list
 	 * @see Song
 	 */
@@ -932,7 +945,7 @@ public class MainWindow extends JFrame{
 		return id;
 	}
 	/**
-	 * Retorna l'ID d'una cançó
+	 * Retorna l'ID d'una canï¿½ï¿½
 	 * @return
 	 * @see Song
 	 */

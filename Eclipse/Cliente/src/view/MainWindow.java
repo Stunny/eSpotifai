@@ -35,6 +35,7 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controller.PopUpController;
@@ -182,6 +183,7 @@ public class MainWindow extends JFrame {
 	private int max = 0, value = 0;
 	
 	private int idsong = 0;
+	private JLabel jlLogo;
 	//==================
 
 	/**
@@ -196,7 +198,7 @@ public class MainWindow extends JFrame {
 		JPanel jpPageStart = new JPanel();
 		jpPageStart.setLayout(new GridLayout(1, 5));
 
-		JLabel jlLogo = new JLabel("ESPOTIFAI");
+		jlLogo = new JLabel("ESPOTIFAI");
 		jlLogo.setFont(new java.awt.Font("Phosphate", 0, 25)); 
 		jlLogo.setForeground(Color.white);
 
@@ -206,8 +208,8 @@ public class MainWindow extends JFrame {
 			{  
 				// you can open a new frame here as
 				// i have assumed you have declared "frame" as instance variable
-				JOptionPane.showMessageDialog(null, "HOLA GUARRA");
-
+				//JOptionPane.showMessageDialog(null, "HOLA GUARRA");
+				setMode("all");
 			}  
 		}); 
 
@@ -236,8 +238,12 @@ public class MainWindow extends JFrame {
 		jpPageWest.setLayout(new BorderLayout());
 
 		JPanel jpListsFollowing = new JPanel(new BorderLayout());
-		jpListsFollowing.setBorder(BorderFactory.createTitledBorder("PLAYLIST FOLLOWING"));
+		//jpListsFollowing.setBorder(BorderFactory.createTitledBorder("PLAYLIST FOLLOWING"));
+		TitledBorder titledBorder2 = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "PLAYLIST FOLLOWING", javax.swing.border.
+				TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.
+				TitledBorder.DEFAULT_POSITION, null, java.awt.Color.white);
 
+		jpListsFollowing.setBorder(titledBorder2);
 
 		String[] jtFollowedListsColumns = {"id","Followed Lists", "Creador"};
 		Object[][] jtFollowedListsData = {};
@@ -286,6 +292,7 @@ public class MainWindow extends JFrame {
 		jtFollowedLists.setModel(tableModelFollowedLists);
 		jtFollowedLists.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		jtFollowedLists.setFocusable(false);
+		jtFollowedLists.setBackground(CustomColor.icon);
 
 		JScrollPane jspListsFollowing = new JScrollPane(jtFollowedLists);
 		JTable jpFollowedLists = new JTable();
@@ -298,7 +305,12 @@ public class MainWindow extends JFrame {
 		//-----------------------------------------------------------------
 
 		JPanel jpLists = new JPanel(new BorderLayout());
-		jpLists.setBorder(BorderFactory.createTitledBorder("PLAYLIST "));
+		//jpLists.setBorder(BorderFactory.createTitledBorder("PLAYLIST "));
+		TitledBorder titledBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "PLAYLIST", javax.swing.border.
+				TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.
+				TitledBorder.DEFAULT_POSITION, null, java.awt.Color.white);
+
+		jpLists.setBorder(titledBorder);
 
 		String[] jtListsColumns1 = {"id","Lists"};
 		Object[][] jtListsData1 = {{"1","HOLA"}};
@@ -348,6 +360,7 @@ public class MainWindow extends JFrame {
 		jtLists.setModel(tableModelLists);
 		jtLists.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		jtLists.setFocusable(false);
+		jtLists.setBackground(CustomColor.icon);
 
 		JScrollPane jspLists = new JScrollPane(jtLists);
 		JTable jpListsPlaylist = new JTable();
@@ -357,19 +370,7 @@ public class MainWindow extends JFrame {
 		jpLists.setPreferredSize(new Dimension(250, 0));
 		jpPageWest.add(jpLists, BorderLayout.CENTER);
 
-		/*
-		JPanel jpLists = new JPanel();
-		jpLists.setBorder(BorderFactory.createTitledBorder("PLAYLIST"));
-		jtaLists = new JTextArea(); 
-		jtaLists.setBackground(CustomColor.icon);
-		jtaLists.setEditable(false);
-		JScrollPane jspLists = new JScrollPane(jtaLists);
-		jspLists.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		jspLists.setPreferredSize(new Dimension(250,250));
-		jpLists.add(jspLists, BorderLayout.CENTER);
-		jpLists.setBackground(CustomColor.secondary);
-		jpPageWest.add(jpLists, BorderLayout.CENTER); //INSERIM PANELL 1 LLISTAT DE MUSICA
-		 */
+
 
 
 
@@ -396,7 +397,9 @@ public class MainWindow extends JFrame {
 				return false;
 			}
 		};
-
+		
+	
+		
 		popup = new JPopupMenu();
 		popup.add(reproducir = new JMenuItem("Reproduir Canço"));
 		reproducir.setHorizontalTextPosition(JMenuItem.RIGHT);
@@ -436,9 +439,11 @@ public class MainWindow extends JFrame {
 		jtMusic.setModel(tableMusic);
 		jtMusic.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		jtMusic.setFocusable(false);
+		jtMusic.setBackground(CustomColor.icon);
+		
 
 		JScrollPane jspUsers = new JScrollPane(jtMusic);
-
+		
 
 		jpMain.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
@@ -449,6 +454,7 @@ public class MainWindow extends JFrame {
 		});
 
 		jpMain.add(jspUsers, BorderLayout.CENTER);
+		
 
 		//-------------------------------------------------------
 
@@ -543,6 +549,7 @@ public class MainWindow extends JFrame {
 		//jpPlayer.add(jlTemporalSong, BorderLayout.CENTER);
 		jpPlayer.add(jSlider, BorderLayout.CENTER);
 		jpPlayer.add(jlTime, BorderLayout.EAST);
+		
 
 		jpMain.add(jpPlayer, BorderLayout.SOUTH) ;
 		//jpMain.setPreferredSize(new Dimension(0, 130));
