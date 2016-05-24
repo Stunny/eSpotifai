@@ -113,10 +113,12 @@ public class PopUpController implements ActionListener{
 
 		
 		if(event.getActionCommand().equals("PlaylistSearchUser.visualitzarActionCommand")){
+			System.out.println("getID" +playlistsearchuser.getId());
 			mainwindow.setMode(playlistsearchuser.getId() + "");
 		}
 		
 		if(event.getActionCommand().equals("SelectedUserWindow.visualitzarActionCommand")){
+			System.out.println("getID" +selecteduserwindow.getId());
 			mainwindow.setMode(selecteduserwindow.getId() + "");
 		}
 		

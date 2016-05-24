@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
 /**
  * 
  * A partir d'un usuari retorna una <i>playlist</i>.
- * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @author Elna Cabot, Miguel Dï¿½az, Marc Millï¿½n, Alejandro Vogel, Marta Zapatero
  * 
  * @version 1.0
  * @see JPanel
@@ -51,19 +51,19 @@ public class PlaylistSearchUser extends JFrame{
 	 */
 	private JMenuItem visualitzar;
 	/**
-	 * Llista de selecció
+	 * Llista de selecciï¿½
 	 * @see ListSelectionModel
 	 */
 	private ListSelectionModel modelo;
 	/**
 	 * IDentificador de la <i>Playlist</i>
 	 */
-	private String id = ""; 
+	private int id = 0; 
 	private JButton before; 
 	DefaultTableModel tableModelFollowedLists;
 	
 	/**
-	 * Retorna una llista de cançons a partir d'un usuari seleccionat.
+	 * Retorna una llista de canï¿½ons a partir d'un usuari seleccionat.
 	 */
 	public PlaylistSearchUser(){
 		JPanel jpListsFollowing = new JPanel(new BorderLayout());
@@ -105,7 +105,8 @@ public class PlaylistSearchUser extends JFrame{
 						modelo.setSelectionInterval( rowNumber, rowNumber );
 						// modelo1.clearSelection();
 						// modelo2.clearSelection();
-						id = (String) jtFollowedLists.getValueAt(rowNumber, 0);
+						//id = (String) jtFollowedLists.getValueAt(rowNumber, 1);
+						id = Integer.parseInt(String.valueOf( jtFollowedLists.getValueAt(rowNumber, 0)));
 						popupPlaylist.show(jpListsFollowing,  e.getX(), e.getY());
 
 					}
@@ -167,7 +168,7 @@ public class PlaylistSearchUser extends JFrame{
 		
 	}
 	
-	public String getId(){
+	public int getId(){
 		return id;
 	}
 
