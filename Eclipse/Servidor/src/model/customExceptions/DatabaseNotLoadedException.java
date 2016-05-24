@@ -1,4 +1,4 @@
-package customExceptions;
+package model.customExceptions;
 
 public class DatabaseNotLoadedException extends Exception {
 	

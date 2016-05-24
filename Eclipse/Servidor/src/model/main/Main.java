@@ -1,4 +1,4 @@
-package main;
+package model.main;
 
 import java.util.LinkedList;
 
@@ -13,15 +13,15 @@ import controller.ButtonsController;
 import controller.GeneralController;
 import controller.NetworkController;
 import controller.PopUpController;
-import customExceptions.DatabaseNotLoadedException;
-import database.DDBBConnection;
+import controller.threads.RefreshThread;
+import controller.threads.TimeThread;
 import model.ManagementConfiguration;
 import model.ServerConfiguration;
 import model.Song;
+import model.customExceptions.DatabaseNotLoadedException;
 import network.FileServer;
 import network.Server;
-import threads.RefreshThread;
-import threads.TimeThread;
+import network.database.DDBBConnection;
 
 public class Main {
 

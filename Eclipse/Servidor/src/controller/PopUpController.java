@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import database.DDBBConnection;
+import network.database.DDBBConnection;
 import view.AddMusicWindow;
 import view.FollowedsWindow;
 import view.FollowersWindow;

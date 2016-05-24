@@ -11,11 +11,11 @@ import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
 
-import main.Main;
+import controller.threads.RefreshThread;
+import controller.threads.TimeThread;
 import model.AccessLogic;
+import model.main.Main;
 import network.ServerCommunication;
-import threads.RefreshThread;
-import threads.TimeThread;
 import view.LoginWindow;
 import view.MainWindow;
 import view.NewListDialog;
@@ -261,13 +261,40 @@ public class ButtonController implements ActionListener {
 		//PANTALLA SEARCH USUARIO
 		if(event.getActionCommand().equals("FOLLOW")){
 			String p = "Following";
+			int user= AccessLogic.getId(mainWindow.getUser(), networkcontroller);
+			int followed=AccessLogic.getId(mainWindow.getTypedSearch(), networkcontroller);
+			if(user == followed){
+				JOptionPane.showMessageDialog(null, "No puedes seguirte a ti mismo", " ", JOptionPane.ERROR_MESSAGE);
+				p = "You";
+			}
+			else{
+				if(networkcontroller.follow(user, followed).equals("Exist")){
+					JOptionPane.showMessageDialog(null, "Ya estas siguiendo a este usuario", " ", JOptionPane.ERROR_MESSAGE);
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "Has empezado a seguir a un usuario", " ", JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
 			selecteduserwindow.refreshFollowing(p);
 		}
 
 		//PANTALLA SEARCH USUARI
 		if(event.getActionCommand().equals("UNFOLLOW")){
-			String s = new String();
-			s = "Unfollow";
+			String s  = "Unfollow";
+			int user = AccessLogic.getId(mainWindow.getUser(), networkcontroller);
+			int followed=AccessLogic.getId(mainWindow.getTypedSearch(), networkcontroller);
+			if(user == followed){
+				JOptionPane.showMessageDialog(null, "No puedes dejar seguirte a ti mismo", " ", JOptionPane.ERROR_MESSAGE);
+				s = "You";
+			}
+			else{
+				if(networkcontroller.unfollow(user, followed).equals("Dont")){
+					JOptionPane.showMessageDialog(null, "Ya no sigues a este usuario", " ", JOptionPane.ERROR_MESSAGE);
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "Has dejado de seguir al usuario", " ", JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
 			selecteduserwindow.refreshFollowing(s);
 			
 		}

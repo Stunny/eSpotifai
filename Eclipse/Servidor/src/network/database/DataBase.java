@@ -1,4 +1,4 @@
-package database;
+package network.database;
 
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 
-import customExceptions.DatabaseNotLoadedException;
+import model.customExceptions.DatabaseNotLoadedException;
 /**
  * 
- * @author Elna Cabot, Miguel Díaz, Marc Millán, Alejandro Vogel, Marta Zapatero
+ * @author Elna Cabot, Miguel Dï¿½az, Marc Millï¿½n, Alejandro Vogel, Marta Zapatero
  * @versio 1.0
  * @see DDBBConnection
  * @see DatabaseNotLoadedException
@@ -33,15 +33,15 @@ public class DataBase {
 	 */
 	static String ddbbName;
 	/**
-	 * Port de conexió de la base de dades
+	 * Port de conexiï¿½ de la base de dades
 	 */
 	static int port;
 	/**
-	 * Direcció URL de la base de dades
+	 * Direcciï¿½ URL de la base de dades
 	 */
 	static String url = "jdbc:mysql://localhost";
 	/**
-	 * Instanciació de conexió amb la base de dades
+	 * Instanciaciï¿½ de conexiï¿½ amb la base de dades
 	 */
 	static Connection conn = null;
 	/**
@@ -53,7 +53,7 @@ public class DataBase {
 	 * @param username Nom d'usuari de la base de dades
 	 * @param password Contrassenya de l'usuari de la base de dades
 	 * @param ddbbName Nom de la base de dades
-	 * @param port Port de conexió de la base de dades
+	 * @param port Port de conexiï¿½ de la base de dades
 	 */
 	public DataBase(String username, String password, String ddbbName, int port) {
 		DataBase.username = username;
@@ -64,7 +64,7 @@ public class DataBase {
 		DataBase.url += ddbbName;
 	}
 	/**
-	 * Executa la conexió amb la base de dades mitjançant els atributs inicialitzats ateriorment.
+	 * Executa la conexiï¿½ amb la base de dades mitjanï¿½ant els atributs inicialitzats ateriorment.
 	 * @throws DatabaseNotLoadedException En cas de error a l'hora de conectar.
 	 */
 	public void connect() throws DatabaseNotLoadedException{
@@ -73,7 +73,7 @@ public class DataBase {
 			Class.forName("com.mysql.jdbc.Connection");
 			conn = (Connection) DriverManager.getConnection(url, username, password);
 			if (conn != null) {
-				//System.out.println("Conexió a base de dades "+url+" ... Ok");
+				//System.out.println("Conexiï¿½ a base de dades "+url+" ... Ok");
 			}
 		}
 		catch(SQLException ex) {

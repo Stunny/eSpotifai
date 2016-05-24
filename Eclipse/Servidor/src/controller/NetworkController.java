@@ -5,10 +5,10 @@ import java.util.LinkedList;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import database.DDBBConnection;
-import main.Main;
 import model.Song;
 import model.User;
+import model.main.Main;
+import network.database.DDBBConnection;
 
 public class NetworkController {
 	

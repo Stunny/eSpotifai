@@ -50,8 +50,8 @@ public class UserWindow extends JFrame{
 	private JPopupMenu popupPlaylist;
 	private JMenuItem visualitzar;
 	private ListSelectionModel modelo;
-	private int id = 0; 
-	private String nombre; 
+	private String id = ""; 
+	//private String nombre; 
 	DefaultTableModel tableModelFollowedLists;
 
 
@@ -119,7 +119,8 @@ public class UserWindow extends JFrame{
 						modelo.setSelectionInterval( rowNumber, rowNumber );
 						// modelo1.clearSelection();
 						// modelo2.clearSelection();
-						id = Integer.parseInt(String.valueOf( jtFollowedLists.getValueAt(rowNumber, 0)));
+						id =  (String) jtFollowedLists.getValueAt(rowNumber, 1);
+						//nombre = String.valueOf( jtFollowedLists.getValueAt(rowNumber, 0));
 						popupPlaylist.show(jpListsFollowing,  e.getX(), e.getY());
 
 					}
@@ -183,8 +184,8 @@ public class UserWindow extends JFrame{
 		
 	}
 	
-	public String getNombre(){
-		return nombre;
+	public String getId(){
+		return id;
 	}
 
 	

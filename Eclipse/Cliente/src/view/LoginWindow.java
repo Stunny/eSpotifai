@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
@@ -36,9 +37,9 @@ public class LoginWindow  extends JFrame{
 	 * Area d'introduccio de contrassenya per fer login.
 	 * @see JTextField
 	 */
-	private JTextField jtfPassword;
+	private JPasswordField jtfPassword;
 	/**
-	 * Acciona el login una vegada introduida la informació requerida.
+	 * Acciona el login una vegada introduida la informaciï¿½ requerida.
 	 * @see JButton
 	 */
 	private JButton jbLogin; 
@@ -53,7 +54,7 @@ public class LoginWindow  extends JFrame{
 	// Color.decode("#282324");  COLOR FONS
 
 	/**
-	 * Constructor de la ventana de inici de sessió de usuari.
+	 * Constructor de la ventana de inici de sessiï¿½ de usuari.
 	 * @see JPanel
 	 * @see JLabel
 	 * @see TitledBorder
@@ -92,7 +93,7 @@ public class LoginWindow  extends JFrame{
 		contrasenya.setForeground(Color.white);
 		jpPassword.add(contrasenya, BorderLayout.CENTER);
 
-		jtfPassword = new JTextField();
+		jtfPassword = new JPasswordField();
 		jtfPassword.setBackground(CustomColor.icon);
 		jpPassword.add(jtfPassword, BorderLayout.CENTER);
 		jpPassword.setBackground(CustomColor.background);
@@ -156,8 +157,8 @@ public class LoginWindow  extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	/**
-	 * Controlador de input de informació d'usuari
-	 * @param controller Action listener utilitzat per a controlar l'interacció de l'usuari
+	 * Controlador de input de informaciï¿½ d'usuari
+	 * @param controller Action listener utilitzat per a controlar l'interacciï¿½ de l'usuari
 	 * @see ActionListener
 	 */
 	public void registerController(ActionListener controller){
@@ -168,14 +169,14 @@ public class LoginWindow  extends JFrame{
 	}
 
 	/**
-	 * Métode que retorna el nom d'susari entrat
+	 * Mï¿½tode que retorna el nom d'susari entrat
 	 * @return Es torna el nom d'usuari entrat
 	 */
 	public String getTypedUsername() {
 		return jtfUsername.getText();
 	}
 	/**
-	 * Métode que retorna la contrasenya d'usuari entrada
+	 * Mï¿½tode que retorna la contrasenya d'usuari entrada
 	 * @return Es torna la contrasenya entrada
 	 */
 	public String getTypedPassword() {

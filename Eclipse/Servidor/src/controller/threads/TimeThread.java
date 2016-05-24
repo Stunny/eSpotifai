@@ -1,12 +1,12 @@
-package threads;
+package controller.threads;
 
-import controller.ThreadController;
+import controller.GeneralController;
 
 public class TimeThread extends Thread {
 
-	private ThreadController controller;
+	private GeneralController controller;
 
-	public TimeThread(ThreadController controller) {
+	public TimeThread(GeneralController controller) {
 		super();
 		this.controller = controller;
 	}

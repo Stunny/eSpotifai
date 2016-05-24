@@ -12,8 +12,8 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import database.DDBBConnection;
 import model.CustomPlayer;
+import network.database.DDBBConnection;
 import view.AddMusicWindow;
 import view.MainWindow;
 import view.StatisticsWindow;
@@ -43,7 +43,7 @@ public class ButtonsController implements ActionListener{
 	public void actionPerformed(ActionEvent event) {
 
 		if (event.getActionCommand().equals("MainWindow.addActionCommand")) {
-			// Recuperem la informació que sha escrit a la vista
+			// Recuperem la informaciï¿½ que sha escrit a la vista
 			// i l'enviem al servidor
 			addMusicWindow.setVisible(true);
 
@@ -108,7 +108,7 @@ public class ButtonsController implements ActionListener{
 			} else {
 				path = path.replace('\\', '/');
 				ddbbConnection.addSong(title, genre, artist, album, path, 0);
-				//System.out.println("Añadida: "+ title);
+				//System.out.println("Aï¿½adida: "+ title);
 
 				addMusicWindow.setVisible(false);
 				addMusicWindow.clearTextFields();

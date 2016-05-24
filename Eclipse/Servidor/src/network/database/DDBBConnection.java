@@ -1,4 +1,4 @@
-package database;
+package network.database;
 
 import java.security.Timestamp;
 import java.sql.Date;
@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 
-import customExceptions.DatabaseNotLoadedException;
 import model.Playlist;
 import model.Song;
 import model.User;
+import model.customExceptions.DatabaseNotLoadedException;
 
 public class DDBBConnection {
 	DataBase ddbb;

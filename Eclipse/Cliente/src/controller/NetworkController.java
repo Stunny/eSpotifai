@@ -73,6 +73,27 @@ public class NetworkController {
 		return songlist;
 	}
 	
+	
+	public static String follow(int idU, int idF){
+		String request = "Follow:"+idU+"/"+idF;
+		ServerCommunication servercommunication = new ServerCommunication();
+		String resposta = servercommunication.sendData(request);		
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		Gson gson = gsonBuilder.create();
+		return gson.fromJson(resposta, String.class);
+	}
+
+	public static String unfollow(int idU, int idF) {
+		String request = "UnFollow:"+idU+"/"+idF;
+		ServerCommunication servercommunication = new ServerCommunication();
+		String resposta = servercommunication.sendData(request);		
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		Gson gson = gsonBuilder.create();
+		return gson.fromJson(resposta, String.class);
+	}
+	
+	
+	
 	public static LinkedList<Integer> getFollowing(int id){
 		String request =  "getFollowing:" + id;
 		ServerCommunication servercommunication = new ServerCommunication();

@@ -39,10 +39,10 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controller.PopUpController;
-import main.Main;
 import model.CustomPlayer;
 import model.Playlist;
 import model.Song;
+import model.main.Main;
 
 /**
  * Clase de la ventana principal de l'aplicaci� Espotyfai.
@@ -783,6 +783,11 @@ public class MainWindow extends JFrame {
 		}
 	}
 
+	
+
+	public String getUser () {
+		return user;
+	}
 
 
 	public void refreshTime() {

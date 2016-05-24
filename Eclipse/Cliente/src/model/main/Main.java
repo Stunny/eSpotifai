@@ -1,5 +1,5 @@
 
-package main;
+package model.main;
 
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -7,13 +7,13 @@ import javax.swing.SwingUtilities;
 import controller.ButtonController;
 import controller.NetworkController;
 import controller.PopUpController;
+import controller.threads.RefreshThread;
+import controller.threads.TimeThread;
 import model.AccessLogic;
 import controller.MouseActions;
 import model.Playlist;
 import model.Song;
 import model.User;
-import threads.RefreshThread;
-import threads.TimeThread;
 import view.AddList;
 import view.LoginWindow;
 import view.MainWindow;

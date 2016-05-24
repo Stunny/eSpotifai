@@ -3,10 +3,10 @@ package controller;
 import java.util.LinkedList;
 
 import view.MainWindow;
-import customExceptions.DatabaseNotLoadedException;
-import database.DDBBConnection;
 import model.Song;
 import model.User;
+import model.customExceptions.DatabaseNotLoadedException;
+import network.database.DDBBConnection;
 
 public class GeneralController {
 	//DDBB

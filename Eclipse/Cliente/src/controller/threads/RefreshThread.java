@@ -1,4 +1,4 @@
-package threads;
+package controller.threads;
 
 import java.util.LinkedList;
 
