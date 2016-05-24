@@ -78,7 +78,7 @@ public class StatisticsWindow extends JDialog{
 
 		g.setColor(new Color(0, 0, 0));
 		g.fillRect(20,600, 1060,3);
-		g.drawString("n∫ " + '\n' + "reproductions", 100,70);
+		g.drawString("n‚à´ " + '\n' + "reproductions", 100,70);
 		maxNum = 0;
 
 		//System.out.println("AQUI ANTES ");
@@ -125,7 +125,7 @@ public class StatisticsWindow extends JDialog{
 			//System.out.println("NAME : " + listSortSongs.get(j).getName() + "large barra estadisticas " + large);
 
 			//1r camp x
-			//2o camp y, comenÁa a printar-se la barra
+			//2o camp y, comen√Åa a printar-se la barra
 			//3r camp grossor de la barra
 			//4o camp longitud de barra
 
