@@ -49,11 +49,13 @@ public class ButtonsController implements ActionListener{
 
 			// Actualitzem la vista
 			//vista.addText(vista.getTypedMessage());
-		}else if (event.getActionCommand().equals("MainWindow.statisticsActionCommand")){
+		}
+		if (event.getActionCommand().equals("MainWindow.statisticsActionCommand")){
 			StatisticsWindow StadisticsView = new StatisticsWindow(ddbbConnection.getSongs());
 			StadisticsView.setVisible(true);
 
-		}else if (event.getActionCommand().equals("MainWindow.playActionCommand")){
+		}
+		if (event.getActionCommand().equals("MainWindow.playActionCommand")){
 			try {
 				mainWindow.goMP3(mainWindow.getSongPath(songIndex));
 			} catch (MalformedURLException e) {
@@ -65,7 +67,8 @@ public class ButtonsController implements ActionListener{
 				e.printStackTrace();
 			}
 
-		} else if (event.getActionCommand().equals("MainWindow.nextActionCommand")){
+		} 
+		if (event.getActionCommand().equals("MainWindow.nextActionCommand")){
 			if (songIndex < mainWindow.getSongAmount()-1) songIndex++;
 			else songIndex = 0;
 			try {
@@ -79,7 +82,8 @@ public class ButtonsController implements ActionListener{
 				e.printStackTrace();
 			}
 
-		} else if (event.getActionCommand().equals("MainWindow.previousActionCommand")){
+		}
+		if (event.getActionCommand().equals("MainWindow.previousActionCommand")){
 
 			if (songIndex > 0) songIndex--;
 			try {
@@ -96,7 +100,7 @@ public class ButtonsController implements ActionListener{
 		}
 
 
-		else if (event.getActionCommand().equals("AddMusicWindow.acceptActionCommand")){
+		if (event.getActionCommand().equals("AddMusicWindow.acceptActionCommand")){
 			String title = addMusicWindow.getTypedSongTitle();
 			String genre = addMusicWindow.getTypedGenre();
 			String artist = addMusicWindow.getTypedArtist();
@@ -115,7 +119,7 @@ public class ButtonsController implements ActionListener{
 			}
 		}
 
-		else if (event.getActionCommand().equals("AddMusicWindow.findPathActionCommand")) {
+		if (event.getActionCommand().equals("AddMusicWindow.findPathActionCommand")) {
 
 			JFileChooser jFileChooser = new JFileChooser();
 			String path = "";

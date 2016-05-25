@@ -80,6 +80,8 @@ public class PopUpController implements ActionListener{
 		}
 		if (event.getActionCommand().equals("MainWindow.anadirActionCommand")){
 			addlist.setVisible(true);
+			addlist.refreshPlaylits(networkcontroller.getPlaylists());
+			
 		}
 		if(event.getActionCommand().equals("MainWindow.delatePlaylistActionCommand")){
 			int reply = JOptionPane.showConfirmDialog(null, "Seguro que quieres eliminar la playlist?", "", JOptionPane.YES_NO_OPTION);

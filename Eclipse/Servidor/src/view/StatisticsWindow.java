@@ -10,13 +10,14 @@ import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import model.Song;
 import controller.ButtonsController;
 
-public class StatisticsWindow extends JDialog{
+public class StatisticsWindow extends JFrame{
 
 
 	private JPanel jpStatistics;
@@ -35,7 +36,7 @@ public class StatisticsWindow extends JDialog{
 		jpStatistics = new JPanel();
 		blStatistics = new BorderLayout();
 		setContentPane(jpStatistics);
-		jpStatistics.setLayout(null);
+		//jpStatistics.setLayout(null);
 
 		//System.out.println("AQUI DESPUES declaraciones ");
 
@@ -57,7 +58,7 @@ public class StatisticsWindow extends JDialog{
 		this.setSize(new Dimension(1100,680));
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		//this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 	}
 
